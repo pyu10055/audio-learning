@@ -17,12 +17,12 @@
 import AudioUtils from './AudioUtils';
 import {tensor3d, Tensor} from '@tensorflow/tfjs-core';
 
-export const BUFFER_LENGTH = 1024;
-export const HOP_LENGTH = 512;
+export const BUFFER_LENGTH = 480;
+export const HOP_LENGTH = 160;
 export const MEL_COUNT = 40;
 export const EXAMPLE_SR = 16000;
-export const DURATION = 3.168;
-export const IS_MFCC_ENABLED = false;
+export const DURATION = 1.0;
+export const IS_MFCC_ENABLED = true;
 
 /**
  * Goes from filename or audio sample buffer to input features.

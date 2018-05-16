@@ -77,7 +77,7 @@ export default class CommandRecognizer extends EventEmitter {
     const labelShape = [this.allLabels.length];
 
     this.streamFeature = new StreamingFeatureExtractor({
-      inputBufferLength: 4096,
+      inputBufferLength: 2048,
       bufferLength: BUFFER_LENGTH,
       hopLength: HOP_LENGTH,
       melCount: MEL_COUNT,
