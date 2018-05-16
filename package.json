@@ -1,0 +1,53 @@
+{
+  "name": "tfjs-converter-demo",
+  "version": "0.0.1",
+  "description": "Imports mobilenet model using the tfc.js converter",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "@tensorflow/tfjs-converter": "0.3.1",
+    "@tensorflow/tfjs-core": "0.10.1",
+    "eventemitter3": "^2.0.3"
+  },
+  "scripts": {
+    "watch": "NODE_ENV=development parcel --no-hmr --open voice/index.html "
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "babel-polyfill": "~6.26.0",
+    "babel-preset-env": "~1.6.1",
+    "clang-format": "~1.2.2",
+    "parcel-bundler": "~1.6.2",
+    "typescript": "^2.8.3",
+    "@types/node": "10.1.0",
+    "dct": "^0.0.3",
+    "eventemitter3": "^2.0.3",
+    "fft": "^0.2.1",
+    "kissfft-js": "0.1.8",
+    "node-wav": "0.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 3 versions",
+              "ie >= 9",
+              "ios >= 8",
+              "android >= 4.2"
+            ]
+          },
+          "useBuiltIns": false
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  }
+}

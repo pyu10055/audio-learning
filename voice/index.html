@@ -1,0 +1,108 @@
+<!-- Copyright 2018 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================-->
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Audio Recognition: Inference Demo</title>
+    <meta name="author" content="Boris Smus">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <style>
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.middle-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.middle-center .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin-top: -10%;
+}
+
+#command {
+  font-size: 5em;
+  text-align: center;
+}
+#score {
+  font-size: 1em;
+  text-align: center;
+}
+
+#results.hide {
+  transition: opacity 2s ease-in-out;
+  opacity: 0;
+}
+#results.show {
+  opacity: 1;
+}
+
+#load-file-label {
+  position: absolute;
+  right: 0;
+}
+
+#message {
+  font-size: 2em;
+  color: #ccc;
+}
+
+#levels {
+  display: none;
+  position: absolute;
+  margin: 1em;
+  bottom: 0;
+}
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="levels">
+    </div>
+
+    <div class="middle-center">
+      <button type="button" id="stream">Start</button>
+      <div class="inner">
+        <div id="message"></div>
+        <div id="results" class="hide">
+          <div id="command">placeholder</div>
+          <div id="score">0</div>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
+
