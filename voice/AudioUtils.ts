@@ -20,7 +20,10 @@ const SR = 16000;
 
 
 let melFilterbank = null;
+let startIndex = 0;
+let endIndex = 0;
 let context = null;
+let bandMapper = [];
 
 export default class AudioUtils {
   static loadExampleBuffer() {
@@ -205,46 +208,117 @@ export default class AudioUtils {
 
     // Construct linearly spaced array of melCount intervals, between lowMel and
     // highMel.
-    const mels = linearSpace(lowMel, highMel, melCount + 2);
+    const mels = []; //linearSpace(lowMel, highMel, melCount + 2);
     // Convert from mels to hz.
-    const hzs = mels.map(mel => this.melToHz(mel));
-    // Go from hz to the corresponding bin in the FFT.
-    const bins = hzs.map(hz => this.freqToBin(hz, fftSize));
+    // const hzs = mels.map(mel => this.melToHz(mel));
+    // // Go from hz to the corresponding bin in the FFT.
+    // const bins = hzs.map(hz => this.freqToBin(hz, fftSize));
 
-    // Now that we have the start and end frequencies, create each triangular
-    // window (each value in [0, 1]) that we will apply to an FFT later. These
-    // are mostly sparse, except for the values of the triangle
-    const length = bins.length - 2;
-    const filters = [];
-    for (let i = 0; i < length; i++) {
-      // Now generate the triangles themselves.
-      filters[i] = this.triangleWindow(fftSize, bins[i], bins[i+1], bins[i+2]);
+    // // Now that we have the start and end frequencies, create each triangular
+    // // window (each value in [0, 1]) that we will apply to an FFT later. These
+    // // are mostly sparse, except for the values of the triangle
+    // const length = bins.length - 2;
+    // const filters = [];
+    // for (let i = 0; i < length; i++) {
+    //   // Now generate the triangles themselves.
+    //   filters[i] = this.triangleWindow(fftSize, bins[i], bins[i+1], bins[i+2]);
+    // }
+
+
+    const melSpan = highMel - lowMel;
+    const melSpacing = melSpan / (melCount);
+    for (let i = 0; i < melCount; ++i) {
+      mels[i] = lowMel + (melSpacing * (i + 1));
+    }
+  
+    // Always exclude DC; emulate HTK.
+    const hzPerSbin =
+        0.5 * sr / (fftSize - 1);
+    startIndex = (1.5 + (lowHz / hzPerSbin));
+    endIndex = (highHz / hzPerSbin);
+  
+    // Maps the input spectrum bin indices to filter bank channels/indices. For
+    // each FFT bin, band_mapper tells us which channel this bin contributes to
+    // on the right side of the triangle.  Thus this bin also contributes to the
+    // left side of the next channel's triangle response.
+    bandMapper = [];
+    let channel = 0;
+    for (let i = 0; i < fftSize; ++i) {
+      const melf = this.hzToMel(i * hzPerSbin);
+      if ((i < startIndex) || (i > endIndex)) {
+        bandMapper[i] = -2;  // Indicate an unused Fourier coefficient.
+      } else {
+        while ((mels[channel] < melf) &&
+               (channel < melCount)) {
+          ++channel;
+        }
+        bandMapper[i] = channel - 1;  // Can be == -1
+      }
+    }
+  
+    // Create the weighting functions to taper the band edges.  The contribution
+    // of any one FFT bin is based on its distance along the continuum between two
+    // mel-channel center frequencies.  This bin contributes weights_[i] to the
+    // current channel and 1-weights_[i] to the next channel.
+    const weights = [];
+    for (let i = 0; i < fftSize; ++i) {
+      channel = bandMapper[i];
+      if ((i < startIndex) || (i > endIndex)) {
+        weights[i] = 0.0;
+      } else {
+        if (channel >= 0) {
+          weights[i] =
+              (mels[channel + 1] - this.hzToMel(i * hzPerSbin)) /
+              (mels[channel + 1] - mels[channel]);
+        } else {
+          weights[i] = (mels[0] - this.hzToMel(i * hzPerSbin)) /
+                        (mels[0] - lowMel);
+        }
+      }
     }
 
-    return filters;
+    return weights;
   }
 
   /**
    * Given an array of FFT magnitudes, apply a filterbank. Output should be an
    * array with size |filterbank|.
    */
-  static applyFilterbank(fftEnergies: Float32Array, filterbank: Float32Array[])
+  static applyFilterbank(fftEnergies: Float32Array, filterbank: Float32Array, melCount=40)
     : Float32Array {
-    if (fftEnergies.length != filterbank[0].length) {
-      console.error(`Each entry in filterbank should have dimensions matching
-        FFT. |FFT| = ${fftEnergies.length}, |filterbank[0]| = ${filterbank[0].length}.`);
-      return;
-    }
+    // if (fftEnergies.length != filterbank[0].length) {
+    //   console.error(`Each entry in filterbank should have dimensions matching
+    //     FFT. |FFT| = ${fftEnergies.length}, |filterbank[0]| = ${filterbank[0].length}.`);
+    //   return;
+    // }
 
-    // Apply each filter to the whole FFT signal to get one value.
-    let out = new Float32Array(filterbank.length);
-    for (let i = 0; i < filterbank.length; i++) {
-      // To calculate filterbank energies we multiply each filterbank with the
-      // power spectrum.
-      const win = AudioUtils.applyWindow(fftEnergies, filterbank[i]);
-      // Then add up the coefficents, and take the log.
-      out[i] = logGtZero(sum(win));
-    }
+    // // Apply each filter to the whole FFT signal to get one value.
+    // let out = new Float32Array(filterbank.length);
+    // for (let i = 0; i < filterbank.length; i++) {
+    //   // To calculate filterbank energies we multiply each filterbank with the
+    //   // power spectrum.
+    //   const win = AudioUtils.applyWindow(fftEnergies, filterbank[i]);
+    //   // Then add up the coefficents, and take the log.
+    //   out[i] = logGtZero(sum(win));
+    // }
+    let out = new Float32Array(melCount);
+    for (let i = startIndex; i <= endIndex; i++) {  // For each FFT bin
+      const specVal = Math.sqrt(fftEnergies[i]);
+      const weighted = specVal * filterbank[i];
+      let channel = bandMapper[i];
+      if (channel >= 0)
+        out[channel] += weighted;  // Right side of triangle, downward slope
+      channel++;
+      if (channel < melCount)
+        out[channel] += specVal - weighted;  // Left side of triangle
+    }    
+    for (let i = 0; i < out.length; ++i) {
+      let val = out[i];
+      if (val < 1e-12) {
+        val = 1e-12;
+      }
+      out[i] = Math.log(val);
+    }    
     return out;
   }
 
