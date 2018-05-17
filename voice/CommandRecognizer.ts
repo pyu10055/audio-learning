@@ -29,32 +29,32 @@ const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
 interface Prediction {
-  label: string
-  labelArray: Float32Array
-  score: number
+  label: string;
+  labelArray: Float32Array;
+  score: number;
 }
 
 interface RecognizerParams {
-  scoreT: number
-  commands: string[]
-  noOther?: boolean
+  scoreT: number;
+  commands: string[];
+  noOther?: boolean;
 }
 
 
 export default class CommandRecognizer extends EventEmitter {
-  model: FrozenModel
-  streamFeature: StreamingFeatureExtractor
-  predictionHistory: Prediction[]
+  model: FrozenModel;
+  streamFeature: StreamingFeatureExtractor;
+  predictionHistory: Prediction[];
 
-  predictionCount: number
-  scoreT: number
-  commands: string[]
-  nonCommands: string[]
-  modelUrl: string
+  predictionCount: number;
+  scoreT: number;
+  commands: string[];
+  nonCommands: string[];
+  modelUrl: string;
 
-  allLabels: string[]
-  lastCommand: string
-  lastAverageLabelArray: Float32Array
+  allLabels: string[];
+  lastCommand: string;
+  lastAverageLabelArray: Float32Array;
 
   constructor(params: RecognizerParams) {
     super();
@@ -196,8 +196,7 @@ export default class CommandRecognizer extends EventEmitter {
       }
     }
     const keys = Object.keys(freq);
-    keys.sort((a, b) => (+freq[b][1] - +freq[a][1]));
-    return keys[0];
+    return keys.sort((a, b) => (+freq[b][1] - +freq[a][1]))[0];
   }
 
   /**

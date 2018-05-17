@@ -16,7 +16,7 @@
 import * as KissFFT from 'kissfft-js';
 import * as DCT from 'dct';
 
-const SR = 44100;
+const SR = 16000;
 
 
 let melFilterbank = null;
@@ -104,7 +104,7 @@ export default class AudioUtils {
    * Given STFT energies, calculates the mel spectrogram.
    */
   static melSpectrogram(stftEnergies: Float32Array[],
-    melCount=20, lowHz=300, highHz=8000, sr=SR) {
+    melCount=40, lowHz=20, highHz=4000, sr=SR) {
     this.lazyCreateMelFilterbank(stftEnergies[0].length, melCount, lowHz, highHz, sr);
 
     // For each fft slice, calculate the corresponding mel values.
@@ -118,7 +118,7 @@ export default class AudioUtils {
   /**
    * Given STFT energies, calculates the MFCC spectrogram.
    */
-  static mfccSpectrogram(stftEnergies: Float32Array[], melCount=20) {
+  static mfccSpectrogram(stftEnergies: Float32Array[], melCount=40) {
     // For each fft slice, calculate the corresponding MFCC values.
     const out = [];
     for (let i = 0; i < stftEnergies.length; i++) {
@@ -127,7 +127,7 @@ export default class AudioUtils {
     return out;
   }
 
-  static lazyCreateMelFilterbank(length: number, melCount=20, lowHz=300, highHz=8000, sr=SR) {
+  static lazyCreateMelFilterbank(length: number, melCount=40, lowHz=20, highHz=4000, sr=SR) {
     // Lazy-create a Mel filterbank.
     if (!melFilterbank || melFilterbank.length != length) {
       melFilterbank = this.createMelFilterbank(length, melCount, lowHz, highHz, sr);
@@ -181,7 +181,7 @@ export default class AudioUtils {
 
     let out = new Float32Array(buffer.length);
     for (let i = 0; i < buffer.length; i++) {
-      out[i] = win[i] * buffer[i];
+      out[i] = win[i] * Math.sqrt(buffer[i]);
     }
     return out;
   }
@@ -199,7 +199,7 @@ export default class AudioUtils {
     return out;
   }
 
-  static createMelFilterbank(fftSize, melCount=20, lowHz=300, highHz=8000, sr=SR) {
+  static createMelFilterbank(fftSize, melCount=40, lowHz=20, highHz=4000, sr=SR) {
     const lowMel = this.hzToMel(lowHz);
     const highMel = this.hzToMel(highHz);
 
@@ -249,11 +249,11 @@ export default class AudioUtils {
   }
 
   static hzToMel(hz) {
-    return 1125 * Math.log(1 + hz/700);
+    return 1127 * Math.log(1 + hz/700);
   }
 
   static melToHz(mel) {
-    return 700 * (Math.exp(mel/1125) - 1);
+    return 700 * (Math.exp(mel/1127) - 1);
   }
 
   static freqToBin(freq, fftSize, sr=SR) {
@@ -285,7 +285,7 @@ export default class AudioUtils {
   /**
    * Calculate MFC coefficients from FFT energies.
    */
-  static mfcc(fftEnergies: Float32Array, melCount=20, lowHz=300, highHz=8000, sr=SR) {
+  static mfcc(fftEnergies: Float32Array, melCount=40, lowHz=20, highHz=4000, sr=SR) {
     this.lazyCreateMelFilterbank(fftEnergies.length, melCount, lowHz, highHz, sr);
 
     // Apply the mel filterbank to the FFT magnitudes.

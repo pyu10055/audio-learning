@@ -219,6 +219,11 @@ export default class StreamingFeatureExtractor extends EventEmitter {
       const melEnergies = AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
       const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
+      // const stft = AudioUtils.stft(buffer, this.bufferLength, this.hopLength);
+      // const spec = stft.map(fft => AudioUtils.fftEnergies(fft));
+      // const mfccs = AudioUtils.mfccSpectrogram(spec, this.melCount);
+      // const melEnergies = AudioUtils.melSpectrogram(spec, this.melCount);
+      
       if (this.isMfccEnabled) {
         this.spectrogram.push(mfccs);
       } else {
