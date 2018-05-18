@@ -155,10 +155,10 @@ export default class CommandRecognizer extends EventEmitter {
     const input = FeatureExtractor.melSpectrogramToInput(spec);
     const pred = (this.model.execute({'wav_data': input}) as Tensor1D).dataSync() as Float32Array;
     const predLabel = labelArrayToString(pred, this.allLabels);
+
     const [ind, score] = argmax(pred);
 
-    //console.log(`Got prediction: ${predLabel} with score ${score}.`);
-
+    console.log(`Got prediction: ${predLabel} with score ${score}.`);
     this.predictionHistory.push({
       label: predLabel,
       labelArray: pred,

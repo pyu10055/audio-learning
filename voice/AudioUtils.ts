@@ -26,40 +26,6 @@ let context = null;
 let bandMapper = [];
 
 export default class AudioUtils {
-  static loadExampleBuffer() {
-    return AudioUtils.loadBuffer('assets/spoken_command_example.wav');
-  }
-
-  static loadSineBuffer() {
-    return AudioUtils.loadBuffer('assets/sine_100ms_example.wav');
-  }
-
-  static loadBuffer(url: string) {
-    if (!context) {
-      context = new AudioContext();
-    }
-
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      // Load an example of speech being spoken.
-      xhr.open('GET', url);
-      xhr.onload = () => {
-        context.decodeAudioData(xhr.response, buffer => {
-          resolve(buffer);
-        })
-      };
-      xhr.responseType = 'arraybuffer';
-      xhr.onerror = (err) => reject(err);
-      xhr.send();
-    });
-  }
-
-  static async loadBufferOffline(url: string) {
-    const offlineCtx = new OfflineAudioContext(1, 16000, 16000);
-    return fetch(url).then(body => body.arrayBuffer())
-      .then(buffer => offlineCtx.decodeAudioData(buffer));
-  }
-
   /**
    * Calculates the FFT for an array buffer. Output is an array.
    */
@@ -72,35 +38,6 @@ export default class AudioUtils {
 
   static dct(y: Float32Array) {
     return DCT(y);
-  }
-
-  /**
-   * Calculates the STFT, given a fft size, and a hop size. For example, if fft
-   * size is 2048 and hop size is 1024, there will be 50% overlap. Given those
-   * params, if the input sample has 4096 values, there would be 3 analysis
-   * frames: [0, 2048], [1024, 3072], [2048, 4096].
-   */
-  static stft(y: Float32Array, fftSize=2048, hopSize=fftSize) {
-    // Split the input buffer into sub-buffers of size fftSize.
-    const bufferCount = Math.floor((y.length - fftSize) / hopSize) + 1;
-    let matrix = range(bufferCount).map(x => new Float32Array(fftSize));
-    for (let i = 0; i < bufferCount; i++) {
-      const ind = i * hopSize;
-      const buffer = y.slice(ind, ind + fftSize);
-      // In the end, we will likely have an incomplete buffer, which we should
-      // just ignore.
-      if (buffer.length != fftSize) {
-        continue;
-      }
-
-      const win = AudioUtils.hannWindow(buffer.length);
-      const winBuffer = AudioUtils.applyWindow(buffer, win);
-      const fft = AudioUtils.fft(winBuffer);
-      // TODO: Understand why fft output is 2 larger than expected (eg. 1026
-      // rather than 1024).
-      matrix[i].set(fft.slice(0, fftSize));
-    }
-    return matrix;
   }
 
   /**
@@ -139,65 +76,12 @@ export default class AudioUtils {
 
   /**
    * Given an interlaced complex array (y_i is real, y_(i+1) is imaginary),
-   * calculates the magnitudes. Output is half the size.
-   */
-  static fftMags(y: Float32Array) {
-    let out = new Float32Array(y.length / 2);
-    for (let i = 0; i < y.length / 2; i++) {
-      out[i] = Math.hypot(y[i*2], y[i*2 + 1]);
-    }
-    return out;
-  }
-
-  /**
-   * Given an interlaced complex array (y_i is real, y_(i+1) is imaginary),
    * calculates the energies. Output is half the size.
    */
   static fftEnergies(y: Float32Array) {
     let out = new Float32Array(y.length / 2);
     for (let i = 0; i < y.length / 2; i++) {
       out[i] = y[i*2]*y[i*2] + y[i*2 + 1]*y[i*2 + 1];
-    }
-    return out;
-  }
-
-  /**
-   * Generates a Hann window of a given length.
-   */
-  static hannWindow(length: number) {
-    let win = new Float32Array(length);
-    for (let i = 0; i < length; i++) {
-      win[i] = 0.5 * (1 - Math.cos(2 * Math.PI * i / (length - 1)));
-    }
-    return win;
-  }
-
-  /**
-   * Applies a window to a buffer (point-wise multiplication).
-   */
-  static applyWindow(buffer, win) {
-    if (buffer.length != win.length) {
-      console.error(`Buffer length ${buffer.length} != window length
-        ${win.length}.`);
-      return;
-    }
-
-    let out = new Float32Array(buffer.length);
-    for (let i = 0; i < buffer.length; i++) {
-      out[i] = win[i] * Math.sqrt(buffer[i]);
-    }
-    return out;
-  }
-
-  static pointWiseMultiply(out: Float32Array,
-    array1: Float32Array, array2: Float32Array) {
-    if (out.length != array1.length || array1.length != array2.length) {
-      console.error(`Output length ${out.length} != array1 length
-        ${array1.length} != array2 length ${array2.length}.`);
-      return;
-    }
-    for (let i = 0; i < out.length; i++) {
-      out[i] = array1[i] * array2[i];
     }
     return out;
   }
@@ -226,16 +110,16 @@ export default class AudioUtils {
 
 
     const melSpan = highMel - lowMel;
-    const melSpacing = melSpan / (melCount);
-    for (let i = 0; i < melCount; ++i) {
+    const melSpacing = melSpan / (melCount + 1);
+    for (let i = 0; i < melCount + 1; ++i) {
       mels[i] = lowMel + (melSpacing * (i + 1));
     }
   
     // Always exclude DC; emulate HTK.
     const hzPerSbin =
         0.5 * sr / (fftSize - 1);
-    startIndex = (1.5 + (lowHz / hzPerSbin));
-    endIndex = (highHz / hzPerSbin);
+    startIndex = Math.floor(1.5 + (lowHz / hzPerSbin));
+    endIndex = Math.ceil(highHz / hzPerSbin);
   
     // Maps the input spectrum bin indices to filter bank channels/indices. For
     // each FFT bin, band_mapper tells us which channel this bin contributes to
@@ -326,31 +210,6 @@ export default class AudioUtils {
     return 1127 * Math.log(1 + hz/700);
   }
 
-  static melToHz(mel) {
-    return 700 * (Math.exp(mel/1127) - 1);
-  }
-
-  static freqToBin(freq, fftSize, sr=SR) {
-    return Math.floor((fftSize+1) * freq / (sr/2));
-  }
-
-  /**
-   * Creates a triangular window.
-   */
-  static triangleWindow(length, startIndex, peakIndex, endIndex) {
-    const win = new Float32Array(length);
-    const deltaUp = 1.0 / (peakIndex - startIndex);
-    for (let i = startIndex; i < peakIndex; i++) {
-      // Linear ramp up between start and peak index (values from 0 to 1).
-      win[i] = (i - startIndex) * deltaUp;
-    }
-    const deltaDown = 1.0 / (endIndex - peakIndex);
-    for (let i = peakIndex; i < endIndex; i++) {
-      // Linear ramp down between peak and end index (values from 1 to 0).
-      win[i] = 1 - (i - peakIndex) * deltaDown;
-    }
-    return win;
-  }
 
   static cepstrumFromEnergySpectrum(melEnergies: Float32Array) {
     return this.dct(melEnergies);
@@ -366,35 +225,6 @@ export default class AudioUtils {
     const melEnergies = this.applyFilterbank(fftEnergies, melFilterbank);
     // Go from mel coefficients to MFCC.
     return this.cepstrumFromEnergySpectrum(melEnergies);
-  }
-
-  static normalizeSpecInPlace(spec, normMin=0, normMax=1) {
-    let min = Infinity;
-    let max = -Infinity;
-    const times = spec.length;
-    const freqs = spec[0].length;
-    for (let i = 0; i < times; i++) {
-      for (let j = 0; j < freqs; j++) {
-        const val = spec[i][j];
-        if (val < min) {
-          min = val;
-        }
-        if (val > max) {
-          max = val;
-        }
-      }
-    }
-
-    const scale = (normMax - normMin) / (max - min);
-    const offset = normMin - min;
-    for (let i = 0; i < times; i++) {
-      for (let j = 0; j < freqs; j++) {
-        // Get a normalized value in [0, 1].
-        const norm = (spec[i][j] - min) / (max - min);
-        // Then convert it to the desired range.
-        spec[i][j] = normMin + norm * (normMax - normMin);
-      }
-    }
   }
 
   static playbackArrayBuffer(buffer: Float32Array, sampleRate?: number) {
@@ -413,34 +243,4 @@ export default class AudioUtils {
     source.connect(context.destination);
     source.start();
   }
-
-}
-
-function linearSpace(start, end, count) {
-  const delta = (end - start) / (count + 1);
-  let out = [];
-  for (let i = 0; i < count; i++) {
-    out[i] = start + delta * i;
-  }
-  return out;
-}
-
-function sum(array) {
-  return array.reduce(function(a, b) { return a + b; });
-}
-
-function range(count) : number[] {
-  let out = [];
-  for (let i = 0; i < count; i++) {
-    out.push(i);
-  }
-  return out;
-}
-
-// Use a lower minimum value for energy.
-const MIN_VAL = -10;
-function logGtZero(val) {
-  // Ensure that the log argument is nonnegative.
-  const offset = Math.exp(MIN_VAL);
-  return Math.log(val + offset);
 }

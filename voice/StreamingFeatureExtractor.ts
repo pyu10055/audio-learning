@@ -64,7 +64,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
   // Where to store the latest spectrogram.
   spectrogram: Float32Array[]
   // The mel filterbank (calculate it only once).
-  melFilterbank: Float32Array[]
+  melFilterbank: Float32Array
 
   // Are we streaming right now?
   isStreaming: boolean
@@ -112,8 +112,9 @@ export default class StreamingFeatureExtractor extends EventEmitter {
 
     // The mel filterbank is actually half of the size of the number of samples,
     // since the FFT array is complex valued.
+    const fftSize = this.nextPowerOfTwo(this.bufferLength);
     this.melFilterbank = AudioUtils.createMelFilterbank(
-      this.bufferLength/2 + 1, this.melCount);
+      fftSize/2 + 1, this.melCount);
     this.spectrogram = [];
     this.isStreaming = false;
 
@@ -127,6 +128,11 @@ export default class StreamingFeatureExtractor extends EventEmitter {
     // Calculate how many buffers will be enough to keep around to playback.
     const playbackLength = nativeSr * this.duration * 2;
     this.playbackBuffer = new CircularAudioBuffer(playbackLength);
+  }
+
+  private nextPowerOfTwo(value) {
+    const exponent = Math.ceil(Math.log2(value));
+    return 1 << exponent;
   }
 
   getSpectrogram() {
@@ -184,6 +190,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
   }
 
   private onAudioProcess(audioProcessingEvent) {
+    console.log(this.spectrogram.length);
     const audioBuffer = audioProcessingEvent.inputBuffer;
 
     // Add to the playback buffers, but make sure we have enough room.
@@ -212,17 +219,13 @@ export default class StreamingFeatureExtractor extends EventEmitter {
     }
 
     for (let buffer of buffers) {
+      //AudioUtils.playbackArrayBuffer(buffer, 16000);
       //console.log(`Got buffer of length ${buffer.length}.`);
       // Extract the mel values for this new frame of audio data.
       const fft = AudioUtils.fft(buffer);
       const fftEnergies = AudioUtils.fftEnergies(fft);
       const melEnergies = AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
       const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
-
-      // const stft = AudioUtils.stft(buffer, this.bufferLength, this.hopLength);
-      // const spec = stft.map(fft => AudioUtils.fftEnergies(fft));
-      // const mfccs = AudioUtils.mfccSpectrogram(spec, this.melCount);
-      // const melEnergies = AudioUtils.melSpectrogram(spec, this.melCount);
       
       if (this.isMfccEnabled) {
         this.spectrogram.push(mfccs);
@@ -233,12 +236,11 @@ export default class StreamingFeatureExtractor extends EventEmitter {
         // Remove the first element in the array.
         this.spectrogram.splice(0, 1);
       }
-
       if (this.spectrogram.length == this.bufferCount) {
-        // Notify that we have an updated spectrogram.
+        // Notify that we have an[p[]] updated spectrogram.
         this.emit('update');
+        this.spectrogram.length = 0;
       }
-
       const totalEnergy = melEnergies.reduce((total, num) => total + num);
       this.lastEnergyLevel = totalEnergy / melEnergies.length;
     }
@@ -246,10 +248,10 @@ export default class StreamingFeatureExtractor extends EventEmitter {
     const elapsed = (new Date().valueOf() - this.processStartTime.valueOf()) / 1000;
     const expectedSampleCount = (audioCtx.sampleRate * elapsed);
     const percentError = Math.abs(expectedSampleCount - this.processSampleCount) /
-      this.processSampleCount;
+        expectedSampleCount;
     if (percentError > 0.1) {
       console.warn(`ScriptProcessorNode may be dropping samples. Percent error is ${percentError}.`);
-    }
+    }    
   }
 
   /**
