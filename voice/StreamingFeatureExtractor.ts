@@ -156,7 +156,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
         "googHighpassFilter": "false"
       },
     } , video: false};
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+    navigator.mediaDevices.getUserMedia(constraints as MediaStreamConstraints).then(stream => {
       this.stream = stream;
       this.scriptNode = audioCtx.createScriptProcessor(this.inputBufferLength, 1, 1);
       const source = audioCtx.createMediaStreamSource(stream);
@@ -239,7 +239,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
       if (this.spectrogram.length == this.bufferCount) {
         // Notify that we have an[p[]] updated spectrogram.
         this.emit('update');
-        this.spectrogram.length = 0;
+        this.spectrogram.splice(0, this.bufferCount / 3);
       }
       const totalEnergy = melEnergies.reduce((total, num) => total + num);
       this.lastEnergyLevel = totalEnergy / melEnergies.length;

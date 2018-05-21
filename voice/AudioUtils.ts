@@ -41,40 +41,6 @@ export default class AudioUtils {
   }
 
   /**
-   * Given STFT energies, calculates the mel spectrogram.
-   */
-  static melSpectrogram(stftEnergies: Float32Array[],
-    melCount=40, lowHz=20, highHz=4000, sr=SR) {
-    this.lazyCreateMelFilterbank(stftEnergies[0].length, melCount, lowHz, highHz, sr);
-
-    // For each fft slice, calculate the corresponding mel values.
-    const out = [];
-    for (let i = 0; i < stftEnergies.length; i++) {
-      out[i] = AudioUtils.applyFilterbank(stftEnergies[i], melFilterbank);
-    }
-    return out;
-  }
-
-  /**
-   * Given STFT energies, calculates the MFCC spectrogram.
-   */
-  static mfccSpectrogram(stftEnergies: Float32Array[], melCount=40) {
-    // For each fft slice, calculate the corresponding MFCC values.
-    const out = [];
-    for (let i = 0; i < stftEnergies.length; i++) {
-      out[i] = this.mfcc(stftEnergies[i], melCount);
-    }
-    return out;
-  }
-
-  static lazyCreateMelFilterbank(length: number, melCount=40, lowHz=20, highHz=4000, sr=SR) {
-    // Lazy-create a Mel filterbank.
-    if (!melFilterbank || melFilterbank.length != length) {
-      melFilterbank = this.createMelFilterbank(length, melCount, lowHz, highHz, sr);
-    }
-  }
-
-  /**
    * Given an interlaced complex array (y_i is real, y_(i+1) is imaginary),
    * calculates the energies. Output is half the size.
    */
@@ -86,28 +52,13 @@ export default class AudioUtils {
     return out;
   }
 
-  static createMelFilterbank(fftSize, melCount=40, lowHz=20, highHz=4000, sr=SR) {
+  static createMelFilterbank(fftSize, melCount=40, lowHz=20, highHz=4000, sr=SR): Float32Array {
     const lowMel = this.hzToMel(lowHz);
     const highMel = this.hzToMel(highHz);
 
     // Construct linearly spaced array of melCount intervals, between lowMel and
     // highMel.
-    const mels = []; //linearSpace(lowMel, highMel, melCount + 2);
-    // Convert from mels to hz.
-    // const hzs = mels.map(mel => this.melToHz(mel));
-    // // Go from hz to the corresponding bin in the FFT.
-    // const bins = hzs.map(hz => this.freqToBin(hz, fftSize));
-
-    // // Now that we have the start and end frequencies, create each triangular
-    // // window (each value in [0, 1]) that we will apply to an FFT later. These
-    // // are mostly sparse, except for the values of the triangle
-    // const length = bins.length - 2;
-    // const filters = [];
-    // for (let i = 0; i < length; i++) {
-    //   // Now generate the triangles themselves.
-    //   filters[i] = this.triangleWindow(fftSize, bins[i], bins[i+1], bins[i+2]);
-    // }
-
+    const mels = []; 
 
     const melSpan = highMel - lowMel;
     const melSpacing = melSpan / (melCount + 1);
@@ -144,7 +95,7 @@ export default class AudioUtils {
     // of any one FFT bin is based on its distance along the continuum between two
     // mel-channel center frequencies.  This bin contributes weights_[i] to the
     // current channel and 1-weights_[i] to the next channel.
-    const weights = [];
+    const weights = new Float32Array(fftSize);
     for (let i = 0; i < fftSize; ++i) {
       channel = bandMapper[i];
       if ((i < startIndex) || (i > endIndex)) {
@@ -170,21 +121,6 @@ export default class AudioUtils {
    */
   static applyFilterbank(fftEnergies: Float32Array, filterbank: Float32Array, melCount=40)
     : Float32Array {
-    // if (fftEnergies.length != filterbank[0].length) {
-    //   console.error(`Each entry in filterbank should have dimensions matching
-    //     FFT. |FFT| = ${fftEnergies.length}, |filterbank[0]| = ${filterbank[0].length}.`);
-    //   return;
-    // }
-
-    // // Apply each filter to the whole FFT signal to get one value.
-    // let out = new Float32Array(filterbank.length);
-    // for (let i = 0; i < filterbank.length; i++) {
-    //   // To calculate filterbank energies we multiply each filterbank with the
-    //   // power spectrum.
-    //   const win = AudioUtils.applyWindow(fftEnergies, filterbank[i]);
-    //   // Then add up the coefficents, and take the log.
-    //   out[i] = logGtZero(sum(win));
-    // }
     let out = new Float32Array(melCount);
     for (let i = startIndex; i <= endIndex; i++) {  // For each FFT bin
       const specVal = Math.sqrt(fftEnergies[i]);
@@ -213,18 +149,6 @@ export default class AudioUtils {
 
   static cepstrumFromEnergySpectrum(melEnergies: Float32Array) {
     return this.dct(melEnergies);
-  }
-
-  /**
-   * Calculate MFC coefficients from FFT energies.
-   */
-  static mfcc(fftEnergies: Float32Array, melCount=40, lowHz=20, highHz=4000, sr=SR) {
-    this.lazyCreateMelFilterbank(fftEnergies.length, melCount, lowHz, highHz, sr);
-
-    // Apply the mel filterbank to the FFT magnitudes.
-    const melEnergies = this.applyFilterbank(fftEnergies, melFilterbank);
-    // Go from mel coefficients to MFCC.
-    return this.cepstrumFromEnergySpectrum(melEnergies);
   }
 
   static playbackArrayBuffer(buffer: Float32Array, sampleRate?: number) {

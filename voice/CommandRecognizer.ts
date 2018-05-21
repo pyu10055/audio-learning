@@ -14,24 +14,31 @@
  * the License.
  */
 
+import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
+import {Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
-import FeatureExtractor, {BUFFER_LENGTH, EXAMPLE_SR, HOP_LENGTH, MEL_COUNT,
-  IS_MFCC_ENABLED, DURATION} from './FeatureExtractor';
-import StreamingFeatureExtractor
-    from './StreamingFeatureExtractor';
-import {labelArrayToString, argmax} from './util';
-import { FrozenModel, loadFrozenModel } from '@tensorflow/tfjs-converter';
-import { Tensor1D } from '@tensorflow/tfjs-core';
+
+import StreamingFeatureExtractor from './StreamingFeatureExtractor';
+import {argmax, labelArrayToString} from './util';
 
 const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
 const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
+const BUFFER_LENGTH = 480;
+const HOP_LENGTH = 160;
+const MEL_COUNT = 40;
+const EXAMPLE_SR = 16000;
+const DURATION = 1.0;
+const IS_MFCC_ENABLED = true;
+const MIN_SAMPLE = 3;
+const DETECTION_THRESHOLD = 0.7;
+const SUPPRESSION_TIME = 500;
+
 interface Prediction {
-  label: string;
-  labelArray: Float32Array;
-  score: number;
+  time: number;
+  scores: Float32Array;
 }
 
 interface RecognizerParams {
@@ -40,6 +47,29 @@ interface RecognizerParams {
   noOther?: boolean;
 }
 
+function getFeatureShape() {
+  const times =
+      Math.floor((DURATION * EXAMPLE_SR - BUFFER_LENGTH) / HOP_LENGTH) + 1;
+
+  return [times, MEL_COUNT, 1];
+}
+
+function melSpectrogramToInput(spec: Float32Array[]): Tensor {
+  // Flatten this spectrogram into a 2D array.
+  const times = spec.length;
+  const freqs = spec[0].length;
+  const data = new Float32Array(times * freqs);
+  let i = 0;
+  for (let i = 0; i < times; i++) {
+    const mel = spec[i];
+    const offset = i * freqs;
+    data.set(mel, offset);
+  }
+  // Normalize the whole input to be in [0, 1].
+  const shape: [number, number, number] = [times, freqs, 1];
+  // this.normalizeInPlace(data, 0, 1);
+  return tensor3d(Array.prototype.slice.call(data), shape);
+}
 
 export default class CommandRecognizer extends EventEmitter {
   model: FrozenModel;
@@ -54,6 +84,7 @@ export default class CommandRecognizer extends EventEmitter {
 
   allLabels: string[];
   lastCommand: string;
+  lastCommandTime: number = Number.MIN_SAFE_INTEGER;
   lastAverageLabelArray: Float32Array;
 
   constructor(params: RecognizerParams) {
@@ -70,10 +101,11 @@ export default class CommandRecognizer extends EventEmitter {
     // window time, sample rate and hop size.
     const predsPerSecond = DURATION * EXAMPLE_SR / HOP_LENGTH;
     this.predictionCount = Math.floor(predsPerSecond);
-    console.log(`CommandRecognizer will use a history window` +
-      ` of ${this.predictionCount}.`);
+    console.log(
+        `CommandRecognizer will use a history window` +
+        ` of ${this.predictionCount}.`);
 
-    const inputShape = FeatureExtractor.getFeatureShape();
+    const inputShape = getFeatureShape();
     const labelShape = [this.allLabels.length];
 
     this.streamFeature = new StreamingFeatureExtractor({
@@ -97,7 +129,7 @@ export default class CommandRecognizer extends EventEmitter {
         GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
         GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
   }
-  
+
   start() {
     this.streamFeature.start();
   }
@@ -117,29 +149,9 @@ export default class CommandRecognizer extends EventEmitter {
     }
     const energyMin = -2;
     const energyMax = 10;
-    const percent = Math.max(0, (energyLevel - energyMin) / (energyMax - energyMin));
+    const percent =
+        Math.max(0, (energyLevel - energyMin) / (energyMax - energyMin));
     return percent;
-  }
-
-  /**
-   * Returns the latest confidence level for a given command.
-   */
-  getConfidenceLevel(command: string) {
-    const ind = this.allLabels.indexOf(command);
-    if (ind == -1) {
-      console.error(`Attempting to get confidence level for unknown command ${command}.`);
-      return;
-    }
-    if (!this.lastAverageLabelArray) {
-      return null;
-    }
-    const maxScore = 10;
-    const minScore = -3;
-    const score = this.lastAverageLabelArray[ind];
-    if (!score) {
-      return null;
-    }
-    return Math.max(0, (score - minScore) / (maxScore - minScore));
   }
 
   getAllLabels() {
@@ -152,96 +164,69 @@ export default class CommandRecognizer extends EventEmitter {
 
   private onUpdate() {
     const spec = this.streamFeature.getSpectrogram();
-    const input = FeatureExtractor.melSpectrogramToInput(spec);
-    const pred = (this.model.execute({'wav_data': input}) as Tensor1D).dataSync() as Float32Array;
-    const predLabel = labelArrayToString(pred, this.allLabels);
+    const input = melSpectrogramToInput(spec);
+    const pred =
+        (this.model.execute({'wav_data': input}) as Tensor1D).dataSync() as
+        Float32Array;
 
-    const [ind, score] = argmax(pred);
-
-    console.log(`Got prediction: ${predLabel} with score ${score}.`);
+    const currentTime = new Date().getTime();
     this.predictionHistory.push({
-      label: predLabel,
-      labelArray: pred,
-      score: score
+      time: currentTime,
+      scores: pred,
     });
 
-    if (this.predictionHistory.length > this.predictionCount) {
-      this.evaluatePredictions2();
-      // Keep the prediction list short.
-      this.predictionHistory.splice(0, 1);
-      // Keep track of the latest average array over the whole window.
-      this.lastAverageLabelArray = this.getAverageLabelArray();
+    // Prune any earlier results that are too old for the averaging window.
+    const timeLimit = currentTime - DURATION;
+    while (this.predictionHistory[0].time < timeLimit) {
+      this.predictionHistory.shift();
     }
-  }
 
-  private evaluatePredictions2() {
-    // Get the most common label in the window, and then get the average score.
-    const labels = this.predictionHistory.map(item => item.label);
-    const topLabel = this.mode(labels);
-    const topLabelScores = this.predictionHistory
-      .filter(item => (item.label == topLabel)).map(item => item.score);
-    const averageScore = mean(topLabelScores);
-    //console.log(`Top label: ${topLabel}, score: ${averageScore}.`);
-
-    this.emitCommand(topLabel, averageScore);
-  }
-
-  private mode(array: string[]) {
-    let freq = {};
-    for (let item of array) {
-      if (!freq[item]) {
-        freq[item] = 1;
-      } else {
-        freq[item] += 1;
-      }
-    }
-    const keys = Object.keys(freq);
-    return keys.sort((a, b) => (+freq[b][1] - +freq[a][1]))[0];
-  }
-
-  /**
-   * Gets the average label array for the whole window.
-   */
-  private getAverageLabelArray() {
-    const arrays = this.predictionHistory.map(item => item.labelArray);
-    const totalArray = pointwiseSumArrays(arrays);
-    return totalArray.map(val => val / arrays.length);
-  }
-
-
-  private emitCommand(command: string, score: number) {
-    if (this.lastCommand == command) {
-      // Don't emit anything if the command hasn't changed.
+    // If there are too few results, assume the result will be unreliable and
+    // bail.
+    const count = this.predictionHistory.length;
+    const earliestTime = this.predictionHistory[0].time;
+    const samplesDuration = currentTime - earliestTime;
+    if ((count < MIN_SAMPLE) || (samplesDuration < (DURATION / 4))) {
       return;
     }
 
+    // Calculate the average score across all the results in the window.
+    const averageScores = [];
+    this.predictionHistory.forEach(pred => {
+      const scores = pred.scores;
+      for (let i = 0; i < scores.length; ++i) {
+        averageScores[i] += scores[i] / this.predictionHistory.length;
+      }
+    });
+
+    const sortedScore =
+        averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
+
+    // See if the latest top score is enough to trigger a detection.
+    const currentTopIndex = sortedScore[0][0];
+    const currentTopLabel = this.allLabels[currentTopIndex];
+    const currentTopScore = sortedScore[0][1];
+    // If we've recently had another label trigger, assume one that occurs too
+    // soon afterwards is a bad result.
+    let timeSinceLast = (this.lastCommand == '_silence_') ||
+            (this.lastCommandTime === Number.MIN_SAFE_INTEGER) ?
+        Number.MAX_SAFE_INTEGER :
+        currentTime - this.lastCommandTime;
+    if ((currentTopScore > DETECTION_THRESHOLD) &&
+        (currentTopLabel !== this.lastCommand) &&
+        (timeSinceLast > SUPPRESSION_TIME)) {
+      this.emitCommand(currentTopLabel, currentTopScore, currentTime);
+    }
+  }
+
+  private emitCommand(command: string, score: number, time: number) {
     if (!this.nonCommands.includes(command)) {
       this.emit('command', command, score);
-      // If emitting a command, history should be cleared.
-      this.predictionHistory = [];
       console.log(`Detected command ${command} with score: ${score}.`);
     } else {
       this.emit('silence');
     }
+    this.lastCommandTime = time;
     this.lastCommand = command;
   }
-}
-
-function mean(array: number[]) {
-  const sum = array.reduce((a, b) => a + b, 0);
-  return sum / array.length;
-}
-
-function pointwiseSumArrays(arrays: Float32Array[]) {
-  if (!arrays.length) {
-    return new Float32Array(0);
-  }
-  const out = new Float32Array(arrays[0].length);
-  out.fill(0);
-  for (let array of arrays) {
-    for (let i = 0; i < out.length; i++) {
-      out[i] += array[i];
-    }
-  }
-  return out;
 }
