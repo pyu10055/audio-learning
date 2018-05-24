@@ -239,7 +239,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
       if (this.spectrogram.length == this.bufferCount) {
         // Notify that we have an[p[]] updated spectrogram.
         this.emit('update');
-        this.spectrogram.splice(0, this.bufferCount / 3);
+        this.spectrogram.splice(0, 15);
       }
       const totalEnergy = melEnergies.reduce((total, num) => total + num);
       this.lastEnergyLevel = totalEnergy / melEnergies.length;
