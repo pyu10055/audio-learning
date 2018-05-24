@@ -190,7 +190,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
   }
 
   private onAudioProcess(audioProcessingEvent) {
-    console.log(this.spectrogram.length);
+    //console.log(this.spectrogram.length);
     const audioBuffer = audioProcessingEvent.inputBuffer;
 
     // Add to the playback buffers, but make sure we have enough room.
@@ -245,13 +245,13 @@ export default class StreamingFeatureExtractor extends EventEmitter {
       this.lastEnergyLevel = totalEnergy / melEnergies.length;
     }
 
-    const elapsed = (new Date().valueOf() - this.processStartTime.valueOf()) / 1000;
-    const expectedSampleCount = (audioCtx.sampleRate * elapsed);
-    const percentError = Math.abs(expectedSampleCount - this.processSampleCount) /
-        expectedSampleCount;
-    if (percentError > 0.1) {
-      console.warn(`ScriptProcessorNode may be dropping samples. Percent error is ${percentError}.`);
-    }    
+    // const elapsed = (new Date().valueOf() - this.processStartTime.valueOf()) / 1000;
+    // const expectedSampleCount = (audioCtx.sampleRate * elapsed);
+    // const percentError = Math.abs(expectedSampleCount - this.processSampleCount) /
+    //     expectedSampleCount;
+    // if (percentError > 0.1) {
+    //   console.warn(`ScriptProcessorNode may be dropping samples. Percent error is ${percentError}.`);
+    // }    
   }
 
   /**
