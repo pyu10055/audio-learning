@@ -18,7 +18,7 @@ import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
 import {Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import StreamingFeatureExtractor from './StreamingFeatureExtractor';
+import StreamingFeatureExtractor from './streaming_feature_extractor';
 import {argmax, labelArrayToString} from './util';
 
 const GOOGLE_CLOUD_STORAGE_DIR =

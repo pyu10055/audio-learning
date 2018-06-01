@@ -14,8 +14,8 @@
  * the License.
  */
 
-import AudioUtils from './AudioUtils';
-import CircularAudioBuffer from './CircularAudioBuffer';
+import AudioUtils from './audio_utils';
+import CircularAudioBuffer from './circular_audio_buffer';
 import {EventEmitter} from 'eventemitter3';
 
 const INPUT_BUFFER_LENGTH = 16384;

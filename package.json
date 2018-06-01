@@ -1,13 +1,12 @@
 {
-  "name": "tfjs-converter-demo",
+  "name": "audio-transfer-learning-demo",
   "version": "0.0.1",
-  "description": "Imports mobilenet model using the tfc.js converter",
+  "description": "audio model transfer learning demo",
   "main": "index.js",
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@tensorflow/tfjs-converter": "0.3.1",
-    "@tensorflow/tfjs-core": "0.10.1",
+    "@tensorflow/tfjs": "0.11.2",
     "eventemitter3": "^2.0.3"
   },
   "scripts": {
