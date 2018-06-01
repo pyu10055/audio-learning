@@ -176,7 +176,7 @@ export default class CommandRecognizer extends EventEmitter {
     });
 
     // Prune any earlier results that are too old for the averaging window.
-    const timeLimit = currentTime - DURATION;
+    const timeLimit = currentTime - DURATION * 1000;
     while (this.predictionHistory[0].time < timeLimit) {
       this.predictionHistory.shift();
     }
@@ -191,7 +191,7 @@ export default class CommandRecognizer extends EventEmitter {
     }
 
     // Calculate the average score across all the results in the window.
-    const averageScores = [];
+    const averageScores = new Array(this.allLabels.length).fill(0);
     this.predictionHistory.forEach(pred => {
       const scores = pred.scores;
       for (let i = 0; i < scores.length; ++i) {
