@@ -57,11 +57,11 @@ body {
   text-align: center;
 }
 
-#results.hide {
+#results.hide, #record.hide {
   transition: opacity 2s ease-in-out;
   opacity: 0;
 }
-#results.show {
+#results.show, #record.show {
   opacity: 1;
 }
 
@@ -94,12 +94,17 @@ body {
 
     <div class="middle-center">
       <button type="button" id="stream">Start</button>
+      <button type="button" id="train">Train</button>
       <div class="inner">
         <div id="message"></div>
         <div id="results" class="hide">
           <div id="command">placeholder</div>
           <div id="score">0</div>
         </div>
+        <div id="record" class="hide">
+          <button type="button" id="record">Record</button>
+          <button type="button" id="complete">Complete</button>
+        </div>        
       </div>
     </div>
     <script src="index.js"></script>

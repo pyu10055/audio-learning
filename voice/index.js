@@ -16,7 +16,8 @@
  */
 
 import * as tfc from '@tensorflow/tfjs-core';
-import CommandRecognizer from './CommandRecognizer';
+import CommandRecognizer from './command_recognizer';
+import CommandTrainer from './command_trainer';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -27,17 +28,20 @@ const recognizer = new CommandRecognizer({
   commands: allLabels,
   noOther: true
 });
-
 recognizer.on('command', onCommand);
 recognizer.on('silence', onSilence);
 
+const trainer = new CommandTrainer();
+trainer.on('recorded', onRecorded);
+
 const streamEl = document.querySelector('#stream');
+const trainEl = document.querySelector('#train');
+const recordEl = document.querySelector('#record');
+const completeEl = document.querySelector('#complete');
 const messageEl = document.querySelector('#message');
 const commandEl = document.querySelector('#command');
 const scoreEl = document.querySelector('#score');
 const resultsEl = document.querySelector('#results');
-const loadFileEl = document.querySelector('#load-file');
-const levelsEl = document.querySelector('#levels');
 
 function setInstructionVisibility(visible) {
   // Show which commands are supported.
@@ -101,6 +105,24 @@ function onStream() {
   }
 }
 
+function onTrain() {
+  recordEl.classList.remove('hide');
+  recordEl.classList.add('show');  
+}
+
+function onComplete() {
+  trainer.train(); 
+}
+
+function onRecord() {
+  trainer.record(1);
+  recordEl.disabled = true;
+}
+
+function onRecorded() {
+  recordEl.disabled = false;
+}
+
 function onCommand(command, score) {
   console.log(`Command ${command} with score ${score}.`);
   commandEl.innerHTML = command;
@@ -118,8 +140,12 @@ function onSilence(score) {
 async function onLoadModel(e) {
   console.log('loading model ...');
   await recognizer.load();
+  await trainer.load();
   console.log('loading model finished.');
 }
 
 streamEl.addEventListener('click', onStream);
+trainEl.addEventListener('click', onTrain);
+completeEl.addEventListener('click', onComplete);
+recordEl.addEventListener('click', onRecord);
 window.addEventListener('load', onLoadModel);

@@ -1,20 +1,21 @@
 import * as tf from '@tensorflow/tfjs';
+import {Tensor} from '@tensorflow/tfjs';
+
 import {Dataset} from './dataset';
 
 export interface TransferModelConfig {
-  sourceModels: Array<tf.FrozenModel|tf.Model>;
+  sourceModels: Array<tf.InferenceModel>;
   bottleNecks: string[];
 }
 
 const LEARNING_RATE = 0.001;
 const BATCH_SIZE_FRACTION = 0.1;
 const EPOCHS = 40;
-class TransferModel {
+export class TransferModel {
   model: tf.Model;
-  dataset: Dataset;
+  
 
-  constructor(private config: TransferModelConfig, private numClasses: number) {
-    this.dataset = new Dataset(numClasses);
+  constructor(private config: TransferModelConfig, private dataset: Dataset, private shape: number[]) {
     this.checkConfig();
     // Creates a 2-layer fully connected model. By creating a separate model,
     // rather than adding layers to the mobilenet model, we "freeze" the weights
@@ -26,7 +27,8 @@ class TransferModel {
           units: 10,
           activation: 'relu',
           kernelInitializer: 'varianceScaling',
-          useBias: true
+          useBias: true,
+          inputShape: this.shape
         }),
         // Layer 2. The number of units of the last layer should correspond
         // to the number of classes we want to predict.
@@ -38,10 +40,6 @@ class TransferModel {
         })
       ]
     });
-  }
-
-  addData(input: tf.Tensor|tf.Tensor[], label: number) {
-    this.dataset.addExample(this.features(input), label);
   }
 
   private checkConfig() {
@@ -56,10 +54,12 @@ class TransferModel {
 
   private features(input: tf.Tensor|tf.Tensor[]) {
     input = input instanceof Array ? input : [input];
-    const tensors = tf.tidy(() => {
-      return tf.concat(this.config.sourceModels.map(
+    return tf.tidy(() => {
+      const activations = this.config.sourceModels.map(
           (model, index) =>
-              model.execute(input[index], this.config.bottleNecks[index])));
+              model.execute(input[index], this.config.bottleNecks[index]) as
+              tf.Tensor2D);
+      return tf.concat2d(activations, 1);
     });
   }
   /**
@@ -82,14 +82,14 @@ class TransferModel {
     // the number of examples that are collected depends on how many examples
     // the user collects. This allows us to have a flexible batch size.
     const batchSize =
-        Math.floor(this.dataset.xs.shape[0] * BATCH_SIZE_FRACTION);
+        Math.floor(this.dataset.xs[0].shape[0] * BATCH_SIZE_FRACTION);
     if (!(batchSize > 0)) {
       throw new Error(
           `Batch size is 0 or NaN. Please choose a non-zero fraction.`);
     }
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-    this.model.fit(this.dataset.xs, this.dataset.ys, {
+    this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
       batchSize,
       epochs: EPOCHS,
       callbacks: {
@@ -102,16 +102,15 @@ class TransferModel {
   }
 
 
-  async predict(input: NamedTensorMap): Promise<number> {
+  async predict(input: tf.Tensor|tf.Tensor[]): Promise<number> {
     const predictedClass = tf.tidy(() => {
       // Make a prediction through mobilenet, getting the internal activation of
       // the mobilenet model.
-      const activation =
-          this.frozenModel.execute(input, this.outputNode) as tf.Tensor;
+      const activations = this.features(input);
 
       // Make a prediction through our newly-trained model using the activation
       // from mobilenet as input.
-      const predictions = this.model.predict(activation);
+      const predictions = this.model.predict(activations);
 
       // Returns the index with the maximum probability. This number corresponds
       // to the class the model thinks is the most probable given the input.

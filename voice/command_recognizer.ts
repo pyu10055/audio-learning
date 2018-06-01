@@ -21,40 +21,40 @@ import {EventEmitter} from 'eventemitter3';
 import StreamingFeatureExtractor from './streaming_feature_extractor';
 import {argmax, labelArrayToString} from './util';
 
-const GOOGLE_CLOUD_STORAGE_DIR =
+export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
-const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
-const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
+export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
+export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
-const BUFFER_LENGTH = 480;
-const HOP_LENGTH = 160;
-const MEL_COUNT = 40;
-const EXAMPLE_SR = 16000;
-const DURATION = 1.0;
-const IS_MFCC_ENABLED = true;
-const MIN_SAMPLE = 3;
-const DETECTION_THRESHOLD = 0.7;
-const SUPPRESSION_TIME = 500;
+export const BUFFER_LENGTH = 480;
+export const HOP_LENGTH = 160;
+export const MEL_COUNT = 40;
+export const EXAMPLE_SR = 16000;
+export const DURATION = 1.0;
+export const IS_MFCC_ENABLED = true;
+export const MIN_SAMPLE = 3;
+export const DETECTION_THRESHOLD = 0.7;
+export const SUPPRESSION_TIME = 500;
 
-interface Prediction {
+export interface Prediction {
   time: number;
   scores: Float32Array;
 }
 
-interface RecognizerParams {
+export interface RecognizerParams {
   scoreT: number;
   commands: string[];
   noOther?: boolean;
 }
 
-function getFeatureShape() {
+export function getFeatureShape() {
   const times =
       Math.floor((DURATION * EXAMPLE_SR - BUFFER_LENGTH) / HOP_LENGTH) + 1;
 
   return [times, MEL_COUNT, 1];
 }
 
-function melSpectrogramToInput(spec: Float32Array[]): Tensor {
+export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
   // Flatten this spectrogram into a 2D array.
   const times = spec.length;
   const freqs = spec[0].length;

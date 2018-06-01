@@ -237,7 +237,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
         this.spectrogram.splice(0, 1);
       }
       if (this.spectrogram.length == this.bufferCount) {
-        // Notify that we have an[p[]] updated spectrogram.
+        // Notify that we have an updated spectrogram.
         this.emit('update');
         this.spectrogram.splice(0, 15);
       }

@@ -21,8 +21,7 @@ import * as tf from '@tensorflow/tfjs';
  * for particular labels. This object will concat them into two large xs and ys.
  */
 export class Dataset {
-  xs: tf.Tensor;
-  transferedXs: tf.Tensor;
+  xs: tf.Tensor[];
   ys: tf.Tensor;
   constructor(public numClasses: number) {}
 
@@ -32,26 +31,28 @@ export class Dataset {
    *     an activation, or any other type of Tensor.
    * @param {number} label The label of the example. Should be an umber.
    */
-  addExample(example: tf.Tensor, label: number) {
+  addExample(example: tf.Tensor|tf.Tensor[], label: number) {
+    example = Array.isArray(example) ? example : [example];
     // One-hot encode the label.
-    const y = tf.tidy(
-        () => tf.oneHot(tf.tensor1d([label]).toInt(), this.numClasses));
+    const y =
+        tf.tidy(() => tf.oneHot(tf.tensor1d([label]).toInt(), this.numClasses));
 
     if (this.xs == null) {
       // For the first example that gets added, keep example and y so that the
       // Dataset owns the memory of the inputs. This makes sure that
       // if addExample() is called in a tf.tidy(), these Tensors will not get
       // disposed.
-      this.xs = tf.keep(example);
+      this.xs = example.map(tensor => tf.keep(tensor));
       this.ys = tf.keep(y);
     } else {
       const oldX = this.xs;
-      this.xs = tf.keep(oldX.concat(example, 0));
+      this.xs = example.map(
+          (tensor, index) => tf.keep(this.xs[index].concat(tensor, 0)));
 
       const oldY = this.ys;
       this.ys = tf.keep(oldY.concat(y, 0));
 
-      oldX.dispose();
+      oldX.forEach(tensor => tensor.dispose());
       oldY.dispose();
       y.dispose();
     }
