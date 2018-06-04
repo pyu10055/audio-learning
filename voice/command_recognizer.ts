@@ -15,7 +15,7 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+import {Tensor, Tensor1D, tensor3d, InferenceModel} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 import StreamingFeatureExtractor from './streaming_feature_extractor';
@@ -33,7 +33,7 @@ export const EXAMPLE_SR = 16000;
 export const DURATION = 1.0;
 export const IS_MFCC_ENABLED = true;
 export const MIN_SAMPLE = 3;
-export const DETECTION_THRESHOLD = 0.7;
+export const DETECTION_THRESHOLD = 0.4;
 export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
@@ -45,6 +45,7 @@ export interface RecognizerParams {
   scoreT: number;
   commands: string[];
   noOther?: boolean;
+  model: InferenceModel;
 }
 
 export function getFeatureShape() {
@@ -72,7 +73,7 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
 }
 
 export default class CommandRecognizer extends EventEmitter {
-  model: FrozenModel;
+  model: InferenceModel;
   streamFeature: StreamingFeatureExtractor;
   predictionHistory: Prediction[];
 
@@ -89,11 +90,12 @@ export default class CommandRecognizer extends EventEmitter {
 
   constructor(params: RecognizerParams) {
     super();
-    const {scoreT, commands, noOther} = params;
+    const {scoreT, commands, noOther, model} = params;
 
     this.scoreT = scoreT;
     this.commands = commands;
     this.nonCommands = ['_silence_', '_unknown_'];
+    this.model = model;
 
     this.allLabels = commands.concat(this.nonCommands);
 
@@ -122,12 +124,6 @@ export default class CommandRecognizer extends EventEmitter {
 
     this.predictionHistory = [];
     this.lastCommand = null;
-  }
-
-  async load() {
-    this.model = await loadFrozenModel(
-        GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
-        GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
   }
 
   start() {
@@ -166,9 +162,10 @@ export default class CommandRecognizer extends EventEmitter {
     const spec = this.streamFeature.getSpectrogram();
     const input = melSpectrogramToInput(spec);
     const pred =
-        (this.model.execute({'wav_data': input}) as Tensor1D).dataSync() as
+        (this.model.predict([input], {}) as Tensor1D).dataSync() as
         Float32Array;
 
+    console.log(pred);
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,

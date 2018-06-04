@@ -30,7 +30,6 @@ export default class CommandTrainer extends EventEmitter {
   streamFeature: StreamingFeatureExtractor;
   dataset: Dataset;
   label: number;
-
   constructor() {
     super();
 
@@ -46,7 +45,7 @@ export default class CommandTrainer extends EventEmitter {
       isMfccEnabled: IS_MFCC_ENABLED,
     });
     this.streamFeature.on('update', this.addSamples.bind(this));
-    this.dataset = new Dataset(4);
+    this.dataset = new Dataset(5);
   }
 
   async load() {
@@ -62,33 +61,16 @@ export default class CommandTrainer extends EventEmitter {
   record(label: number) {
     this.label = label;
     this.streamFeature.start();
-    setTimeout(this.stop.bind(this), 1500);
+    setTimeout(this.stopRecord.bind(this), 1500);
   }
 
-  train() {
-    this.transferModel.train();
+  async train() {
+    await this.transferModel.train();
   }
 
-  start() {
-    this.streamFeature.start();
-  }
-
-  stop() {
+  stopRecord() {
     this.streamFeature.stop();
-    console.log(this.dataset);
-    this.emit('recorded');
-  }
-
-  getMicrophoneInputLevel() {
-    const energyLevel = this.streamFeature.getEnergyLevel();
-    if (!energyLevel) {
-      return 0;
-    }
-    const energyMin = -2;
-    const energyMax = 10;
-    const percent =
-        Math.max(0, (energyLevel - energyMin) / (energyMax - energyMin));
-    return percent;
+    this.emit('recorded', this.dataset);
   }
 
   private addSamples() {
@@ -96,5 +78,4 @@ export default class CommandTrainer extends EventEmitter {
     const input = melSpectrogramToInput(spec);
     this.dataset.addExample(input, this.label);
   }
-
 }

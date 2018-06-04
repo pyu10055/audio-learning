@@ -23,25 +23,27 @@ const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
   'off', 'stop', 'go'
 ];
-const recognizer = new CommandRecognizer({
-  scoreT: 5,
-  commands: allLabels,
-  noOther: true
-});
-recognizer.on('command', onCommand);
-recognizer.on('silence', onSilence);
+
+const transferLabels = [
+  '_silence_', 'up', 'down', 'left', 'right'
+];
+
+let recognizer;
 
 const trainer = new CommandTrainer();
 trainer.on('recorded', onRecorded);
-
+let transferRecognizer;
 const streamEl = document.querySelector('#stream');
 const trainEl = document.querySelector('#train');
+const trainingEl = document.querySelector('#training');
 const recordEl = document.querySelector('#record');
 const completeEl = document.querySelector('#complete');
 const messageEl = document.querySelector('#message');
 const commandEl = document.querySelector('#command');
 const scoreEl = document.querySelector('#score');
 const resultsEl = document.querySelector('#results');
+const labelEl = document.querySelector('#label');
+const predictEl = document.querySelector('#predict');
 
 function setInstructionVisibility(visible) {
   // Show which commands are supported.
@@ -54,72 +56,42 @@ function setInstructionVisibility(visible) {
   }
 }
 
-let levelAnimationId = null;
-function setLevelVisibility(visible) {
-  if (visible) {
-    levelsEl.style.display = 'block';
-    levelAnimationId = requestAnimationFrame(animateLevelLoop);
-  } else {
-    levelsEl.style.display = 'none';
-    cancelAnimationFrame(levelAnimationId);
-  }
-}
-
-function animateLevelLoop() {
-  // Get the latest energy level, and animate as a result.
-  const micEl = getOrCreateConfidenceIndicator('mic-input', 'Microphone level');
-  micEl.setAttribute('color', 'blue');
-  micEl.setAttribute('level', recognizer.getMicrophoneInputLevel().toString());
-
-  // For each class in the recognizer, get the confidence level.
-  for (let command of recognizer.getAllLabels()) {
-    const indicatorEl =
-        getOrCreateConfidenceIndicator(command, command.toUpperCase());
-    indicatorEl.setAttribute('level', recognizer.getConfidenceLevel(command).toString());
-  }
-
-  levelAnimationId = requestAnimationFrame(animateLevelLoop);
-}
-
-function getOrCreateConfidenceIndicator(command, title) {
-  let outEl = document.querySelector(`.${command}`);
-  if (!outEl) {
-    outEl = document.createElement('confidence-indicator');
-    outEl.setAttribute('title', title);
-    outEl.setAttribute('level', '0.5');
-    outEl.className = command;
-    levelsEl.appendChild(outEl);
-  }
-  return outEl;
-}
-
 function onStream() {
   if (recognizer.isRunning()) {
     recognizer.stop();
     setInstructionVisibility(false);
-    //setLevelVisibility(false);
   } else {
     recognizer.start();
     setInstructionVisibility(true);
-    //setLevelVisibility(true);
   }
 }
 
 function onTrain() {
-  recordEl.classList.remove('hide');
-  recordEl.classList.add('show');  
+  trainingEl.classList.remove('hide');
+  trainingEl.classList.add('show');  
 }
 
 function onComplete() {
   trainer.train(); 
 }
 
-function onRecord() {
-  trainer.record(1);
-  recordEl.disabled = true;
+function onPredict() {
+  if (transferRecognizer.isRunning()) {
+    transferRecognizer.stop();
+    setInstructionVisibility(false);
+  } else {
+    transferRecognizer.start();
+    setInstructionVisibility(true);
+  }  
 }
 
-function onRecorded() {
+function onRecord() {
+  trainer.record(Number(labelEl.value));
+  recordEl.disabled = 'disabled';
+}
+
+function onRecorded(dataset) {
+  console.log(dataset);
   recordEl.disabled = false;
 }
 
@@ -138,14 +110,34 @@ function onSilence(score) {
 }
 
 async function onLoadModel(e) {
-  console.log('loading model ...');
-  await recognizer.load();
+  console.time('load model');
   await trainer.load();
-  console.log('loading model finished.');
+  console.timeEnd('load model');
+  recognizer = new CommandRecognizer({
+    scoreT: 5,
+    commands: allLabels,
+    noOther: true,
+    model: trainer.model
+  });
+  recognizer.on('command', onCommand);
+  recognizer.on('silence', onSilence);
+  
+  transferRecognizer = new CommandRecognizer({
+    scoreT: 5,
+    commands: transferLabels,
+    noOther: true,
+    model: trainer.transferModel
+  });
+  transferRecognizer.on('command', onCommand);  
+}
+
+
+async function load() {
 }
 
 streamEl.addEventListener('click', onStream);
 trainEl.addEventListener('click', onTrain);
 completeEl.addEventListener('click', onComplete);
+predictEl.addEventListener('click', onPredict);
 recordEl.addEventListener('click', onRecord);
 window.addEventListener('load', onLoadModel);

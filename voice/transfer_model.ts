@@ -1,5 +1,5 @@
 import * as tf from '@tensorflow/tfjs';
-import {Tensor} from '@tensorflow/tfjs';
+import {InferenceModel, ModelPredictConfig, NamedTensorMap, Tensor} from '@tensorflow/tfjs';
 
 import {Dataset} from './dataset';
 
@@ -10,12 +10,14 @@ export interface TransferModelConfig {
 
 const LEARNING_RATE = 0.001;
 const BATCH_SIZE_FRACTION = 0.1;
-const EPOCHS = 40;
-export class TransferModel {
+const EPOCHS = 300;
+export class TransferModel implements InferenceModel {
   model: tf.Model;
-  
 
-  constructor(private config: TransferModelConfig, private dataset: Dataset, private shape: number[]) {
+
+  constructor(
+      private config: TransferModelConfig, private dataset: Dataset,
+      private shape: number[]) {
     this.checkConfig();
     // Creates a 2-layer fully connected model. By creating a separate model,
     // rather than adding layers to the mobilenet model, we "freeze" the weights
@@ -33,7 +35,7 @@ export class TransferModel {
         // Layer 2. The number of units of the last layer should correspond
         // to the number of classes we want to predict.
         tf.layers.dense({
-          units: 4,
+          units: dataset.numClasses,
           kernelInitializer: 'varianceScaling',
           useBias: false,
           activation: 'softmax'
@@ -65,7 +67,7 @@ export class TransferModel {
   /**
    * Sets up and trains the classifier.
    */
-  train() {
+  async train() {
     if (this.dataset.xs == null) {
       throw new Error('Add some examples before training!');
     }
@@ -89,7 +91,7 @@ export class TransferModel {
     }
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-    this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
+    await this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
       batchSize,
       epochs: EPOCHS,
       callbacks: {
@@ -102,21 +104,27 @@ export class TransferModel {
   }
 
 
-  async predict(input: tf.Tensor|tf.Tensor[]): Promise<number> {
+  predict(
+      input: tf.Tensor|tf.Tensor[]|NamedTensorMap,
+      config?: ModelPredictConfig): tf.Tensor {
     const predictedClass = tf.tidy(() => {
-      // Make a prediction through mobilenet, getting the internal activation of
-      // the mobilenet model.
-      const activations = this.features(input);
+      const activations = this.features(input as tf.Tensor | tf.Tensor[]);
 
       // Make a prediction through our newly-trained model using the activation
-      // from mobilenet as input.
+      // from source model as input.
       const predictions = this.model.predict(activations);
 
       // Returns the index with the maximum probability. This number corresponds
       // to the class the model thinks is the most probable given the input.
-      return (predictions as tf.Tensor).argMax();
+      return (predictions as tf.Tensor).softmax();
     });
 
-    return await predictedClass.data()[0];
+    return predictedClass;
+  }
+
+  execute(
+      inputs: tf.Tensor<tf.Rank>|tf.Tensor<tf.Rank>[]|tf.NamedTensorMap,
+      outputs: string|string[]): tf.Tensor<tf.Rank>|tf.Tensor<tf.Rank>[] {
+    throw new Error('Method not implemented.');
   }
 }
