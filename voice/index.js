@@ -129,6 +129,7 @@ async function onLoadModel(e) {
     model: trainer.transferModel
   });
   transferRecognizer.on('command', onCommand);  
+  transferRecognizer.on('silence', onSilence);
 }
 
 
