@@ -91,7 +91,7 @@ export class TransferModel implements InferenceModel {
     }
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-    await this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
+    return await this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
       batchSize,
       epochs: EPOCHS,
       callbacks: {

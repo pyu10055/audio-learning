@@ -63,12 +63,17 @@ export default class CommandTrainer extends EventEmitter {
   record(label: number) {
     this.label = label;
     this.streamFeature.start();
-    setTimeout(this.stopRecord.bind(this), 1500);
+    setTimeout(this.stopRecord.bind(this), 1000);
     this.withData = true;
   }
 
   async train() {
-    await this.transferModel.train();
+    let loss = Number.MAX_SAFE_INTEGER;
+    let count = 0;
+    while (loss > 0.002 && count < 10) {
+      loss = (await this.transferModel.train()).history.loss.pop() as number;
+      count += 1;
+    }
     this.trained = true;
   }
 
