@@ -14,7 +14,7 @@ export class Spectrogram {
                    .attr("viewBox", "0 0 800 100")
                    .classed('svg-content', true);
     this.analyser = audioCtx.createAnalyser();
-    this.analyser.fftSize = 512;
+    this.analyser.fftSize = 2048;
     // const frequencyData = new Uint8Array(analyser.frequencyBinCount);
     this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
 
