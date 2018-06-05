@@ -24,120 +24,117 @@ const allLabels = [
   'off', 'stop', 'go'
 ];
 
-const transferLabels = [
-  '_silence_', 'up', 'down', 'left', 'right'
-];
+const transferLabels = ['_silence_', 'up', 'down', 'left', 'right'];
 
 let recognizer;
 
 const trainer = new CommandTrainer();
 trainer.on('recorded', onRecorded);
 let transferRecognizer;
-const streamEl = document.querySelector('#stream');
-const trainEl = document.querySelector('#train');
-const trainingEl = document.querySelector('#training');
-const recordEl = document.querySelector('#record');
-const completeEl = document.querySelector('#complete');
-const messageEl = document.querySelector('#message');
-const commandEl = document.querySelector('#command');
-const scoreEl = document.querySelector('#score');
-const resultsEl = document.querySelector('#results');
-const labelEl = document.querySelector('#label');
-const predictEl = document.querySelector('#predict');
 
-function setInstructionVisibility(visible) {
+function setInstructionVisibility(visible, recognizer) {
   // Show which commands are supported.
   if (visible) {
     const commandsFmt = recognizer.getCommands().join(', ');
     const message = `Listening for ${commandsFmt}.`;
-    messageEl.innerHTML = message;
+    $('#myTabContent .active #message').text(message);
   } else {
-    messageEl.innerHTML = '';
+    $('#myTabContent .active #message').text('');
   }
 }
 
 function onStream() {
   if (recognizer.isRunning()) {
+    $('#stream').text('Start');
     recognizer.stop();
-    setInstructionVisibility(false);
+    setInstructionVisibility(false, recognizer);
   } else {
+    $('#stream').text('Stop');
     recognizer.start();
-    setInstructionVisibility(true);
+    setInstructionVisibility(true, recognizer);
   }
 }
 
-function onTrain() {
-  trainingEl.classList.remove('hide');
-  trainingEl.classList.add('show');  
-}
-
-function onComplete() {
-  trainer.train(); 
+async function onComplete() {
+  $('#record').attr('disabled', 'disabled');
+  await trainer.train();
+  $('#record').removeAttr('disabled');
+  setButtonStates();  
 }
 
 function onPredict() {
   if (transferRecognizer.isRunning()) {
+    $('#predict').text('Start Predict');
     transferRecognizer.stop();
-    setInstructionVisibility(false);
+    setInstructionVisibility(false, transferRecognizer);
   } else {
+    $('#predict').text('Stop Predict');    
     transferRecognizer.start();
-    setInstructionVisibility(true);
-  }  
+    setInstructionVisibility(true, transferRecognizer);
+  }
 }
 
 function onRecord() {
-  trainer.record(Number(labelEl.value));
-  recordEl.disabled = 'disabled';
+  trainer.record(Number($('label').value));
+  $('#record').attr('disabled', 'disabled');
 }
 
 function onRecorded(dataset) {
   console.log(dataset);
-  recordEl.disabled = false;
+  $('#record').removeAttr('disabled');
+  setButtonStates();
 }
 
 function onCommand(command, score) {
   console.log(`Command ${command} with score ${score}.`);
-  commandEl.innerHTML = command;
-  scoreEl.innerHTML = score.toFixed(2);
-  resultsEl.classList.remove('hide');
-  resultsEl.classList.add('show');
+  $('#command').innerHTML = command;
+  $('#score').innerHTML = score.toFixed(2);
+  $('#results').removeClass('fade');
 }
 
 function onSilence(score) {
   // Start fading!
-  resultsEl.classList.add('hide');
-  resultsEl.classList.remove('show');
+  $('#results').addClass('fade');
+}
+
+function setButtonStates() {
+  if (trainer.withData) {
+    $('#complete').removeAttr('disabled');
+  } else {
+    $('#complete').attr('disabled', 'disabled');
+  }
+  if (trainer.trained) {
+    $('#predict').removeAttr('disabled');    
+  } else {
+    $('#predict').attr('disabled', 'disabled');
+  }
 }
 
 async function onLoadModel(e) {
   console.time('load model');
   await trainer.load();
   console.timeEnd('load model');
-  recognizer = new CommandRecognizer({
-    scoreT: 5,
-    commands: allLabels,
-    noOther: true,
-    model: trainer.model
-  });
+  recognizer = new CommandRecognizer(
+      {scoreT: 5, commands: allLabels, noOther: true, model: trainer.model});
   recognizer.on('command', onCommand);
   recognizer.on('silence', onSilence);
-  
+
   transferRecognizer = new CommandRecognizer({
     scoreT: 5,
     commands: transferLabels,
     noOther: true,
     model: trainer.transferModel
   });
-  transferRecognizer.on('command', onCommand);  
+  transferRecognizer.on('command', onCommand);
+  setButtonStates();
 }
 
 
-async function load() {
-}
+async function load() {}
 
-streamEl.addEventListener('click', onStream);
-trainEl.addEventListener('click', onTrain);
-completeEl.addEventListener('click', onComplete);
-predictEl.addEventListener('click', onPredict);
-recordEl.addEventListener('click', onRecord);
+$('#stream').on('click', onStream);
+$('#complete').on('click', onComplete);
+$('#predict').on('click', onPredict);
+$('#record').on('click', onRecord);
+
 window.addEventListener('load', onLoadModel);

@@ -30,6 +30,8 @@ export default class CommandTrainer extends EventEmitter {
   streamFeature: StreamingFeatureExtractor;
   dataset: Dataset;
   label: number;
+  trained = false;
+  withData = false;
   constructor() {
     super();
 
@@ -62,10 +64,12 @@ export default class CommandTrainer extends EventEmitter {
     this.label = label;
     this.streamFeature.start();
     setTimeout(this.stopRecord.bind(this), 1500);
+    this.withData = true;
   }
 
   async train() {
     await this.transferModel.train();
+    this.trained = true;
   }
 
   stopRecord() {
