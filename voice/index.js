@@ -101,14 +101,14 @@ function onLoss(loss) {
 
 function onCommand(command, score) {
   console.log(`Command ${command} with score ${score}.`);
-  $('#myTabContent .active #command').text(command);
-  $('#myTabContent .active #score').text(score.toFixed(2));
-  $('#myTabContent .active #results').removeClass('fade');
+  $('#command').text(command);
+  $('#score').text(score.toFixed(2));
+  $('#results').removeClass('fade');
 }
 
 function onSilence(score) {
   // Start fading!
-  $('#myTabContent .active #results').addClass('fade');
+  $('#results').addClass('fade');
 }
 
 function setButtonStates() {
@@ -142,7 +142,7 @@ async function onLoadModel(e) {
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
-  spectrogram = new Spectrogram(audioCtx, 'spectrgram');
+  spectrogram = new Spectrogram(audioCtx, '#spectrogram');
 }
 
 
