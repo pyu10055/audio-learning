@@ -142,7 +142,7 @@ async function onLoadModel(e) {
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
-  spectrogram = new Spectrogram(audioCtx);
+  spectrogram = new Spectrogram(audioCtx, 'spectrgram');
 }
 
 

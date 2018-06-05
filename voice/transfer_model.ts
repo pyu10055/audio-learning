@@ -1,5 +1,5 @@
 import * as tf from '@tensorflow/tfjs';
-import {InferenceModel, ModelPredictConfig, NamedTensorMap, Tensor} from '@tensorflow/tfjs';
+import {InferenceModel, ModelPredictConfig, NamedTensorMap, Tensor, CustomCallbackConfig} from '@tensorflow/tfjs';
 
 import {Dataset} from './dataset';
 
@@ -17,7 +17,7 @@ export class TransferModel implements InferenceModel {
 
   constructor(
       private config: TransferModelConfig, private dataset: Dataset,
-      private shape: number[], private trainCallback: Function) {
+      private shape: number[], private trainCallback: CustomCallbackConfig) {
     this.checkConfig();
     // Creates a 2-layer fully connected model. By creating a separate model,
     // rather than adding layers to the mobilenet model, we "freeze" the weights

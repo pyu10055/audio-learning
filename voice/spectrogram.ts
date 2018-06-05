@@ -7,8 +7,8 @@ export class Spectrogram {
   svgWidth = 800;
   svg: any;
   frequencyData: Uint8Array;
-  constructor(private audioCtx: AudioContext) {
-    this.svg = d3.select('div.container')
+  constructor(private audioCtx: AudioContext, domId: string) {
+    this.svg = d3.select(domId)
                    .append('svg')
                    .attr('height', this.svgHeight)
                    .attr('width', this.svgWidth);
@@ -61,9 +61,9 @@ export class Spectrogram {
         .attr('height', (d) => heightScale(d))
         .attr('x', (d, i) => i * this.svgWidth / this.frequencyData.length)
         .attr('y', (d) => this.svgHeight - heightScale(d))
-        .attr('fill': 'None')
-        .attr('stroke-width': 4)
-        .attr('stroke-opacity': 0.4)
+        .attr('fill', 'None')
+        .attr('stroke-width', 4)
+        .attr('stroke-opacity', 0.4)
         .attr('stroke', (d) => {
           return d3.hsl(hueScale(d), 1, 0.5);
         });

@@ -69,6 +69,17 @@ limitations under the License.
       </ul>
     </div>
     <div class="tab-content" id="myTabContent">
+      <div class="card">
+        <div  id="spectrogram"></div>
+        <div class="card-body">
+            <div id="message"></div>
+            <div id="results" class="card-text fade">
+              <div id="command"></div>
+              <div id="score"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="tab-pane show active" id="training" role="tabpanel" aria-labelledby="training-tab">
         <div class="container">
           <div class="row">
@@ -91,26 +102,12 @@ limitations under the License.
               </div>
             </div>
           </div>
-          <div class="inner">
-            <div id="message"></div>
-            <div id="results" class="fade">
-              <div id="command"></div>
-              <div id="score"></div>
-            </div>
-          </div>
         </div>
       </div>
       <div class="tab-pane" id="prediction" role="tabpanel" aria-labelledby="prediction-tab">
         <button type="button" id="stream" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
           Start
         </button>
-        <div class="inner">
-          <div id="message"></div>
-          <div id="results" class="fade">
-            <div id="command"></div>
-            <div id="score"></div>
-          </div>
-        </div>
       </div>
       <div class="tab-pane" id="pacman" role="tabpanel" aria-labelledby="pacman-tab">...</div>
     </div>
