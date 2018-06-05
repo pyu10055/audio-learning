@@ -30,7 +30,7 @@ interface Params {
   isMfccEnabled: boolean
 }
 
-const audioCtx = new AudioContext();
+export const audioCtx = new AudioContext();
 /**
  * Extracts various kinds of features from an input buffer. Designed for
  * extracting features from a live-running audio input stream.

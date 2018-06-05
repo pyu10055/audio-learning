@@ -18,6 +18,8 @@
 import * as tfc from '@tensorflow/tfjs-core';
 import CommandRecognizer from './command_recognizer';
 import CommandTrainer from './command_trainer';
+import {Spectrogram} from './spectrogram';
+import {audioCtx} from './streaming_feature_extractor';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -30,7 +32,9 @@ let recognizer;
 
 const trainer = new CommandTrainer();
 trainer.on('recorded', onRecorded);
+trainer.on('loss', onLoss);
 let transferRecognizer;
+let spectrogram;
 
 function setInstructionVisibility(visible, recognizer) {
   // Show which commands are supported.
@@ -48,10 +52,12 @@ function onStream() {
     $('#stream').text('Start');
     recognizer.stop();
     setInstructionVisibility(false, recognizer);
+    spectrogram.running = false;
   } else {
     $('#stream').text('Stop');
     recognizer.start();
     setInstructionVisibility(true, recognizer);
+    spectrogram.running = true;
   }
 }
 
@@ -59,7 +65,7 @@ async function onComplete() {
   $('#record').attr('disabled', 'disabled');
   await trainer.train();
   $('#record').removeAttr('disabled');
-  setButtonStates();  
+  setButtonStates();
 }
 
 function onPredict() {
@@ -67,34 +73,42 @@ function onPredict() {
     $('#predict').text('Start Predict');
     transferRecognizer.stop();
     setInstructionVisibility(false, transferRecognizer);
+    spectrogram.running = false;
   } else {
-    $('#predict').text('Stop Predict');    
+    $('#predict').text('Stop Predict');
     transferRecognizer.start();
     setInstructionVisibility(true, transferRecognizer);
+    spectrogram.running = true;
   }
 }
 
 function onRecord() {
-  trainer.record(Number($('label').value));
+  spectrogram.running = true;
+  trainer.record(Number($('#label').val()));
   $('#record').attr('disabled', 'disabled');
 }
 
 function onRecorded(dataset) {
   console.log(dataset);
+  spectrogram.running = false;
   $('#record').removeAttr('disabled');
   setButtonStates();
 }
 
+function onLoss(loss) {
+  $('#loss').text('Loss: ' + loss);
+}
+
 function onCommand(command, score) {
   console.log(`Command ${command} with score ${score}.`);
-  $('#command').innerHTML = command;
-  $('#score').innerHTML = score.toFixed(2);
-  $('#results').removeClass('fade');
+  $('#myTabContent .active #command').text(command);
+  $('#myTabContent .active #score').text(score.toFixed(2));
+  $('#myTabContent .active #results').removeClass('fade');
 }
 
 function onSilence(score) {
   // Start fading!
-  $('#results').addClass('fade');
+  $('#myTabContent .active #results').addClass('fade');
 }
 
 function setButtonStates() {
@@ -104,7 +118,7 @@ function setButtonStates() {
     $('#complete').attr('disabled', 'disabled');
   }
   if (trainer.trained) {
-    $('#predict').removeAttr('disabled');    
+    $('#predict').removeAttr('disabled');
   } else {
     $('#predict').attr('disabled', 'disabled');
   }
@@ -128,6 +142,7 @@ async function onLoadModel(e) {
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
+  spectrogram = new Spectrogram(audioCtx);
 }
 
 

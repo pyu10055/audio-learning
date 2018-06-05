@@ -17,7 +17,7 @@ export class TransferModel implements InferenceModel {
 
   constructor(
       private config: TransferModelConfig, private dataset: Dataset,
-      private shape: number[]) {
+      private shape: number[], private trainCallback: Function) {
     this.checkConfig();
     // Creates a 2-layer fully connected model. By creating a separate model,
     // rather than adding layers to the mobilenet model, we "freeze" the weights
@@ -41,7 +41,7 @@ export class TransferModel implements InferenceModel {
           activation: 'softmax'
         })
       ]
-    });
+    });    
   }
 
   private checkConfig() {
@@ -79,7 +79,7 @@ export class TransferModel implements InferenceModel {
     // probability distribution over classes (probability that an input is of
     // each class), versus the label (100% probability in the true class)>
     this.model.compile({optimizer: optimizer, loss: 'categoricalCrossentropy'});
-
+    
     // We parameterize batch size as a fraction of the entire dataset because
     // the number of examples that are collected depends on how many examples
     // the user collects. This allows us to have a flexible batch size.
@@ -94,12 +94,7 @@ export class TransferModel implements InferenceModel {
     return await this.model.fit(this.features(this.dataset.xs), this.dataset.ys, {
       batchSize,
       epochs: EPOCHS,
-      callbacks: {
-        onBatchEnd: async (batch, logs) => {
-          console.log('Loss: ' + logs.loss.toFixed(5));
-          await tf.nextFrame();
-        }
-      }
+      callbacks: this.trainCallback
     });
   }
 

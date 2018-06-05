@@ -15,7 +15,7 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+import {Tensor, Tensor1D, tensor3dm=, nextFrame} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 import {BUFFER_LENGTH, DETECTION_THRESHOLD, DURATION, EXAMPLE_SR, getFeatureShape, GOOGLE_CLOUD_STORAGE_DIR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, melSpectrogramToInput, MIN_SAMPLE, MODEL_FILE_URL, Prediction, RecognizerParams, SUPPRESSION_TIME, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
@@ -57,7 +57,11 @@ export default class CommandTrainer extends EventEmitter {
     const sourceModels = [this.model];
     const bottleNecks = ['add_2'];
     this.transferModel =
-        new TransferModel({sourceModels, bottleNecks}, this.dataset, [12]);
+        new TransferModel({sourceModels, bottleNecks}, this.dataset, [12], {
+          onBatchEnd: async (batch, logs) => {
+            this.emit('loss', logs.loss.toFixed(5));
+            await nextFrame();
+          }});
   }
 
   record(label: number) {
