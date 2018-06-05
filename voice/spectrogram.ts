@@ -11,7 +11,7 @@ export class Spectrogram {
     this.svg = d3.select(domId)
                    .append('svg')
                    .attr("preserveAspectRatio", "xMinYMin meet")
-                   .attr("viewBox", "0 0 300 300")
+                   .attr("viewBox", "0 0 800 100")
                    .classed('svg-content', true);
     this.analyser = audioCtx.createAnalyser();
     this.analyser.fftSize = 512;
