@@ -10,8 +10,9 @@ export class Spectrogram {
   constructor(private audioCtx: AudioContext, domId: string) {
     this.svg = d3.select(domId)
                    .append('svg')
-                   .attr('height', this.svgHeight)
-                   .attr('width', this.svgWidth);
+                   .attr("preserveAspectRatio", "xMinYMin meet")
+                   .attr("viewBox", "0 0 300 300")
+                   .classed('svg-content', true);
     this.analyser = audioCtx.createAnalyser();
     this.analyser.fftSize = 512;
     // const frequencyData = new Uint8Array(analyser.frequencyBinCount);

@@ -50,6 +50,22 @@ limitations under the License.
       font-size: 1em;
       text-align: center;
     }
+
+    .svg-container {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      vertical-align: top;
+      overflow: hidden;
+    }
+
+    .svg-content {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   </style>
 </head>
 
@@ -69,7 +85,7 @@ limitations under the License.
       </ul>
     </div>
     <div class="card">
-      <div id="spectrogram"></div>
+      <div id="spectrogram" class="svg-container"></div>
       <div class="card-body">
         <div id="message"></div>
         <div id="results" class="card-text fade">
