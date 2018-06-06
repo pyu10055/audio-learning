@@ -149,6 +149,7 @@ export default class StreamingFFT extends EventEmitter {
           this.stream = stream;
           this.analyser = audioCtx.createAnalyser();
           this.analyser.fftSize = this.nextPowerOfTwo(this.bufferLength);
+          this.analyser.smoothingTimeConstant = 0;
           const source = audioCtx.createMediaStreamSource(stream);
           source.connect(this.analyser);
           //this.analyser.connect(audioCtx.destination);
@@ -171,7 +172,7 @@ export default class StreamingFFT extends EventEmitter {
   private onAudioProcess() {
     let buffer = new Float32Array(this.analyser.frequencyBinCount);
     this.analyser.getFloatFrequencyData(buffer);
-    buffer = buffer.map(v => Math.pow(10, v / 20));
+    buffer = buffer.map(v => Math.pow(10, v / 20) * 2000);
     //const fftEnergies = AudioUtils.fftEnergies(buffer);
     const melEnergies =
         AudioUtils.applyFilterbank(buffer, this.melFilterbank);
