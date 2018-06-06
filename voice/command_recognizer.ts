@@ -46,6 +46,7 @@ export interface RecognizerParams {
   commands: string[];
   noOther?: boolean;
   model: InferenceModel;
+  threshold: number;
 }
 
 export function getFeatureShape() {
@@ -87,6 +88,7 @@ export default class CommandRecognizer extends EventEmitter {
   lastCommand: string;
   lastCommandTime: number = Number.MIN_SAFE_INTEGER;
   lastAverageLabelArray: Float32Array;
+  threshold: number;
 
   constructor(params: RecognizerParams) {
     super();
@@ -96,8 +98,9 @@ export default class CommandRecognizer extends EventEmitter {
     this.commands = commands;
     this.nonCommands = ['_silence_', '_unknown_'];
     this.model = model;
+    this.threshold = params.threshold;
 
-    this.allLabels = commands.concat(this.nonCommands);
+    this.allLabels = commands;
 
     // Calculate how many predictions we want to track based on prediction
     // window time, sample rate and hop size.
@@ -136,18 +139,6 @@ export default class CommandRecognizer extends EventEmitter {
 
   isRunning() {
     return this.streamFeature.isStreaming;
-  }
-
-  getMicrophoneInputLevel() {
-    const energyLevel = this.streamFeature.getEnergyLevel();
-    if (!energyLevel) {
-      return 0;
-    }
-    const energyMin = -2;
-    const energyMax = 10;
-    const percent =
-        Math.max(0, (energyLevel - energyMin) / (energyMax - energyMin));
-    return percent;
   }
 
   getAllLabels() {
@@ -196,8 +187,10 @@ export default class CommandRecognizer extends EventEmitter {
       }
     });
 
+    console.log(this.predictionHistory.length); 
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
+    console.log(sortedScore[0]); 
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];
@@ -209,7 +202,7 @@ export default class CommandRecognizer extends EventEmitter {
             (this.lastCommandTime === Number.MIN_SAFE_INTEGER) ?
         Number.MAX_SAFE_INTEGER :
         currentTime - this.lastCommandTime;
-    if ((currentTopScore > DETECTION_THRESHOLD) &&
+    if ((currentTopScore > this.threshold) &&
         (currentTopLabel !== this.lastCommand) &&
         (timeSinceLast > SUPPRESSION_TIME)) {
       this.emitCommand(currentTopLabel, currentTopScore, currentTime);

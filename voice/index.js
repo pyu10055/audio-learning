@@ -26,7 +26,7 @@ const allLabels = [
   'off', 'stop', 'go'
 ];
 
-const transferLabels = ['_silence_', 'up', 'down', 'left', 'right'];
+const transferLabels = ['_silence_', '上-up', '下-down', '左-left', '右-right'];
 
 let recognizer;
 
@@ -41,9 +41,9 @@ function setInstructionVisibility(visible, recognizer) {
   if (visible) {
     const commandsFmt = recognizer.getCommands().join(', ');
     const message = `Listening for ${commandsFmt}.`;
-    $('#myTabContent .active #message').text(message);
+    $('#message').text(message);
   } else {
-    $('#myTabContent .active #message').text('');
+    $('#message').text('');
   }
 }
 
@@ -128,8 +128,13 @@ async function onLoadModel(e) {
   console.time('load model');
   await trainer.load();
   console.timeEnd('load model');
-  recognizer = new CommandRecognizer(
-      {scoreT: 5, commands: allLabels, noOther: true, model: trainer.model});
+  recognizer = new CommandRecognizer({
+    scoreT: 5,
+    commands: allLabels,
+    noOther: true,
+    model: trainer.model,
+    threshold: 0.4
+  });
   recognizer.on('command', onCommand);
   recognizer.on('silence', onSilence);
 
@@ -137,12 +142,24 @@ async function onLoadModel(e) {
     scoreT: 5,
     commands: transferLabels,
     noOther: true,
-    model: trainer.transferModel
+    model: trainer.transferModel,
+    threshold: 0.3
   });
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
   spectrogram = new Spectrogram(audioCtx, '#spectrogram');
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+    $('#stream').text('Start');
+    recognizer.stop();
+    setInstructionVisibility(false, recognizer);
+    spectrogram.running = false;
+
+    $('#predict').text('Start Predict');
+    transferRecognizer.stop();
+    setInstructionVisibility(false, transferRecognizer);
+    spectrogram.running = false;
+  })
 }
 
 
