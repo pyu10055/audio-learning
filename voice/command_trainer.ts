@@ -15,19 +15,19 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3dm=, nextFrame} from '@tensorflow/tfjs-core';
+import {Tensor, Tensor1D, tensor3d, nextFrame} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 import {BUFFER_LENGTH, DETECTION_THRESHOLD, DURATION, EXAMPLE_SR, getFeatureShape, GOOGLE_CLOUD_STORAGE_DIR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, melSpectrogramToInput, MIN_SAMPLE, MODEL_FILE_URL, Prediction, RecognizerParams, SUPPRESSION_TIME, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
-import StreamingFeatureExtractor from './streaming_feature_extractor';
 import {TransferModel} from './transfer_model';
 import {argmax, labelArrayToString} from './util';
+import StreamingFFT from './streaming_fft';
 
 export default class CommandTrainer extends EventEmitter {
   model: FrozenModel;
   transferModel: TransferModel;
-  streamFeature: StreamingFeatureExtractor;
+  streamFeature: StreamingFFT;
   dataset: Dataset;
   label: number;
   trained = false;
@@ -37,7 +37,7 @@ export default class CommandTrainer extends EventEmitter {
 
     const inputShape = getFeatureShape();
 
-    this.streamFeature = new StreamingFeatureExtractor({
+    this.streamFeature = new StreamingFFT({
       inputBufferLength: 2048,
       bufferLength: BUFFER_LENGTH,
       hopLength: HOP_LENGTH,

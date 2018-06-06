@@ -41,9 +41,9 @@ function setInstructionVisibility(visible, recognizer) {
   if (visible) {
     const commandsFmt = recognizer.getCommands().join(', ');
     const message = `Listening for ${commandsFmt}.`;
-    $('#myTabContent .active #message').text(message);
+    $('#message').text(message);
   } else {
-    $('#myTabContent .active #message').text('');
+    $('#message').text('');
   }
 }
 

@@ -18,22 +18,22 @@ import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
 import {Tensor, Tensor1D, tensor3d, InferenceModel} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import StreamingFeatureExtractor from './streaming_feature_extractor';
 import {argmax, labelArrayToString} from './util';
+import StreamingFFT from './streaming_fft';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
 export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
-export const BUFFER_LENGTH = 480;
-export const HOP_LENGTH = 160;
+export const BUFFER_LENGTH = 1024;
+export const HOP_LENGTH = 444;
 export const MEL_COUNT = 40;
-export const EXAMPLE_SR = 16000;
+export const EXAMPLE_SR = 44100;
 export const DURATION = 1.0;
 export const IS_MFCC_ENABLED = true;
 export const MIN_SAMPLE = 3;
-export const DETECTION_THRESHOLD = 0.4;
+export const DETECTION_THRESHOLD = 0.5;
 export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
@@ -74,7 +74,7 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
 
 export default class CommandRecognizer extends EventEmitter {
   model: InferenceModel;
-  streamFeature: StreamingFeatureExtractor;
+  streamFeature: StreamingFFT;
   predictionHistory: Prediction[];
 
   predictionCount: number;
@@ -110,7 +110,7 @@ export default class CommandRecognizer extends EventEmitter {
     const inputShape = getFeatureShape();
     const labelShape = [this.allLabels.length];
 
-    this.streamFeature = new StreamingFeatureExtractor({
+    this.streamFeature = new StreamingFFT({
       inputBufferLength: 2048,
       bufferLength: BUFFER_LENGTH,
       hopLength: HOP_LENGTH,
@@ -138,18 +138,6 @@ export default class CommandRecognizer extends EventEmitter {
     return this.streamFeature.isStreaming;
   }
 
-  getMicrophoneInputLevel() {
-    const energyLevel = this.streamFeature.getEnergyLevel();
-    if (!energyLevel) {
-      return 0;
-    }
-    const energyMin = -2;
-    const energyMax = 10;
-    const percent =
-        Math.max(0, (energyLevel - energyMin) / (energyMax - energyMin));
-    return percent;
-  }
-
   getAllLabels() {
     return this.allLabels;
   }
@@ -161,9 +149,11 @@ export default class CommandRecognizer extends EventEmitter {
   private onUpdate() {
     const spec = this.streamFeature.getSpectrogram();
     const input = melSpectrogramToInput(spec);
+    console.time('prediction');
     const pred =
         (this.model.predict([input], {}) as Tensor1D).dataSync() as
         Float32Array;
+    console.timeEnd('prediction');
 
     console.log(pred);
     const currentTime = new Date().getTime();
