@@ -15,11 +15,11 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3d, InferenceModel} from '@tensorflow/tfjs-core';
+import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import {argmax, labelArrayToString} from './util';
 import StreamingFFT from './streaming_fft';
+import {argmax, labelArrayToString} from './util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
@@ -38,7 +38,7 @@ export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
   time: number;
-  scores: Float32Array;
+  scores: number[];
 }
 
 export interface RecognizerParams {
@@ -153,16 +153,21 @@ export default class CommandRecognizer extends EventEmitter {
     const spec = this.streamFeature.getSpectrogram();
     const input = melSpectrogramToInput(spec);
     console.time('prediction');
-    const pred =
-        (this.model.predict([input], {}) as Tensor1D).dataSync() as
-        Float32Array;
+    const preds = this.model.predict([input], {});
+    let scores = [];
+    if (Array.isArray(preds)) {
+      const output = preds[0].dataSync();
+      scores = [output[0], ...preds[1].dataSync()];
+    } else {
+      scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
+    };
     console.timeEnd('prediction');
 
-    console.log(pred);
+    console.log(scores);
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,
-      scores: pred,
+      scores,
     });
 
     // Prune any earlier results that are too old for the averaging window.
@@ -189,10 +194,10 @@ export default class CommandRecognizer extends EventEmitter {
       }
     });
 
-    console.log(this.predictionHistory.length); 
+    console.log(this.predictionHistory.length);
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
-    console.log(sortedScore[0]); 
+    console.log(sortedScore[0]);
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];

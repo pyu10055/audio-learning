@@ -152,15 +152,17 @@ export default class StreamingFFT extends EventEmitter {
           this.analyser.smoothingTimeConstant = 0;
           const source = audioCtx.createMediaStreamSource(stream);
           source.connect(this.analyser);
-          //this.analyser.connect(audioCtx.destination);
+          // this.analyser.connect(audioCtx.destination);
           this.isStreaming = true;
           this.onAudioProcess();
         });
   }
 
   stop() {
-    for (let track of this.stream.getTracks()) {
-      track.stop();
+    if (this.stream) {
+      for (let track of this.stream.getTracks()) {
+        track.stop();
+      }
     }
     this.isStreaming = false;
     if (this.timeoutHandler) {
@@ -173,9 +175,8 @@ export default class StreamingFFT extends EventEmitter {
     let buffer = new Float32Array(this.analyser.frequencyBinCount);
     this.analyser.getFloatFrequencyData(buffer);
     buffer = buffer.map(v => Math.pow(10, v / 20) * 2000);
-    //const fftEnergies = AudioUtils.fftEnergies(buffer);
-    const melEnergies =
-        AudioUtils.applyFilterbank(buffer, this.melFilterbank);
+    // const fftEnergies = AudioUtils.fftEnergies(buffer);
+    const melEnergies = AudioUtils.applyFilterbank(buffer, this.melFilterbank);
     const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
     if (this.isMfccEnabled) {

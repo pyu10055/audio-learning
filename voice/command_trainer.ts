@@ -15,14 +15,14 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3d, nextFrame} from '@tensorflow/tfjs-core';
+import {nextFrame, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 import {BUFFER_LENGTH, DETECTION_THRESHOLD, DURATION, EXAMPLE_SR, getFeatureShape, GOOGLE_CLOUD_STORAGE_DIR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, melSpectrogramToInput, MIN_SAMPLE, MODEL_FILE_URL, Prediction, RecognizerParams, SUPPRESSION_TIME, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
+import StreamingFFT from './streaming_fft';
 import {TransferModel} from './transfer_model';
 import {argmax, labelArrayToString} from './util';
-import StreamingFFT from './streaming_fft';
 
 export default class CommandTrainer extends EventEmitter {
   model: FrozenModel;
@@ -47,21 +47,21 @@ export default class CommandTrainer extends EventEmitter {
       isMfccEnabled: IS_MFCC_ENABLED,
     });
     this.streamFeature.on('update', this.addSamples.bind(this));
-    this.dataset = new Dataset(5);
+    this.dataset = new Dataset(4);
   }
 
   async load() {
     this.model = await loadFrozenModel(
         GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
         GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
-    const sourceModels = [this.model];
-    const bottleNecks = ['add_2'];
-    this.transferModel =
-        new TransferModel({sourceModels, bottleNecks}, this.dataset, [12], {
+    this.transferModel = new TransferModel(
+        [{model: this.model, bottleneck: 'add_2', bottleneckShape: [12], output: 'labels_softmax'}],
+        this.dataset, {
           onBatchEnd: async (batch, logs) => {
             this.emit('loss', logs.loss.toFixed(5));
             await nextFrame();
-          }});
+          }
+        });
   }
 
   record(label: number) {
