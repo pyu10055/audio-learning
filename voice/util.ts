@@ -33,10 +33,38 @@ export function argmax(array: Float32Array) {
 
 export function getParameterByName(name: string, url?: string) {
   if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+export function interval(duration: number, fn: Function) {
+  this.baseline = undefined;
+
+  this.run = () => {
+    if (this.baseline == null) {
+      this.baseline = Date.now();
+    }
+    fn();
+    const end = Date.now();
+    this.baseline += duration;
+
+    let nextTick = duration - (end - this.baseline);
+    if (nextTick < 0) {
+      nextTick = 0;
+    }
+    console.log(nextTick);
+    (function(i) {
+      i.timer = setTimeout(function() {
+        i.run(end)
+      }, nextTick)
+    }(this))
+  };
+
+  this.stop = function() {
+    clearTimeout(this.timer)
+  };
 }

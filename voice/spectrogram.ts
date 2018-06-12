@@ -7,40 +7,55 @@ export class Spectrogram {
   svgWidth = 800;
   svg: any;
   frequencyData: Uint8Array;
+  animationFrameId: number;
+  lastRenderTime: number;
   constructor(private audioCtx: AudioContext, domId: string) {
     this.svg = d3.select(domId)
                    .append('svg')
-                   .attr("preserveAspectRatio", "xMinYMin meet")
-                   .attr("viewBox", "0 0 800 100")
+                   .attr('preserveAspectRatio', 'xMinYMin meet')
+                   .attr('viewBox', '0 0 800 100')
                    .classed('svg-content', true);
     this.analyser = audioCtx.createAnalyser();
     this.analyser.fftSize = 2048;
     // const frequencyData = new Uint8Array(analyser.frequencyBinCount);
     this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
+  }
 
-    if (navigator.mediaDevices.getUserMedia) {
-      const constraints = {audio: true};
-      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        const source = audioCtx.createMediaStreamSource(stream);
-        source.connect(this.analyser);
-        this.renderChart();
-        // just for blocks viewer size
-        d3.select(self.frameElement).style('height', this.svgHeight + 'px');
-      });
-    } else {
-      console.log('getUserMedia not supported on your browser!');
+  start() {
+    if (!this.running) {
+      this.running = true;
+      if (navigator.mediaDevices.getUserMedia) {
+        const constraints = {audio: true};
+        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+          const source = audioCtx.createMediaStreamSource(stream);
+          source.connect(this.analyser);
+          this.animationFrameId =
+              requestAnimationFrame(this.renderChart.bind(this));
+          // just for blocks viewer size
+          d3.select(self.frameElement).style('height', this.svgHeight + 'px');
+        });
+      } else {
+        console.log('getUserMedia not supported on your browser!');
+      }
     }
   }
 
+  stop() {
+    this.running = false;
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+  }
   // continuously loop and update chart with frequency data.
   renderChart() {
-    requestAnimationFrame(this.renderChart.bind(this));
-
+    this.animationFrameId = requestAnimationFrame(this.renderChart.bind(this));
+    if (!!this.lastRenderTime && Date.now() - this.lastRenderTime < 100) {
+      return;
+    }
     // copy frequency data to frequencyData array.
     if (this.running) {
       this.analyser.getByteFrequencyData(this.frequencyData);
     }
-    // console.log(frequencyData);
 
     // scale things to fit
     const heightScale =
@@ -70,5 +85,6 @@ export class Spectrogram {
         });
 
     rects.exit().remove();
+    this.lastRenderTime = Date.now();
   }
 }

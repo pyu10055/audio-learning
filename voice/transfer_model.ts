@@ -16,30 +16,28 @@ const BATCH_SIZE_FRACTION = 0.1;
 const EPOCHS = 300;
 export class TransferModel implements InferenceModel {
   model: tf.Model;
-
+  boottleneckShape: number[];
 
   constructor(
       private configs: SourceModelConfig[], private dataset: Dataset,
       private trainCallback: CustomCallbackConfig) {
-    // Creates a 2-layer fully connected model. By creating a separate model,
-    // rather than adding layers to the mobilenet model, we "freeze" the weights
-    // of the mobilenet model, and only train weights from the new model.
+    this.boottleneckShape = this.configs.reduce((shape: number[], config) => {
+      config.bottleneckShape.forEach(
+          (dim, index) => shape[index] =
+              !!shape[index] ? shape[index] + dim : dim);
+      return shape;
+    }, []);
+    // Creates a 2-layer fully connected model.
     this.model = tf.sequential({
       layers: [
         // Layer 1
         tf.layers.dense({
-          units: 10,
+          // Default unit size to be 2 * bootleneck vector width
+          units: Math.max(10, Math.max(...this.boottleneckShape) * 2),
           activation: 'relu',
           kernelInitializer: 'varianceScaling',
           useBias: true,
-          inputShape: this.configs.reduce(
-              (shape: number[], config) => {
-                config.bottleneckShape.forEach(
-                    (dim, index) => shape[index] =
-                        !!shape[index] ? shape[index] + dim : dim);
-                return shape;
-              },
-              [])
+          inputShape: this.boottleneckShape
         }),
         // Layer 2. The number of units of the last layer should correspond
         // to the number of classes we want to predict.
@@ -102,8 +100,8 @@ export class TransferModel implements InferenceModel {
     // We parameterize batch size as a fraction of the entire dataset because
     // the number of examples that are collected depends on how many examples
     // the user collects. This allows us to have a flexible batch size.
-    const batchSize =
-        Math.floor(this.dataset.xs[0].shape[0] * BATCH_SIZE_FRACTION);
+    const batchSize = this.dataset.xs[0].shape[0];
+//        Math.floor(this.dataset.xs[0].shape[0] * BATCH_SIZE_FRACTION);
     if (!(batchSize > 0)) {
       throw new Error(
           `Batch size is 0 or NaN. Please choose a non-zero fraction.`);

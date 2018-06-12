@@ -157,13 +157,14 @@ export default class CommandRecognizer extends EventEmitter {
     let scores = [];
     if (Array.isArray(preds)) {
       const output = preds[0].dataSync();
-      scores = [output[0], ...preds[1].dataSync()];
+      scores = [
+        output[0],
+        ...Array.prototype.slice.call((preds[1] as Tensor1D).dataSync())
+      ];
     } else {
       scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
     };
     console.timeEnd('prediction');
-
-    console.log(scores);
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,
@@ -197,7 +198,7 @@ export default class CommandRecognizer extends EventEmitter {
     console.log(this.predictionHistory.length);
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
-    console.log(sortedScore[0]);
+    console.log(sortedScore);
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];

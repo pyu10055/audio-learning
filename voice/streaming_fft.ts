@@ -15,7 +15,8 @@
  */
 
 import {EventEmitter} from 'eventemitter3';
-
+import {interval} from './util';
+ 
 import AudioUtils from './audio_utils';
 import CircularAudioBuffer from './circular_audio_buffer';
 
@@ -86,7 +87,7 @@ export default class StreamingFFT extends EventEmitter {
   // onAudioProcess.
   processSampleCount: number
 
-  timeoutHandler = 0
+  timer: any
 
   constructor(params: Params) {
     super();
@@ -108,6 +109,7 @@ export default class StreamingFFT extends EventEmitter {
     this.targetSr = targetSr;
     this.duration = duration;
     this.hopTime = this.hopLength * 1000 / this.targetSr;
+    this.timer = new interval(this.hopTime, this.onAudioProcess.bind(this))    
     this.bufferCount =
         Math.floor((duration * targetSr - bufferLength) / hopLength) + 1;
     this.melFilterbank = AudioUtils.createMelFilterbank(
@@ -154,6 +156,7 @@ export default class StreamingFFT extends EventEmitter {
           source.connect(this.analyser);
           // this.analyser.connect(audioCtx.destination);
           this.isStreaming = true;
+          this.timer.run();
           this.onAudioProcess();
         });
   }
@@ -165,13 +168,15 @@ export default class StreamingFFT extends EventEmitter {
       }
     }
     this.isStreaming = false;
-    if (this.timeoutHandler) {
-      clearTimeout(this.timeoutHandler);
-      this.timeoutHandler = 0;
+    this.spectrogram = [];
+
+    if (this.timer) {
+      this.timer.stop();
     }
   }
 
   private onAudioProcess() {
+    console.log('start', Date.now());
     let buffer = new Float32Array(this.analyser.frequencyBinCount);
     this.analyser.getFloatFrequencyData(buffer);
     buffer = buffer.map(v => Math.pow(10, v / 20) * 2000);
@@ -184,6 +189,7 @@ export default class StreamingFFT extends EventEmitter {
     } else {
       this.spectrogram.push(melEnergies);
     }
+    console.log(this.spectrogram.length);
     if (this.spectrogram.length > this.bufferCount) {
       // Remove the first element in the array.
       this.spectrogram.splice(0, 1);
@@ -193,7 +199,6 @@ export default class StreamingFFT extends EventEmitter {
       this.emit('update');
       this.spectrogram.splice(0, 15);
     }
-    this.timeoutHandler =
-        setTimeout(this.onAudioProcess.bind(this), this.hopTime);
+    console.log('end', Date.now());    
   }
 }
