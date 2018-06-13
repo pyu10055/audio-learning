@@ -67,7 +67,7 @@ export default class CommandTrainer extends EventEmitter {
   record(label: number) {
     this.label = label;
     this.streamFeature.start();
-    setTimeout(this.stopRecord.bind(this), 1200);
+    setTimeout(this.stopRecord.bind(this), 1500);
     this.withData = true;
   }
 
