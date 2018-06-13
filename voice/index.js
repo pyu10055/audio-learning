@@ -52,12 +52,12 @@ function onStream() {
     $('#stream').text('Start');
     recognizer.stop();
     setInstructionVisibility(false, recognizer);
-    spectrogram.running = false;
+    spectrogram.stop();
   } else {
     $('#stream').text('Stop');
     recognizer.start();
     setInstructionVisibility(true, recognizer);
-    spectrogram.running = true;
+    spectrogram.start();
   }
 }
 
@@ -73,24 +73,24 @@ function onPredict() {
     $('#predict').text('Start Predict');
     transferRecognizer.stop();
     setInstructionVisibility(false, transferRecognizer);
-    spectrogram.running = false;
+    spectrogram.stop();
   } else {
     $('#predict').text('Stop Predict');
     transferRecognizer.start();
     setInstructionVisibility(true, transferRecognizer);
-    spectrogram.running = true;
+    spectrogram.start();
   }
 }
 
 function onRecord() {
-  spectrogram.running = true;
+  spectrogram.start();
   trainer.record(Number($('#label').val()));
   $('#record').attr('disabled', 'disabled');
 }
 
 function onRecorded(dataset) {
   console.log(dataset);
-  spectrogram.running = false;
+  spectrogram.stop();
   $('#record').removeAttr('disabled');
   setButtonStates();
 }
@@ -153,12 +153,12 @@ async function onLoadModel(e) {
     $('#stream').text('Start');
     recognizer.stop();
     setInstructionVisibility(false, recognizer);
-    spectrogram.running = false;
+    spectrogram.stop();
 
     $('#predict').text('Start Predict');
     transferRecognizer.stop();
     setInstructionVisibility(false, transferRecognizer);
-    spectrogram.running = false;
+    spectrogram.stop();
   })
 }
 

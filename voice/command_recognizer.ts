@@ -15,10 +15,10 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {Tensor, Tensor1D, tensor3d, InferenceModel} from '@tensorflow/tfjs-core';
+import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import StreamingFeatureExtractor from './streaming_feature_extractor';
+import StreamingFFT from './streaming_fft';
 import {argmax, labelArrayToString} from './util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
@@ -26,19 +26,19 @@ export const GOOGLE_CLOUD_STORAGE_DIR =
 export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
-export const BUFFER_LENGTH = 480;
-export const HOP_LENGTH = 160;
+export const BUFFER_LENGTH = 1024;
+export const HOP_LENGTH = 444;
 export const MEL_COUNT = 40;
-export const EXAMPLE_SR = 16000;
+export const EXAMPLE_SR = 44100;
 export const DURATION = 1.0;
 export const IS_MFCC_ENABLED = true;
 export const MIN_SAMPLE = 3;
-export const DETECTION_THRESHOLD = 0.4;
+export const DETECTION_THRESHOLD = 0.5;
 export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
   time: number;
-  scores: Float32Array;
+  scores: number[];
 }
 
 export interface RecognizerParams {
@@ -75,7 +75,7 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
 
 export default class CommandRecognizer extends EventEmitter {
   model: InferenceModel;
-  streamFeature: StreamingFeatureExtractor;
+  streamFeature: StreamingFFT;
   predictionHistory: Prediction[];
 
   predictionCount: number;
@@ -113,7 +113,7 @@ export default class CommandRecognizer extends EventEmitter {
     const inputShape = getFeatureShape();
     const labelShape = [this.allLabels.length];
 
-    this.streamFeature = new StreamingFeatureExtractor({
+    this.streamFeature = new StreamingFFT({
       inputBufferLength: 2048,
       bufferLength: BUFFER_LENGTH,
       hopLength: HOP_LENGTH,
@@ -152,15 +152,23 @@ export default class CommandRecognizer extends EventEmitter {
   private onUpdate() {
     const spec = this.streamFeature.getSpectrogram();
     const input = melSpectrogramToInput(spec);
-    const pred =
-        (this.model.predict([input], {}) as Tensor1D).dataSync() as
-        Float32Array;
-
-    console.log(pred);
+    console.time('prediction');
+    const preds = this.model.predict([input], {});
+    let scores = [];
+    if (Array.isArray(preds)) {
+      const output = preds[0].dataSync();
+      scores = [
+        output[0],
+        ...Array.prototype.slice.call((preds[1] as Tensor1D).dataSync())
+      ];
+    } else {
+      scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
+    };
+    console.timeEnd('prediction');
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,
-      scores: pred,
+      scores,
     });
 
     // Prune any earlier results that are too old for the averaging window.
@@ -187,10 +195,10 @@ export default class CommandRecognizer extends EventEmitter {
       }
     });
 
-    console.log(this.predictionHistory.length); 
+    console.log(this.predictionHistory.length);
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
-    console.log(sortedScore[0]); 
+    console.log(sortedScore);
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];

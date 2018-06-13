@@ -305,7 +305,8 @@ function resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number) {
       const len = bufferRes.length;
       // console.log(`Resampled buffer from ${audioBuffer.length} to ${len}.`);
       resolve(bufferRes);
-    } bufferSource.connect(offlineCtx.destination);
+    };
+    bufferSource.connect(offlineCtx.destination);
     bufferSource.start();
     offlineCtx.startRendering();
   });

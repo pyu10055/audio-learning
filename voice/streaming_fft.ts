@@ -14,9 +14,11 @@
  * the License.
  */
 
+import {EventEmitter} from 'eventemitter3';
+import {interval} from './util';
+ 
 import AudioUtils from './audio_utils';
 import CircularAudioBuffer from './circular_audio_buffer';
-import {EventEmitter} from 'eventemitter3';
 
 const INPUT_BUFFER_LENGTH = 16384;
 
@@ -50,6 +52,7 @@ export default class StreamingFFT extends EventEmitter {
   targetSr: number
   // How long the buffer is.
   bufferLength: number
+  bufferCount: number
   // How many buffers to keep in the spectrogram.
   hopTime: number
   // How many mel bins to use.
@@ -84,14 +87,20 @@ export default class StreamingFFT extends EventEmitter {
   // onAudioProcess.
   processSampleCount: number
 
-  // A proxy for loudness.
-  lastEnergyLevel: number
+  timer: any
 
   constructor(params: Params) {
     super();
 
-    const {bufferLength, duration, hopLength, isMfccEnabled,
-      melCount, targetSr, inputBufferLength} = params;
+    const {
+      bufferLength,
+      duration,
+      hopLength,
+      isMfccEnabled,
+      melCount,
+      targetSr,
+      inputBufferLength
+    } = params;
     this.bufferLength = bufferLength;
     this.inputBufferLength = inputBufferLength || INPUT_BUFFER_LENGTH;
     this.hopLength = hopLength;
@@ -100,14 +109,16 @@ export default class StreamingFFT extends EventEmitter {
     this.targetSr = targetSr;
     this.duration = duration;
     this.hopTime = this.hopLength * 1000 / this.targetSr;
-
+    this.timer = new interval(this.hopTime, this.onAudioProcess.bind(this))    
+    this.bufferCount =
+        Math.floor((duration * targetSr - bufferLength) / hopLength) + 1;
+    this.melFilterbank = AudioUtils.createMelFilterbank(
+        this.nextPowerOfTwo(this.bufferLength) / 2 + 1, this.melCount, 20, 4000,
+        this.targetSr);
     if (hopLength > bufferLength) {
       console.error('Hop length must be smaller than buffer length.');
     }
 
-    // The mel filterbank is actually half of the size of the number of samples,
-    // since the FFT array is complex valued.
-    const fftSize = this.nextPowerOfTwo(this.bufferLength);
     this.spectrogram = [];
     this.isStreaming = false;
 
@@ -124,139 +135,70 @@ export default class StreamingFFT extends EventEmitter {
   }
 
   start() {
-    // Clear all buffers.
-    this.circularBuffer.clear();
-
-    // Reset start time and sample count for ScriptProcessorNode watching.
-    this.processStartTime = new Date();
-    this.processSampleCount = 0;
-
-    const constraints = {audio: {
-      "mandatory": {
-        "googEchoCancellation": "false",
-        "googAutoGainControl": "false",
-        "googNoiseSuppression": "false",
-        "googHighpassFilter": "false"
+    const constraints = {
+      audio: {
+        'mandatory': {
+          'googEchoCancellation': 'false',
+          'googAutoGainControl': 'false',
+          'googNoiseSuppression': 'false',
+          'googHighpassFilter': 'false'
+        },
       },
-    } , video: false};
-    navigator.mediaDevices.getUserMedia(constraints as MediaStreamConstraints).then(stream => {
-      this.stream = stream;
-      this.analyser = audioCtx.createAnalyser();
-      this.analyser.fftSize = this.bufferCount;
-      const source = audioCtx.createMediaStreamSource(stream);
-      source.connect(this.analyser);
-      this.isStreaming = true;
-      timeout(this.onAudioProcess.bind(this), )
-    });
+      video: false
+    };
+    navigator.mediaDevices.getUserMedia(constraints as MediaStreamConstraints)
+        .then(stream => {
+          this.stream = stream;
+          this.analyser = audioCtx.createAnalyser();
+          this.analyser.fftSize = this.nextPowerOfTwo(this.bufferLength);
+          this.analyser.smoothingTimeConstant = 0;
+          const source = audioCtx.createMediaStreamSource(stream);
+          source.connect(this.analyser);
+          // this.analyser.connect(audioCtx.destination);
+          this.isStreaming = true;
+          this.timer.run();
+          this.onAudioProcess();
+        });
   }
 
   stop() {
-    for (let track of this.stream.getTracks()) {
-      track.stop();
+    if (this.stream) {
+      for (let track of this.stream.getTracks()) {
+        track.stop();
+      }
     }
-    this.analyser.disconnect(audioCtx.destination);
-    this.stream = null;
     this.isStreaming = false;
+    this.spectrogram = [];
+
+    if (this.timer) {
+      this.timer.stop();
+    }
   }
 
   private onAudioProcess() {
-    //console.log(this.spectrogram.length);
-    const audioBuffer = audioProcessingEvent.inputBuffer;
+    console.log('start', Date.now());
+    let buffer = new Float32Array(this.analyser.frequencyBinCount);
+    this.analyser.getFloatFrequencyData(buffer);
+    buffer = buffer.map(v => Math.pow(10, v / 20) * 2000);
+    // const fftEnergies = AudioUtils.fftEnergies(buffer);
+    const melEnergies = AudioUtils.applyFilterbank(buffer, this.melFilterbank);
+    const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
-    // Add to the playback buffers, but make sure we have enough room.
-    const remaining = this.playbackBuffer.getRemainingLength();
-    const arrayBuffer = audioBuffer.getChannelData(0);
-    this.processSampleCount += arrayBuffer.length;
-    if (remaining < arrayBuffer.length) {
-      this.playbackBuffer.popBuffer(arrayBuffer.length);
-      //console.log(`Freed up ${arrayBuffer.length} in the playback buffer.`);
+    if (this.isMfccEnabled) {
+      this.spectrogram.push(mfccs);
+    } else {
+      this.spectrogram.push(melEnergies);
     }
-    this.playbackBuffer.addBuffer(arrayBuffer);
-
-    // Resample the buffer into targetSr.
-    //console.log(`Resampling from ${audioCtx.sampleRate} to ${this.targetSr}.`);
-    resampleWebAudio(audioBuffer, this.targetSr).then((audioBufferRes: AudioBuffer) => {
-      const bufferRes = audioBufferRes.getChannelData(0);
-      // Write in a buffer of ~700 samples.
-      this.circularBuffer.addBuffer(bufferRes);
-    });
-
-    // Get buffer(s) out of the circular buffer. Note that there may be multiple
-    // available, and if there are, we should get them all.
-    const buffers = this.getFullBuffers();
-    if (buffers.length > 0) {
-      //console.log(`Got ${buffers.length} buffers of audio input data.`);
+    console.log(this.spectrogram.length);
+    if (this.spectrogram.length > this.bufferCount) {
+      // Remove the first element in the array.
+      this.spectrogram.splice(0, 1);
     }
-
-    for (let buffer of buffers) {
-      //AudioUtils.playbackArrayBuffer(buffer, 16000);
-      //console.log(`Got buffer of length ${buffer.length}.`);
-      // Extract the mel values for this new frame of audio data.
-      const fft = AudioUtils.fft(buffer);
-      const fftEnergies = AudioUtils.fftEnergies(fft);
-      const melEnergies = AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
-      const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
-      
-      if (this.isMfccEnabled) {
-        this.spectrogram.push(mfccs);
-      } else {
-        this.spectrogram.push(melEnergies);
-      }
-      if (this.spectrogram.length > this.bufferCount) {
-        // Remove the first element in the array.
-        this.spectrogram.splice(0, 1);
-      }
-      if (this.spectrogram.length == this.bufferCount) {
-        // Notify that we have an updated spectrogram.
-        this.emit('update');
-        this.spectrogram.splice(0, 15);
-      }
-      const totalEnergy = melEnergies.reduce((total, num) => total + num);
-      this.lastEnergyLevel = totalEnergy / melEnergies.length;
+    if (this.spectrogram.length == this.bufferCount) {
+      // Notify that we have an updated spectrogram.
+      this.emit('update');
+      this.spectrogram.splice(0, 15);
     }
-
-    // const elapsed = (new Date().valueOf() - this.processStartTime.valueOf()) / 1000;
-    // const expectedSampleCount = (audioCtx.sampleRate * elapsed);
-    // const percentError = Math.abs(expectedSampleCount - this.processSampleCount) /
-    //     expectedSampleCount;
-    // if (percentError > 0.1) {
-    //   console.warn(`ScriptProcessorNode may be dropping samples. Percent error is ${percentError}.`);
-    // }    
+    console.log('end', Date.now());    
   }
-
-  /**
-   * Get as many full buffers as are available in the circular buffer.
-   */
-  private getFullBuffers() {
-    const out = [];
-    // While we have enough data in the buffer.
-    while (this.circularBuffer.getLength() > this.bufferLength) {
-      // Get a buffer of desired size.
-      const buffer = this.circularBuffer.getBuffer(this.bufferLength);
-      // Remove a hop's worth of data from the buffer.
-      this.circularBuffer.popBuffer(this.hopLength);
-      out.push(buffer);
-    }
-    return out;
-  }
-}
-
-function resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number) {
-  const sourceSr = audioBuffer.sampleRate;
-  const lengthRes = audioBuffer.length * targetSr/sourceSr;
-  const offlineCtx = new OfflineAudioContext(1, lengthRes, targetSr);
-
-  return new Promise((resolve, reject) => {
-    const bufferSource = offlineCtx.createBufferSource();
-    bufferSource.buffer = audioBuffer;
-    offlineCtx.oncomplete = function(event) {
-      const bufferRes = event.renderedBuffer;
-      const len = bufferRes.length;
-      //console.log(`Resampled buffer from ${audioBuffer.length} to ${len}.`);
-      resolve(bufferRes);
-    }
-    bufferSource.connect(offlineCtx.destination);
-    bufferSource.start();
-    offlineCtx.startRendering();
-  });
 }
