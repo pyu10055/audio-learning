@@ -14,7 +14,6 @@
  * the License.
  */
 
-import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
 import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 

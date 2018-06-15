@@ -14,6 +14,8 @@
  * the License.
  */
 
+import * as tf from '@tensorflow/tfjs';
+
 export function labelArrayToString(label: Float32Array, allLabels: string[]) {
   const [ind, _] = argmax(label);
   return allLabels[ind];
@@ -67,4 +69,18 @@ export function interval(duration: number, fn: Function) {
   this.stop = function() {
     clearTimeout(this.timer)
   };
+}
+
+export function normalize(x) {
+  return tf.tidy(() => {
+    const mean = tf.mean(x);
+    mean.print();
+    const std = tf.sqrt(tf.mean(tf.square(tf.add(x, tf.neg(mean)))));
+    return tf.div(tf.add(x, tf.neg(mean)), std);
+  });
+}
+
+export function nextPowerOfTwo(value) {
+  const exponent = Math.ceil(Math.log2(value));
+  return 1 << exponent;
 }
