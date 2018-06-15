@@ -80,7 +80,7 @@ limitations under the License.
           <a class="nav-link" id="prediction-tab" data-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Prediction</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" id="pacman-tab" data-toggle="tab" href="#pacman" role="tab" aria-controls="pacman" aria-selected="false">Pacman</a>
+          <a class="nav-link" id="eval-tab" data-toggle="tab" href="#eval" role="tab" aria-controls="eval" aria-selected="false">Evaqluation</a>
         </li>
       </ul>
     </div>
@@ -120,7 +120,24 @@ limitations under the License.
           Start
         </button>
       </div>
-      <div class="tab-pane" id="pacman" role="tabpanel" aria-labelledby="pacman-tab">...</div>
+      <div class="tab-pane" id="eval" role="tabpanel" aria-labelledby="eval">
+          <div class="card justify-content-md-center" style="width:32rem;">
+              <label>Model</label>
+              <select id="label">
+                <option value="0">Frozen Model</option>
+                <option value="1">Frozen Model Native FFT</option>F
+                <option value="2">Layer Model</option>
+              </select>
+              <span id='accuracy'></span>
+              <div class="card-body">
+                <div>
+                  <input type="file" id="dat-file-input" multiple="true"></input>                  
+                  <button type="button" class="btn btn-primary" id="eval-start">Start</button>
+                </div>
+              </div>
+            </div>
+            
+      </div>
     </div>
   </div>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>

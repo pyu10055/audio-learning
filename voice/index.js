@@ -20,6 +20,7 @@ import CommandRecognizer from './command_recognizer';
 import CommandTrainer from './command_trainer';
 import {Spectrogram} from './spectrogram';
 import {audioCtx} from './streaming_feature_extractor';
+import {ModelEvaluation} from './model_evaluation';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -29,6 +30,8 @@ const allLabels = [
 const transferLabels = ['_silence_', '上-up', '下-down', '左-left', '右-right'];
 
 let recognizer;
+
+const evaluation = new ModelEvaluation();
 
 const trainer = new CommandTrainer();
 trainer.on('recorded', onRecorded);
@@ -127,6 +130,7 @@ function setButtonStates() {
 async function onLoadModel(e) {
   console.time('load model');
   await trainer.load();
+  await ModelEvaluation.load();
   console.timeEnd('load model');
   recognizer = new CommandRecognizer({
     scoreT: 5,
@@ -161,7 +165,6 @@ async function onLoadModel(e) {
     spectrogram.stop();
   })
 }
-
 
 async function load() {}
 

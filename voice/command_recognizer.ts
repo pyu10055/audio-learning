@@ -23,6 +23,7 @@ import {argmax, labelArrayToString} from './util';
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
 export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
+export const TF_MODEL_FILE_URL = 'voice2/model.json';
 export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
 
 export const BUFFER_LENGTH = 1024;
