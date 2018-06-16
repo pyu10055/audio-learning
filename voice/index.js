@@ -16,11 +16,13 @@
  */
 
 import * as tfc from '@tensorflow/tfjs-core';
+
 import CommandRecognizer from './command_recognizer';
 import CommandTrainer from './command_trainer';
+import {ModelEvaluation} from './model_evaluation';
+import {OfflineFeatureExtractor} from './offline_feature_extractor';
 import {Spectrogram} from './spectrogram';
 import {audioCtx} from './streaming_feature_extractor';
-import {ModelEvaluation} from './model_evaluation';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -28,7 +30,10 @@ const allLabels = [
 ];
 
 const transferLabels = ['_silence_', '上-up', '下-down', '左-left', '右-right'];
-
+const evalLabels = [
+  'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+  'zero', 'left', 'right', 'go', 'stop'
+];
 let recognizer;
 
 const evaluation = new ModelEvaluation();
@@ -127,10 +132,22 @@ function setButtonStates() {
   }
 }
 
+async function onEvaluate() {
+  const label = evalLabels.indexOf($('#eval-label').val());
+  if (label === -1) {
+    alert('Please provide valid label.');
+    return;
+  }
+  const accuracy = await evaluation.eval(
+      Number($('#eval-model').val()), $('#eval-files')[0].files,
+      Array($('#eval-files')[0].files.length).fill(label));
+  $('#accuracy').text(accuracy.toFixed(2));
+}
+
 async function onLoadModel(e) {
   console.time('load model');
   await trainer.load();
-  await ModelEvaluation.load();
+  await evaluation.load();
   console.timeEnd('load model');
   recognizer = new CommandRecognizer({
     scoreT: 5,
@@ -166,8 +183,7 @@ async function onLoadModel(e) {
   })
 }
 
-async function load() {}
-
+$('#eval-start').on('click', onEvaluate);
 $('#stream').on('click', onStream);
 $('#complete').on('click', onComplete);
 $('#predict').on('click', onPredict);

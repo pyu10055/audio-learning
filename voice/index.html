@@ -80,7 +80,7 @@ limitations under the License.
           <a class="nav-link" id="prediction-tab" data-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Prediction</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="eval-tab" data-toggle="tab" href="#eval" role="tab" aria-controls="eval" aria-selected="false">Evaqluation</a>
+          <a class="nav-link" id="eval-tab" data-toggle="tab" href="#eval" role="tab" aria-controls="eval" aria-selected="false">Evaluation</a>
         </li>
       </ul>
     </div>
@@ -123,15 +123,17 @@ limitations under the License.
       <div class="tab-pane" id="eval" role="tabpanel" aria-labelledby="eval">
           <div class="card justify-content-md-center" style="width:32rem;">
               <label>Model</label>
-              <select id="label">
+              <select id="eval-model">
                 <option value="0">Frozen Model</option>
                 <option value="1">Frozen Model Native FFT</option>F
                 <option value="2">Layer Model</option>
               </select>
+              <label>Label (one,two,three,four,five,six,seven,eight,nine,zero,left,right,go,stop)</label>
+              <input type="text" id='eval-label'>
               <span id='accuracy'></span>
               <div class="card-body">
                 <div>
-                  <input type="file" id="dat-file-input" multiple="true"></input>                  
+                  <input type="file" id="eval-files" multiple="true"></input>                  
                   <button type="button" class="btn btn-primary" id="eval-start">Start</button>
                 </div>
               </div>

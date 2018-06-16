@@ -1,8 +1,11 @@
-import {InferenceModel, Model, Tensor, tensor4d} from '@tensorflow/tfjs';
+import {FrozenModel, InferenceModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '@tensorflow/tfjs';
 
+import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, TF_MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+import {OfflineFeatureExtractor} from './offline_feature_extractor';
 import {normalize} from './util';
 
 export const EVENT_NAME = 'update';
+export const MIN_SCORE = 0.6;
 
 export interface Params {
   bufferLength: number
@@ -14,7 +17,7 @@ export interface Params {
 }
 
 export interface FeatureExtractor extends EventEmitter.EventEmitter {
-  config(source: OfflineAudioContext, bufferLength: number, hopLength: number);
+  config(source: OfflineAudioContext, params: Params);
   start(samples: Float32Array);
   stop();
   getFeatures(): Float32Array[];
@@ -22,6 +25,7 @@ export interface FeatureExtractor extends EventEmitter.EventEmitter {
 
 export enum ModelType {
   FROZEN_MODEL = 0,
+  FROZEN_MODEL_NATIVE,
   TF_MODEL
 }
 export class ModelEvaluation {
@@ -32,22 +36,19 @@ export class ModelEvaluation {
   // How many mel bins to use.
   melCount = 40;
   // Number of samples to hop over for every new column.
-  hopLength = 444;
+  hopLength = 1024;
   // How long the total duration is.
   duration = 1.0;
   // Whether to use MFCC or Mel features.
   isMfccEnabled = true;
-  private frozenModel: InferenceModel;
-  private tfModel: InferenceModel;
+  private frozenModel: FrozenModel;
+  private tfModel: Model;
 
-  private offlineContext: OfflineAudioContext;
-  private reader = new FileReader();
-  private model: InferenceModel;
+  private model: FrozenModel|Model;
+  private featureExtractor: FeatureExtractor;
 
-  constructor(private files: File[], private labels: number[], params: Params) {
+  constructor(params: Params) {
     Object.assign(this, params);
-    this.offlineContext = new OfflineAudioContext(
-        1, this.targetSr * this.duration * 4, this.targetSr);
   }
 
   async load() {
@@ -55,27 +56,49 @@ export class ModelEvaluation {
         GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
         GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
     this.tfModel =
-        await Model.loadModels(GOOGLE_CLOUD_STORAGE_DIR + TF_MODEL_FILE_URL);
+        await loadModel(GOOGLE_CLOUD_STORAGE_DIR + TF_MODEL_FILE_URL);
   }
 
-  async eval(modelType: ModelType, extractor: FeatureExtractor): number {
-    this.model =
-        modelType === ModelType.FROZEN_MODEL ? this.frozenModel : this.tfModel;
-    this.reader.onloadend = async () => {
-      extractor.config(this.offlineContext, this.bufferLength, this.hopLength);
-      await extractor.start(this.reader.result);
-      if (this.model != null) {
-        this.runPrediction(extractor.getFeatures());
-      }
-      this.offlineContext.startRendering().catch(err => {
-        console.log('Failed to render offline audio context:', err);
-      });
-    };
-
-    for (let i = 0; i < this.files.length; i++) {
-      const recordingFile = this.files[i];
-      this.reader.readAsArrayBuffer(recordingFile);
+  async eval(modelType: ModelType, files: File[], labels: number[]):
+      Promise<number> {
+    const prediction = [];
+    this.featureExtractor = new OfflineFeatureExtractor();
+    if (modelType === ModelType.TF_MODEL) {
+      this.model = this.tfModel;
+    } else {
+      this.model = this.frozenModel;
     }
+
+    for (let i = 0; i < files.length; i++) {
+      const recordingFile = files[i];
+      prediction.push(
+          await this.evalFile(recordingFile, this.featureExtractor));
+    }
+
+    const correct = prediction.reduce((prev, curr, index) => {
+      prev += (curr[0] === labels[index] && curr[1] > MIN_SCORE ? 1.0 : 0.0);
+    }, 0.0);
+
+    return correct / labels.length;
+  }
+
+  private evalFile(file: File, extractor: FeatureExtractor):
+      Promise<[number, number]> {
+    const temporaryFileReader = new FileReader();
+    return new Promise((resolve, reject) => {
+      temporaryFileReader.onerror = () => {
+        temporaryFileReader.abort();
+        reject(new DOMException('Problem parsing input file.'));
+      };
+
+      temporaryFileReader.onload = async () => {
+        extractor.config(
+            this.offlineContext, this.bufferLength, this.hopLength);
+        await extractor.start(new Float32Array(temporaryFileReader.result));
+        resolve(this.runPrediction(extractor.getFeatures()));
+      };
+      temporaryFileReader.readAsArrayBuffer(file);
+    });
   }
 
   private featuresToInput(spec: Float32Array[]): Tensor {
@@ -95,15 +118,16 @@ export class ModelEvaluation {
     return tensor4d(Array.prototype.slice.call(data), shape);
   }
 
-  private runPrediction(dataArray: Float32Array[]) {
+  private runPrediction(dataArray: Float32Array[]): [number, number] {
     if (this.model == null) {
       throw new Error('Model is not set yet');
     }
     const unnormalized = this.featuresToInput(dataArray);
     const normalized = normalize(unnormalized);
-    const predictOut =
-        (this.model.predict(normalized, {}) as Tensor).dataSync() as
-        Float32Array;
+    const predictOut = ((this.model instanceof FrozenModel ?
+                             this.model.predict(normalized, {}) :
+                             this.model.predict(normalized)) as Tensor)
+                           .dataSync() as Float32Array;
 
     let maxScore = -Infinity;
     let winnerIndex = -1;
@@ -113,6 +137,6 @@ export class ModelEvaluation {
         winnerIndex = index;
       }
     });
-    return winnerIndex;
+    return [winnerIndex, maxScore];
   }
 }
