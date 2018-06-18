@@ -11,6 +11,7 @@
     "d3": "5.4.0"
   },
   "scripts": {
+    "build": "tsc",
     "watch": "NODE_ENV=development parcel --no-hmr --open voice/index.html "
   },
   "devDependencies": {

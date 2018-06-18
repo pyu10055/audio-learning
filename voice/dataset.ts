@@ -27,8 +27,8 @@ export class Dataset {
 
   /**
    * Adds an example to the controller dataset.
-   * @param {Tensor} example A tensor representing the example. It can be an image,
-   *     an activation, or any other type of Tensor.
+   * @param {Tensor} example A tensor representing the example.
+   *    It can be an image, an activation, or any other type of Tensor.
    * @param {number} label The label of the example. Should be an umber.
    */
   addExample(example: tf.Tensor|tf.Tensor[], label: number) {

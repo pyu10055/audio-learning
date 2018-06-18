@@ -1,40 +1,22 @@
-import {FrozenModel, InferenceModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '@tensorflow/tfjs';
+// tslint:disable-next-line:max-line-length
+import {FrozenModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '@tensorflow/tfjs';
 
+// tslint:disable-next-line:max-line-length
 import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, TF_MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
 import {normalize} from './util';
+import {FeatureExtractor, ModelType, Params} from './types';
 
 export const EVENT_NAME = 'update';
 export const MIN_SCORE = 0.6;
 
-export interface Params {
-  bufferLength: number
-  hopLength: number
-  duration: number
-  melCount: number
-  targetSr: number
-  isMfccEnabled: boolean
-}
-
-export interface FeatureExtractor extends EventEmitter.EventEmitter {
-  config(source: OfflineAudioContext, params: Params);
-  start(samples: Float32Array);
-  stop();
-  getFeatures(): Float32Array[];
-}
-
-export enum ModelType {
-  FROZEN_MODEL = 0,
-  FROZEN_MODEL_NATIVE,
-  TF_MODEL
-}
 export class ModelEvaluation {
   // Target sample rate.
   targetSr = 44100;
   // How long the buffer is.
   bufferLength = 1024;
   // How many mel bins to use.
-  melCount = 40;
+  melCount = 360;
   // Number of samples to hop over for every new column.
   hopLength = 1024;
   // How long the total duration is.
@@ -77,8 +59,10 @@ export class ModelEvaluation {
 
     const correct = prediction.reduce((prev, curr, index) => {
       prev += (curr[0] === labels[index] && curr[1] > MIN_SCORE ? 1.0 : 0.0);
+      return prev;
     }, 0.0);
 
+    console.log('correctly predicted: ', correct);
     return correct / labels.length;
   }
 
@@ -92,9 +76,16 @@ export class ModelEvaluation {
       };
 
       temporaryFileReader.onload = async () => {
-        extractor.config(
-            this.offlineContext, this.bufferLength, this.hopLength);
-        await extractor.start(new Float32Array(temporaryFileReader.result));
+        extractor.config({});
+        let success = false;
+        for (let i = 0; i < 10 && !success; i++) try {
+            await extractor.start(new Float32Array(temporaryFileReader.result));
+            extractor.stop();
+            success = true;
+          } catch {
+            extractor.stop();
+            console.log('retry file ' + file.name);
+          }
         resolve(this.runPrediction(extractor.getFeatures()));
       };
       temporaryFileReader.readAsArrayBuffer(file);
@@ -106,7 +97,6 @@ export class ModelEvaluation {
     const times = spec.length;
     const freqs = spec[0].length;
     const data = new Float32Array(times * freqs);
-    let i = 0;
     for (let i = 0; i < times; i++) {
       const mel = spec[i];
       const offset = i * freqs;
@@ -122,7 +112,13 @@ export class ModelEvaluation {
     if (this.model == null) {
       throw new Error('Model is not set yet');
     }
+    dataArray.forEach((array, i) => {
+      array.forEach((v, index) => {
+        if (v === -Infinity) console.log(i, index);
+      });
+    });
     const unnormalized = this.featuresToInput(dataArray);
+
     const normalized = normalize(unnormalized);
     const predictOut = ((this.model instanceof FrozenModel ?
                              this.model.predict(normalized, {}) :

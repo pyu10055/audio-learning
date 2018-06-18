@@ -19,11 +19,11 @@
  * Load Float32Array in arbitrarily sized chunks.
  * Determine if there's enough data to grab a certain amount.
  */
-export default class CircularAudioBuffer {
-  buffer: Float32Array
+export class CircularAudioBuffer {
+  buffer: Float32Array;
   // The index that we are currently full up to. New data is written from
   // [currentIndex + 1, maxLength]. Data can be read from [0, currentIndex].
-  currentIndex: number
+  currentIndex: number;
 
   constructor(maxLength: number) {
     this.buffer = new Float32Array(maxLength);
@@ -37,12 +37,12 @@ export default class CircularAudioBuffer {
     // Do we have enough data in this buffer?
     const remaining = this.buffer.length - this.currentIndex;
     if (this.currentIndex + newBuffer.length > this.buffer.length) {
-      console.error(`Not enough space to write ${newBuffer.length}` +
-        ` to this circular buffer with ${remaining} left.`);
+      console.error(
+          `Not enough space to write ${newBuffer.length}` +
+          ` to this circular buffer with ${remaining} left.`);
       return;
     }
     this.buffer.set(newBuffer, this.currentIndex);
-    //console.log(`Wrote ${newBuffer.length} entries to index ${this.currentIndex}.`);
     this.currentIndex += newBuffer.length;
   }
 
@@ -67,12 +67,13 @@ export default class CircularAudioBuffer {
   popBuffer(length: number) {
     // Do we have enough data to read back?
     if (this.currentIndex < length) {
-      console.error(`This circular buffer doesn't have ${length} entries in it.`);
-      return;
+      console.error(
+          `This circular buffer doesn't have ${length} entries in it.`);
+      return undefined;
     }
-    if (length == 0) {
+    if (length === 0) {
       console.warn(`Calling popBuffer(0) does nothing.`);
-      return;
+      return undefined;
     }
     const popped = this.buffer.slice(0, length);
     const remaining = this.buffer.slice(length, this.buffer.length);
@@ -93,8 +94,9 @@ export default class CircularAudioBuffer {
     }
     // Do we have enough data to read back?
     if (this.currentIndex < length) {
-      console.error(`This circular buffer doesn't have ${length} entries in it.`);
-      return;
+      console.error(
+          `This circular buffer doesn't have ${length} entries in it.`);
+      return undefined;
     }
     return this.buffer.slice(0, length);
   }

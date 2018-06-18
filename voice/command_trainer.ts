@@ -15,16 +15,18 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {nextFrame, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+import {nextFrame} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import {BUFFER_LENGTH, DETECTION_THRESHOLD, DURATION, EXAMPLE_SR, getFeatureShape, GOOGLE_CLOUD_STORAGE_DIR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, melSpectrogramToInput, MIN_SAMPLE, MODEL_FILE_URL, Prediction, RecognizerParams, SUPPRESSION_TIME, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+// tslint:disable-next-line:max-line-length
+import {GOOGLE_CLOUD_STORAGE_DIR, melSpectrogramToInput, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
-import StreamingFFT from './streaming_fft';
+import {StreamingFFT} from './streaming_fft';
 import {TransferModel} from './transfer_model';
-import {argmax, labelArrayToString} from './util';
+// tslint:disable-next-line:max-line-length
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT} from './types';
 
-export default class CommandTrainer extends EventEmitter {
+export class CommandTrainer extends EventEmitter {
   model: FrozenModel;
   transferModel: TransferModel;
   streamFeature: StreamingFFT;
@@ -34,8 +36,6 @@ export default class CommandTrainer extends EventEmitter {
   withData = false;
   constructor() {
     super();
-
-    const inputShape = getFeatureShape();
 
     this.streamFeature = new StreamingFFT({
       inputBufferLength: 2048,
@@ -55,7 +55,12 @@ export default class CommandTrainer extends EventEmitter {
         GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
         GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
     this.transferModel = new TransferModel(
-        [{model: this.model, bottleneck: 'add_2', bottleneckShape: [12], output: 'labels_softmax'}],
+        [{
+          model: this.model,
+          bottleneck: 'add_2',
+          bottleneckShape: [12],
+          output: 'labels_softmax'
+        }],
         this.dataset, {
           onBatchEnd: async (batch, logs) => {
             this.emit('loss', logs.loss.toFixed(5));

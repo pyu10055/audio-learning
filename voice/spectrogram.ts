@@ -5,11 +5,11 @@ export class Spectrogram {
   analyser: AnalyserNode;
   svgHeight = 100;
   svgWidth = 800;
-  svg: any;
+  svg: d3.Selection<d3.BaseType, {}, HTMLElement, Uint8Array>;
   frequencyData: Uint8Array;
   animationFrameId: number;
   lastRenderTime: number;
-  constructor(private audioCtx: AudioContext, domId: string) {
+  constructor(domId: string) {
     this.svg = d3.select(domId)
                    .append('svg')
                    .attr('preserveAspectRatio', 'xMinYMin meet')
@@ -74,15 +74,13 @@ export class Spectrogram {
     rects.enter().append('rect');
 
     rects.attr('width', () => this.svgWidth / this.frequencyData.length)
-        .attr('height', (d) => heightScale(d))
+        .attr('height', d => heightScale(d))
         .attr('x', (d, i) => i * this.svgWidth / this.frequencyData.length)
-        .attr('y', (d) => this.svgHeight - heightScale(d))
+        .attr('y', d => this.svgHeight - heightScale(d))
         .attr('fill', 'None')
         .attr('stroke-width', 4)
         .attr('stroke-opacity', 0.4)
-        .attr('stroke', (d) => {
-          return d3.hsl(hueScale(d), 1, 0.5);
-        });
+        .attr('stroke', d => d3.hsl(hueScale(d), 1, 0.5));
 
     rects.exit().remove();
     this.lastRenderTime = Date.now();

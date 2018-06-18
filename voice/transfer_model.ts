@@ -1,6 +1,4 @@
 import * as tf from '@tensorflow/tfjs';
-import {CustomCallbackConfig, InferenceModel, ModelPredictConfig, NamedTensorMap, Tensor} from '@tensorflow/tfjs';
-
 import {Dataset} from './dataset';
 
 export interface SourceModelConfig {
@@ -14,30 +12,31 @@ export interface SourceModelConfig {
 const LEARNING_RATE = 0.001;
 const BATCH_SIZE_FRACTION = 0.1;
 const EPOCHS = 300;
-export class TransferModel implements InferenceModel {
+export class TransferModel implements tf.InferenceModel {
   model: tf.Model;
-  boottleneckShape: number[];
 
   constructor(
       private configs: SourceModelConfig[], private dataset: Dataset,
-      private trainCallback: CustomCallbackConfig) {
-    this.boottleneckShape = this.configs.reduce((shape: number[], config) => {
-      config.bottleneckShape.forEach(
-          (dim, index) => shape[index] =
-              !!shape[index] ? shape[index] + dim : dim);
-      return shape;
-    }, []);
-    // Creates a 2-layer fully connected model.
+      private trainCallback?: tf.CustomCallbackConfig) {
+    // Creates a 2-layer fully connected model. By creating a separate model,
+    // rather than adding layers to the mobilenet model, we "freeze" the weights
+    // of the mobilenet model, and only train weights from the new model.
     this.model = tf.sequential({
       layers: [
         // Layer 1
         tf.layers.dense({
-          // Default unit size to be 2 * bootleneck vector width
-          units: Math.max(10, Math.max(...this.boottleneckShape) * 2),
+          units: 10,
           activation: 'relu',
           kernelInitializer: 'varianceScaling',
           useBias: true,
-          inputShape: this.boottleneckShape
+          inputShape: this.configs.reduce(
+              (shape: number[], config) => {
+                config.bottleneckShape.forEach(
+                    (dim, index) => shape[index] =
+                        !!shape[index] ? shape[index] + dim : dim);
+                return shape;
+              },
+              [])
         }),
         // Layer 2. The number of units of the last layer should correspond
         // to the number of classes we want to predict.
@@ -55,9 +54,9 @@ export class TransferModel implements InferenceModel {
     input = input instanceof Array ? input : [input];
     return tf.tidy(() => {
       const activations = this.configs.map(
-          (config, index) =>
-              config.model.execute(input[index], config.bottleneck) as
-              tf.Tensor2D);
+          (config, index) => config.model.execute(
+                                 (input as tf.Tensor[])[index],
+                                 config.bottleneck) as tf.Tensor2D);
       return tf.concat2d(activations, 1);
     });
   }
@@ -67,23 +66,27 @@ export class TransferModel implements InferenceModel {
     return tf.tidy(() => {
       const activations = this.configs.map(
           (config, index) => config.model.execute(
-              input[index],
+              (input as tf.Tensor[])[index],
               [config.bottleneck, config.output].filter(n => n != null)));
 
       const features = activations.map(
           activation => Array.isArray(activation) ? activation[0] : activation);
       const outputs =
-          activations.map(activation => activation[1]).filter(n => n != null);
+          activations.map(activation => (activation as tf.Tensor[])[1])
+              .filter(n => n != null);
 
       return outputs.length > 0 ?
-          [tf.concat2d(features as tf.Tensor2D[], 1), tf.concat2d(outputs, 1)] :
+          [
+            tf.concat2d(features as tf.Tensor2D[], 1),
+            tf.concat2d(outputs as tf.Tensor2D[], 1)
+          ] :
           [tf.concat2d(features as tf.Tensor2D[], 1)];
     });
   }
   /**
    * Sets up and trains the classifier.
    */
-  async train() {
+  async train(): Promise<{[key: string]: Array<number|tf.Tensor>}> {
     if (this.dataset.xs == null) {
       throw new Error('Add some examples before training!');
     }
@@ -95,28 +98,28 @@ export class TransferModel implements InferenceModel {
     // predicted probability distribution over classes (probability that an
     // input is of each class), versus the label (100% probability in the true
     // class)>
-    this.model.compile({optimizer: optimizer, loss: 'categoricalCrossentropy'});
+    this.model.compile({optimizer, loss: 'categoricalCrossentropy'});
 
     // We parameterize batch size as a fraction of the entire dataset because
     // the number of examples that are collected depends on how many examples
     // the user collects. This allows us to have a flexible batch size.
-    const batchSize = this.dataset.xs[0].shape[0];
-//        Math.floor(this.dataset.xs[0].shape[0] * BATCH_SIZE_FRACTION);
+    const batchSize =
+        Math.floor(this.dataset.xs[0].shape[0] * BATCH_SIZE_FRACTION);
     if (!(batchSize > 0)) {
       throw new Error(
           `Batch size is 0 or NaN. Please choose a non-zero fraction.`);
     }
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-    return await this.model.fit(
+    const history = await this.model.fit(
         this.features(this.dataset.xs), this.dataset.ys,
         {batchSize, epochs: EPOCHS, callbacks: this.trainCallback});
+    return history.history;
   }
 
-
   predict(
-      input: tf.Tensor|tf.Tensor[]|NamedTensorMap,
-      config?: ModelPredictConfig): tf.Tensor[] {
+      input: tf.Tensor|tf.Tensor[]|tf.NamedTensorMap,
+      config?: tf.ModelPredictConfig): tf.Tensor[] {
     const predictedClass = tf.tidy(() => {
       const [features, outputs] =
           this.activation(input as tf.Tensor | tf.Tensor[]);
@@ -135,8 +138,8 @@ export class TransferModel implements InferenceModel {
   }
 
   execute(
-      inputs: tf.Tensor<tf.Rank>|tf.Tensor<tf.Rank>[]|tf.NamedTensorMap,
-      outputs: string|string[]): tf.Tensor<tf.Rank>|tf.Tensor<tf.Rank>[] {
+      inputs: tf.Tensor<tf.Rank>|Array<tf.Tensor<tf.Rank>>|tf.NamedTensorMap,
+      outputs: string|string[]): tf.Tensor<tf.Rank>|Array<tf.Tensor<tf.Rank>> {
     throw new Error('Method not implemented.');
   }
 }

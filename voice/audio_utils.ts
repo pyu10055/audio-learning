@@ -13,19 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-import * as KissFFT from 'kissfft-js';
 import * as DCT from 'dct';
+import * as KissFFT from 'kissfft-js';
 
 const SR = 16000;
 
-
-let melFilterbank = null;
 let startIndex = 0;
 let endIndex = 0;
-let context = null;
-let bandMapper = [];
+let bandMapper: number[] = [];
+let context: AudioContext;
 
-export default class AudioUtils {
+export class AudioUtils {
   /**
    * Calculates the FFT for an array buffer. Output is an array.
    */
@@ -45,33 +43,34 @@ export default class AudioUtils {
    * calculates the energies. Output is half the size.
    */
   static fftEnergies(y: Float32Array) {
-    let out = new Float32Array(y.length / 2);
+    const out = new Float32Array(y.length / 2);
     for (let i = 0; i < y.length / 2; i++) {
-      out[i] = y[i*2]*y[i*2] + y[i*2 + 1]*y[i*2 + 1];
+      out[i] = y[i * 2] * y[i * 2] + y[i * 2 + 1] * y[i * 2 + 1];
     }
     return out;
   }
 
-  static createMelFilterbank(fftSize, melCount=40, lowHz=20, highHz=4000, sr=SR): Float32Array {
+  static createMelFilterbank(
+      fftSize: number, melCount = 40, lowHz = 20, highHz = 4000,
+      sr = SR): Float32Array {
     const lowMel = this.hzToMel(lowHz);
     const highMel = this.hzToMel(highHz);
 
     // Construct linearly spaced array of melCount intervals, between lowMel and
     // highMel.
-    const mels = []; 
+    const mels = [];
 
     const melSpan = highMel - lowMel;
     const melSpacing = melSpan / (melCount + 1);
     for (let i = 0; i < melCount + 1; ++i) {
       mels[i] = lowMel + (melSpacing * (i + 1));
     }
-  
+
     // Always exclude DC; emulate HTK.
-    const hzPerSbin =
-        0.5 * sr / (fftSize - 1);
+    const hzPerSbin = 0.5 * sr / (fftSize - 1);
     startIndex = Math.floor(1.5 + (lowHz / hzPerSbin));
     endIndex = Math.ceil(highHz / hzPerSbin);
-  
+
     // Maps the input spectrum bin indices to filter bank channels/indices. For
     // each FFT bin, band_mapper tells us which channel this bin contributes to
     // on the right side of the triangle.  Thus this bin also contributes to the
@@ -83,18 +82,17 @@ export default class AudioUtils {
       if ((i < startIndex) || (i > endIndex)) {
         bandMapper[i] = -2;  // Indicate an unused Fourier coefficient.
       } else {
-        while ((mels[channel] < melf) &&
-               (channel < melCount)) {
+        while ((mels[channel] < melf) && (channel < melCount)) {
           ++channel;
         }
         bandMapper[i] = channel - 1;  // Can be == -1
       }
     }
-  
+
     // Create the weighting functions to taper the band edges.  The contribution
-    // of any one FFT bin is based on its distance along the continuum between two
-    // mel-channel center frequencies.  This bin contributes weights_[i] to the
-    // current channel and 1-weights_[i] to the next channel.
+    // of any one FFT bin is based on its distance along the continuum between
+    // two mel-channel center frequencies.  This bin contributes weights_[i] to
+    // the current channel and 1-weights_[i] to the next channel.
     const weights = new Float32Array(fftSize);
     for (let i = 0; i < fftSize; ++i) {
       channel = bandMapper[i];
@@ -102,12 +100,11 @@ export default class AudioUtils {
         weights[i] = 0.0;
       } else {
         if (channel >= 0) {
-          weights[i] =
-              (mels[channel + 1] - this.hzToMel(i * hzPerSbin)) /
+          weights[i] = (mels[channel + 1] - this.hzToMel(i * hzPerSbin)) /
               (mels[channel + 1] - mels[channel]);
         } else {
-          weights[i] = (mels[0] - this.hzToMel(i * hzPerSbin)) /
-                        (mels[0] - lowMel);
+          weights[i] =
+              (mels[0] - this.hzToMel(i * hzPerSbin)) / (mels[0] - lowMel);
         }
       }
     }
@@ -119,9 +116,10 @@ export default class AudioUtils {
    * Given an array of FFT magnitudes, apply a filterbank. Output should be an
    * array with size |filterbank|.
    */
-  static applyFilterbank(fftEnergies: Float32Array, filterbank: Float32Array, melCount=40)
-    : Float32Array {
-    let out = new Float32Array(melCount);
+  static applyFilterbank(
+      fftEnergies: Float32Array, filterbank: Float32Array,
+      melCount = 40): Float32Array {
+    const out = new Float32Array(melCount);
     for (let i = startIndex; i <= endIndex; i++) {  // For each FFT bin
       const specVal = Math.sqrt(fftEnergies[i]);
       const weighted = specVal * filterbank[i];
@@ -131,21 +129,20 @@ export default class AudioUtils {
       channel++;
       if (channel < melCount)
         out[channel] += specVal - weighted;  // Left side of triangle
-    }    
+    }
     for (let i = 0; i < out.length; ++i) {
       let val = out[i];
       if (val < 1e-12) {
         val = 1e-12;
       }
       out[i] = Math.log(val);
-    }    
+    }
     return out;
   }
 
-  static hzToMel(hz) {
-    return 1127 * Math.log(1 + hz/700);
+  static hzToMel(hz: number) {
+    return 1127 * Math.log(1 + hz / 700);
   }
-
 
   static cepstrumFromEnergySpectrum(melEnergies: Float32Array) {
     return this.dct(melEnergies);

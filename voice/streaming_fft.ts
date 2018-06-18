@@ -15,22 +15,13 @@
  */
 
 import {EventEmitter} from 'eventemitter3';
-import {interval} from './util';
- 
-import AudioUtils from './audio_utils';
-import CircularAudioBuffer from './circular_audio_buffer';
+
+import {AudioUtils} from './audio_utils';
+import {CircularAudioBuffer} from './circular_audio_buffer';
+import {Params} from './types';
+import {Interval} from './util';
 
 const INPUT_BUFFER_LENGTH = 16384;
-
-interface Params {
-  inputBufferLength?: number
-  bufferLength: number
-  hopLength: number
-  duration: number
-  melCount: number
-  targetSr: number
-  isMfccEnabled: boolean
-}
 
 export const audioCtx = new AudioContext();
 /**
@@ -45,49 +36,50 @@ export const audioCtx = new AudioContext();
  * last hop index. Once we have enough data for a buffer of BUFFER_LENGTH,
  * process that buffer and add it to the spectrogram.
  */
-export default class StreamingFFT extends EventEmitter {
+export class StreamingFFT extends EventEmitter {
   // The length of the input buffer, used in ScriptProcessorNode.
-  inputBufferLength: number
+  inputBufferLength: number;
   // Target sample rate.
-  targetSr: number
+  targetSr: number;
   // How long the buffer is.
-  bufferLength: number
-  bufferCount: number
+  bufferLength: number;
+  bufferCount: number;
   // How many buffers to keep in the spectrogram.
-  hopTime: number
+  hopTime: number;
   // How many mel bins to use.
-  melCount: number
+  melCount: number;
   // Number of samples to hop over for every new column.
-  hopLength: number
+  hopLength: number;
   // How long the total duration is.
-  duration: number
+  duration: number;
   // Whether to use MFCC or Mel features.
-  isMfccEnabled: boolean
+  isMfccEnabled: boolean;
 
   // Where to store the latest spectrogram.
-  spectrogram: Float32Array[]
+  spectrogram: Float32Array[];
   // The mel filterbank (calculate it only once).
-  melFilterbank: Float32Array
+  melFilterbank: Float32Array;
 
   // Are we streaming right now?
-  isStreaming: boolean
+  isStreaming: boolean;
 
   analyser: AnalyserNode;
   // The active stream.
-  stream: MediaStream
+  stream: MediaStream;
 
   // For dealing with a circular buffer of audio samples.
-  circularBuffer: CircularAudioBuffer
+  circularBuffer: CircularAudioBuffer;
 
   // Time when the streaming began. This is used to check whether
   // ScriptProcessorNode has dropped samples.
-  processStartTime: Date
+  processStartTime: Date;
 
   // Number of samples we've encountered in our ScriptProcessorNode
   // onAudioProcess.
-  processSampleCount: number
+  processSampleCount: number;
 
-  timer: any
+  // tslint:disable-next-line:no-any
+  timer: any;
 
   constructor(params: Params) {
     super();
@@ -109,7 +101,7 @@ export default class StreamingFFT extends EventEmitter {
     this.targetSr = targetSr;
     this.duration = duration;
     this.hopTime = this.hopLength * 1000 / this.targetSr;
-    this.timer = new interval(this.hopTime, this.onAudioProcess.bind(this))    
+    this.timer = new Interval(this.hopTime, this.onAudioProcess.bind(this));
     this.bufferCount =
         Math.floor((duration * targetSr - bufferLength) / hopLength) + 1;
     this.melFilterbank = AudioUtils.createMelFilterbank(
@@ -121,11 +113,9 @@ export default class StreamingFFT extends EventEmitter {
 
     this.spectrogram = [];
     this.isStreaming = false;
-
-    const nativeSr = audioCtx.sampleRate;
   }
 
-  private nextPowerOfTwo(value) {
+  private nextPowerOfTwo(value: number) {
     const exponent = Math.ceil(Math.log2(value));
     return 1 << exponent;
   }
@@ -163,7 +153,7 @@ export default class StreamingFFT extends EventEmitter {
 
   stop() {
     if (this.stream) {
-      for (let track of this.stream.getTracks()) {
+      for (const track of this.stream.getTracks()) {
         track.stop();
       }
     }
@@ -194,11 +184,11 @@ export default class StreamingFFT extends EventEmitter {
       // Remove the first element in the array.
       this.spectrogram.splice(0, 1);
     }
-    if (this.spectrogram.length == this.bufferCount) {
+    if (this.spectrogram.length === this.bufferCount) {
       // Notify that we have an updated spectrogram.
       this.emit('update');
       this.spectrogram.splice(0, 15);
     }
-    console.log('end', Date.now());    
+    console.log('end', Date.now());
   }
 }

@@ -1,6 +1,6 @@
 import {EventEmitter} from 'eventemitter3';
 
-import {FeatureExtractor, Params} from './model_evaluation';
+import {FeatureExtractor, Params} from './types';
 import {nextPowerOfTwo} from './util';
 
 export class OfflineFeatureExtractor extends EventEmitter implements
@@ -14,7 +14,7 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   // How long the buffer is.
   bufferLength = 1024;
   // How many mel bins to use.
-  melCount = 40;
+  melCount = 360;
   // Number of samples to hop over for every new column.
   hopLength = 1024;
   // How long the total duration is.
@@ -24,7 +24,6 @@ export class OfflineFeatureExtractor extends EventEmitter implements
 
   config(params: Params) {
     Object.assign(this, params);
-    this.features = [];
   }
 
   private createBufferWithValues(
@@ -39,36 +38,38 @@ export class OfflineFeatureExtractor extends EventEmitter implements
     return buffer;
   }
 
-
-  async start(samples: Float32Array) {
+  async start(samples: Float32Array): Promise<Float32Array[]> {
+    this.features = [];
     this.source = new OfflineAudioContext(
         1, this.targetSr * this.duration * 4, this.targetSr);
-    this.analyser = this.source.createAnalyser();
-    this.analyser.fftSize = nextPowerOfTwo(this.bufferLength);
-    this.analyser.smoothingTimeConstant = 0.0;
     this.buffer = this.source.createBufferSource();
+    this.buffer.buffer = this.createBufferWithValues(this.source, samples);
+    this.analyser = this.source.createAnalyser();
+    this.analyser.fftSize = nextPowerOfTwo(this.bufferLength) * 2;
+    this.analyser.smoothingTimeConstant = 0.0;
     this.buffer.connect(this.analyser);
     this.analyser.connect(this.source.destination);
-    this.buffer.buffer = this.createBufferWithValues(this.source, samples);
     this.buffer.start();
-  
+
     let frames = this.bufferLength;
-    const promise = this.source.suspend(this.bufferLength / this.targetSr).then(async () => {
-      do {
-        frames += this.hopLength;
-        const data = new Float32Array(this.analyser.frequencyBinCount);
-        this.analyser.getFloatFrequencyData(data);
-        this.features.push(data);
-        this.source.resume();
-        await this.source.suspend(frames / this.source.sampleRate);
-      } while (frames < samples.length - this.bufferLength);
-    });
+    const promise =
+        this.source.suspend(frames / this.targetSr).then(async () => {
+          do {
+            frames += this.hopLength;
+            const data = new Float32Array(this.melCount);
+            this.analyser.getFloatFrequencyData(data);
+            this.features.push(data);
+            this.source.resume();
+            await this.source.suspend(frames / this.source.sampleRate);
+          } while (frames <= samples.length);
+          return this.features;
+        });
 
     this.source.startRendering().catch(err => {
-        console.log('Failed to render offline audio context:', err);
-      });
+      console.log('Failed to render offline audio context:', err);
+    });
 
-      return promise;
+    return promise;
   }
   stop() {
     this.buffer.stop();

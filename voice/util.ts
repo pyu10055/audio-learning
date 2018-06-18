@@ -15,9 +15,10 @@
  */
 
 import * as tf from '@tensorflow/tfjs';
+import {Tensor} from '@tensorflow/tfjs-core';
 
 export function labelArrayToString(label: Float32Array, allLabels: string[]) {
-  const [ind, _] = argmax(label);
+  const [ind, ] = argmax(label);
   return allLabels[ind];
 }
 
@@ -36,42 +37,41 @@ export function argmax(array: Float32Array) {
 export function getParameterByName(name: string, url?: string) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-export function interval(duration: number, fn: Function) {
-  this.baseline = undefined;
-
-  this.run = () => {
+export class Interval {
+  private baseline: number;
+  // tslint:disable-next-line:no-any
+  private timer: any;
+  constructor(private duration: number, private fn: Function) {
+    this.baseline = undefined;
+  }
+  run() {
     if (this.baseline == null) {
       this.baseline = Date.now();
     }
-    fn();
+    this.fn();
     const end = Date.now();
-    this.baseline += duration;
+    this.baseline += this.duration;
 
-    let nextTick = duration - (end - this.baseline);
+    let nextTick = this.duration - (end - this.baseline);
     if (nextTick < 0) {
       nextTick = 0;
     }
-    console.log(nextTick);
-    (function(i) {
-      i.timer = setTimeout(function() {
-        i.run(end)
-      }, nextTick)
-    }(this))
-  };
+    this.timer = setTimeout(this.run.bind(this), nextTick);
+  }
 
-  this.stop = function() {
-    clearTimeout(this.timer)
-  };
+  stop() {
+    clearTimeout(this.timer);
+  }
 }
 
-export function normalize(x) {
+export function normalize(x: Tensor) {
   return tf.tidy(() => {
     const mean = tf.mean(x);
     mean.print();
@@ -80,7 +80,7 @@ export function normalize(x) {
   });
 }
 
-export function nextPowerOfTwo(value) {
+export function nextPowerOfTwo(value: number) {
   const exponent = Math.ceil(Math.log2(value));
   return 1 << exponent;
 }

@@ -16,20 +16,11 @@
 
 import {EventEmitter} from 'eventemitter3';
 
-import AudioUtils from './audio_utils';
-import CircularAudioBuffer from './circular_audio_buffer';
-
-const INPUT_BUFFER_LENGTH = 16384;
-
-interface Params {
-  inputBufferLength?: number
-  bufferLength: number
-  hopLength: number
-  duration: number
-  melCount: number
-  targetSr: number
-  isMfccEnabled: boolean
-}
+import {AudioUtils} from './audio_utils';
+import {CircularAudioBuffer} from './circular_audio_buffer';
+import {FeatureExtractor} from './types';
+// tslint:disable-next-line:max-line-length
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, Params} from './types';
 
 export const audioCtx = new AudioContext();
 /**
@@ -44,77 +35,66 @@ export const audioCtx = new AudioContext();
  * last hop index. Once we have enough data for a buffer of BUFFER_LENGTH,
  * process that buffer and add it to the spectrogram.
  */
-export default class StreamingFeatureExtractor extends EventEmitter {
+export class StreamingFeatureExtractor extends EventEmitter implements
+    FeatureExtractor {
   // The length of the input buffer, used in ScriptProcessorNode.
-  inputBufferLength: number
+  inputBufferLength = BUFFER_LENGTH * 4;
   // Target sample rate.
-  targetSr: number
+  targetSr = EXAMPLE_SR;
   // How long the buffer is.
-  bufferLength: number
+  bufferLength = BUFFER_LENGTH;
   // How many buffers to keep in the spectrogram.
-  bufferCount: number
+  bufferCount: number;
   // How many mel bins to use.
-  melCount: number
+  melCount = MEL_COUNT;
   // Number of samples to hop over for every new column.
-  hopLength: number
+  hopLength = HOP_LENGTH;
   // How long the total duration is.
-  duration: number
+  duration = DURATION;
   // Whether to use MFCC or Mel features.
-  isMfccEnabled: boolean
+  isMfccEnabled = IS_MFCC_ENABLED;
 
   // Where to store the latest spectrogram.
-  spectrogram: Float32Array[]
+  spectrogram: Float32Array[];
   // The mel filterbank (calculate it only once).
-  melFilterbank: Float32Array
+  melFilterbank: Float32Array;
 
   // Are we streaming right now?
-  isStreaming: boolean
+  isStreaming: boolean;
 
   // The script node doing the Web Audio processing.
-  scriptNode: ScriptProcessorNode
+  scriptNode: ScriptProcessorNode;
   // The active stream.
-  stream: MediaStream
+  stream: MediaStream;
 
   // For dealing with a circular buffer of audio samples.
-  circularBuffer: CircularAudioBuffer
+  circularBuffer: CircularAudioBuffer;
 
   // For debugging/playback, keep track of everything we've recorded.
-  playbackBuffer: CircularAudioBuffer
+  playbackBuffer: CircularAudioBuffer;
 
   // Time when the streaming began. This is used to check whether
   // ScriptProcessorNode has dropped samples.
-  processStartTime: Date
+  processStartTime: Date;
 
   // Number of samples we've encountered in our ScriptProcessorNode
   // onAudioProcess.
-  processSampleCount: number
+  processSampleCount: number;
 
   // A proxy for loudness.
-  lastEnergyLevel: number
-
-  constructor(params: Params) {
+  lastEnergyLevel: number;
+  constructor() {
     super();
+  }
+  config(params: Params) {
+    Object.assign(this, params);
 
-    const {
-      bufferLength,
-      duration,
-      hopLength,
-      isMfccEnabled,
-      melCount,
-      targetSr,
-      inputBufferLength
-    } = params;
-    this.bufferLength = bufferLength;
-    this.inputBufferLength = inputBufferLength || INPUT_BUFFER_LENGTH;
-    this.hopLength = hopLength;
-    this.melCount = melCount;
-    this.isMfccEnabled = isMfccEnabled;
-    this.targetSr = targetSr;
-    this.duration = duration;
-    this.bufferCount =
-        Math.floor((duration * targetSr - bufferLength) / hopLength) + 1;
+    this.bufferCount = Math.floor(
+                           (this.duration * this.targetSr - this.bufferLength) /
+                           this.hopLength) +
+        1;
 
-    if (hopLength > bufferLength) {
+    if (this.hopLength > this.bufferLength) {
       console.error('Hop length must be smaller than buffer length.');
     }
 
@@ -130,8 +110,8 @@ export default class StreamingFeatureExtractor extends EventEmitter {
 
     // Allocate the size of the circular analysis buffer.
     const resampledBufferLength =
-        Math.max(bufferLength, this.inputBufferLength) * (targetSr / nativeSr) *
-        4;
+        Math.max(this.bufferLength, this.inputBufferLength) *
+        (this.targetSr / nativeSr) * 4;
     this.circularBuffer = new CircularAudioBuffer(resampledBufferLength);
 
     // Calculate how many buffers will be enough to keep around to playback.
@@ -139,12 +119,12 @@ export default class StreamingFeatureExtractor extends EventEmitter {
     this.playbackBuffer = new CircularAudioBuffer(playbackLength);
   }
 
-  private nextPowerOfTwo(value) {
+  private nextPowerOfTwo(value: number) {
     const exponent = Math.ceil(Math.log2(value));
     return 1 << exponent;
   }
 
-  getSpectrogram() {
+  getFeatures() {
     return this.spectrogram;
   }
 
@@ -185,7 +165,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
 
   stop() {
     if (this.stream) {
-      for (let track of this.stream.getTracks()) {
+      for (const track of this.stream.getTracks()) {
         track.stop();
       }
       this.scriptNode.disconnect(audioCtx.destination);
@@ -205,7 +185,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
     return this.playbackBuffer.getBuffer();
   }
 
-  private onAudioProcess(audioProcessingEvent) {
+  private onAudioProcess(audioProcessingEvent: AudioProcessingEvent) {
     // console.log(this.spectrogram.length);
     const audioBuffer = audioProcessingEvent.inputBuffer;
 
@@ -236,7 +216,7 @@ export default class StreamingFeatureExtractor extends EventEmitter {
       // console.log(`Got ${buffers.length} buffers of audio input data.`);
     }
 
-    for (let buffer of buffers) {
+    for (const buffer of buffers) {
       // AudioUtils.playbackArrayBuffer(buffer, 16000);
       // console.log(`Got buffer of length ${buffer.length}.`);
       // Extract the mel values for this new frame of audio data.
@@ -255,12 +235,13 @@ export default class StreamingFeatureExtractor extends EventEmitter {
         // Remove the first element in the array.
         this.spectrogram.splice(0, 1);
       }
-      if (this.spectrogram.length == this.bufferCount) {
+      if (this.spectrogram.length === this.bufferCount) {
         // Notify that we have an updated spectrogram.
         this.emit('update');
         this.spectrogram.splice(0, 15);
       }
-      const totalEnergy = melEnergies.reduce((total, num) => total + num);
+      const totalEnergy =
+          melEnergies.reduce((total: number, num: number) => total + num);
       this.lastEnergyLevel = totalEnergy / melEnergies.length;
     }
 
@@ -300,10 +281,8 @@ function resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number) {
   return new Promise((resolve, reject) => {
     const bufferSource = offlineCtx.createBufferSource();
     bufferSource.buffer = audioBuffer;
-    offlineCtx.oncomplete = function(event) {
+    offlineCtx.oncomplete = (event) => {
       const bufferRes = event.renderedBuffer;
-      const len = bufferRes.length;
-      // console.log(`Resampled buffer from ${audioBuffer.length} to ${len}.`);
       resolve(bufferRes);
     };
     bufferSource.connect(offlineCtx.destination);

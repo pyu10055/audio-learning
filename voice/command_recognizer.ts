@@ -14,27 +14,19 @@
  * the License.
  */
 
+// tslint:disable-next-line:max-line-length
 import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import StreamingFFT from './streaming_fft';
-import {argmax, labelArrayToString} from './util';
+import {StreamingFFT} from './streaming_fft';
+// tslint:disable-next-line:max-line-length
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, SUPPRESSION_TIME} from './types';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
 export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 export const TF_MODEL_FILE_URL = 'voice2/model.json';
 export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
-
-export const BUFFER_LENGTH = 1024;
-export const HOP_LENGTH = 444;
-export const MEL_COUNT = 40;
-export const EXAMPLE_SR = 44100;
-export const DURATION = 1.0;
-export const IS_MFCC_ENABLED = true;
-export const MIN_SAMPLE = 3;
-export const DETECTION_THRESHOLD = 0.5;
-export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
   time: number;
@@ -61,7 +53,6 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
   const times = spec.length;
   const freqs = spec[0].length;
   const data = new Float32Array(times * freqs);
-  let i = 0;
   for (let i = 0; i < times; i++) {
     const mel = spec[i];
     const offset = i * freqs;
@@ -73,7 +64,7 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
   return tensor3d(Array.prototype.slice.call(data), shape);
 }
 
-export default class CommandRecognizer extends EventEmitter {
+export class CommandRecognizer extends EventEmitter {
   model: InferenceModel;
   streamFeature: StreamingFFT;
   predictionHistory: Prediction[];
@@ -92,15 +83,12 @@ export default class CommandRecognizer extends EventEmitter {
 
   constructor(params: RecognizerParams) {
     super();
-    const {scoreT, commands, noOther, model} = params;
+    Object.assign(this, params);
 
-    this.scoreT = scoreT;
-    this.commands = commands;
     this.nonCommands = ['_silence_', '_unknown_'];
-    this.model = model;
     this.threshold = params.threshold;
 
-    this.allLabels = commands;
+    this.allLabels = this.commands;
 
     // Calculate how many predictions we want to track based on prediction
     // window time, sample rate and hop size.
@@ -109,9 +97,6 @@ export default class CommandRecognizer extends EventEmitter {
     console.log(
         `CommandRecognizer will use a history window` +
         ` of ${this.predictionCount}.`);
-
-    const inputShape = getFeatureShape();
-    const labelShape = [this.allLabels.length];
 
     this.streamFeature = new StreamingFFT({
       inputBufferLength: 2048,
@@ -163,7 +148,7 @@ export default class CommandRecognizer extends EventEmitter {
       ];
     } else {
       scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
-    };
+    }
     console.timeEnd('prediction');
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
@@ -206,7 +191,7 @@ export default class CommandRecognizer extends EventEmitter {
     const currentTopScore = sortedScore[0][1];
     // If we've recently had another label trigger, assume one that occurs too
     // soon afterwards is a bad result.
-    let timeSinceLast = (this.lastCommand == '_silence_') ||
+    const timeSinceLast = (this.lastCommand === '_silence_') ||
             (this.lastCommandTime === Number.MIN_SAFE_INTEGER) ?
         Number.MAX_SAFE_INTEGER :
         currentTime - this.lastCommandTime;
@@ -218,7 +203,7 @@ export default class CommandRecognizer extends EventEmitter {
   }
 
   private emitCommand(command: string, score: number, time: number) {
-    if (!this.nonCommands.includes(command)) {
+    if (this.nonCommands.indexOf(command) === -1) {
       this.emit('command', command, score);
       console.log(`Detected command ${command} with score: ${score}.`);
     } else {
