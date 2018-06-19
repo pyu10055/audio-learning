@@ -31,7 +31,7 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
   scriptNode: ScriptProcessorNode;
   // For dealing with a circular buffer of audio samples.
   circularBuffer: CircularAudioBuffer;
-
+  playbackBuffer: CircularAudioBuffer;
   config(params: Params) {
     Object.assign(this, params);
     this.bufferCount = Math.floor(
@@ -50,19 +50,16 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
         AudioUtils.createMelFilterbank(this.fftSize / 2 + 1, this.melCount);
 
     this.circularBuffer = new CircularAudioBuffer(4096);
+    this.playbackBuffer = new CircularAudioBuffer(81920);
   }
 
   private createBufferWithValues(
       audioContext: OfflineAudioContext, xs: Float32Array) {
     const bufferLen = xs.length + 2048;
-    const buffer = audioContext.createBuffer(1, bufferLen, 44100);
+    const buffer = audioContext.createBuffer(1, bufferLen, 16000);
     const channelData = buffer.getChannelData(0);
     for (let i = 0; i < xs.length; ++i) {
       channelData[i] = xs[i];
-    }
-    // padding
-    for (let i = xs.length; i < bufferLen; ++i) {
-      channelData[1] = Math.random();
     }
     return buffer;
   }
@@ -71,19 +68,23 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
     this.features = [];
     // Clear all buffers.
     this.circularBuffer.clear();
+    this.playbackBuffer.clear();
+    const audioCtx = new AudioContext();
+    const buffer = await audioCtx.decodeAudioData(samples.buffer);
     const sourceSr = 44100;
-    const lengthRes = (samples.length + 2048) * this.targetSr / sourceSr;
+    const lengthRes = (buffer.length + 2048) * this.targetSr / sourceSr;
     this.source = new OfflineAudioContext(1, lengthRes, this.targetSr);
 
     this.buffer = this.source.createBufferSource();
-    this.buffer.buffer = this.createBufferWithValues(this.source, samples);
+    this.buffer.buffer =
+        this.createBufferWithValues(this.source, buffer.getChannelData(0));
     this.scriptNode = this.source.createScriptProcessor(2048, 1, 1);
     this.buffer.connect(this.scriptNode);
     this.scriptNode.connect(this.source.destination);
     const promise = new Promise<Float32Array[]>((resolve, reject) => {
       this.scriptNode.onaudioprocess = (audioProcessingEvent) => {
         const audioBuffer = audioProcessingEvent.inputBuffer;
-
+        this.playbackBuffer.addBuffer(audioBuffer.getChannelData(0));
         this.circularBuffer.addBuffer(audioBuffer.getChannelData(0));
 
         // Get buffer(s) out of the circular buffer. Note that there may be
@@ -91,7 +92,6 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
         const buffers = this.getFullBuffers();
 
         for (const buffer of buffers) {
-          // AudioUtils.playbackArrayBuffer(buffer, 16000);
           // console.log(`Got buffer of length ${buffer.length}.`);
           // Extract the mel values for this new frame of audio data.
           const fft = AudioUtils.fft(buffer);
@@ -109,6 +109,9 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
           }
 
           if (this.features.length === this.bufferCount) {
+            AudioUtils.playbackArrayBuffer(
+                this.playbackBuffer.getBuffer(), 44100);
+
             // Notify that we have an updated spectrogram.
             resolve(this.features);
           }
