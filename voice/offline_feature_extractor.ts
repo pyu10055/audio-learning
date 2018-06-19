@@ -14,13 +14,14 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   // How long the buffer is.
   bufferLength = 1024;
   // How many mel bins to use.
-  melCount = 360;
+  melCount = 40;
   // Number of samples to hop over for every new column.
   hopLength = 1024;
   // How long the total duration is.
   duration = 1.0;
   // Whether to use MFCC or Mel features.
   isMfccEnabled = true;
+  fftSize = 360;
 
   config(params: Params) {
     Object.assign(this, params);
@@ -56,9 +57,9 @@ export class OfflineFeatureExtractor extends EventEmitter implements
         this.source.suspend(frames / this.targetSr).then(async () => {
           do {
             frames += this.hopLength;
-            const data = new Float32Array(this.melCount);
+            const data = new Float32Array(this.fftSize);
             this.analyser.getFloatFrequencyData(data);
-            this.features.push(data);
+            this.features.push(this.transform(data));
             this.source.resume();
             await this.source.suspend(frames / this.source.sampleRate);
           } while (frames <= samples.length);
@@ -74,6 +75,11 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   stop() {
     this.buffer.stop();
   }
+
+  transform(data: Float32Array) {
+    return data;
+  }
+
   getFeatures(): Float32Array[] {
     return this.features;
   }

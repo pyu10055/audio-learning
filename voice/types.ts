@@ -3,6 +3,7 @@ export interface Params {
   bufferLength?: number;
   hopLength?: number;
   duration?: number;
+  fftSize?: number;
   melCount?: number;
   targetSr?: number;
   isMfccEnabled?: boolean;

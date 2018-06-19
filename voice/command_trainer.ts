@@ -80,7 +80,7 @@ export class CommandTrainer extends EventEmitter {
     let loss = Number.MAX_SAFE_INTEGER;
     let count = 0;
     while (loss > 0.002 && count < 10) {
-      loss = (await this.transferModel.train()).history.loss.pop() as number;
+      loss = (await this.transferModel.train()).loss.pop() as number;
       count += 1;
     }
     this.trained = true;

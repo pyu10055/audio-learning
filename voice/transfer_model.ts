@@ -111,10 +111,9 @@ export class TransferModel implements tf.InferenceModel {
     }
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-    const history = await this.model.fit(
+    return (await this.model.fit(
         this.features(this.dataset.xs), this.dataset.ys,
-        {batchSize, epochs: EPOCHS, callbacks: this.trainCallback});
-    return history.history;
+        {batchSize, epochs: EPOCHS, callbacks: this.trainCallback})).history;
   }
 
   predict(

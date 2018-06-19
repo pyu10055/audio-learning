@@ -3,9 +3,11 @@ import {FrozenModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '
 
 // tslint:disable-next-line:max-line-length
 import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, TF_MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+import {MfccOfflineFeatureExtractor} from './mfcc_offline_feature_extractor';
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
-import {normalize} from './util';
 import {FeatureExtractor, ModelType, Params} from './types';
+import {normalize, plotSpectrogram} from './util';
+import { SoftwareOfflineFeatureExtractor } from './software_offline_feature_extractor';
 
 export const EVENT_NAME = 'update';
 export const MIN_SCORE = 0.6;
@@ -29,7 +31,7 @@ export class ModelEvaluation {
   private model: FrozenModel|Model;
   private featureExtractor: FeatureExtractor;
 
-  constructor(params: Params) {
+  constructor(private canvas: HTMLCanvasElement, params: Params) {
     Object.assign(this, params);
   }
 
@@ -44,12 +46,19 @@ export class ModelEvaluation {
   async eval(modelType: ModelType, files: File[], labels: number[]):
       Promise<number> {
     const prediction = [];
-    this.featureExtractor = new OfflineFeatureExtractor();
-    if (modelType === ModelType.TF_MODEL) {
-      this.model = this.tfModel;
-    } else {
-      this.model = this.frozenModel;
-    }
+    switch (modelType) {
+        case ModelType.TF_MODEL:
+        this.model = this.tfModel;
+        this.featureExtractor = new OfflineFeatureExtractor();
+        break;
+        case ModelType.FROZEN_MODEL:
+        this.model = this.frozenModel;
+        this.featureExtractor = new SoftwareOfflineFeatureExtractor();
+        break;
+        case ModelType.FROZEN_MODEL_NATIVE:
+        this.model = this.frozenModel;
+        this.featureExtractor = new MfccOfflineFeatureExtractor();
+      }
 
     for (let i = 0; i < files.length; i++) {
       const recordingFile = files[i];
@@ -57,6 +66,9 @@ export class ModelEvaluation {
           await this.evalFile(recordingFile, this.featureExtractor));
     }
 
+    plotSpectrogram(
+        this.canvas, this.featureExtractor.getFeatures(),
+        modelType === ModelType.TF_MODEL ? 360 : 40);
     const correct = prediction.reduce((prev, curr, index) => {
       prev += (curr[0] === labels[index] && curr[1] > MIN_SCORE ? 1.0 : 0.0);
       return prev;
@@ -82,7 +94,7 @@ export class ModelEvaluation {
             await extractor.start(new Float32Array(temporaryFileReader.result));
             extractor.stop();
             success = true;
-          } catch {
+          } catch(error) {
             extractor.stop();
             console.log('retry file ' + file.name);
           }
@@ -119,11 +131,15 @@ export class ModelEvaluation {
     });
     const unnormalized = this.featuresToInput(dataArray);
 
-    const normalized = normalize(unnormalized);
-    const predictOut = ((this.model instanceof FrozenModel ?
-                             this.model.predict(normalized, {}) :
-                             this.model.predict(normalized)) as Tensor)
-                           .dataSync() as Float32Array;
+    let predictOutTensor: Tensor;
+    if (this.model instanceof FrozenModel) {
+      predictOutTensor = this.model.predict(unnormalized, {}) as Tensor;
+    } else {
+      const normalized = normalize(unnormalized);
+      predictOutTensor = this.model.predict(normalized) as Tensor;
+    }
+    const predictOut = predictOutTensor.dataSync() as Float32Array;
+    predictOutTensor.dispose();
 
     let maxScore = -Infinity;
     let winnerIndex = -1;

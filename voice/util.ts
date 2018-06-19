@@ -84,3 +84,50 @@ export function nextPowerOfTwo(value: number) {
   const exponent = Math.ceil(Math.log2(value));
   return 1 << exponent;
 }
+
+export function plotSpectrogram(
+    canvas: HTMLCanvasElement, frequencyData: Float32Array[],
+    fftDisplaySize: number) {
+  // Get the maximum and minimum.
+  let min = Infinity;
+  let max = -Infinity;
+  for (let i = 0; i < frequencyData.length; ++i) {
+    const x = frequencyData[i];
+    for (let j = 0; j < x.length; ++j) {
+      if (x[j] !== -Infinity) {
+        if (x[j] < min) {
+          min = x[j];
+        }
+        if (x[j] > max) {
+          max = x[j];
+        }
+      }
+    }
+  }
+  if (min >= max) {
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  const numTimeSteps = frequencyData.length;
+  const pixelWidth = canvas.width / numTimeSteps;
+  const pixelHeight = canvas.height / frequencyData[0].length;
+  for (let i = 0; i < numTimeSteps; ++i) {
+    const x = pixelWidth * i;
+    const spectrum = frequencyData[i];
+    if (spectrum[0] === -Infinity) {
+      break;
+    }
+    for (let j = 0; j < fftDisplaySize; ++j) {
+      const y = canvas.height - (j + 1) * pixelHeight;
+
+      let colorValue = (spectrum[j] - min) / (max - min);
+      colorValue = Math.pow(colorValue, 3);
+      colorValue = Math.round(255 * colorValue);
+      const fillStyle =
+          `rgb(${colorValue},${255 - colorValue},${255 - colorValue})`;
+      ctx.fillStyle = fillStyle;
+      ctx.fillRect(x, y, pixelWidth, pixelHeight);
+    }
+  }
+}

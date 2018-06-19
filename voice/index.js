@@ -17,12 +17,12 @@
 
 import * as tfc from '@tensorflow/tfjs-core';
 
-import CommandRecognizer from './command_recognizer';
-import CommandTrainer from './command_trainer';
+import {CommandRecognizer} from './command_recognizer';
+import {CommandTrainer} from './command_trainer';
 import {ModelEvaluation} from './model_evaluation';
-import {OfflineFeatureExtractor} from './offline_feature_extractor';
 import {Spectrogram} from './spectrogram';
 import {audioCtx} from './streaming_feature_extractor';
+import {ModelType} from './types';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -36,13 +36,14 @@ const evalLabels = [
 ];
 let recognizer;
 
-const evaluation = new ModelEvaluation();
-
 const trainer = new CommandTrainer();
 trainer.on('recorded', onRecorded);
 trainer.on('loss', onLoss);
 let transferRecognizer;
 let spectrogram;
+const mainCanvas = document.getElementById('main-canvas');
+const evaluation = new ModelEvaluation(mainCanvas);
+
 
 function setInstructionVisibility(visible, recognizer) {
   // Show which commands are supported.
@@ -89,6 +90,13 @@ function onPredict() {
     spectrogram.start();
   }
 }
+function onModelChange() {
+  if (Number($('#eval-model').val()) === ModelType.TF_MODEL) {
+    $('#eval-labels').text(evalLabels.join(', '));
+  } else {
+    $('#eval-labels').text(allLabels.join(', '));
+  }
+}
 
 function onRecord() {
   spectrogram.start();
@@ -133,7 +141,10 @@ function setButtonStates() {
 }
 
 async function onEvaluate() {
-  const label = evalLabels.indexOf($('#eval-label').val());
+  const labels = Number($('#eval-model').val()) === ModelType.TF_MODEL ?
+      evalLabels :
+      allLabels;
+  const label = labels.indexOf($('#eval-label').val());
   if (label === -1) {
     alert('Please provide valid label.');
     return;
@@ -169,7 +180,8 @@ async function onLoadModel(e) {
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
-  spectrogram = new Spectrogram(audioCtx, '#spectrogram');
+  $('#eval-labels').text(evalLabels.join(', '));
+  spectrogram = new Spectrogram('#spectrogram');
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
     $('#stream').text('Start');
     recognizer.stop();
@@ -188,5 +200,5 @@ $('#stream').on('click', onStream);
 $('#complete').on('click', onComplete);
 $('#predict').on('click', onPredict);
 $('#record').on('click', onRecord);
-
+$('#eval-model').on('change', onModelChange);
 window.addEventListener('load', onLoadModel);

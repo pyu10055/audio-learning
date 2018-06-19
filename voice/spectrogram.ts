@@ -69,18 +69,21 @@ export class Spectrogram {
         ]);
 
     // update d3 chart with new data
-    const rects = this.svg.selectAll('rect').data(this.frequencyData);
+    const rects = this.svg.selectAll('rect').data(
+        Array.prototype.slice.call(this.frequencyData));
 
     rects.enter().append('rect');
 
     rects.attr('width', () => this.svgWidth / this.frequencyData.length)
-        .attr('height', d => heightScale(d))
-        .attr('x', (d, i) => i * this.svgWidth / this.frequencyData.length)
-        .attr('y', d => this.svgHeight - heightScale(d))
+        .attr('height', (d: any) => heightScale(d))
+        .attr(
+            'x',
+            (d: any, i: any) => i * this.svgWidth / this.frequencyData.length)
+        .attr('y', (d: any) => this.svgHeight - heightScale(d))
         .attr('fill', 'None')
         .attr('stroke-width', 4)
         .attr('stroke-opacity', 0.4)
-        .attr('stroke', d => d3.hsl(hueScale(d), 1, 0.5));
+        .attr('stroke', d => d3.hsl(hueScale(d as number), 1, 0.5).toString());
 
     rects.exit().remove();
     this.lastRenderTime = Date.now();
