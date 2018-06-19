@@ -93,7 +93,7 @@ export function plotSpectrogram(
   let max = -Infinity;
   for (let i = 0; i < frequencyData.length; ++i) {
     const x = frequencyData[i];
-    for (let j = 0; j < x.length; ++j) {
+    for (let j = 1; j < x.length; ++j) {
       if (x[j] !== -Infinity) {
         if (x[j] < min) {
           min = x[j];
@@ -111,21 +111,20 @@ export function plotSpectrogram(
   const ctx = canvas.getContext('2d');
   const numTimeSteps = frequencyData.length;
   const pixelWidth = canvas.width / numTimeSteps;
-  const pixelHeight = canvas.height / frequencyData[0].length;
+  const pixelHeight = canvas.height / (frequencyData[0].length - 1);
   for (let i = 0; i < numTimeSteps; ++i) {
     const x = pixelWidth * i;
     const spectrum = frequencyData[i];
     if (spectrum[0] === -Infinity) {
       break;
     }
-    for (let j = 0; j < fftDisplaySize; ++j) {
+    for (let j = 1; j < fftDisplaySize; ++j) {
       const y = canvas.height - (j + 1) * pixelHeight;
 
       let colorValue = (spectrum[j] - min) / (max - min);
-      colorValue = Math.pow(colorValue, 3);
+      // colorValue = Math.pow(colorValue, 3);
       colorValue = Math.round(255 * colorValue);
-      const fillStyle =
-          `rgb(${colorValue},${255 - colorValue},${255 - colorValue})`;
+      const fillStyle = `rgb(${colorValue},${colorValue},${colorValue})`;
       ctx.fillStyle = fillStyle;
       ctx.fillRect(x, y, pixelWidth, pixelHeight);
     }

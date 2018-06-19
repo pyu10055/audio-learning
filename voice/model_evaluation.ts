@@ -5,9 +5,10 @@ import {FrozenModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '
 import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, TF_MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {MfccOfflineFeatureExtractor} from './mfcc_offline_feature_extractor';
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
+// tslint:disable-next-line:max-line-length
+import {SoftwareOfflineFeatureExtractor} from './software_offline_feature_extractor';
 import {FeatureExtractor, ModelType, Params} from './types';
 import {normalize, plotSpectrogram} from './util';
-import { SoftwareOfflineFeatureExtractor } from './software_offline_feature_extractor';
 
 export const EVENT_NAME = 'update';
 export const MIN_SCORE = 0.6;
@@ -47,18 +48,18 @@ export class ModelEvaluation {
       Promise<number> {
     const prediction = [];
     switch (modelType) {
-        case ModelType.TF_MODEL:
+      case ModelType.TF_MODEL:
         this.model = this.tfModel;
         this.featureExtractor = new OfflineFeatureExtractor();
         break;
-        case ModelType.FROZEN_MODEL:
+      case ModelType.FROZEN_MODEL:
         this.model = this.frozenModel;
         this.featureExtractor = new SoftwareOfflineFeatureExtractor();
         break;
-        case ModelType.FROZEN_MODEL_NATIVE:
+      default:
         this.model = this.frozenModel;
         this.featureExtractor = new MfccOfflineFeatureExtractor();
-      }
+    }
 
     for (let i = 0; i < files.length; i++) {
       const recordingFile = files[i];
@@ -94,7 +95,7 @@ export class ModelEvaluation {
             await extractor.start(new Float32Array(temporaryFileReader.result));
             extractor.stop();
             success = true;
-          } catch(error) {
+          } catch (error) {
             extractor.stop();
             console.log('retry file ' + file.name);
           }

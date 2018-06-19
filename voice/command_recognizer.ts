@@ -21,6 +21,7 @@ import {EventEmitter} from 'eventemitter3';
 import {StreamingFFT} from './streaming_fft';
 // tslint:disable-next-line:max-line-length
 import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, SUPPRESSION_TIME} from './types';
+import {plotSpectrogram} from './util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
@@ -81,7 +82,7 @@ export class CommandRecognizer extends EventEmitter {
   lastAverageLabelArray: Float32Array;
   threshold: number;
 
-  constructor(params: RecognizerParams) {
+  constructor(private canvas: HTMLCanvasElement, params: RecognizerParams) {
     super();
     Object.assign(this, params);
 
@@ -136,6 +137,7 @@ export class CommandRecognizer extends EventEmitter {
 
   private onUpdate() {
     const spec = this.streamFeature.getSpectrogram();
+    plotSpectrogram(this.canvas, spec, 40);
     const input = melSpectrogramToInput(spec);
     console.time('prediction');
     const preds = this.model.predict([input], {});

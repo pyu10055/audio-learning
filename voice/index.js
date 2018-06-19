@@ -160,7 +160,7 @@ async function onLoadModel(e) {
   await trainer.load();
   await evaluation.load();
   console.timeEnd('load model');
-  recognizer = new CommandRecognizer({
+  recognizer = new CommandRecognizer(mainCanvas, {
     scoreT: 5,
     commands: allLabels,
     noOther: true,
@@ -170,7 +170,7 @@ async function onLoadModel(e) {
   recognizer.on('command', onCommand);
   recognizer.on('silence', onSilence);
 
-  transferRecognizer = new CommandRecognizer({
+  transferRecognizer = new CommandRecognizer(mainCanvas, {
     scoreT: 5,
     commands: transferLabels,
     noOther: true,

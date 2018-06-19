@@ -81,41 +81,39 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
     this.buffer.connect(this.scriptNode);
     this.scriptNode.connect(this.source.destination);
     const promise = new Promise<Float32Array[]>((resolve, reject) => {
-      this.scriptNode.onaudioprocess =
-          (audioProcessingEvent) => {
-            const audioBuffer = audioProcessingEvent.inputBuffer;
+      this.scriptNode.onaudioprocess = (audioProcessingEvent) => {
+        const audioBuffer = audioProcessingEvent.inputBuffer;
 
-            this.circularBuffer.addBuffer(audioBuffer.getChannelData(0));
+        this.circularBuffer.addBuffer(audioBuffer.getChannelData(0));
 
-            // Get buffer(s) out of the circular buffer. Note that there may be
-            // multiple available, and if there are, we should get them all.
-            const buffers = this.getFullBuffers();
+        // Get buffer(s) out of the circular buffer. Note that there may be
+        // multiple available, and if there are, we should get them all.
+        const buffers = this.getFullBuffers();
 
-            for (const buffer of buffers) {
-              // AudioUtils.playbackArrayBuffer(buffer, 16000);
-              // console.log(`Got buffer of length ${buffer.length}.`);
-              // Extract the mel values for this new frame of audio data.
-              const fft = AudioUtils.fft(buffer);
-              const fftEnergies = AudioUtils.fftEnergies(fft);
-              const melEnergies =
-                  AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
-              const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
+        for (const buffer of buffers) {
+          // AudioUtils.playbackArrayBuffer(buffer, 16000);
+          // console.log(`Got buffer of length ${buffer.length}.`);
+          // Extract the mel values for this new frame of audio data.
+          const fft = AudioUtils.fft(buffer);
+          const fftEnergies = AudioUtils.fftEnergies(fft);
+          const melEnergies =
+              AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
+          const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
-              if (this.features.length < this.bufferCount) {
-                if (this.isMfccEnabled) {
-                  this.features.push(mfccs);
-                } else {
-                  this.features.push(melEnergies);
-                }
-              }
-
-              console.log(this.features.length);
-              if (this.features.length === this.bufferCount) {
-                // Notify that we have an updated spectrogram.
-                resolve(this.features);
-              }
+          if (this.features.length < this.bufferCount) {
+            if (this.isMfccEnabled) {
+              this.features.push(mfccs);
+            } else {
+              this.features.push(melEnergies);
             }
           }
+
+          if (this.features.length === this.bufferCount) {
+            // Notify that we have an updated spectrogram.
+            resolve(this.features);
+          }
+        }
+      };
     });
 
     this.buffer.start();

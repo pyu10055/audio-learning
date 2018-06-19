@@ -8,7 +8,10 @@
   "dependencies": {
     "@tensorflow/tfjs": "0.11.6",
     "eventemitter3": "^2.0.3",
-    "d3": "5.4.0"
+    "d3": "5.4.0",
+    "dct": "^0.0.3",
+    "kissfft-js": "0.1.8"
+
   },
   "scripts": {
     "build": "tsc",
@@ -22,12 +25,7 @@
     "parcel-bundler": "~1.6.2",
     "typescript": "^2.8.3",
     "@types/node": "10.1.0",
-    "@types/d3": "5.0.0",
-    "dct": "^0.0.3",
-    "eventemitter3": "^2.0.3",
-    "fft": "^0.2.1",
-    "kissfft-js": "0.1.8",
-    "node-wav": "0.0.2"
+    "@types/d3": "5.0.0"
   },
   "babel": {
     "presets": [
