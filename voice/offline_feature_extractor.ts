@@ -8,7 +8,7 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   private source: OfflineAudioContext;
   private buffer: AudioBufferSourceNode;
   private analyser: AnalyserNode;
-  private features: Float32Array[];
+  protected features: Float32Array[];
   // Target sample rate.
   targetSr = 44100;
   // How long the buffer is.
@@ -39,8 +39,12 @@ export class OfflineFeatureExtractor extends EventEmitter implements
     return buffer;
   }
 
+  protected preprocess() {
+      this.features = [];
+  }
+  
   async start(samples: Float32Array): Promise<Float32Array[]> {
-    this.features = [];
+    this.preprocess();
     this.source = new OfflineAudioContext(
         1, this.targetSr * this.duration * 4, this.targetSr);
     this.buffer = this.source.createBufferSource();

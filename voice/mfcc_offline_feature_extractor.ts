@@ -10,10 +10,14 @@ export class MfccOfflineFeatureExtractor extends OfflineFeatureExtractor {
   // How long the total duration is.
   duration = 1.0;
   // Whether to use MFCC or Mel features.
-  isMfccEnabled = true;    
+  isMfccEnabled = true;
   private melFilterbank = AudioUtils.createMelFilterbank(
       nextPowerOfTwo(this.bufferLength) / 2 + 1, this.melCount, 20, 4000,
       this.targetSr);
+
+  preprocess() {
+    this.features = [];
+  }
 
   transform(data: Float32Array): Float32Array {
     data = data.map(v => Math.pow(10, v / 20) * 2000);

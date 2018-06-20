@@ -35,7 +35,8 @@ export class AudioUtils {
   }
 
   static dct(y: Float32Array) {
-    return DCT(y);
+    const scale = Math.sqrt(2.0 / y.length);
+    return DCT(y, scale);
   }
 
   /**
@@ -128,7 +129,7 @@ export class AudioUtils {
         out[channel] += weighted;  // Right side of triangle, downward slope
       channel++;
       if (channel < melCount)
-        out[channel] += specVal - weighted;  // Left side of triangle
+        out[channel] += (specVal - weighted);  // Left side of triangle
     }
     for (let i = 0; i < out.length; ++i) {
       let val = out[i];
@@ -141,7 +142,7 @@ export class AudioUtils {
   }
 
   static hzToMel(hz: number) {
-    return 1127 * Math.log(1 + hz / 700);
+    return 1127.0 * Math.log(1.0 + hz / 700.0);
   }
 
   static cepstrumFromEnergySpectrum(melEnergies: Float32Array) {

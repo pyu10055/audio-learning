@@ -69,6 +69,7 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
     // Clear all buffers.
     this.circularBuffer.clear();
     this.playbackBuffer.clear();
+
     const audioCtx = new AudioContext();
     const buffer = await audioCtx.decodeAudioData(samples.buffer);
     const sourceSr = 44100;
@@ -81,6 +82,7 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
     this.scriptNode = this.source.createScriptProcessor(2048, 1, 1);
     this.buffer.connect(this.scriptNode);
     this.scriptNode.connect(this.source.destination);
+    let resolved = false;
     const promise = new Promise<Float32Array[]>((resolve, reject) => {
       this.scriptNode.onaudioprocess = (audioProcessingEvent) => {
         const audioBuffer = audioProcessingEvent.inputBuffer;
@@ -108,10 +110,10 @@ export class SoftwareOfflineFeatureExtractor extends EventEmitter implements
             }
           }
 
-          if (this.features.length === this.bufferCount) {
+          if (!resolved && this.features.length === this.bufferCount) {            
             AudioUtils.playbackArrayBuffer(
-                this.playbackBuffer.getBuffer(), 44100);
-
+                this.playbackBuffer.getBuffer());
+            resolved = true;
             // Notify that we have an updated spectrogram.
             resolve(this.features);
           }
