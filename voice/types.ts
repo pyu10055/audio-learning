@@ -1,3 +1,5 @@
+import { InferenceModel } from "@tensorflow/tfjs";
+
 export interface Params {
   inputBufferLength?: number;
   bufferLength?: number;
@@ -14,6 +16,7 @@ export interface FeatureExtractor extends EventEmitter.EventEmitter {
   start(samples?: Float32Array): Promise<Float32Array[]>|void;
   stop(): void;
   getFeatures(): Float32Array[];
+  getImages(): Float32Array[];
 }
 
 export enum ModelType {
@@ -31,3 +34,4 @@ export const IS_MFCC_ENABLED = true;
 export const MIN_SAMPLE = 3;
 export const DETECTION_THRESHOLD = 0.5;
 export const SUPPRESSION_TIME = 500;
+export const MODELS: {[key: number]: InferenceModel} = {};

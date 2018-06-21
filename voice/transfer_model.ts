@@ -1,5 +1,6 @@
 import * as tf from '@tensorflow/tfjs';
 import {Dataset} from './dataset';
+import { TensorInfo } from '@tensorflow/tfjs-core/dist/types';
 
 export interface SourceModelConfig {
   model: tf.InferenceModel;
@@ -13,6 +14,8 @@ const LEARNING_RATE = 0.001;
 const BATCH_SIZE_FRACTION = 0.1;
 const EPOCHS = 300;
 export class TransferModel implements tf.InferenceModel {
+  outputs: TensorInfo[] = [];
+  inputs: TensorInfo[] = [];
   model: tf.Model;
 
   constructor(

@@ -15,13 +15,17 @@
  */
 
 // tslint:disable-next-line:max-line-length
-import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+import {InferenceModel, Tensor, Tensor1D, tensor4d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import {StreamingFFT} from './streaming_fft';
+import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+import {NativeStreamingFeatureExtractor} from './native_streaming_feature_extractor';
+// import {StreamingFFT} from './streaming_fft';
 // tslint:disable-next-line:max-line-length
-import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, SUPPRESSION_TIME} from './types';
-import {plotSpectrogram} from './util';
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, ModelType, SUPPRESSION_TIME, MODELS} from './types';
+import {plotSpectrogram, normalize} from './util';
+import { StreamingFeatureExtractor } from './streaming_feature_extractor';
+import { LayerStreamingFeatureExtractor } from './layer_streaming_feature_extractor';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
@@ -60,27 +64,30 @@ export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
     data.set(mel, offset);
   }
   // Normalize the whole input to be in [0, 1].
-  const shape: [number, number, number] = [times, freqs, 1];
+  const shape: [number, number, number, number] = [1, times, freqs, 1];
   // this.normalizeInPlace(data, 0, 1);
-  return tensor3d(Array.prototype.slice.call(data), shape);
+  return tensor4d(Array.prototype.slice.call(data), shape);
 }
 
 export class CommandRecognizer extends EventEmitter {
   model: InferenceModel;
-  streamFeature: StreamingFFT;
+  streamFeature: StreamingFeatureExtractor;
+  softFFT: SoftStreamingFeatureExtractor;
+  nativeFFT: NativeStreamingFeatureExtractor;
+  layerFFT: LayerStreamingFeatureExtractor;
   predictionHistory: Prediction[];
 
   predictionCount: number;
   scoreT: number;
   commands: string[];
   nonCommands: string[];
-  modelUrl: string;
 
   allLabels: string[];
   lastCommand: string;
   lastCommandTime: number = Number.MIN_SAFE_INTEGER;
   lastAverageLabelArray: Float32Array;
   threshold: number;
+  modelType: ModelType;
 
   constructor(private canvas: HTMLCanvasElement, params: RecognizerParams) {
     super();
@@ -99,20 +106,59 @@ export class CommandRecognizer extends EventEmitter {
         `CommandRecognizer will use a history window` +
         ` of ${this.predictionCount}.`);
 
-    this.streamFeature = new StreamingFFT({
+    this.nativeFFT = new NativeStreamingFeatureExtractor();
+    this.nativeFFT.config({
       inputBufferLength: 2048,
-      bufferLength: BUFFER_LENGTH,
-      hopLength: HOP_LENGTH,
-      melCount: MEL_COUNT,
-      targetSr: EXAMPLE_SR,
-      duration: DURATION,
+      bufferLength: 1024,
+      hopLength: 444,
+      melCount: 40,
+      targetSr: 44100,
+      duration: 1,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
+    this.nativeFFT.on('update', this.onUpdate.bind(this));
 
-    this.streamFeature.on('update', this.onUpdate.bind(this));
+    this.softFFT = new SoftStreamingFeatureExtractor();
+    this.softFFT.config({
+      melCount: 40,
+      bufferLength: 480,
+      hopLength: 160,
+      targetSr: 16000,
+      isMfccEnabled: IS_MFCC_ENABLED,
+      duration: 1
+    });
+    this.softFFT.on('update', this.onUpdate.bind(this));
+
+    this.layerFFT = new LayerStreamingFeatureExtractor();
+    this.layerFFT.config({
+      melCount: 40,
+      bufferLength: 1024,
+      hopLength: 1024,
+      targetSr: 44100,
+      isMfccEnabled: false,
+      duration: 1
+    });
+    this.layerFFT.on('update', this.onUpdate.bind(this));    
+
+    this.streamFeature = this.softFFT;
 
     this.predictionHistory = [];
     this.lastCommand = null;
+  }
+
+  setModelType(modelType: ModelType) {
+    this.modelType = modelType;
+    this.model = MODELS[modelType];
+    switch (modelType) {
+      case ModelType.FROZEN_MODEL:
+        this.streamFeature = this.softFFT;
+        break;
+      case ModelType.FROZEN_MODEL_NATIVE:
+        this.streamFeature = this.nativeFFT;
+        break;
+      default:
+        this.streamFeature = this.layerFFT;
+    }
   }
 
   start() {
@@ -136,9 +182,12 @@ export class CommandRecognizer extends EventEmitter {
   }
 
   private onUpdate() {
-    const spec = this.streamFeature.getSpectrogram();
-    plotSpectrogram(this.canvas, spec, 40);
-    const input = melSpectrogramToInput(spec);
+    const spec = this.streamFeature.getFeatures();
+    plotSpectrogram(this.canvas, this.streamFeature.getImages());
+    let input = melSpectrogramToInput(spec);
+    if (this.modelType === ModelType.TF_MODEL) {
+      input = normalize(input); 
+    }
     console.time('prediction');
     const preds = this.model.predict([input], {});
     let scores = [];
@@ -185,7 +234,7 @@ export class CommandRecognizer extends EventEmitter {
     console.log(this.predictionHistory.length);
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
-    console.log(sortedScore);
+    console.log(sortedScore[0], sortedScore[1]);
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];

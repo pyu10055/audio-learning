@@ -21,15 +21,16 @@ import {EventEmitter} from 'eventemitter3';
 // tslint:disable-next-line:max-line-length
 import {GOOGLE_CLOUD_STORAGE_DIR, melSpectrogramToInput, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
-import {StreamingFFT} from './streaming_fft';
 import {TransferModel} from './transfer_model';
 // tslint:disable-next-line:max-line-length
-import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT} from './types';
+import {IS_MFCC_ENABLED} from './types';
+import { StreamingFeatureExtractor } from './streaming_feature_extractor';
+import { SoftStreamingFeatureExtractor } from './soft_streaming_feature_extractor';
 
 export class CommandTrainer extends EventEmitter {
   model: FrozenModel;
   transferModel: TransferModel;
-  streamFeature: StreamingFFT;
+  streamFeature: StreamingFeatureExtractor;
   dataset: Dataset;
   label: number;
   trained = false;
@@ -37,15 +38,17 @@ export class CommandTrainer extends EventEmitter {
   constructor() {
     super();
 
-    this.streamFeature = new StreamingFFT({
+    this.streamFeature = new SoftStreamingFeatureExtractor();
+    this.streamFeature.config({
       inputBufferLength: 2048,
-      bufferLength: BUFFER_LENGTH,
-      hopLength: HOP_LENGTH,
-      melCount: MEL_COUNT,
-      targetSr: EXAMPLE_SR,
-      duration: DURATION,
+      bufferLength: 1024,
+      hopLength: 444,
+      melCount: 40,
+      targetSr: 44100,
+      duration: 1,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
+
     this.streamFeature.on('update', this.addSamples.bind(this));
     this.dataset = new Dataset(4);
   }
@@ -92,7 +95,7 @@ export class CommandTrainer extends EventEmitter {
   }
 
   private addSamples() {
-    const spec = this.streamFeature.getSpectrogram();
+    const spec = this.streamFeature.getFeatures();
     const input = melSpectrogramToInput(spec);
     this.dataset.addExample(input, this.label);
   }

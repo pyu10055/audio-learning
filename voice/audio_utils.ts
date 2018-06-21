@@ -15,6 +15,7 @@
  */
 import * as DCT from 'dct';
 import * as KissFFT from 'kissfft-js';
+import {nextPowerOfTwo} from './util';
 
 const SR = 16000;
 
@@ -22,15 +23,36 @@ let startIndex = 0;
 let endIndex = 0;
 let bandMapper: number[] = [];
 let context: AudioContext;
+let hannWindowMap: {[key: number]: number[]} = {};
 
 export class AudioUtils {
+  static GetPeriodicHann(windowLength: number): number[] {
+    if (!hannWindowMap[windowLength]) {
+      const window = [];
+      // Some platforms don't have M_PI, so define a local constant here.
+      for (let i = 0; i < windowLength; ++i) {
+        window[i] = 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / windowLength);
+      }
+      hannWindowMap[windowLength] = window;
+    }
+    return hannWindowMap[windowLength];
+  }
   /**
    * Calculates the FFT for an array buffer. Output is an array.
    */
   static fft(y: Float32Array) {
-    const fftr = new KissFFT.FFTR(y.length);
+    let window = this.GetPeriodicHann(y.length);
+    y = y.map((v, index) => v * window[index]);
+    const fftSize = nextPowerOfTwo(y.length);
+    for (let i = y.length; i < fftSize; i++) {
+      y[i] = 0;
+    }
+    const fftr = new KissFFT.FFTR(fftSize);
     const transform = fftr.forward(y);
     fftr.dispose();
+    transform[fftSize] = transform[1];
+    transform[fftSize + 1] = 0;
+    transform[1] = 0;
     return transform;
   }
 
@@ -164,5 +186,23 @@ export class AudioUtils {
     source.buffer = audioBuffer;
     source.connect(context.destination);
     source.start();
+  }
+
+  static resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number):
+      Promise<AudioBuffer> {
+    const sourceSr = audioBuffer.sampleRate;
+    const lengthRes = audioBuffer.length * targetSr / sourceSr;
+    const offlineCtx = new OfflineAudioContext(1, lengthRes, targetSr);
+
+    return new Promise((resolve, reject) => {
+      const bufferSource = offlineCtx.createBufferSource();
+      bufferSource.buffer = audioBuffer;
+      offlineCtx.oncomplete = (event) => {
+        resolve(event.renderedBuffer);
+      };
+      bufferSource.connect(offlineCtx.destination);
+      bufferSource.start();
+      offlineCtx.startRendering();
+    });
   }
 }

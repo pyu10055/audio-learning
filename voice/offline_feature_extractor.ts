@@ -40,15 +40,19 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   }
 
   protected preprocess() {
-      this.features = [];
+    this.features = [];
   }
-  
+
   async start(samples: Float32Array): Promise<Float32Array[]> {
     this.preprocess();
+    const audioCtx = new AudioContext();
+    const buffer = await audioCtx.decodeAudioData(samples.buffer);
+
     this.source = new OfflineAudioContext(
         1, this.targetSr * this.duration * 4, this.targetSr);
     this.buffer = this.source.createBufferSource();
-    this.buffer.buffer = this.createBufferWithValues(this.source, samples);
+    this.buffer.buffer =
+        this.createBufferWithValues(this.source, buffer.getChannelData(0));
     this.analyser = this.source.createAnalyser();
     this.analyser.fftSize = nextPowerOfTwo(this.bufferLength) * 2;
     this.analyser.smoothingTimeConstant = 0.0;
@@ -66,7 +70,7 @@ export class OfflineFeatureExtractor extends EventEmitter implements
             this.features.push(this.transform(data));
             this.source.resume();
             await this.source.suspend(frames / this.source.sampleRate);
-          } while (frames <= samples.length);
+          } while (frames <= buffer.length);
           return this.features;
         });
 
@@ -85,6 +89,10 @@ export class OfflineFeatureExtractor extends EventEmitter implements
   }
 
   getFeatures(): Float32Array[] {
+    return this.features;
+  }
+
+  getImages(): Float32Array[] {
     return this.features;
   }
 }

@@ -57,6 +57,7 @@ function setInstructionVisibility(visible, recognizer) {
 }
 
 function onStream() {
+  recognizer.setModelType(Number($('#eval-model').val()));
   if (recognizer.isRunning()) {
     $('#stream').text('Start');
     recognizer.stop();
@@ -149,10 +150,12 @@ async function onEvaluate() {
     alert('Please provide valid label.');
     return;
   }
-  const accuracy = await evaluation.eval(
+  const evals = await evaluation.eval(
       Number($('#eval-model').val()), $('#eval-files')[0].files,
       Array($('#eval-files')[0].files.length).fill(label));
-  $('#accuracy').text(accuracy.toFixed(2));
+  $('#accuracy')
+      .text(evals.map(label => `${labels[label[0]]}:${label[1].toFixed(3)}`)
+                .join(','));
 }
 
 async function onLoadModel(e) {
@@ -165,7 +168,7 @@ async function onLoadModel(e) {
     commands: allLabels,
     noOther: true,
     model: trainer.model,
-    threshold: 0.4
+    threshold: 0.2
   });
   recognizer.on('command', onCommand);
   recognizer.on('silence', onSilence);
@@ -175,7 +178,7 @@ async function onLoadModel(e) {
     commands: transferLabels,
     noOther: true,
     model: trainer.transferModel,
-    threshold: 0.3
+    threshold: 0.2
   });
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);

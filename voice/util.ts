@@ -86,14 +86,13 @@ export function nextPowerOfTwo(value: number) {
 }
 
 export function plotSpectrogram(
-    canvas: HTMLCanvasElement, frequencyData: Float32Array[],
-    fftDisplaySize: number) {
+    canvas: HTMLCanvasElement, frequencyData: Float32Array[]) {
   // Get the maximum and minimum.
   let min = Infinity;
   let max = -Infinity;
   for (let i = 0; i < frequencyData.length; ++i) {
     const x = frequencyData[i];
-    for (let j = 0; j < x.length; ++j) {
+    for (let j = 1; j < x.length; ++j) {
       if (x[j] !== -Infinity) {
         if (x[j] < min) {
           min = x[j];
@@ -118,11 +117,10 @@ export function plotSpectrogram(
     if (spectrum[0] === -Infinity) {
       break;
     }
-    for (let j = 0; j < fftDisplaySize; ++j) {
+    for (let j = 1; j < frequencyData[0].length; ++j) {
       const y = canvas.height - (j + 1) * pixelHeight;
 
       let colorValue = (spectrum[j] - min) / (max - min);
-      // colorValue = Math.pow(colorValue, 3);
       colorValue = Math.round(255 * colorValue);
       const fillStyle = `rgb(${colorValue},${colorValue},${colorValue})`;
       ctx.fillStyle = fillStyle;
