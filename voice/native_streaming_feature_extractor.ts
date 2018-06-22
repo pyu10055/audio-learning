@@ -16,8 +16,8 @@
 
 
 import {AudioUtils} from './audio_utils';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {Interval, nextPowerOfTwo} from './util';
-import { StreamingFeatureExtractor } from './streaming_feature_extractor';
 
 export const audioCtx = new AudioContext();
 /**
@@ -33,7 +33,6 @@ export const audioCtx = new AudioContext();
  * process that buffer and add it to the spectrogram.
  */
 export class NativeStreamingFeatureExtractor extends StreamingFeatureExtractor {
-
   // How many buffers to keep in the spectrogram.
   hopTime: number;
   // The mel filterbank (calculate it only once).
@@ -53,15 +52,15 @@ export class NativeStreamingFeatureExtractor extends StreamingFeatureExtractor {
   }
 
   setup() {
-          this.analyser = audioCtx.createAnalyser();
-          this.analyser.fftSize = nextPowerOfTwo(this.bufferLength);
-          this.analyser.smoothingTimeConstant = 0;
-          const source = audioCtx.createMediaStreamSource(this.stream);
-          source.connect(this.analyser);
-          // this.analyser.connect(audioCtx.destination);
-          this.isStreaming = true;
-          this.timer.run();
-          this.onAudioProcess();
+    this.analyser = audioCtx.createAnalyser();
+    this.analyser.fftSize = nextPowerOfTwo(this.bufferLength);
+    this.analyser.smoothingTimeConstant = 0;
+    const source = audioCtx.createMediaStreamSource(this.stream);
+    source.connect(this.analyser);
+    // this.analyser.connect(audioCtx.destination);
+    this.isStreaming = true;
+    this.timer.run();
+    this.onAudioProcess();
   }
 
   tearDown() {

@@ -1,13 +1,14 @@
 // tslint:disable-next-line:max-line-length
-import {FrozenModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d, InferenceModel} from '@tensorflow/tfjs';
+import {FrozenModel, loadFrozenModel, loadModel, Model, Tensor, tensor4d} from '@tensorflow/tfjs';
 
 // tslint:disable-next-line:max-line-length
 import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, TF_MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+// tslint:disable-next-line:max-line-length
 import {NativeOfflineFeatureExtractor} from './native_offline_feature_extractor';
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
 // tslint:disable-next-line:max-line-length
 import {SoftOfflineFeatureExtractor} from './soft_offline_feature_extractor';
-import {FeatureExtractor, ModelType, Params, MODELS} from './types';
+import {FeatureExtractor, MODELS, ModelType, Params} from './types';
 import {normalize, plotSpectrogram} from './util';
 
 export const EVENT_NAME = 'update';
@@ -48,7 +49,7 @@ export class ModelEvaluation {
   }
 
   async eval(modelType: ModelType, files: File[], labels: number[]):
-      Promise<[number, number][]> {
+      Promise<Array<[number, number]>> {
     const prediction = [];
     switch (modelType) {
       case ModelType.TF_MODEL:
@@ -70,8 +71,7 @@ export class ModelEvaluation {
           await this.evalFile(recordingFile, this.featureExtractor));
     }
 
-    plotSpectrogram(
-        this.canvas, this.featureExtractor.getImages());
+    plotSpectrogram(this.canvas, this.featureExtractor.getImages());
     const correct = prediction.reduce((prev, curr, index) => {
       prev += (curr[0] === labels[index] && curr[1] > MIN_SCORE ? 1.0 : 0.0);
       return prev;

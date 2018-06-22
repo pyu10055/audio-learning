@@ -13,11 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-
-import {AudioUtils} from './audio_utils';
-import {Interval, nextPowerOfTwo} from './util';
-import { StreamingFeatureExtractor } from './streaming_feature_extractor';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
+import {Interval} from './util';
+import {nextPowerOfTwo} from './util';
 
 export const audioCtx = new AudioContext();
 /**
@@ -48,15 +46,15 @@ export class LayerStreamingFeatureExtractor extends StreamingFeatureExtractor {
   }
 
   setup() {
-          this.analyser = audioCtx.createAnalyser();
-          this.analyser.fftSize = this.bufferLength;
-          this.analyser.smoothingTimeConstant = 0;
-          const source = audioCtx.createMediaStreamSource(this.stream);
-          source.connect(this.analyser);
-          // this.analyser.connect(audioCtx.destination);
-          this.isStreaming = true;
-          this.timer.run();
-          this.onAudioProcess();
+    this.analyser = audioCtx.createAnalyser();
+    this.analyser.fftSize = nextPowerOfTwo(this.bufferLength) * 2;
+    this.analyser.smoothingTimeConstant = 0;
+    const source = audioCtx.createMediaStreamSource(this.stream);
+    source.connect(this.analyser);
+    // this.analyser.connect(audioCtx.destination);
+    this.isStreaming = true;
+    this.timer.run();
+    this.onAudioProcess();
   }
 
   tearDown() {
@@ -66,7 +64,7 @@ export class LayerStreamingFeatureExtractor extends StreamingFeatureExtractor {
   }
 
   private onAudioProcess() {
-    let buffer = new Float32Array(this.fftSize);
+    const buffer = new Float32Array(this.fftSize);
     this.analyser.getFloatFrequencyData(buffer);
     this.spectrogram.push(buffer);
     this.images.push(buffer);
@@ -78,8 +76,8 @@ export class LayerStreamingFeatureExtractor extends StreamingFeatureExtractor {
     if (this.spectrogram.length === this.bufferCount) {
       // Notify that we have an updated spectrogram.
       this.emit('update');
-      this.spectrogram.splice(0, 1);
-      this.images.splice(0, 1);
+      this.spectrogram.splice(0, 15);
+      this.images.splice(0, 15);
     }
   }
 }

@@ -57,7 +57,9 @@ function setInstructionVisibility(visible, recognizer) {
 }
 
 function onStream() {
-  recognizer.setModelType(Number($('#eval-model').val()));
+  const modelType = Number($('#eval-model').val());
+  recognizer.setModelType(
+      modelType, modelType === ModelType.TF_MODEL ? evalLabels : allLabels);
   if (recognizer.isRunning()) {
     $('#stream').text('Start');
     recognizer.stop();

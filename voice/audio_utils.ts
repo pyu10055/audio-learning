@@ -23,7 +23,7 @@ let startIndex = 0;
 let endIndex = 0;
 let bandMapper: number[] = [];
 let context: AudioContext;
-let hannWindowMap: {[key: number]: number[]} = {};
+const hannWindowMap: {[key: number]: number[]} = {};
 
 export class AudioUtils {
   static GetPeriodicHann(windowLength: number): number[] {
@@ -41,7 +41,7 @@ export class AudioUtils {
    * Calculates the FFT for an array buffer. Output is an array.
    */
   static fft(y: Float32Array) {
-    let window = this.GetPeriodicHann(y.length);
+    const window = this.GetPeriodicHann(y.length);
     y = y.map((v, index) => v * window[index]);
     const fftSize = nextPowerOfTwo(y.length);
     for (let i = y.length; i < fftSize; i++) {

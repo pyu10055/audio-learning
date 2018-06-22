@@ -18,14 +18,17 @@
 import {InferenceModel, Tensor, Tensor1D, tensor4d} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+// tslint:disable-next-line:max-line-length
+import {LayerStreamingFeatureExtractor} from './layer_streaming_feature_extractor';
+// tslint:disable-next-line:max-line-length
 import {NativeStreamingFeatureExtractor} from './native_streaming_feature_extractor';
+// tslint:disable-next-line:max-line-length
+import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 // import {StreamingFFT} from './streaming_fft';
 // tslint:disable-next-line:max-line-length
-import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, ModelType, SUPPRESSION_TIME, MODELS} from './types';
-import {plotSpectrogram, normalize} from './util';
-import { StreamingFeatureExtractor } from './streaming_feature_extractor';
-import { LayerStreamingFeatureExtractor } from './layer_streaming_feature_extractor';
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, MODELS, ModelType, SUPPRESSION_TIME} from './types';
+import {normalize, plotSpectrogram} from './util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
@@ -138,7 +141,7 @@ export class CommandRecognizer extends EventEmitter {
       isMfccEnabled: false,
       duration: 1
     });
-    this.layerFFT.on('update', this.onUpdate.bind(this));    
+    this.layerFFT.on('update', this.onUpdate.bind(this));
 
     this.streamFeature = this.softFFT;
 
@@ -146,8 +149,10 @@ export class CommandRecognizer extends EventEmitter {
     this.lastCommand = null;
   }
 
-  setModelType(modelType: ModelType) {
+  setModelType(modelType: ModelType, commands: string[]) {
     this.modelType = modelType;
+    this.commands = commands;
+    this.allLabels = commands;
     this.model = MODELS[modelType];
     switch (modelType) {
       case ModelType.FROZEN_MODEL:
@@ -186,10 +191,10 @@ export class CommandRecognizer extends EventEmitter {
     plotSpectrogram(this.canvas, this.streamFeature.getImages());
     let input = melSpectrogramToInput(spec);
     if (this.modelType === ModelType.TF_MODEL) {
-      input = normalize(input); 
+      input = normalize(input);
     }
     console.time('prediction');
-    const preds = this.model.predict([input], {});
+    const preds = this.model.predict(input, {});
     let scores = [];
     if (Array.isArray(preds)) {
       const output = preds[0].dataSync();
