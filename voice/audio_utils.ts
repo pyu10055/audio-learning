@@ -18,15 +18,19 @@ import * as KissFFT from 'kissfft-js';
 import {nextPowerOfTwo} from './util';
 
 const SR = 16000;
-
-let startIndex = 0;
-let endIndex = 0;
-let bandMapper: number[] = [];
-let context: AudioContext;
 const hannWindowMap: {[key: number]: number[]} = {};
+let context: AudioContext;
+
 
 export class AudioUtils {
-  static GetPeriodicHann(windowLength: number): number[] {
+  startIndex = 0;
+  endIndex = 0;
+  bandMapper: number[] = [];
+  context: AudioContext;
+  
+  constructor() {}
+
+  GetPeriodicHann(windowLength: number): number[] {
     if (!hannWindowMap[windowLength]) {
       const window = [];
       // Some platforms don't have M_PI, so define a local constant here.
@@ -40,7 +44,7 @@ export class AudioUtils {
   /**
    * Calculates the FFT for an array buffer. Output is an array.
    */
-  static fft(y: Float32Array) {
+  fft(y: Float32Array) {
     const window = this.GetPeriodicHann(y.length);
     y = y.map((v, index) => v * window[index]);
     const fftSize = nextPowerOfTwo(y.length);
@@ -56,7 +60,7 @@ export class AudioUtils {
     return transform;
   }
 
-  static dct(y: Float32Array) {
+  dct(y: Float32Array) {
     const scale = Math.sqrt(2.0 / y.length);
     return DCT(y, scale);
   }
@@ -65,7 +69,7 @@ export class AudioUtils {
    * Given an interlaced complex array (y_i is real, y_(i+1) is imaginary),
    * calculates the energies. Output is half the size.
    */
-  static fftEnergies(y: Float32Array) {
+  fftEnergies(y: Float32Array) {
     const out = new Float32Array(y.length / 2);
     for (let i = 0; i < y.length / 2; i++) {
       out[i] = y[i * 2] * y[i * 2] + y[i * 2 + 1] * y[i * 2 + 1];
@@ -73,7 +77,7 @@ export class AudioUtils {
     return out;
   }
 
-  static createMelFilterbank(
+  createMelFilterbank(
       fftSize: number, melCount = 40, lowHz = 20, highHz = 4000,
       sr = SR): Float32Array {
     const lowMel = this.hzToMel(lowHz);
@@ -91,24 +95,24 @@ export class AudioUtils {
 
     // Always exclude DC; emulate HTK.
     const hzPerSbin = 0.5 * sr / (fftSize - 1);
-    startIndex = Math.floor(1.5 + (lowHz / hzPerSbin));
-    endIndex = Math.ceil(highHz / hzPerSbin);
+    this.startIndex = Math.floor(1.5 + (lowHz / hzPerSbin));
+    this.endIndex = Math.ceil(highHz / hzPerSbin);
 
     // Maps the input spectrum bin indices to filter bank channels/indices. For
     // each FFT bin, band_mapper tells us which channel this bin contributes to
     // on the right side of the triangle.  Thus this bin also contributes to the
     // left side of the next channel's triangle response.
-    bandMapper = [];
+    this.bandMapper = [];
     let channel = 0;
     for (let i = 0; i < fftSize; ++i) {
       const melf = this.hzToMel(i * hzPerSbin);
-      if ((i < startIndex) || (i > endIndex)) {
-        bandMapper[i] = -2;  // Indicate an unused Fourier coefficient.
+      if ((i < this.startIndex) || (i > this.endIndex)) {
+        this.bandMapper[i] = -2;  // Indicate an unused Fourier coefficient.
       } else {
         while ((mels[channel] < melf) && (channel < melCount)) {
           ++channel;
         }
-        bandMapper[i] = channel - 1;  // Can be == -1
+        this.bandMapper[i] = channel - 1;  // Can be == -1
       }
     }
 
@@ -118,8 +122,8 @@ export class AudioUtils {
     // the current channel and 1-weights_[i] to the next channel.
     const weights = new Float32Array(fftSize);
     for (let i = 0; i < fftSize; ++i) {
-      channel = bandMapper[i];
-      if ((i < startIndex) || (i > endIndex)) {
+      channel = this.bandMapper[i];
+      if ((i < this.startIndex) || (i > this.endIndex)) {
         weights[i] = 0.0;
       } else {
         if (channel >= 0) {
@@ -139,14 +143,14 @@ export class AudioUtils {
    * Given an array of FFT magnitudes, apply a filterbank. Output should be an
    * array with size |filterbank|.
    */
-  static applyFilterbank(
+  applyFilterbank(
       fftEnergies: Float32Array, filterbank: Float32Array,
       melCount = 40): Float32Array {
     const out = new Float32Array(melCount);
-    for (let i = startIndex; i <= endIndex; i++) {  // For each FFT bin
+    for (let i = this.startIndex; i <= this.endIndex; i++) {  // For each FFT bin
       const specVal = Math.sqrt(fftEnergies[i]);
       const weighted = specVal * filterbank[i];
-      let channel = bandMapper[i];
+      let channel = this.bandMapper[i];
       if (channel >= 0)
         out[channel] += weighted;  // Right side of triangle, downward slope
       channel++;
@@ -163,20 +167,20 @@ export class AudioUtils {
     return out;
   }
 
-  static hzToMel(hz: number) {
+  hzToMel(hz: number) {
     return 1127.0 * Math.log(1.0 + hz / 700.0);
   }
 
-  static cepstrumFromEnergySpectrum(melEnergies: Float32Array) {
+  cepstrumFromEnergySpectrum(melEnergies: Float32Array) {
     return this.dct(melEnergies);
   }
 
-  static playbackArrayBuffer(buffer: Float32Array, sampleRate?: number) {
+  playbackArrayBuffer(buffer: Float32Array, sampleRate?: number) {
     if (!context) {
       context = new AudioContext();
     }
     if (!sampleRate) {
-      sampleRate = context.sampleRate;
+      sampleRate = this.context.sampleRate;
     }
     const audioBuffer = context.createBuffer(1, buffer.length, sampleRate);
     const audioBufferData = audioBuffer.getChannelData(0);
@@ -188,7 +192,7 @@ export class AudioUtils {
     source.start();
   }
 
-  static resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number):
+  resampleWebAudio(audioBuffer: AudioBuffer, targetSr: number):
       Promise<AudioBuffer> {
     const sourceSr = audioBuffer.sampleRate;
     const lengthRes = audioBuffer.length * targetSr / sourceSr;

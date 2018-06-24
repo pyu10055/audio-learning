@@ -43,11 +43,13 @@ export class NativeStreamingFeatureExtractor extends StreamingFeatureExtractor {
   // tslint:disable-next-line:no-any
   timer: any;
 
+  audioUtils = new AudioUtils();
+
   extraConfig() {
     this.hopTime = this.hopLength * 1000 / this.targetSr;
     this.timer = new Interval(this.hopTime, this.onAudioProcess.bind(this));
-    this.melFilterbank = AudioUtils.createMelFilterbank(
-        nextPowerOfTwo(this.bufferLength) / 2 + 1, this.melCount, 20, 4000,
+    this.melFilterbank = this.audioUtils.createMelFilterbank(
+        nextPowerOfTwo(this.bufferLength) + 1, this.melCount, 20, 4000,
         this.targetSr);
   }
 
@@ -74,8 +76,8 @@ export class NativeStreamingFeatureExtractor extends StreamingFeatureExtractor {
     this.analyser.getFloatFrequencyData(buffer);
     buffer = buffer.map(v => Math.pow(10, v / 20));
     // const fftEnergies = AudioUtils.fftEnergies(buffer);
-    const melEnergies = AudioUtils.applyFilterbank(buffer, this.melFilterbank);
-    const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
+    const melEnergies = this.audioUtils.applyFilterbank(buffer, this.melFilterbank);
+    const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
     if (this.isMfccEnabled) {
       this.spectrogram.push(mfccs);

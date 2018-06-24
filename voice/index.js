@@ -35,15 +35,14 @@ const evalLabels = [
   'zero', 'left', 'right', 'go', 'stop'
 ];
 let recognizer;
-
-const trainer = new CommandTrainer();
-trainer.on('recorded', onRecorded);
-trainer.on('loss', onLoss);
 let transferRecognizer;
 let spectrogram;
+
 const mainCanvas = document.getElementById('main-canvas');
 const evaluation = new ModelEvaluation(mainCanvas);
-
+const trainer = new CommandTrainer(mainCanvas);
+trainer.on('recorded', onRecorded);
+trainer.on('loss', onLoss);
 
 function setInstructionVisibility(visible, recognizer) {
   // Show which commands are supported.

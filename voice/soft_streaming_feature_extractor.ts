@@ -37,7 +37,7 @@ export class SoftStreamingFeatureExtractor extends StreamingFeatureExtractor {
 
   // The script node doing the Web Audio processing.
   scriptNode: ScriptProcessorNode;
-
+  audioUtils = new AudioUtils();
   constructor() {
     super();
   }
@@ -46,7 +46,7 @@ export class SoftStreamingFeatureExtractor extends StreamingFeatureExtractor {
     // since the FFT array is complex valued.
     const fftSize = nextPowerOfTwo(this.bufferLength);
     this.melFilterbank =
-        AudioUtils.createMelFilterbank(fftSize / 2 + 1, this.melCount);
+        this.audioUtils.createMelFilterbank(fftSize / 2 + 1, this.melCount);
   }
 
   setup() {
@@ -75,7 +75,7 @@ export class SoftStreamingFeatureExtractor extends StreamingFeatureExtractor {
     // console.log(`Resampling from ${audioCtx.sampleRate} to
     // ${this.targetSr}.`);
     const audioBufferRes =
-        await AudioUtils.resampleWebAudio(audioBuffer, this.targetSr);
+        await this.audioUtils.resampleWebAudio(audioBuffer, this.targetSr);
     const bufferRes = audioBufferRes.getChannelData(0);
     // Write in a buffer of ~700 samples.
     this.circularBuffer.addBuffer(bufferRes);
@@ -88,12 +88,12 @@ export class SoftStreamingFeatureExtractor extends StreamingFeatureExtractor {
     }
 
     for (const buffer of buffers) {
-      const fft = AudioUtils.fft(buffer);
-      const fftEnergies = AudioUtils.fftEnergies(fft);
+      const fft = this.audioUtils.fft(buffer);
+      const fftEnergies = this.audioUtils.fftEnergies(fft);
       const melEnergies =
-          AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
+          this.audioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
       this.images.push(melEnergies);
-      const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
+      const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
       if (this.isMfccEnabled) {
         this.spectrogram.push(mfccs);

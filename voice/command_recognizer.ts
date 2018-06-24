@@ -116,7 +116,7 @@ export class CommandRecognizer extends EventEmitter {
       hopLength: 444,
       melCount: 40,
       targetSr: 44100,
-      duration: 1,
+      duration: 1.0,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
     this.nativeFFT.on('update', this.onUpdate.bind(this));
@@ -128,7 +128,7 @@ export class CommandRecognizer extends EventEmitter {
       hopLength: 160,
       targetSr: 16000,
       isMfccEnabled: IS_MFCC_ENABLED,
-      duration: 1
+      duration: 1.0
     });
     this.softFFT.on('update', this.onUpdate.bind(this));
 
@@ -139,7 +139,7 @@ export class CommandRecognizer extends EventEmitter {
       hopLength: 1024,
       targetSr: 44100,
       isMfccEnabled: false,
-      duration: 1
+      duration: 1.0
     });
     this.layerFFT.on('update', this.onUpdate.bind(this));
 
@@ -193,7 +193,6 @@ export class CommandRecognizer extends EventEmitter {
     if (this.modelType === ModelType.TF_MODEL) {
       input = normalize(input);
     }
-    console.time('prediction');
     const preds = this.model.predict(input, {});
     let scores = [];
     if (Array.isArray(preds)) {
@@ -205,7 +204,6 @@ export class CommandRecognizer extends EventEmitter {
     } else {
       scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
     }
-    console.timeEnd('prediction');
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,

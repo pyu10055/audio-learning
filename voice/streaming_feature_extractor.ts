@@ -85,8 +85,6 @@ export abstract class StreamingFeatureExtractor extends EventEmitter implements
       console.error('Hop length must be smaller than buffer length.');
     }
 
-    // The mel filterbank is actually half of the size of the number of samples,
-    // since the FFT array is complex valued.
     this.spectrogram = [];
     this.images = [];
     this.isStreaming = false;
@@ -119,15 +117,7 @@ export abstract class StreamingFeatureExtractor extends EventEmitter implements
     this.circularBuffer.clear();
 
     const constraints = {
-      audio: {
-        'mandatory': {
-          'googEchoCancellation': 'false',
-          'googAutoGainControl': 'false',
-          'googNoiseSuppression': 'false',
-          'googHighpassFilter': 'false'
-        },
-      },
-      video: false
+      audio: true
     };
     navigator.mediaDevices.getUserMedia(constraints as MediaStreamConstraints)
         .then(stream => {

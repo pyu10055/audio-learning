@@ -21,11 +21,12 @@ import {EventEmitter} from 'eventemitter3';
 // tslint:disable-next-line:max-line-length
 import {GOOGLE_CLOUD_STORAGE_DIR, melSpectrogramToInput, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
+import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {TransferModel} from './transfer_model';
 // tslint:disable-next-line:max-line-length
 import {IS_MFCC_ENABLED} from './types';
-import { StreamingFeatureExtractor } from './streaming_feature_extractor';
-import { SoftStreamingFeatureExtractor } from './soft_streaming_feature_extractor';
+import {plotSpectrogram} from './util';
 
 export class CommandTrainer extends EventEmitter {
   model: FrozenModel;
@@ -35,16 +36,16 @@ export class CommandTrainer extends EventEmitter {
   label: number;
   trained = false;
   withData = false;
-  constructor() {
+  constructor(private canvas: HTMLCanvasElement) {
     super();
 
     this.streamFeature = new SoftStreamingFeatureExtractor();
     this.streamFeature.config({
       inputBufferLength: 2048,
-      bufferLength: 1024,
-      hopLength: 444,
+      bufferLength: 480,
+      hopLength: 160,
       melCount: 40,
-      targetSr: 44100,
+      targetSr: 16000,
       duration: 1,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
@@ -74,7 +75,7 @@ export class CommandTrainer extends EventEmitter {
 
   record(label: number) {
     this.label = label;
-    this.streamFeature.start();
+    setTimeout(this.streamFeature.start.bind(this.streamFeature), 250);
     setTimeout(this.stopRecord.bind(this), 1500);
     this.withData = true;
   }
@@ -96,6 +97,7 @@ export class CommandTrainer extends EventEmitter {
 
   private addSamples() {
     const spec = this.streamFeature.getFeatures();
+    plotSpectrogram(this.canvas, this.streamFeature.getImages());
     const input = melSpectrogramToInput(spec);
     this.dataset.addExample(input, this.label);
   }

@@ -33,6 +33,7 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
   // For dealing with a circular buffer of audio samples.
   circularBuffer: CircularAudioBuffer;
   playbackBuffer: CircularAudioBuffer;
+  audioUtils = new AudioUtils;
   config(params: Params) {
     Object.assign(this, params);
     this.bufferCount = Math.floor(
@@ -48,7 +49,7 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
     // since the FFT array is complex valued.
     this.fftSize = nextPowerOfTwo(this.bufferLength);
     this.melFilterbank =
-        AudioUtils.createMelFilterbank(this.fftSize / 2 + 1, this.melCount);
+        this.audioUtils.createMelFilterbank(this.fftSize / 2 + 1, this.melCount);
 
     this.circularBuffer = new CircularAudioBuffer(20000);
     this.playbackBuffer = new CircularAudioBuffer(20000);
@@ -98,11 +99,11 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
         for (const buffer of buffers) {
           // console.log(`Got buffer of length ${buffer.length}.`);
           // Extract the mel values for this new frame of audio data.
-          const fft = AudioUtils.fft(buffer);
-          const fftEnergies = AudioUtils.fftEnergies(fft);
+          const fft = this.audioUtils.fft(buffer);
+          const fftEnergies = this.audioUtils.fftEnergies(fft);
           const melEnergies =
-              AudioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
-              const mfccs = AudioUtils.cepstrumFromEnergySpectrum(melEnergies);
+              this.audioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
+              const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
               this.images.push(melEnergies);
 
           if (this.features.length < this.bufferCount) {
@@ -114,7 +115,7 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
           }
 
           if (!resolved && this.features.length === this.bufferCount) {            
-            AudioUtils.playbackArrayBuffer(
+            this.audioUtils.playbackArrayBuffer(
                 this.playbackBuffer.getBuffer(), 16000);
             resolved = true;
             // Notify that we have an updated spectrogram.
