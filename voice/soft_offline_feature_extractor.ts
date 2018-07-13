@@ -133,7 +133,9 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
   }
   stop() {
     //this.scriptNode.disconnect(this.source.destination);
-    this.buffer.stop();
+    if (this.buffer) {
+      this.buffer.stop();
+    }
   }
 
   transform(data: Float32Array) {

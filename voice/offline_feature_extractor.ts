@@ -81,7 +81,9 @@ export class OfflineFeatureExtractor extends EventEmitter implements
     return promise;
   }
   stop() {
-    this.buffer.stop();
+    if (this.buffer) {
+      this.buffer.stop();
+    }
   }
 
   transform(data: Float32Array) {

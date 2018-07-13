@@ -93,14 +93,17 @@ export class ModelEvaluation {
       temporaryFileReader.onload = async () => {
         extractor.config({});
         let success = false;
-        for (let i = 0; i < 10 && !success; i++) try {
-            await extractor.start(new Float32Array(temporaryFileReader.result));
+        const data = new Float32Array(temporaryFileReader.result);
+        for (let i = 0; i < 10 && !success; i++) {
+          try {
+            await extractor.start(data);
             extractor.stop();
             success = true;
           } catch (error) {
             extractor.stop();
-            console.log('retry file ' + file.name);
+            console.log('retry file ' + file.name, error);
           }
+        }
         resolve(this.runPrediction(extractor.getFeatures()));
       };
       temporaryFileReader.readAsArrayBuffer(file);
