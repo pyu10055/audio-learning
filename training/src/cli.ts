@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Load the binding
+import '@tensorflow/tfjs-node-gpu';
 
 import chalk from 'chalk';
 import * as ora from 'ora';
@@ -56,7 +58,7 @@ vorpal
                 }
               })
           .then(() => spinner.stop(), (err) => {
-            spinner.fail('failed to train: ' + err);
+            spinner.fail('failed to load the dataset: ' + err);
           });
     });
 vorpal
@@ -97,9 +99,7 @@ vorpal.command('train')
               spinner.render();
             }
           })
-          .then(() => spinner.stop(), (err) => {
-            spinner.fail('failed to train: ' + err);
-          });
+          .then(() => spinner.stop());
     });
 vorpal.command('save <filename>')
     .alias('s')

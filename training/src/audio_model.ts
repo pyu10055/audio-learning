@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as wav from 'node-wav';
 import * as path from 'path';
 
-import {Dataset} from '../../voice/dataset';
+import {Dataset} from './dataset';
 
 import {WavFileFeatureExtractor} from './wav_file_feature_extractor';
 
@@ -80,7 +80,7 @@ export class AudioModel {
         });
         this.dataset.addExamples(
             this.melSpectrogramToInput(specs),
-            tf.fill([specs.length], index, 'int32'));
+            tf.oneHot(tf.fill([specs.length], index, 'int32'), this.labels.length));
         resolve();
       });
     });
@@ -92,7 +92,7 @@ export class AudioModel {
   }
 
   train(epochs?: number, trainCallback?: tf.CustomCallbackConfig) {
-    return this.model.fit(this.dataset.xs[0], this.dataset.ys, {
+    return this.model.fit(this.dataset.xs, this.dataset.ys, {
       batchSize: 64,
       epochs: epochs || 100,
       shuffle: true,
@@ -107,7 +107,7 @@ export class AudioModel {
 
   size() {
     return this.dataset.xs ?
-        `xs: ${this.dataset.xs[0].shape} ys: ${this.dataset.ys.shape}` :
+        `xs: ${this.dataset.xs.shape} ys: ${this.dataset.ys.shape}` :
         0;
   }
 
