@@ -14,7 +14,6 @@
  * the License.
  */
 
-
 import {AudioUtils} from './audio_utils';
 import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {Interval, nextPowerOfTwo} from './util';
@@ -76,7 +75,8 @@ export class NativeStreamingFeatureExtractor extends StreamingFeatureExtractor {
     this.analyser.getFloatFrequencyData(buffer);
     buffer = buffer.map(v => Math.pow(10, v / 20));
     // const fftEnergies = AudioUtils.fftEnergies(buffer);
-    const melEnergies = this.audioUtils.applyFilterbank(buffer, this.melFilterbank);
+    const melEnergies =
+        this.audioUtils.applyFilterbank(buffer, this.melFilterbank);
     const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
     if (this.isMfccEnabled) {

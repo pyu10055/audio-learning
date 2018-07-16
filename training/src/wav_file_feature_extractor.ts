@@ -1,12 +1,11 @@
 import {EventEmitter} from 'eventemitter3';
 
-import {AudioUtils} from '../voice/audio_utils';
-import {CircularAudioBuffer} from '../voice/circular_audio_buffer';
-import {FeatureExtractor, Params} from '../voice/types';
-import {nextPowerOfTwo} from '../voice/util';
+import {AudioUtils} from '../../voice/audio_utils';
+import {CircularAudioBuffer} from '../../voice/circular_audio_buffer';
+import {Params} from '../../voice/types';
+import {nextPowerOfTwo} from '../../voice/util';
 
-export class WavFileFeatureExtractor extends EventEmitter implements
-    FeatureExtractor {
+export class WavFileFeatureExtractor extends EventEmitter {
   private features: Float32Array[];
   // Target sample rate.
   targetSr = 16000;
@@ -29,7 +28,7 @@ export class WavFileFeatureExtractor extends EventEmitter implements
   // scriptNode: ScriptProcessorNode;
   // For dealing with a circular buffer of audio samples.
   circularBuffer: CircularAudioBuffer;
-  audioUtils = new AudioUtils;
+  audioUtils = new AudioUtils();
   config(params: Params) {
     Object.assign(this, params);
     this.bufferCount = Math.floor(
@@ -50,7 +49,7 @@ export class WavFileFeatureExtractor extends EventEmitter implements
     this.circularBuffer = new CircularAudioBuffer(20000);
   }
 
-  async start(samples?: Float32Array): Promise<Float32Array[]> {
+  start(samples?: Float32Array): Float32Array[] {
     this.features = [];
     // Clear all buffers.
     this.circularBuffer.clear();
@@ -91,7 +90,7 @@ export class WavFileFeatureExtractor extends EventEmitter implements
   }
 
   getImages(): Float32Array[] {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   /**
    * Get as many full buffers as are available in the circular buffer.
@@ -106,7 +105,6 @@ export class WavFileFeatureExtractor extends EventEmitter implements
       this.circularBuffer.popBuffer(this.hopLength);
       out.push(buffer);
     }
-    console.log(out.length);
     return out;
   }
 }

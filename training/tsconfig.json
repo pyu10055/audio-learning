@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
       "module": "commonjs",
-      "noImplicitAny": true,
+      //"noImplicitAny": true,
       "sourceMap": true,
       "removeComments": true,
       "preserveConstEnums": true,
@@ -17,9 +17,10 @@
       "pretty": true,
       "noFallthroughCasesInSwitch": true,
       "allowUnreachableCode": false,
-      "downlevelIteration": true
+      "downlevelIteration": true,
+      "moduleResolution": "node"
   },
   "include": [
-    "."
+    "src/**/*", "../voice/types/*"
   ]
 }

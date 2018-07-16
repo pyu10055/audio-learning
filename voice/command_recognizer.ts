@@ -15,7 +15,7 @@
  */
 
 // tslint:disable-next-line:max-line-length
-import {InferenceModel, Tensor, Tensor1D, tensor4d} from '@tensorflow/tfjs-core';
+import {InferenceModel, Tensor1D} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 // tslint:disable-next-line:max-line-length
@@ -28,7 +28,7 @@ import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 // import {StreamingFFT} from './streaming_fft';
 // tslint:disable-next-line:max-line-length
 import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, MODELS, ModelType, SUPPRESSION_TIME} from './types';
-import {normalize, plotSpectrogram} from './util';
+import {melSpectrogramToInput, normalize, plotSpectrogram} from './util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
@@ -54,22 +54,6 @@ export function getFeatureShape() {
       Math.floor((DURATION * EXAMPLE_SR - BUFFER_LENGTH) / HOP_LENGTH) + 1;
 
   return [times, MEL_COUNT, 1];
-}
-
-export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
-  // Flatten this spectrogram into a 2D array.
-  const times = spec.length;
-  const freqs = spec[0].length;
-  const data = new Float32Array(times * freqs);
-  for (let i = 0; i < times; i++) {
-    const mel = spec[i];
-    const offset = i * freqs;
-    data.set(mel, offset);
-  }
-  // Normalize the whole input to be in [0, 1].
-  const shape: [number, number, number, number] = [1, times, freqs, 1];
-  // this.normalizeInPlace(data, 0, 1);
-  return tensor4d(Array.prototype.slice.call(data), shape);
 }
 
 export class CommandRecognizer extends EventEmitter {

@@ -15,7 +15,6 @@
  */
 
 import * as tf from '@tensorflow/tfjs';
-import {Tensor} from '@tensorflow/tfjs-core';
 
 export function labelArrayToString(label: Float32Array, allLabels: string[]) {
   const [ind, ] = argmax(label);
@@ -71,7 +70,7 @@ export class Interval {
   }
 }
 
-export function normalize(x: Tensor) {
+export function normalize(x: tf.Tensor) {
   return tf.tidy(() => {
     const mean = tf.mean(x);
     mean.print();
@@ -127,4 +126,20 @@ export function plotSpectrogram(
       ctx.fillRect(x, y, pixelWidth, pixelHeight);
     }
   }
+}
+
+export function melSpectrogramToInput(spec: Float32Array[]): tf.Tensor {
+  // Flatten this spectrogram into a 2D array.
+  const times = spec.length;
+  const freqs = spec[0].length;
+  const data = new Float32Array(times * freqs);
+  for (let i = 0; i < times; i++) {
+    const mel = spec[i];
+    const offset = i * freqs;
+    data.set(mel, offset);
+  }
+  // Normalize the whole input to be in [0, 1].
+  const shape: [number, number, number, number] = [1, times, freqs, 1];
+  // this.normalizeInPlace(data, 0, 1);
+  return tf.tensor4d(Array.prototype.slice.call(data), shape);
 }

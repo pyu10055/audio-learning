@@ -21,13 +21,12 @@ const SR = 16000;
 const hannWindowMap: {[key: number]: number[]} = {};
 let context: AudioContext;
 
-
 export class AudioUtils {
   startIndex = 0;
   endIndex = 0;
   bandMapper: number[] = [];
   context: AudioContext;
-  
+
   constructor() {}
 
   GetPeriodicHann(windowLength: number): number[] {
@@ -147,7 +146,8 @@ export class AudioUtils {
       fftEnergies: Float32Array, filterbank: Float32Array,
       melCount = 40): Float32Array {
     const out = new Float32Array(melCount);
-    for (let i = this.startIndex; i <= this.endIndex; i++) {  // For each FFT bin
+    for (let i = this.startIndex; i <= this.endIndex;
+         i++) {  // For each FFT bin
       const specVal = Math.sqrt(fftEnergies[i]);
       const weighted = specVal * filterbank[i];
       let channel = this.bandMapper[i];

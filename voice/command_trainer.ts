@@ -19,14 +19,15 @@ import {nextFrame} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
 // tslint:disable-next-line:max-line-length
-import {GOOGLE_CLOUD_STORAGE_DIR, melSpectrogramToInput, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
 import {Dataset} from './dataset';
+// tslint:disable-next-line:max-line-length
 import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
 import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {TransferModel} from './transfer_model';
 // tslint:disable-next-line:max-line-length
 import {IS_MFCC_ENABLED} from './types';
-import {plotSpectrogram} from './util';
+import {melSpectrogramToInput, plotSpectrogram} from './util';
 
 export class CommandTrainer extends EventEmitter {
   model: FrozenModel;

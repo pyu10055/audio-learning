@@ -29,11 +29,11 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
   // The mel filterbank (calculate it only once).
   melFilterbank: Float32Array;
   // The script node doing the Web Audio processing.
-  //scriptNode: ScriptProcessorNode;
+  // scriptNode: ScriptProcessorNode;
   // For dealing with a circular buffer of audio samples.
   circularBuffer: CircularAudioBuffer;
   playbackBuffer: CircularAudioBuffer;
-  audioUtils = new AudioUtils;
+  audioUtils = new AudioUtils();
   config(params: Params) {
     Object.assign(this, params);
     this.bufferCount = Math.floor(
@@ -48,8 +48,8 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
     // The mel filterbank is actually half of the size of the number of samples,
     // since the FFT array is complex valued.
     this.fftSize = nextPowerOfTwo(this.bufferLength);
-    this.melFilterbank =
-        this.audioUtils.createMelFilterbank(this.fftSize / 2 + 1, this.melCount);
+    this.melFilterbank = this.audioUtils.createMelFilterbank(
+        this.fftSize / 2 + 1, this.melCount);
 
     this.circularBuffer = new CircularAudioBuffer(20000);
     this.playbackBuffer = new CircularAudioBuffer(20000);
@@ -103,8 +103,8 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
           const fftEnergies = this.audioUtils.fftEnergies(fft);
           const melEnergies =
               this.audioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
-              const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
-              this.images.push(melEnergies);
+          const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
+          this.images.push(melEnergies);
 
           if (this.features.length < this.bufferCount) {
             if (this.isMfccEnabled) {
@@ -114,7 +114,7 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
             }
           }
 
-          if (!resolved && this.features.length === this.bufferCount) {            
+          if (!resolved && this.features.length === this.bufferCount) {
             this.audioUtils.playbackArrayBuffer(
                 this.playbackBuffer.getBuffer(), 16000);
             resolved = true;
@@ -127,12 +127,12 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
       this.buffer.start();
       this.source.startRendering().catch(err => {
         console.log('Failed to render offline audio context:', err);
-      });  
+      });
     });
     return promise;
   }
   stop() {
-    //this.scriptNode.disconnect(this.source.destination);
+    // this.scriptNode.disconnect(this.source.destination);
     if (this.buffer) {
       this.buffer.stop();
     }
