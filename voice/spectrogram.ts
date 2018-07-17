@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {audioCtx} from './streaming_feature_extractor';
+import {audioCtx} from './soft_streaming_feature_extractor';
 export class Spectrogram {
   running = false;
   analyser: AnalyserNode;

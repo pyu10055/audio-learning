@@ -87,17 +87,26 @@ vorpal.command('dataset size', 'Show the size of the dataset')
       console.log(chalk.green('dataset size = ' + model.size()));
       cb();
     });
-vorpal.command('train')
+vorpal.command('train [epoch]')
     .alias('t')
     .description('train all audio dataset')
     .action((args) => {
       spinner = ora('training models ...').start();
       return model
-          .train(20, {
+          .train(parseInt(args.epoch as string) || 20, {
             onBatchEnd: async (batch, logs) => {
-              spinner.text = chalk.green('loss: ' + logs.loss.toFixed(5));
+              spinner.text = chalk.green(
+                  'loss: ' + logs.loss.toFixed(5));
               spinner.render();
-            }
+            },
+            onEpochEnd: async (epoch, logs) => {
+              spinner.succeed(chalk.green(
+                "epoch: " + epoch +
+                ', loss: ' + logs.loss.toFixed(5) +
+                ', accuracy: ' + logs.acc.toFixed(5) +
+                ', validation accuracy: ' + logs.val_acc.toFixed(5)));
+              spinner.start();
+              }
           })
           .then(() => spinner.stop());
     });
