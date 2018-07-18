@@ -1,7 +1,6 @@
 import {EventEmitter} from 'eventemitter3';
 
 import {AudioUtils} from '../../voice/audio_utils';
-import {CircularAudioBuffer} from '../../voice/circular_audio_buffer';
 import {Params} from '../../voice/types';
 import {nextPowerOfTwo} from '../../voice/util';
 
@@ -24,10 +23,6 @@ export class WavFileFeatureExtractor extends EventEmitter {
   bufferCount: number;
   // The mel filterbank (calculate it only once).
   melFilterbank: Float32Array;
-  // The script node doing the Web Audio processing.
-  // scriptNode: ScriptProcessorNode;
-  // For dealing with a circular buffer of audio samples.
-  circularBuffer: CircularAudioBuffer;
   audioUtils = new AudioUtils();
   config(params: Params) {
     Object.assign(this, params);
@@ -45,19 +40,13 @@ export class WavFileFeatureExtractor extends EventEmitter {
     this.fftSize = nextPowerOfTwo(this.bufferLength);
     this.melFilterbank = this.audioUtils.createMelFilterbank(
         this.fftSize / 2 + 1, this.melCount);
-
-    this.circularBuffer = new CircularAudioBuffer(20000);
   }
 
-  start(samples?: Float32Array): Float32Array[] {
+  start(samples: Float32Array): Float32Array[] {
     this.features = [];
-    // Clear all buffers.
-    this.circularBuffer.clear();
-    this.circularBuffer.addBuffer(samples);
-
     // Get buffer(s) out of the circular buffer. Note that there may be
     // multiple available, and if there are, we should get them all.
-    const buffers = this.getFullBuffers();
+    const buffers = this.getFullBuffers(samples);
 
     for (const buffer of buffers) {
       // console.log(`Got buffer of length ${buffer.length}.`);
@@ -68,12 +57,10 @@ export class WavFileFeatureExtractor extends EventEmitter {
           this.audioUtils.applyFilterbank(fftEnergies, this.melFilterbank);
       const mfccs = this.audioUtils.cepstrumFromEnergySpectrum(melEnergies);
 
-      if (this.features.length < this.bufferCount) {
-        if (this.isMfccEnabled) {
-          this.features.push(mfccs);
-        } else {
-          this.features.push(melEnergies);
-        }
+      if (this.isMfccEnabled) {
+        this.features.push(mfccs);
+      } else {
+        this.features.push(melEnergies);
       }
     }
     return this.features;
@@ -95,14 +82,14 @@ export class WavFileFeatureExtractor extends EventEmitter {
   /**
    * Get as many full buffers as are available in the circular buffer.
    */
-  private getFullBuffers() {
+  private getFullBuffers(sample: Float32Array) {
     const out = [];
+    let index = 0;
     // While we have enough data in the buffer.
-    while (this.circularBuffer.getLength() >= this.bufferLength) {
+    while (index <= sample.length - this.bufferLength) {
       // Get a buffer of desired size.
-      const buffer = this.circularBuffer.getBuffer(this.bufferLength);
-      // Remove a hop's worth of data from the buffer.
-      this.circularBuffer.popBuffer(this.hopLength);
+      const buffer = sample.slice(index, index + this.bufferLength);
+      index += this.hopLength;
       out.push(buffer);
     }
     return out;

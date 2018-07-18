@@ -55,37 +55,68 @@ export class AudioModel {
   }
 
   async loadAll(dir: string, callback: Function) {
+    const promises = [];
     this.labels.forEach(async (label, index) => {
       callback('loading label: ' + label + '(' + index + ')');
-      await this.loadData(path.resolve(dir, label), label, callback);
-      callback('finished loading label: ' + label, true);
+      promises.push(
+          this.loadDataArray(path.resolve(dir, label), callback).then(v => {
+            callback(
+                'finished loading label: ' + label + '(' + index + ')', true);
+            return [v, index];
+          }));
     });
+
+    let allSpecs = await Promise.all(promises);
+    console.log('allSpecs=', allSpecs.length);
+    console.log('allSpecs[0][0]=', allSpecs[0][0].length);
+    allSpecs = allSpecs
+                   .map((specs, i) => {
+                     const index = specs[1];
+                     console.log(i, index);
+                     return specs[0].map(spec => [spec, index]);
+                   })
+                   .reduce(function(acc, currentValue) {
+                     return acc.concat(currentValue);
+                   }, []);
+
+    console.log('shuffledAllSpecs', allSpecs.length);
+    tf.util.shuffle(allSpecs);
+    const specs = allSpecs.map(spec => spec[0]);
+    console.log('specs', specs.length);
+    const labels = allSpecs.map(spec => spec[1]);
+    console.log('labels', labels.length);
+    this.dataset.addExamples(
+        this.melSpectrogramToInput(specs),
+        tf.oneHot(labels, this.labels.length));
   }
 
-  loadData(dir: string, label: string, callback: Function) {
+  async loadData(dir: string, label: string, callback: Function) {
     const index = this.labels.indexOf(label);
-    return new Promise((resolve, reject) => {
+    const specs = await this.loadDataArray(dir, callback);
+    this.dataset.addExamples(
+        this.melSpectrogramToInput(specs),
+        tf.oneHot(tf.fill([specs.length], index, 'int32'), this.labels.length));
+  }
+
+  private loadDataArray(dir: string, callback: Function) {
+    return new Promise<Float32Array[][]>((resolve, reject) => {
       fs.readdir(dir, (err, filenames) => {
         if (err) {
           reject(err);
         }
-        const specs: Float32Array[][] = [];
+        let specs: Float32Array[][] = [];
         filenames.forEach((filename) => {
           callback('decoding ' + dir + '/' + filename + '...');
-          const spec = this.decode(dir + '/' + filename);
-          if (spec.length === 98) {
-            specs.push(spec);
+          const spec = this.splitSpecs(this.decode(dir + '/' + filename));
+          if (!!spec) {
+            specs = specs.concat(spec);
           }
           callback('decoding ' + dir + '/' + filename + '...done');
         });
-        this.dataset.addExamples(
-            this.melSpectrogramToInput(specs),
-            tf.oneHot(tf.fill([specs.length], index, 'int32'), this.labels.length));
-        resolve();
+        resolve(specs);
       });
     });
   }
-
   decode(filename: string) {
     const result = wav.decode(fs.readFileSync(filename));
     return this.featureExtractor.start(result.channelData[0]);
@@ -111,12 +142,24 @@ export class AudioModel {
         0;
   }
 
+  splitSpecs(spec: Float32Array[]) {
+    if (spec.length >= 98) {
+      const output = [];
+      for (let i = 0; i <= (spec.length - 98); i += 32) {
+        output.push(spec.slice(i, i + 98));
+      }
+      return output;
+    }
+    return undefined;
+  }
+
   melSpectrogramToInput(specs: Float32Array[][]): tf.Tensor {
     // Flatten this spectrogram into a 2D array.
     const batch = specs.length;
     const times = specs[0].length;
     const freqs = specs[0][0].length;
     const data = new Float32Array(batch * times * freqs);
+    console.log(data.length);
     for (let j = 0; j < batch; j++) {
       const spec = specs[j];
       for (let i = 0; i < times; i++) {
@@ -128,6 +171,6 @@ export class AudioModel {
     // Normalize the whole input to be in [0, 1].
     const shape: [number, number, number, number] = [batch, times, freqs, 1];
     // this.normalizeInPlace(data, 0, 1);
-    return tf.tensor4d(Array.prototype.slice.call(data), shape);
+    return tf.tensor4d(data, shape);
   }
 }

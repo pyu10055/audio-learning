@@ -57,9 +57,7 @@ vorpal
                   spinner.render();
                 }
               })
-          .then(() => spinner.stop(), (err) => {
-            spinner.fail('failed to load the dataset: ' + err);
-          });
+          .then(() => spinner.stop());
     });
 vorpal
     .command(
