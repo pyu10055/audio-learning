@@ -1,6 +1,11 @@
 import * as tf from '@tensorflow/tfjs';
 import {Dataset} from './dataset';
-import { TensorInfo } from '@tensorflow/tfjs-core/dist/types';
+
+export interface TensorInfo {
+  name: string;
+  shape?: number[];
+  dtype: tf.DataType;
+}
 
 export interface SourceModelConfig {
   model: tf.InferenceModel;
@@ -115,8 +120,9 @@ export class TransferModel implements tf.InferenceModel {
 
     // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
     return (await this.model.fit(
-        this.features(this.dataset.xs), this.dataset.ys,
-        {batchSize, epochs: EPOCHS, callbacks: this.trainCallback})).history;
+                this.features(this.dataset.xs), this.dataset.ys,
+                {batchSize, epochs: EPOCHS, callbacks: this.trainCallback}))
+        .history;
   }
 
   predict(

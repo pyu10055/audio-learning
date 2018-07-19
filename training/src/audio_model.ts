@@ -57,34 +57,26 @@ export class AudioModel {
   async loadAll(dir: string, callback: Function) {
     const promises = [];
     this.labels.forEach(async (label, index) => {
-      callback('loading label: ' + label + '(' + index + ')');
+      callback(`loading label: ${label} (${index})`);
       promises.push(
           this.loadDataArray(path.resolve(dir, label), callback).then(v => {
-            callback(
-                'finished loading label: ' + label + '(' + index + ')', true);
+            callback(`finished loading label: ${label} (${index})`, true);
             return [v, index];
           }));
     });
 
     let allSpecs = await Promise.all(promises);
-    console.log('allSpecs=', allSpecs.length);
-    console.log('allSpecs[0][0]=', allSpecs[0][0].length);
     allSpecs = allSpecs
                    .map((specs, i) => {
                      const index = specs[1];
                      console.log(i, index);
                      return specs[0].map(spec => [spec, index]);
                    })
-                   .reduce(function(acc, currentValue) {
-                     return acc.concat(currentValue);
-                   }, []);
+                   .reduce((acc, currentValue) => acc.concat(currentValue), []);
 
-    console.log('shuffledAllSpecs', allSpecs.length);
     tf.util.shuffle(allSpecs);
     const specs = allSpecs.map(spec => spec[0]);
-    console.log('specs', specs.length);
     const labels = allSpecs.map(spec => spec[1]);
-    console.log('labels', labels.length);
     this.dataset.addExamples(
         this.melSpectrogramToInput(specs),
         tf.oneHot(labels, this.labels.length));

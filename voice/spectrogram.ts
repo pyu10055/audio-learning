@@ -32,7 +32,7 @@ export class Spectrogram {
           this.animationFrameId =
               requestAnimationFrame(this.renderChart.bind(this));
           // just for blocks viewer size
-          d3.select(self.frameElement).style('height', this.svgHeight + 'px');
+          d3.select(self.frameElement).style('height', `${this.svgHeight} px`);
         });
       } else {
         console.log('getUserMedia not supported on your browser!');
@@ -75,11 +75,12 @@ export class Spectrogram {
     rects.enter().append('rect');
 
     rects.attr('width', () => this.svgWidth / this.frequencyData.length)
-        .attr('height', (d: any) => heightScale(d))
+        .attr('height', (d: number) => heightScale(d))
         .attr(
             'x',
-            (d: any, i: any) => i * this.svgWidth / this.frequencyData.length)
-        .attr('y', (d: any) => this.svgHeight - heightScale(d))
+            (d: number, i: number) =>
+                i * this.svgWidth / this.frequencyData.length)
+        .attr('y', (d: number) => this.svgHeight - heightScale(d))
         .attr('fill', 'None')
         .attr('stroke-width', 4)
         .attr('stroke-opacity', 0.4)
