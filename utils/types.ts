@@ -1,4 +1,4 @@
-import { InferenceModel } from "@tensorflow/tfjs";
+import {InferenceModel} from '@tensorflow/tfjs';
 
 export interface Params {
   inputBufferLength?: number;

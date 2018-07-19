@@ -27,8 +27,8 @@ import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor'
 import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 // import {StreamingFFT} from './streaming_fft';
 // tslint:disable-next-line:max-line-length
-import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, MODELS, ModelType, SUPPRESSION_TIME} from './types';
-import {melSpectrogramToInput, normalize, plotSpectrogram} from './util';
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, MODELS, ModelType, SUPPRESSION_TIME} from './utils/types';
+import {melSpectrogramToInput, normalize, plotSpectrogram} from './utils/util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';

@@ -1,5 +1,5 @@
-import {AudioUtils} from './audio_utils';
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
+import {AudioUtils} from './utils/audio_utils';
 
 export class NativeOfflineFeatureExtractor extends OfflineFeatureExtractor {
   // How many fft bins to use.

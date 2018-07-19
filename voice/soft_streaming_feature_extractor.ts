@@ -14,9 +14,9 @@
  * the License.
  */
 
-import {AudioUtils} from './audio_utils';
 import {StreamingFeatureExtractor} from './streaming_feature_extractor';
-import {nextPowerOfTwo} from './util';
+import {AudioUtils} from './utils/audio_utils';
+import {nextPowerOfTwo} from './utils/util';
 
 export const audioCtx = new AudioContext();
 /**

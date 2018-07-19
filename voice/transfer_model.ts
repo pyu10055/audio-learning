@@ -1,5 +1,5 @@
 import * as tf from '@tensorflow/tfjs';
-import {Dataset} from './dataset';
+import {Dataset} from './utils/dataset';
 
 export interface TensorInfo {
   name: string;

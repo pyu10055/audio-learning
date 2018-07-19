@@ -8,8 +8,8 @@ import {NativeOfflineFeatureExtractor} from './native_offline_feature_extractor'
 import {OfflineFeatureExtractor} from './offline_feature_extractor';
 // tslint:disable-next-line:max-line-length
 import {SoftOfflineFeatureExtractor} from './soft_offline_feature_extractor';
-import {FeatureExtractor, MODELS, ModelType, Params} from './types';
-import {normalize, plotSpectrogram} from './util';
+import {FeatureExtractor, MODELS, ModelType, Params} from './utils/types';
+import {normalize, plotSpectrogram} from './utils/util';
 
 export const EVENT_NAME = 'update';
 export const MIN_SCORE = 0.6;

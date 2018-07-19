@@ -1,8 +1,8 @@
 import {EventEmitter} from 'eventemitter3';
 
-import {AudioUtils} from '../../voice/audio_utils';
-import {Params} from '../../voice/types';
-import {nextPowerOfTwo} from '../../voice/util';
+import {AudioUtils} from './utils/audio_utils';
+import {Params} from './utils/types';
+import {nextPowerOfTwo} from './utils/util';
 
 export class WavFileFeatureExtractor extends EventEmitter {
   private features: Float32Array[];

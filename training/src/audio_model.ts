@@ -69,7 +69,6 @@ export class AudioModel {
     allSpecs = allSpecs
                    .map((specs, i) => {
                      const index = specs[1];
-                     console.log(i, index);
                      return specs[0].map(spec => [spec, index]);
                    })
                    .reduce((acc, currentValue) => acc.concat(currentValue), []);
