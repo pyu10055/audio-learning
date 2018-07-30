@@ -22,7 +22,7 @@ import {CommandTrainer} from './command_trainer';
 import {ModelEvaluation} from './model_evaluation';
 import {Spectrogram} from './spectrogram';
 import {audioCtx} from './streaming_feature_extractor';
-import {ModelType} from './types';
+import {ModelType} from './utils/types';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',

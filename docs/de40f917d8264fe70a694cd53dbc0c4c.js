@@ -71,7 +71,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({375:[function(require,module,exports) {
+})({373:[function(require,module,exports) {
 var global = (1,eval)("this");
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -801,7 +801,7 @@ var global = (1,eval)("this");
   (function() { return this })() || Function("return this")()
 );
 
-},{}],234:[function(require,module,exports) {
+},{}],232:[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -838,10 +838,10 @@ if (hadRuntime) {
   }
 }
 
-},{"./runtime":375}],23:[function(require,module,exports) {
+},{"./runtime":373}],23:[function(require,module,exports) {
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":234}],552:[function(require,module,exports) {
+},{"regenerator-runtime":232}],554:[function(require,module,exports) {
 
 },{}],587:[function(require,module,exports) {
 // 7.1.4 ToInteger
@@ -851,14 +851,14 @@ module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-},{}],586:[function(require,module,exports) {
+},{}],588:[function(require,module,exports) {
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
 
-},{}],560:[function(require,module,exports) {
+},{}],563:[function(require,module,exports) {
 var toInteger = require('./_to-integer');
 var defined = require('./_defined');
 // true  -> String#at
@@ -877,10 +877,10 @@ module.exports = function (TO_STRING) {
   };
 };
 
-},{"./_to-integer":587,"./_defined":586}],572:[function(require,module,exports) {
+},{"./_to-integer":587,"./_defined":588}],571:[function(require,module,exports) {
 module.exports = true;
 
-},{}],562:[function(require,module,exports) {
+},{}],560:[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -889,17 +889,17 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-},{}],558:[function(require,module,exports) {
+},{}],557:[function(require,module,exports) {
 var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
-},{}],577:[function(require,module,exports) {
+},{}],575:[function(require,module,exports) {
 module.exports = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
   return it;
 };
 
-},{}],573:[function(require,module,exports) {
+},{}],572:[function(require,module,exports) {
 // optional / simple context binding
 var aFunction = require('./_a-function');
 module.exports = function (fn, that, length) {
@@ -921,19 +921,19 @@ module.exports = function (fn, that, length) {
   };
 };
 
-},{"./_a-function":577}],575:[function(require,module,exports) {
+},{"./_a-function":575}],574:[function(require,module,exports) {
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 
-},{}],596:[function(require,module,exports) {
+},{}],586:[function(require,module,exports) {
 var isObject = require('./_is-object');
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
 };
 
-},{"./_is-object":575}],613:[function(require,module,exports) {
+},{"./_is-object":574}],615:[function(require,module,exports) {
 module.exports = function (exec) {
   try {
     return !!exec();
@@ -942,13 +942,13 @@ module.exports = function (exec) {
   }
 };
 
-},{}],593:[function(require,module,exports) {
+},{}],594:[function(require,module,exports) {
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_fails":613}],611:[function(require,module,exports) {
+},{"./_fails":615}],611:[function(require,module,exports) {
 var isObject = require('./_is-object');
 var document = require('./_global').document;
 // typeof document.createElement is 'object' in old IE
@@ -957,12 +957,12 @@ module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
 
-},{"./_is-object":575,"./_global":562}],615:[function(require,module,exports) {
+},{"./_is-object":574,"./_global":560}],613:[function(require,module,exports) {
 module.exports = !require('./_descriptors') && !require('./_fails')(function () {
   return Object.defineProperty(require('./_dom-create')('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_descriptors":593,"./_fails":613,"./_dom-create":611}],614:[function(require,module,exports) {
+},{"./_descriptors":594,"./_fails":615,"./_dom-create":611}],614:[function(require,module,exports) {
 // 7.1.1 ToPrimitive(input [, PreferredType])
 var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
@@ -976,7 +976,7 @@ module.exports = function (it, S) {
   throw TypeError("Can't convert object to primitive value");
 };
 
-},{"./_is-object":575}],591:[function(require,module,exports) {
+},{"./_is-object":574}],593:[function(require,module,exports) {
 var anObject = require('./_an-object');
 var IE8_DOM_DEFINE = require('./_ie8-dom-define');
 var toPrimitive = require('./_to-primitive');
@@ -994,7 +994,7 @@ exports.f = require('./_descriptors') ? Object.defineProperty : function defineP
   return O;
 };
 
-},{"./_an-object":596,"./_ie8-dom-define":615,"./_to-primitive":614,"./_descriptors":593}],592:[function(require,module,exports) {
+},{"./_an-object":586,"./_ie8-dom-define":613,"./_to-primitive":614,"./_descriptors":594}],592:[function(require,module,exports) {
 module.exports = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
@@ -1004,7 +1004,7 @@ module.exports = function (bitmap, value) {
   };
 };
 
-},{}],563:[function(require,module,exports) {
+},{}],566:[function(require,module,exports) {
 var dP = require('./_object-dp');
 var createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function (object, key, value) {
@@ -1014,13 +1014,13 @@ module.exports = require('./_descriptors') ? function (object, key, value) {
   return object;
 };
 
-},{"./_object-dp":591,"./_property-desc":592,"./_descriptors":593}],600:[function(require,module,exports) {
+},{"./_object-dp":593,"./_property-desc":592,"./_descriptors":594}],597:[function(require,module,exports) {
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-},{}],567:[function(require,module,exports) {
+},{}],559:[function(require,module,exports) {
 
 var global = require('./_global');
 var core = require('./_core');
@@ -1085,10 +1085,10 @@ $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
-},{"./_global":562,"./_core":558,"./_ctx":573,"./_hide":563,"./_has":600}],599:[function(require,module,exports) {
+},{"./_global":560,"./_core":557,"./_ctx":572,"./_hide":566,"./_has":597}],598:[function(require,module,exports) {
 module.exports = require('./_hide');
 
-},{"./_hide":563}],565:[function(require,module,exports) {
+},{"./_hide":566}],567:[function(require,module,exports) {
 module.exports = {};
 
 },{}],601:[function(require,module,exports) {
@@ -1106,7 +1106,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
-},{"./_cof":601}],590:[function(require,module,exports) {
+},{"./_cof":601}],591:[function(require,module,exports) {
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = require('./_iobject');
 var defined = require('./_defined');
@@ -1114,7 +1114,7 @@ module.exports = function (it) {
   return IObject(defined(it));
 };
 
-},{"./_iobject":612,"./_defined":586}],603:[function(require,module,exports) {
+},{"./_iobject":612,"./_defined":588}],604:[function(require,module,exports) {
 // 7.1.15 ToLength
 var toInteger = require('./_to-integer');
 var min = Math.min;
@@ -1156,7 +1156,7 @@ module.exports = function (IS_INCLUDES) {
   };
 };
 
-},{"./_to-iobject":590,"./_to-length":603,"./_to-absolute-index":634}],595:[function(require,module,exports) {
+},{"./_to-iobject":591,"./_to-length":604,"./_to-absolute-index":634}],595:[function(require,module,exports) {
 
 var core = require('./_core');
 var global = require('./_global');
@@ -1171,21 +1171,21 @@ var store = global[SHARED] || (global[SHARED] = {});
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
-},{"./_core":558,"./_global":562,"./_library":572}],594:[function(require,module,exports) {
+},{"./_core":557,"./_global":560,"./_library":571}],596:[function(require,module,exports) {
 var id = 0;
 var px = Math.random();
 module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-},{}],616:[function(require,module,exports) {
+},{}],617:[function(require,module,exports) {
 var shared = require('./_shared')('keys');
 var uid = require('./_uid');
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
-},{"./_shared":595,"./_uid":594}],632:[function(require,module,exports) {
+},{"./_shared":595,"./_uid":596}],632:[function(require,module,exports) {
 var has = require('./_has');
 var toIObject = require('./_to-iobject');
 var arrayIndexOf = require('./_array-includes')(false);
@@ -1204,7 +1204,7 @@ module.exports = function (object, names) {
   return result;
 };
 
-},{"./_has":600,"./_to-iobject":590,"./_array-includes":633,"./_shared-key":616}],630:[function(require,module,exports) {
+},{"./_has":597,"./_to-iobject":591,"./_array-includes":633,"./_shared-key":617}],631:[function(require,module,exports) {
 // IE 8- don't enum bug keys
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
@@ -1219,7 +1219,7 @@ module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
 };
 
-},{"./_object-keys-internal":632,"./_enum-bug-keys":630}],631:[function(require,module,exports) {
+},{"./_object-keys-internal":632,"./_enum-bug-keys":631}],630:[function(require,module,exports) {
 var dP = require('./_object-dp');
 var anObject = require('./_an-object');
 var getKeys = require('./_object-keys');
@@ -1234,11 +1234,11 @@ module.exports = require('./_descriptors') ? Object.defineProperties : function 
   return O;
 };
 
-},{"./_object-dp":591,"./_an-object":596,"./_object-keys":626,"./_descriptors":593}],610:[function(require,module,exports) {
+},{"./_object-dp":593,"./_an-object":586,"./_object-keys":626,"./_descriptors":594}],610:[function(require,module,exports) {
 var document = require('./_global').document;
 module.exports = document && document.documentElement;
 
-},{"./_global":562}],618:[function(require,module,exports) {
+},{"./_global":560}],618:[function(require,module,exports) {
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = require('./_an-object');
 var dPs = require('./_object-dps');
@@ -1281,7 +1281,7 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : dPs(result, Properties);
 };
 
-},{"./_an-object":596,"./_object-dps":631,"./_enum-bug-keys":630,"./_shared-key":616,"./_dom-create":611,"./_html":610}],564:[function(require,module,exports) {
+},{"./_an-object":586,"./_object-dps":630,"./_enum-bug-keys":631,"./_shared-key":617,"./_dom-create":611,"./_html":610}],568:[function(require,module,exports) {
 var store = require('./_shared')('wks');
 var uid = require('./_uid');
 var Symbol = require('./_global').Symbol;
@@ -1294,7 +1294,7 @@ var $exports = module.exports = function (name) {
 
 $exports.store = store;
 
-},{"./_shared":595,"./_uid":594,"./_global":562}],582:[function(require,module,exports) {
+},{"./_shared":595,"./_uid":596,"./_global":560}],582:[function(require,module,exports) {
 var def = require('./_object-dp').f;
 var has = require('./_has');
 var TAG = require('./_wks')('toStringTag');
@@ -1303,7 +1303,7 @@ module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
 };
 
-},{"./_object-dp":591,"./_has":600,"./_wks":564}],597:[function(require,module,exports) {
+},{"./_object-dp":593,"./_has":597,"./_wks":568}],600:[function(require,module,exports) {
 'use strict';
 var create = require('./_object-create');
 var descriptor = require('./_property-desc');
@@ -1318,14 +1318,14 @@ module.exports = function (Constructor, NAME, next) {
   setToStringTag(Constructor, NAME + ' Iterator');
 };
 
-},{"./_object-create":618,"./_property-desc":592,"./_set-to-string-tag":582,"./_hide":563,"./_wks":564}],617:[function(require,module,exports) {
+},{"./_object-create":618,"./_property-desc":592,"./_set-to-string-tag":582,"./_hide":566,"./_wks":568}],616:[function(require,module,exports) {
 // 7.1.13 ToObject(argument)
 var defined = require('./_defined');
 module.exports = function (it) {
   return Object(defined(it));
 };
 
-},{"./_defined":586}],598:[function(require,module,exports) {
+},{"./_defined":588}],599:[function(require,module,exports) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = require('./_has');
 var toObject = require('./_to-object');
@@ -1340,7 +1340,7 @@ module.exports = Object.getPrototypeOf || function (O) {
   } return O instanceof Object ? ObjectProto : null;
 };
 
-},{"./_has":600,"./_to-object":617,"./_shared-key":616}],559:[function(require,module,exports) {
+},{"./_has":597,"./_to-object":616,"./_shared-key":617}],564:[function(require,module,exports) {
 'use strict';
 var LIBRARY = require('./_library');
 var $export = require('./_export');
@@ -1411,7 +1411,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
   return methods;
 };
 
-},{"./_library":572,"./_export":567,"./_redefine":599,"./_hide":563,"./_iterators":565,"./_iter-create":597,"./_set-to-string-tag":582,"./_object-gpo":598,"./_wks":564}],553:[function(require,module,exports) {
+},{"./_library":571,"./_export":559,"./_redefine":598,"./_hide":566,"./_iterators":567,"./_iter-create":600,"./_set-to-string-tag":582,"./_object-gpo":599,"./_wks":568}],555:[function(require,module,exports) {
 'use strict';
 var $at = require('./_string-at')(true);
 
@@ -1430,15 +1430,15 @@ require('./_iter-define')(String, 'String', function (iterated) {
   return { value: point, done: false };
 });
 
-},{"./_string-at":560,"./_iter-define":559}],588:[function(require,module,exports) {
+},{"./_string-at":563,"./_iter-define":564}],589:[function(require,module,exports) {
 module.exports = function () { /* empty */ };
 
-},{}],589:[function(require,module,exports) {
+},{}],590:[function(require,module,exports) {
 module.exports = function (done, value) {
   return { value: value, done: !!done };
 };
 
-},{}],561:[function(require,module,exports) {
+},{}],565:[function(require,module,exports) {
 'use strict';
 var addToUnscopables = require('./_add-to-unscopables');
 var step = require('./_iter-step');
@@ -1474,7 +1474,7 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
-},{"./_add-to-unscopables":588,"./_iter-step":589,"./_iterators":565,"./_to-iobject":590,"./_iter-define":559}],554:[function(require,module,exports) {
+},{"./_add-to-unscopables":589,"./_iter-step":590,"./_iterators":567,"./_to-iobject":591,"./_iter-define":564}],556:[function(require,module,exports) {
 
 require('./es6.array.iterator');
 var global = require('./_global');
@@ -1496,7 +1496,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
   Iterators[NAME] = Iterators.Array;
 }
 
-},{"./es6.array.iterator":561,"./_global":562,"./_hide":563,"./_iterators":565,"./_wks":564}],574:[function(require,module,exports) {
+},{"./es6.array.iterator":565,"./_global":560,"./_hide":566,"./_iterators":567,"./_wks":568}],573:[function(require,module,exports) {
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = require('./_cof');
 var TAG = require('./_wks')('toStringTag');
@@ -1521,7 +1521,7 @@ module.exports = function (it) {
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
 
-},{"./_cof":601,"./_wks":564}],576:[function(require,module,exports) {
+},{"./_cof":601,"./_wks":568}],576:[function(require,module,exports) {
 module.exports = function (it, Constructor, name, forbiddenField) {
   if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
     throw TypeError(name + ': incorrect invocation!');
@@ -1542,7 +1542,7 @@ module.exports = function (iterator, fn, value, entries) {
   }
 };
 
-},{"./_an-object":596}],604:[function(require,module,exports) {
+},{"./_an-object":586}],603:[function(require,module,exports) {
 // check on default Array iterator
 var Iterators = require('./_iterators');
 var ITERATOR = require('./_wks')('iterator');
@@ -1552,7 +1552,7 @@ module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
 
-},{"./_iterators":565,"./_wks":564}],605:[function(require,module,exports) {
+},{"./_iterators":567,"./_wks":568}],605:[function(require,module,exports) {
 var classof = require('./_classof');
 var ITERATOR = require('./_wks')('iterator');
 var Iterators = require('./_iterators');
@@ -1562,7 +1562,7 @@ module.exports = require('./_core').getIteratorMethod = function (it) {
     || Iterators[classof(it)];
 };
 
-},{"./_classof":574,"./_wks":564,"./_iterators":565,"./_core":558}],578:[function(require,module,exports) {
+},{"./_classof":573,"./_wks":568,"./_iterators":567,"./_core":557}],577:[function(require,module,exports) {
 var ctx = require('./_ctx');
 var call = require('./_iter-call');
 var isArrayIter = require('./_is-array-iter');
@@ -1589,7 +1589,7 @@ var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) 
 exports.BREAK = BREAK;
 exports.RETURN = RETURN;
 
-},{"./_ctx":573,"./_iter-call":602,"./_is-array-iter":604,"./_an-object":596,"./_to-length":603,"./core.get-iterator-method":605}],570:[function(require,module,exports) {
+},{"./_ctx":572,"./_iter-call":602,"./_is-array-iter":603,"./_an-object":586,"./_to-length":604,"./core.get-iterator-method":605}],561:[function(require,module,exports) {
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = require('./_an-object');
 var aFunction = require('./_a-function');
@@ -1600,7 +1600,7 @@ module.exports = function (O, D) {
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
 };
 
-},{"./_an-object":596,"./_a-function":577,"./_wks":564}],609:[function(require,module,exports) {
+},{"./_an-object":586,"./_a-function":575,"./_wks":568}],609:[function(require,module,exports) {
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
 module.exports = function (fn, args, that) {
   var un = that === undefined;
@@ -1618,7 +1618,7 @@ module.exports = function (fn, args, that) {
   } return fn.apply(that, args);
 };
 
-},{}],579:[function(require,module,exports) {
+},{}],578:[function(require,module,exports) {
 
 
 var ctx = require('./_ctx');
@@ -1706,7 +1706,7 @@ module.exports = {
   clear: clearTask
 };
 
-},{"./_ctx":573,"./_invoke":609,"./_html":610,"./_dom-create":611,"./_global":562,"./_cof":601}],580:[function(require,module,exports) {
+},{"./_ctx":572,"./_invoke":609,"./_html":610,"./_dom-create":611,"./_global":560,"./_cof":601}],579:[function(require,module,exports) {
 
 
 var global = require('./_global');
@@ -1779,7 +1779,7 @@ module.exports = function () {
   };
 };
 
-},{"./_global":562,"./_task":579,"./_cof":601}],566:[function(require,module,exports) {
+},{"./_global":560,"./_task":578,"./_cof":601}],569:[function(require,module,exports) {
 'use strict';
 // 25.4.1.5 NewPromiseCapability(C)
 var aFunction = require('./_a-function');
@@ -1799,7 +1799,7 @@ module.exports.f = function (C) {
   return new PromiseCapability(C);
 };
 
-},{"./_a-function":577}],568:[function(require,module,exports) {
+},{"./_a-function":575}],570:[function(require,module,exports) {
 module.exports = function (exec) {
   try {
     return { e: false, v: exec() };
@@ -1808,14 +1808,14 @@ module.exports = function (exec) {
   }
 };
 
-},{}],581:[function(require,module,exports) {
+},{}],580:[function(require,module,exports) {
 
 var global = require('./_global');
 var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
 
-},{"./_global":562}],569:[function(require,module,exports) {
+},{"./_global":560}],562:[function(require,module,exports) {
 var anObject = require('./_an-object');
 var isObject = require('./_is-object');
 var newPromiseCapability = require('./_new-promise-capability');
@@ -1829,7 +1829,7 @@ module.exports = function (C, x) {
   return promiseCapability.promise;
 };
 
-},{"./_an-object":596,"./_is-object":575,"./_new-promise-capability":566}],583:[function(require,module,exports) {
+},{"./_an-object":586,"./_is-object":574,"./_new-promise-capability":569}],581:[function(require,module,exports) {
 var hide = require('./_hide');
 module.exports = function (target, src, safe) {
   for (var key in src) {
@@ -1838,7 +1838,7 @@ module.exports = function (target, src, safe) {
   } return target;
 };
 
-},{"./_hide":563}],584:[function(require,module,exports) {
+},{"./_hide":566}],583:[function(require,module,exports) {
 
 'use strict';
 var global = require('./_global');
@@ -1855,7 +1855,7 @@ module.exports = function (KEY) {
   });
 };
 
-},{"./_global":562,"./_core":558,"./_object-dp":591,"./_descriptors":593,"./_wks":564}],585:[function(require,module,exports) {
+},{"./_global":560,"./_core":557,"./_object-dp":593,"./_descriptors":594,"./_wks":568}],584:[function(require,module,exports) {
 var ITERATOR = require('./_wks')('iterator');
 var SAFE_CLOSING = false;
 
@@ -1879,7 +1879,7 @@ module.exports = function (exec, skipClosing) {
   return safe;
 };
 
-},{"./_wks":564}],555:[function(require,module,exports) {
+},{"./_wks":568}],552:[function(require,module,exports) {
 
 
 'use strict';
@@ -2169,7 +2169,7 @@ $export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(functi
   }
 });
 
-},{"./_library":572,"./_global":562,"./_ctx":573,"./_classof":574,"./_export":567,"./_is-object":575,"./_a-function":577,"./_an-instance":576,"./_for-of":578,"./_species-constructor":570,"./_task":579,"./_microtask":580,"./_new-promise-capability":566,"./_perform":568,"./_user-agent":581,"./_promise-resolve":569,"./_wks":564,"./_redefine-all":583,"./_set-to-string-tag":582,"./_set-species":584,"./_core":558,"./_iter-detect":585}],557:[function(require,module,exports) {
+},{"./_library":571,"./_global":560,"./_ctx":572,"./_classof":573,"./_export":559,"./_is-object":574,"./_a-function":575,"./_an-instance":576,"./_for-of":577,"./_species-constructor":561,"./_task":578,"./_microtask":579,"./_new-promise-capability":569,"./_perform":570,"./_user-agent":580,"./_promise-resolve":562,"./_wks":568,"./_redefine-all":581,"./_set-to-string-tag":582,"./_set-species":583,"./_core":557,"./_iter-detect":584}],553:[function(require,module,exports) {
 
 // https://github.com/tc39/proposal-promise-finally
 'use strict';
@@ -2192,7 +2192,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
   );
 } });
 
-},{"./_export":567,"./_core":558,"./_global":562,"./_species-constructor":570,"./_promise-resolve":569}],556:[function(require,module,exports) {
+},{"./_export":559,"./_core":557,"./_global":560,"./_species-constructor":561,"./_promise-resolve":562}],558:[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-promise-try
 var $export = require('./_export');
@@ -2206,7 +2206,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
   return promiseCapability.promise;
 } });
 
-},{"./_export":567,"./_new-promise-capability":566,"./_perform":568}],551:[function(require,module,exports) {
+},{"./_export":559,"./_new-promise-capability":569,"./_perform":570}],548:[function(require,module,exports) {
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');
@@ -2215,9 +2215,9 @@ require('../modules/es7.promise.finally');
 require('../modules/es7.promise.try');
 module.exports = require('../modules/_core').Promise;
 
-},{"../modules/es6.object.to-string":552,"../modules/es6.string.iterator":553,"../modules/web.dom.iterable":554,"../modules/es6.promise":555,"../modules/es7.promise.finally":557,"../modules/es7.promise.try":556,"../modules/_core":558}],28:[function(require,module,exports) {
+},{"../modules/es6.object.to-string":554,"../modules/es6.string.iterator":555,"../modules/web.dom.iterable":556,"../modules/es6.promise":552,"../modules/es7.promise.finally":553,"../modules/es7.promise.try":558,"../modules/_core":557}],26:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/promise"), __esModule: true };
-},{"core-js/library/fn/promise":551}],25:[function(require,module,exports) {
+},{"core-js/library/fn/promise":548}],25:[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -2256,7 +2256,7 @@ exports.default = function (fn) {
     });
   };
 };
-},{"../core-js/promise":28}],676:[function(require,module,exports) {
+},{"../core-js/promise":26}],676:[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -2409,7 +2409,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],678:[function(require,module,exports) {
+},{}],677:[function(require,module,exports) {
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -2495,7 +2495,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],677:[function(require,module,exports) {
+},{}],678:[function(require,module,exports) {
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
@@ -4295,7 +4295,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":676,"ieee754":678,"isarray":677,"buffer":651}],685:[function(require,module,exports) {
+},{"base64-js":676,"ieee754":677,"isarray":678,"buffer":651}],687:[function(require,module,exports) {
 
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -4360,7 +4360,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":651}],548:[function(require,module,exports) {
+},{"buffer":651}],550:[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -4590,7 +4590,7 @@ function randomBytes (size, cb) {
   return bytes
 }
 
-},{"safe-buffer":685,"process":548}],687:[function(require,module,exports) {
+},{"safe-buffer":687,"process":550}],685:[function(require,module,exports) {
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -4966,7 +4966,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-},{"process":548}],754:[function(require,module,exports) {
+},{"process":550}],754:[function(require,module,exports) {
 module.exports = require('events').EventEmitter;
 
 },{"events":675}],782:[function(require,module,exports) {
@@ -5160,7 +5160,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":685,"util":552}],755:[function(require,module,exports) {
+},{"safe-buffer":687,"util":554}],755:[function(require,module,exports) {
 'use strict';
 
 /*<replacement>*/
@@ -5305,7 +5305,7 @@ function config (name) {
   return String(val).toLowerCase() === 'true';
 }
 
-},{}],727:[function(require,module,exports) {
+},{}],728:[function(require,module,exports) {
 var process = require("process");
 
 var global = (1,eval)("this");
@@ -5996,7 +5996,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-},{"process-nextick-args":783,"core-util-is":782,"inherits":687,"util-deprecate":784,"./internal/streams/stream":754,"safe-buffer":685,"./internal/streams/destroy":755,"./_stream_duplex":728,"process":548}],728:[function(require,module,exports) {
+},{"process-nextick-args":783,"core-util-is":782,"inherits":685,"util-deprecate":784,"./internal/streams/stream":754,"safe-buffer":687,"./internal/streams/destroy":755,"./_stream_duplex":729,"process":550}],729:[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6128,7 +6128,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"process-nextick-args":783,"core-util-is":782,"inherits":687,"./_stream_readable":730,"./_stream_writable":727}],695:[function(require,module,exports) {
+},{"process-nextick-args":783,"core-util-is":782,"inherits":685,"./_stream_readable":727,"./_stream_writable":728}],695:[function(require,module,exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6426,7 +6426,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":685}],730:[function(require,module,exports) {
+},{"safe-buffer":687}],727:[function(require,module,exports) {
 
 var global = (1,eval)("this");
 var process = require("process");
@@ -7449,7 +7449,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-},{"process-nextick-args":783,"isarray":677,"events":675,"./internal/streams/stream":754,"safe-buffer":685,"core-util-is":782,"inherits":687,"util":552,"./internal/streams/BufferList":757,"./internal/streams/destroy":755,"./_stream_duplex":728,"string_decoder/":695,"process":548}],729:[function(require,module,exports) {
+},{"process-nextick-args":783,"isarray":678,"events":675,"./internal/streams/stream":754,"safe-buffer":687,"core-util-is":782,"inherits":685,"util":554,"./internal/streams/BufferList":757,"./internal/streams/destroy":755,"./_stream_duplex":729,"string_decoder/":695,"process":550}],730:[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7664,7 +7664,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":728,"core-util-is":782,"inherits":687}],731:[function(require,module,exports) {
+},{"./_stream_duplex":729,"core-util-is":782,"inherits":685}],731:[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7712,7 +7712,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":729,"core-util-is":782,"inherits":687}],715:[function(require,module,exports) {
+},{"./_stream_transform":730,"core-util-is":782,"inherits":685}],714:[function(require,module,exports) {
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -7721,19 +7721,19 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_readable.js":730,"./lib/_stream_writable.js":727,"./lib/_stream_duplex.js":728,"./lib/_stream_transform.js":729,"./lib/_stream_passthrough.js":731}],714:[function(require,module,exports) {
+},{"./lib/_stream_readable.js":727,"./lib/_stream_writable.js":728,"./lib/_stream_duplex.js":729,"./lib/_stream_transform.js":730,"./lib/_stream_passthrough.js":731}],715:[function(require,module,exports) {
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":727}],716:[function(require,module,exports) {
+},{"./lib/_stream_writable.js":728}],716:[function(require,module,exports) {
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":728}],718:[function(require,module,exports) {
+},{"./lib/_stream_duplex.js":729}],717:[function(require,module,exports) {
 module.exports = require('./readable').Transform
 
-},{"./readable":715}],717:[function(require,module,exports) {
+},{"./readable":714}],718:[function(require,module,exports) {
 module.exports = require('./readable').PassThrough
 
-},{"./readable":715}],662:[function(require,module,exports) {
+},{"./readable":714}],662:[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7862,7 +7862,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":675,"inherits":687,"readable-stream/readable.js":715,"readable-stream/writable.js":714,"readable-stream/duplex.js":716,"readable-stream/transform.js":718,"readable-stream/passthrough.js":717}],759:[function(require,module,exports) {
+},{"events":675,"inherits":685,"readable-stream/readable.js":714,"readable-stream/writable.js":715,"readable-stream/duplex.js":716,"readable-stream/transform.js":717,"readable-stream/passthrough.js":718}],759:[function(require,module,exports) {
 
 'use strict';
 
@@ -7960,7 +7960,7 @@ HashBase.prototype._digest = function () {
 };
 
 module.exports = HashBase;
-},{"safe-buffer":685,"stream":662,"inherits":687}],686:[function(require,module,exports) {
+},{"safe-buffer":687,"stream":662,"inherits":685}],686:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 'use strict'
 var inherits = require('inherits')
@@ -8108,7 +8108,7 @@ function fnI (a, b, c, d, m, k, s) {
 
 module.exports = MD5
 
-},{"inherits":687,"hash-base":759,"buffer":651}],689:[function(require,module,exports) {
+},{"inherits":685,"hash-base":759,"buffer":651}],689:[function(require,module,exports) {
 
 'use strict'
 var Buffer = require('buffer').Buffer
@@ -8274,7 +8274,7 @@ function fn5 (a, b, c, d, e, m, k, s) {
 
 module.exports = RIPEMD160
 
-},{"buffer":651,"inherits":687,"hash-base":759}],710:[function(require,module,exports) {
+},{"buffer":651,"inherits":685,"hash-base":759}],710:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 
@@ -8358,7 +8358,7 @@ Hash.prototype._update = function () {
 
 module.exports = Hash
 
-},{"safe-buffer":685}],696:[function(require,module,exports) {
+},{"safe-buffer":687}],696:[function(require,module,exports) {
 
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-0, as defined
@@ -8455,7 +8455,7 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha
 
-},{"inherits":687,"./hash":710,"safe-buffer":685}],697:[function(require,module,exports) {
+},{"inherits":685,"./hash":710,"safe-buffer":687}],697:[function(require,module,exports) {
 
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
@@ -8557,7 +8557,7 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1
 
-},{"inherits":687,"./hash":710,"safe-buffer":685}],699:[function(require,module,exports) {
+},{"inherits":685,"./hash":710,"safe-buffer":687}],698:[function(require,module,exports) {
 
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
@@ -8695,7 +8695,7 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256
 
-},{"inherits":687,"./hash":710,"safe-buffer":685}],698:[function(require,module,exports) {
+},{"inherits":685,"./hash":710,"safe-buffer":687}],699:[function(require,module,exports) {
 
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
@@ -8751,7 +8751,7 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224
 
-},{"inherits":687,"./sha256":699,"./hash":710,"safe-buffer":685}],701:[function(require,module,exports) {
+},{"inherits":685,"./sha256":698,"./hash":710,"safe-buffer":687}],701:[function(require,module,exports) {
 
 var inherits = require('inherits')
 var Hash = require('./hash')
@@ -9014,7 +9014,7 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512
 
-},{"inherits":687,"./hash":710,"safe-buffer":685}],700:[function(require,module,exports) {
+},{"inherits":685,"./hash":710,"safe-buffer":687}],700:[function(require,module,exports) {
 
 var inherits = require('inherits')
 var SHA512 = require('./sha512')
@@ -9074,7 +9074,7 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384
 
-},{"inherits":687,"./sha512":701,"./hash":710,"safe-buffer":685}],690:[function(require,module,exports) {
+},{"inherits":685,"./sha512":701,"./hash":710,"safe-buffer":687}],690:[function(require,module,exports) {
 var exports = module.exports = function SHA (algorithm) {
   algorithm = algorithm.toLowerCase()
 
@@ -9091,7 +9091,7 @@ exports.sha256 = require('./sha256')
 exports.sha384 = require('./sha384')
 exports.sha512 = require('./sha512')
 
-},{"./sha":696,"./sha1":697,"./sha224":698,"./sha256":699,"./sha384":700,"./sha512":701}],688:[function(require,module,exports) {
+},{"./sha":696,"./sha1":697,"./sha224":699,"./sha256":698,"./sha384":700,"./sha512":701}],688:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -9193,7 +9193,7 @@ CipherBase.prototype._toString = function (value, enc, fin) {
 
 module.exports = CipherBase
 
-},{"safe-buffer":685,"stream":662,"string_decoder":695,"inherits":687}],653:[function(require,module,exports) {
+},{"safe-buffer":687,"stream":662,"string_decoder":695,"inherits":685}],653:[function(require,module,exports) {
 'use strict'
 var inherits = require('inherits')
 var MD5 = require('md5.js')
@@ -9225,7 +9225,7 @@ module.exports = function createHash (alg) {
   return new Hash(sha(alg))
 }
 
-},{"inherits":687,"md5.js":686,"ripemd160":689,"sha.js":690,"cipher-base":688}],666:[function(require,module,exports) {
+},{"inherits":685,"md5.js":686,"ripemd160":689,"sha.js":690,"cipher-base":688}],666:[function(require,module,exports) {
 
 'use strict'
 var inherits = require('inherits')
@@ -9274,7 +9274,7 @@ Hmac.prototype._final = function () {
 }
 module.exports = Hmac
 
-},{"inherits":687,"safe-buffer":685,"cipher-base":688}],707:[function(require,module,exports) {
+},{"inherits":685,"safe-buffer":687,"cipher-base":688}],707:[function(require,module,exports) {
 var MD5 = require('md5.js')
 
 module.exports = function (buffer) {
@@ -9346,7 +9346,7 @@ module.exports = function createHmac (alg, key) {
   return new Hmac(alg, key)
 }
 
-},{"inherits":687,"./legacy":666,"cipher-base":688,"safe-buffer":685,"create-hash/md5":707,"ripemd160":689,"sha.js":690}],671:[function(require,module,exports) {
+},{"inherits":685,"./legacy":666,"cipher-base":688,"safe-buffer":687,"create-hash/md5":707,"ripemd160":689,"sha.js":690}],671:[function(require,module,exports) {
 module.exports = {
   "sha224WithRSAEncryption": {
     "sign": "rsa",
@@ -9546,7 +9546,7 @@ if (process.browser) {
   defaultEncoding = pVersionMajor >= 6 ? 'utf-8' : 'binary';
 }
 module.exports = defaultEncoding;
-},{"process":548}],663:[function(require,module,exports) {
+},{"process":550}],663:[function(require,module,exports) {
 
 var md5 = require('create-hash/md5');
 var rmd160 = require('ripemd160');
@@ -9649,7 +9649,7 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 }
 
 module.exports = pbkdf2;
-},{"create-hash/md5":707,"ripemd160":689,"sha.js":690,"./precondition":683,"./default-encoding":684,"safe-buffer":685}],667:[function(require,module,exports) {
+},{"create-hash/md5":707,"ripemd160":689,"sha.js":690,"./precondition":683,"./default-encoding":684,"safe-buffer":687}],667:[function(require,module,exports) {
 
 var global = (1,eval)("this");
 var process = require("process");
@@ -9750,10 +9750,10 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
     return sync(password, salt, iterations, keylen, digest);
   }), callback);
 };
-},{"./precondition":683,"./default-encoding":684,"./sync":663,"safe-buffer":685,"process":548}],656:[function(require,module,exports) {
+},{"./precondition":683,"./default-encoding":684,"./sync":663,"safe-buffer":687,"process":550}],655:[function(require,module,exports) {
 exports.pbkdf2 = require('./lib/async');
 exports.pbkdf2Sync = require('./lib/sync');
-},{"./lib/async":667,"./lib/sync":663}],761:[function(require,module,exports) {
+},{"./lib/async":667,"./lib/sync":663}],760:[function(require,module,exports) {
 'use strict';
 
 exports.readUInt32BE = function readUInt32BE(bytes, off) {
@@ -10024,7 +10024,7 @@ assert.equal = function assertEqual(l, r, msg) {
     throw new Error(msg || ('Assertion failed: ' + l + ' != ' + r));
 };
 
-},{}],760:[function(require,module,exports) {
+},{}],761:[function(require,module,exports) {
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -10167,7 +10167,7 @@ Cipher.prototype._finalDecrypt = function _finalDecrypt() {
   return this._unpad(out);
 };
 
-},{"minimalistic-assert":785}],763:[function(require,module,exports) {
+},{"minimalistic-assert":785}],762:[function(require,module,exports) {
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -10312,7 +10312,7 @@ DES.prototype._decrypt = function _decrypt(state, lStart, rStart, out, off) {
   utils.rip(l, r, out, off);
 };
 
-},{"minimalistic-assert":785,"inherits":687,"../des":758}],764:[function(require,module,exports) {
+},{"minimalistic-assert":785,"inherits":685,"../des":758}],763:[function(require,module,exports) {
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -10379,7 +10379,7 @@ proto._update = function _update(inp, inOff, out, outOff) {
   }
 };
 
-},{"minimalistic-assert":785,"inherits":687}],762:[function(require,module,exports) {
+},{"minimalistic-assert":785,"inherits":685}],764:[function(require,module,exports) {
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -10436,7 +10436,7 @@ EDE.prototype._update = function _update(inp, inOff, out, outOff) {
 EDE.prototype._pad = DES.prototype._pad;
 EDE.prototype._unpad = DES.prototype._unpad;
 
-},{"minimalistic-assert":785,"inherits":687,"../des":758}],758:[function(require,module,exports) {
+},{"minimalistic-assert":785,"inherits":685,"../des":758}],758:[function(require,module,exports) {
 'use strict';
 
 exports.utils = require('./des/utils');
@@ -10445,7 +10445,7 @@ exports.DES = require('./des/des');
 exports.CBC = require('./des/cbc');
 exports.EDE = require('./des/ede');
 
-},{"./des/utils":761,"./des/cipher":760,"./des/des":763,"./des/cbc":764,"./des/ede":762}],691:[function(require,module,exports) {
+},{"./des/utils":760,"./des/cipher":761,"./des/des":762,"./des/cbc":763,"./des/ede":764}],691:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var CipherBase = require('cipher-base')
 var des = require('des.js')
@@ -10491,7 +10491,7 @@ DES.prototype._final = function () {
   return new Buffer(this._des.final())
 }
 
-},{"cipher-base":688,"des.js":758,"inherits":687,"buffer":651}],740:[function(require,module,exports) {
+},{"cipher-base":688,"des.js":758,"inherits":685,"buffer":651}],736:[function(require,module,exports) {
 exports.encrypt = function (self, block) {
   return self._cipher.encryptBlock(block)
 }
@@ -10513,7 +10513,7 @@ module.exports = function xor (a, b) {
   return buffer
 }
 
-},{"buffer":651}],741:[function(require,module,exports) {
+},{"buffer":651}],738:[function(require,module,exports) {
 var xor = require('buffer-xor')
 
 exports.encrypt = function (self, block) {
@@ -10532,7 +10532,7 @@ exports.decrypt = function (self, block) {
   return xor(out, pad)
 }
 
-},{"buffer-xor":767}],742:[function(require,module,exports) {
+},{"buffer-xor":767}],737:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 var xor = require('buffer-xor')
@@ -10568,7 +10568,7 @@ exports.encrypt = function (self, data, decrypt) {
   return out
 }
 
-},{"safe-buffer":685,"buffer-xor":767}],736:[function(require,module,exports) {
+},{"safe-buffer":687,"buffer-xor":767}],739:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 
@@ -10596,7 +10596,7 @@ exports.encrypt = function (self, chunk, decrypt) {
   return out
 }
 
-},{"safe-buffer":685}],737:[function(require,module,exports) {
+},{"safe-buffer":687}],740:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 
@@ -10641,7 +10641,7 @@ exports.encrypt = function (self, chunk, decrypt) {
   return out
 }
 
-},{"safe-buffer":685}],738:[function(require,module,exports) {
+},{"safe-buffer":687}],741:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var xor = require('buffer-xor')
 
@@ -10677,7 +10677,7 @@ function incr32 (iv) {
 }
 module.exports = incr32
 
-},{}],739:[function(require,module,exports) {
+},{}],742:[function(require,module,exports) {
 
 var xor = require('buffer-xor')
 var Buffer = require('safe-buffer').Buffer
@@ -10710,7 +10710,7 @@ exports.encrypt = function (self, chunk) {
   return xor(chunk, pad)
 }
 
-},{"buffer-xor":767,"safe-buffer":685,"../incr32":750}],721:[function(require,module,exports) {
+},{"buffer-xor":767,"safe-buffer":687,"../incr32":750}],721:[function(require,module,exports) {
 module.exports = {
   "aes-128-ecb": {
     "cipher": "AES",
@@ -10923,7 +10923,7 @@ for (var key in modes) {
 
 module.exports = modes
 
-},{"./ecb":740,"./cbc":741,"./cfb":742,"./cfb8":736,"./cfb1":737,"./ofb":738,"./ctr":739,"./list.json":721}],735:[function(require,module,exports) {
+},{"./ecb":736,"./cbc":738,"./cfb":737,"./cfb8":739,"./cfb1":740,"./ofb":741,"./ctr":742,"./list.json":721}],735:[function(require,module,exports) {
 
 // based on the aes implimentation in triple sec
 // https://github.com/keybase/triplesec
@@ -11154,7 +11154,7 @@ AES.prototype.scrub = function () {
 
 module.exports.AES = AES
 
-},{"safe-buffer":685}],749:[function(require,module,exports) {
+},{"safe-buffer":687}],749:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 var ZEROES = Buffer.alloc(16, 0)
@@ -11246,7 +11246,7 @@ GHASH.prototype.final = function (abl, bl) {
 
 module.exports = GHASH
 
-},{"safe-buffer":685}],733:[function(require,module,exports) {
+},{"safe-buffer":687}],733:[function(require,module,exports) {
 
 var aes = require('./aes')
 var Buffer = require('safe-buffer').Buffer
@@ -11366,7 +11366,7 @@ StreamCipher.prototype.setAAD = function setAAD (buf) {
 
 module.exports = StreamCipher
 
-},{"./aes":735,"safe-buffer":685,"cipher-base":688,"inherits":687,"./ghash":749,"buffer-xor":767,"./incr32":750}],734:[function(require,module,exports) {
+},{"./aes":735,"safe-buffer":687,"cipher-base":688,"inherits":685,"./ghash":749,"buffer-xor":767,"./incr32":750}],734:[function(require,module,exports) {
 
 var aes = require('./aes')
 var Buffer = require('safe-buffer').Buffer
@@ -11396,7 +11396,7 @@ StreamCipher.prototype._final = function () {
 
 module.exports = StreamCipher
 
-},{"./aes":735,"safe-buffer":685,"cipher-base":688,"inherits":687}],692:[function(require,module,exports) {
+},{"./aes":735,"safe-buffer":687,"cipher-base":688,"inherits":685}],692:[function(require,module,exports) {
 
 var Buffer = require('safe-buffer').Buffer
 var MD5 = require('md5.js')
@@ -11444,7 +11444,7 @@ function EVP_BytesToKey (password, salt, keyBits, ivLen) {
 
 module.exports = EVP_BytesToKey
 
-},{"safe-buffer":685,"md5.js":686}],719:[function(require,module,exports) {
+},{"safe-buffer":687,"md5.js":686}],719:[function(require,module,exports) {
 
 var MODES = require('./modes')
 var AuthCipher = require('./authCipher')
@@ -11561,7 +11561,7 @@ function createCipher (suite, password) {
 exports.createCipheriv = createCipheriv
 exports.createCipher = createCipher
 
-},{"./modes":732,"./authCipher":733,"safe-buffer":685,"./streamCipher":734,"cipher-base":688,"./aes":735,"evp_bytestokey":692,"inherits":687}],720:[function(require,module,exports) {
+},{"./modes":732,"./authCipher":733,"safe-buffer":687,"./streamCipher":734,"cipher-base":688,"./aes":735,"evp_bytestokey":692,"inherits":685}],720:[function(require,module,exports) {
 
 var AuthCipher = require('./authCipher')
 var Buffer = require('safe-buffer').Buffer
@@ -11688,7 +11688,7 @@ function createDecipher (suite, password) {
 exports.createDecipher = createDecipher
 exports.createDecipheriv = createDecipheriv
 
-},{"./authCipher":733,"safe-buffer":685,"./modes":732,"./streamCipher":734,"cipher-base":688,"./aes":735,"evp_bytestokey":692,"inherits":687}],708:[function(require,module,exports) {
+},{"./authCipher":733,"safe-buffer":687,"./modes":732,"./streamCipher":734,"cipher-base":688,"./aes":735,"evp_bytestokey":692,"inherits":685}],709:[function(require,module,exports) {
 var ciphers = require('./encrypter')
 var deciphers = require('./decrypter')
 var modes = require('./modes/list.json')
@@ -11703,7 +11703,7 @@ exports.createDecipher = exports.Decipher = deciphers.createDecipher
 exports.createDecipheriv = exports.Decipheriv = deciphers.createDecipheriv
 exports.listCiphers = exports.getCiphers = getCiphers
 
-},{"./encrypter":719,"./decrypter":720,"./modes/list.json":721}],709:[function(require,module,exports) {
+},{"./encrypter":719,"./decrypter":720,"./modes/list.json":721}],708:[function(require,module,exports) {
 exports['des-ecb'] = {
   key: 8,
   iv: 0
@@ -11729,7 +11729,7 @@ exports['des-ede'] = {
   iv: 0
 }
 
-},{}],655:[function(require,module,exports) {
+},{}],656:[function(require,module,exports) {
 var DES = require('browserify-des')
 var aes = require('browserify-aes/browser')
 var aesModes = require('browserify-aes/modes')
@@ -11798,7 +11798,7 @@ exports.createDecipher = exports.Decipher = createDecipher
 exports.createDecipheriv = exports.Decipheriv = createDecipheriv
 exports.listCiphers = exports.getCiphers = getCiphers
 
-},{"browserify-des":691,"browserify-aes/browser":708,"browserify-aes/modes":732,"browserify-des/modes":709,"evp_bytestokey":692}],694:[function(require,module,exports) {
+},{"browserify-des":691,"browserify-aes/browser":709,"browserify-aes/modes":732,"browserify-des/modes":708,"evp_bytestokey":692}],694:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 (function (module, exports) {
   'use strict';
@@ -15228,7 +15228,7 @@ var Buffer = require("buffer").Buffer;
   };
 })(typeof module === 'undefined' || module, this);
 
-},{"buffer":552}],769:[function(require,module,exports) {
+},{"buffer":554}],769:[function(require,module,exports) {
 var r;
 
 module.exports = function rand(len) {
@@ -15295,7 +15295,7 @@ if (typeof self === 'object') {
   }
 }
 
-},{"crypto":552}],756:[function(require,module,exports) {
+},{"crypto":554}],756:[function(require,module,exports) {
 var bn = require('bn.js');
 var brorand = require('brorand');
 
@@ -15766,7 +15766,7 @@ function createDiffieHellman (prime, enc, generator, genc) {
 exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffieHellman = getDiffieHellman
 exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman
 
-},{"./lib/generatePrime":669,"./lib/primes.json":668,"./lib/dh":670,"buffer":651}],703:[function(require,module,exports) {
+},{"./lib/generatePrime":669,"./lib/primes.json":668,"./lib/dh":670,"buffer":651}],704:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var bn = require('bn.js');
 var randomBytes = require('randombytes');
@@ -15809,7 +15809,7 @@ function getr(priv) {
   return r;
 }
 
-},{"bn.js":694,"randombytes":652,"buffer":651}],704:[function(require,module,exports) {
+},{"bn.js":694,"randombytes":652,"buffer":651}],702:[function(require,module,exports) {
 module.exports = {
   "name": "elliptic",
   "version": "6.4.0",
@@ -16051,7 +16051,7 @@ function intFromLE(bytes) {
 utils.intFromLE = intFromLE;
 
 
-},{"bn.js":694,"minimalistic-assert":785,"minimalistic-crypto-utils":786}],744:[function(require,module,exports) {
+},{"bn.js":694,"minimalistic-assert":785,"minimalistic-crypto-utils":786}],743:[function(require,module,exports) {
 'use strict';
 
 var BN = require('bn.js');
@@ -16428,7 +16428,7 @@ BasePoint.prototype.dblp = function dblp(k) {
   return r;
 };
 
-},{"bn.js":694,"../../elliptic":693}],743:[function(require,module,exports) {
+},{"bn.js":694,"../../elliptic":693}],744:[function(require,module,exports) {
 'use strict';
 
 var curve = require('../curve');
@@ -17368,7 +17368,7 @@ JPoint.prototype.isInfinity = function isInfinity() {
   return this.z.cmpn(0) === 0;
 };
 
-},{"../curve":723,"../../elliptic":693,"bn.js":694,"inherits":687}],746:[function(require,module,exports) {
+},{"../curve":723,"../../elliptic":693,"bn.js":694,"inherits":685}],745:[function(require,module,exports) {
 'use strict';
 
 var curve = require('../curve');
@@ -17550,7 +17550,7 @@ Point.prototype.getX = function getX() {
   return this.x.fromRed();
 };
 
-},{"../curve":723,"bn.js":694,"inherits":687,"../../elliptic":693}],745:[function(require,module,exports) {
+},{"../curve":723,"bn.js":694,"inherits":685,"../../elliptic":693}],746:[function(require,module,exports) {
 'use strict';
 
 var curve = require('../curve');
@@ -17985,7 +17985,7 @@ Point.prototype.eqXToP = function eqXToP(x) {
 Point.prototype.toP = Point.prototype.normalize;
 Point.prototype.mixedAdd = Point.prototype.add;
 
-},{"../curve":723,"../../elliptic":693,"bn.js":694,"inherits":687}],723:[function(require,module,exports) {
+},{"../curve":723,"../../elliptic":693,"bn.js":694,"inherits":685}],723:[function(require,module,exports) {
 'use strict';
 
 var curve = exports;
@@ -17995,7 +17995,7 @@ curve.short = require('./short');
 curve.mont = require('./mont');
 curve.edwards = require('./edwards');
 
-},{"./base":744,"./short":743,"./mont":746,"./edwards":745}],789:[function(require,module,exports) {
+},{"./base":743,"./short":744,"./mont":745,"./edwards":746}],791:[function(require,module,exports) {
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -18250,7 +18250,7 @@ function shr64_lo(ah, al, num) {
 }
 exports.shr64_lo = shr64_lo;
 
-},{"minimalistic-assert":785,"inherits":687}],790:[function(require,module,exports) {
+},{"minimalistic-assert":785,"inherits":685}],789:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./utils');
@@ -18344,7 +18344,7 @@ BlockHash.prototype._pad = function pad() {
   return res;
 };
 
-},{"./utils":789,"minimalistic-assert":785}],799:[function(require,module,exports) {
+},{"./utils":791,"minimalistic-assert":785}],799:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18395,7 +18395,7 @@ function g1_256(x) {
 }
 exports.g1_256 = g1_256;
 
-},{"../utils":789}],794:[function(require,module,exports) {
+},{"../utils":791}],794:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18471,7 +18471,7 @@ SHA1.prototype._digest = function digest(enc) {
     return utils.split32(this.h, 'big');
 };
 
-},{"../utils":789,"../common":790,"./common":799}],796:[function(require,module,exports) {
+},{"../utils":791,"../common":789,"./common":799}],796:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18578,7 +18578,7 @@ SHA256.prototype._digest = function digest(enc) {
     return utils.split32(this.h, 'big');
 };
 
-},{"../utils":789,"../common":790,"./common":799,"minimalistic-assert":785}],795:[function(require,module,exports) {
+},{"../utils":791,"../common":789,"./common":799,"minimalistic-assert":785}],795:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18610,7 +18610,7 @@ SHA224.prototype._digest = function digest(enc) {
 };
 
 
-},{"../utils":789,"./256":796}],798:[function(require,module,exports) {
+},{"../utils":791,"./256":796}],798:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18942,7 +18942,7 @@ function g1_512_lo(xh, xl) {
   return r;
 }
 
-},{"../utils":789,"../common":790,"minimalistic-assert":785}],797:[function(require,module,exports) {
+},{"../utils":791,"../common":789,"minimalistic-assert":785}],797:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -18979,7 +18979,7 @@ SHA384.prototype._digest = function digest(enc) {
     return utils.split32(this.h.slice(0, 12), 'big');
 };
 
-},{"../utils":789,"./512":798}],791:[function(require,module,exports) {
+},{"../utils":791,"./512":798}],793:[function(require,module,exports) {
 'use strict';
 
 exports.sha1 = require('./sha/1');
@@ -18988,7 +18988,7 @@ exports.sha256 = require('./sha/256');
 exports.sha384 = require('./sha/384');
 exports.sha512 = require('./sha/512');
 
-},{"./sha/1":794,"./sha/224":795,"./sha/256":796,"./sha/384":797,"./sha/512":798}],792:[function(require,module,exports) {
+},{"./sha/1":794,"./sha/224":795,"./sha/256":796,"./sha/384":797,"./sha/512":798}],790:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./utils');
@@ -19136,7 +19136,7 @@ var sh = [
   8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11
 ];
 
-},{"./utils":789,"./common":790}],793:[function(require,module,exports) {
+},{"./utils":791,"./common":789}],792:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./utils');
@@ -19185,7 +19185,7 @@ Hmac.prototype.digest = function digest(enc) {
   return this.outer.digest(enc);
 };
 
-},{"./utils":789,"minimalistic-assert":785}],787:[function(require,module,exports) {
+},{"./utils":791,"minimalistic-assert":785}],787:[function(require,module,exports) {
 var hash = exports;
 
 hash.utils = require('./hash/utils');
@@ -19202,7 +19202,7 @@ hash.sha384 = hash.sha.sha384;
 hash.sha512 = hash.sha.sha512;
 hash.ripemd160 = hash.ripemd.ripemd160;
 
-},{"./hash/utils":789,"./hash/common":790,"./hash/sha":791,"./hash/ripemd":792,"./hash/hmac":793}],722:[function(require,module,exports) {
+},{"./hash/utils":791,"./hash/common":789,"./hash/sha":793,"./hash/ripemd":790,"./hash/hmac":792}],722:[function(require,module,exports) {
 module.exports = {
   doubles: {
     step: 4,
@@ -21107,7 +21107,7 @@ elliptic.curves = require('./elliptic/curves');
 elliptic.ec = require('./elliptic/ec');
 elliptic.eddsa = require('./elliptic/eddsa');
 
-},{"../package.json":704,"./elliptic/utils":705,"brorand":769,"./elliptic/curve":723,"./elliptic/curves":706,"./elliptic/ec":724,"./elliptic/eddsa":725}],788:[function(require,module,exports) {
+},{"../package.json":702,"./elliptic/utils":705,"brorand":769,"./elliptic/curve":723,"./elliptic/curves":706,"./elliptic/ec":724,"./elliptic/eddsa":725}],788:[function(require,module,exports) {
 
 var indexOf = [].indexOf;
 
@@ -21321,7 +21321,7 @@ Entity.prototype.encode = function encode(data, enc, /* internal */ reporter) {
   return this._getEncoder(enc).encode(data, reporter);
 };
 
-},{"../asn1":765,"inherits":687,"vm":768}],774:[function(require,module,exports) {
+},{"../asn1":765,"inherits":685,"vm":768}],774:[function(require,module,exports) {
 var inherits = require('inherits');
 
 function Reporter(options) {
@@ -21444,7 +21444,7 @@ ReporterError.prototype.rethrow = function rethrow(msg) {
   return this;
 };
 
-},{"inherits":687}],775:[function(require,module,exports) {
+},{"inherits":685}],775:[function(require,module,exports) {
 
 var inherits = require('inherits');
 var Reporter = require('../base').Reporter;
@@ -21563,7 +21563,7 @@ EncoderBuffer.prototype.join = function join(out, offset) {
   return out;
 };
 
-},{"inherits":687,"../base":770,"buffer":651}],776:[function(require,module,exports) {
+},{"inherits":685,"../base":770,"buffer":651}],776:[function(require,module,exports) {
 var Reporter = require('../base').Reporter;
 var EncoderBuffer = require('../base').EncoderBuffer;
 var DecoderBuffer = require('../base').DecoderBuffer;
@@ -22598,7 +22598,7 @@ function derDecodeLen(buf, primitive, fail) {
   return len;
 }
 
-},{"inherits":687,"../../asn1":765}],779:[function(require,module,exports) {
+},{"inherits":685,"../../asn1":765}],780:[function(require,module,exports) {
 
 var inherits = require('inherits');
 var Buffer = require('buffer').Buffer;
@@ -22650,13 +22650,13 @@ PEMDecoder.prototype.decode = function decode(data, options) {
   return DERDecoder.prototype.decode.call(this, input, options);
 };
 
-},{"inherits":687,"buffer":651,"./der":778}],772:[function(require,module,exports) {
+},{"inherits":685,"buffer":651,"./der":778}],772:[function(require,module,exports) {
 var decoders = exports;
 
 decoders.der = require('./der');
 decoders.pem = require('./pem');
 
-},{"./der":778,"./pem":779}],780:[function(require,module,exports) {
+},{"./der":778,"./pem":780}],779:[function(require,module,exports) {
 
 var inherits = require('inherits');
 var Buffer = require('buffer').Buffer;
@@ -22954,7 +22954,7 @@ function encodeTag(tag, primitive, cls, reporter) {
   return res;
 }
 
-},{"inherits":687,"buffer":651,"../../asn1":765}],781:[function(require,module,exports) {
+},{"inherits":685,"buffer":651,"../../asn1":765}],781:[function(require,module,exports) {
 var inherits = require('inherits');
 
 var DEREncoder = require('./der');
@@ -22977,13 +22977,13 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   return out.join('\n');
 };
 
-},{"inherits":687,"./der":780}],773:[function(require,module,exports) {
+},{"inherits":685,"./der":779}],773:[function(require,module,exports) {
 var encoders = exports;
 
 encoders.der = require('./der');
 encoders.pem = require('./pem');
 
-},{"./der":780,"./pem":781}],765:[function(require,module,exports) {
+},{"./der":779,"./pem":781}],765:[function(require,module,exports) {
 var asn1 = exports;
 
 asn1.bignum = require('bn.js');
@@ -23255,7 +23255,7 @@ module.exports = function (okey, password) {
   }
 }
 
-},{"evp_bytestokey":692,"browserify-aes":708,"buffer":651}],702:[function(require,module,exports) {
+},{"evp_bytestokey":692,"browserify-aes":709,"buffer":651}],703:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var asn1 = require('./asn1')
 var aesid = require('./aesid.json')
@@ -23364,7 +23364,7 @@ function decrypt (data, password) {
   return Buffer.concat(out)
 }
 
-},{"./asn1":712,"./aesid.json":711,"./fixProc":713,"browserify-aes":708,"pbkdf2":656,"buffer":651}],682:[function(require,module,exports) {
+},{"./asn1":712,"./aesid.json":711,"./fixProc":713,"browserify-aes":709,"pbkdf2":655,"buffer":651}],682:[function(require,module,exports) {
 module.exports = {
   "1.3.132.0.10": "secp256k1",
   "1.3.132.0.33": "p224",
@@ -23522,7 +23522,7 @@ module.exports = sign
 module.exports.getKey = getKey
 module.exports.makeKey = makeKey
 
-},{"create-hmac":654,"browserify-rsa":703,"elliptic":693,"bn.js":694,"parse-asn1":702,"./curves.json":682,"buffer":651}],673:[function(require,module,exports) {
+},{"create-hmac":654,"browserify-rsa":704,"elliptic":693,"bn.js":694,"parse-asn1":703,"./curves.json":682,"buffer":651}],673:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 // much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
 var BN = require('bn.js')
@@ -23608,7 +23608,7 @@ function checkValue (b, q) {
 
 module.exports = verify
 
-},{"bn.js":694,"elliptic":693,"parse-asn1":702,"./curves.json":682,"buffer":651}],658:[function(require,module,exports) {
+},{"bn.js":694,"elliptic":693,"parse-asn1":703,"./curves.json":682,"buffer":651}],658:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var createHash = require('create-hash')
 var stream = require('stream')
@@ -23702,7 +23702,7 @@ module.exports = {
   createVerify: createVerify
 }
 
-},{"create-hash":653,"stream":662,"inherits":687,"./sign":672,"./verify":673,"./algorithms.json":671,"buffer":651}],660:[function(require,module,exports) {
+},{"create-hash":653,"stream":662,"inherits":685,"./sign":672,"./verify":673,"./algorithms.json":671,"buffer":651}],659:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var elliptic = require('elliptic')
 var BN = require('bn.js')
@@ -23868,7 +23868,7 @@ function withPublic(paddedMsg, key) {
 }
 
 module.exports = withPublic;
-},{"bn.js":694,"buffer":651}],664:[function(require,module,exports) {
+},{"bn.js":694,"buffer":651}],665:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var parseKeys = require('parse-asn1');
 var randomBytes = require('randombytes');
@@ -23965,7 +23965,7 @@ function nonZero(len, crypto) {
   }
   return out;
 }
-},{"parse-asn1":702,"randombytes":652,"create-hash":653,"./mgf":679,"./xor":680,"bn.js":694,"./withPublic":681,"browserify-rsa":703,"buffer":651}],665:[function(require,module,exports) {
+},{"parse-asn1":703,"randombytes":652,"create-hash":653,"./mgf":679,"./xor":680,"bn.js":694,"./withPublic":681,"browserify-rsa":704,"buffer":651}],664:[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var parseKeys = require('parse-asn1');
 var mgf = require('./mgf');
@@ -24075,7 +24075,7 @@ function compare(a, b){
   }
   return dif;
 }
-},{"parse-asn1":702,"./mgf":679,"./xor":680,"bn.js":694,"browserify-rsa":703,"create-hash":653,"./withPublic":681,"buffer":651}],659:[function(require,module,exports) {
+},{"parse-asn1":703,"./mgf":679,"./xor":680,"bn.js":694,"browserify-rsa":704,"create-hash":653,"./withPublic":681,"buffer":651}],660:[function(require,module,exports) {
 exports.publicEncrypt = require('./publicEncrypt');
 exports.privateDecrypt = require('./privateDecrypt');
 
@@ -24086,7 +24086,7 @@ exports.privateEncrypt = function privateEncrypt(key, buf) {
 exports.publicDecrypt = function publicDecrypt(key, buf) {
   return exports.privateDecrypt(key, buf, true);
 };
-},{"./publicEncrypt":664,"./privateDecrypt":665}],661:[function(require,module,exports) {
+},{"./publicEncrypt":665,"./privateDecrypt":664}],661:[function(require,module,exports) {
 
 var global = (1,eval)("this");
 var process = require("process");
@@ -24199,7 +24199,7 @@ function randomFillSync (buf, offset, size) {
   return actualFill(buf, offset, size)
 }
 
-},{"safe-buffer":685,"randombytes":652,"process":548}],650:[function(require,module,exports) {
+},{"safe-buffer":687,"randombytes":652,"process":550}],650:[function(require,module,exports) {
 'use strict'
 
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes')
@@ -24298,7 +24298,7 @@ exports.constants = {
   'POINT_CONVERSION_HYBRID': 6
 }
 
-},{"randombytes":652,"create-hash":653,"create-hmac":654,"browserify-sign/algos":674,"pbkdf2":656,"browserify-cipher":655,"diffie-hellman":657,"browserify-sign":658,"create-ecdh":660,"public-encrypt":659,"randomfill":661}],24:[function(require,module,exports) {
+},{"randombytes":652,"create-hash":653,"create-hmac":654,"browserify-sign/algos":674,"pbkdf2":655,"browserify-cipher":656,"diffie-hellman":657,"browserify-sign":658,"create-ecdh":659,"public-encrypt":660,"randomfill":661}],24:[function(require,module,exports) {
 var process = require("process");
 var global = (1,eval)("this");
 var Buffer = require("buffer").Buffer;
@@ -24333,7 +24333,11 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }extendStatics(e, t), e.prototype = null === t ? Object.create(t) : (n.prototype = t.prototype, new n());
 }var __assign = Object.assign || function (e) {
   for (var t, n = 1, r = arguments.length; n < r; n++) for (var o in t = arguments[n]) Object.prototype.hasOwnProperty.call(t, o) && (e[o] = t[o]);return e;
-};function __awaiter(e, t, n, r) {
+};function __decorate(e, t, n, r) {
+  var o,
+      a = arguments.length,
+      i = a < 3 ? t : null === r ? r = Object.getOwnPropertyDescriptor(t, n) : r;if ("object" == typeof Reflect && "function" == typeof Reflect.decorate) i = Reflect.decorate(e, t, n, r);else for (var s = e.length - 1; s >= 0; s--) (o = e[s]) && (i = (a < 3 ? o(i) : a > 3 ? o(t, n, i) : o(t, n)) || i);return a > 3 && i && Object.defineProperty(t, n, i), i;
+}function __awaiter(e, t, n, r) {
   return new (n || (n = Promise))(function (o, a) {
     function i(e) {
       try {
@@ -24391,6 +24395,10 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
 }function isMobile() {
   var e = navigator.userAgent || navigator.vendor || window.opera;return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(e) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(e.substr(0, 4))
   );
+}function doc(e) {
+  return function () {
+    for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
+  };
 }function shuffle(e) {
   for (var t = e.length, n = 0, r = 0; t > 0;) r = Math.random() * t | 0, n = e[--t], e[t] = e[r], e[r] = n;
 }function clamp(e, t, n) {
@@ -24448,6 +24456,12 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       }
     };i();
   });
+}function getQueryParams(e) {
+  var t = {};return e.replace(/[?&]([^=?&]+)(?:=([^&]*))?/g, function (e) {
+    for (var n = [], r = 1; r < arguments.length; r++) n[r - 1] = arguments[r];return decodeParam(t, n[0], n[1]), n.join("=");
+  }), t;
+}function decodeParam(e, t, n) {
+  e[decodeURIComponent(t)] = decodeURIComponent(n || "");
 }function inferFromImplicitShape(e, t) {
   for (var n = 1, r = -1, o = 0; o < e.length; ++o) if (e[o] > 0) n *= e[o];else if (-1 === e[o]) {
     if (-1 !== r) throw Error("Shapes can only have 1 implicit size. Found - 1 at dim " + r + " and dim " + o);r = o;
@@ -24464,15 +24478,13 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   var n = null;if (null == e || "float32" === e) n = new Float32Array(t);else if ("int32" === e) n = new Int32Array(t);else {
     if ("bool" !== e) throw new Error("Unknown data type " + e);n = new Uint8Array(t);
   }return n;
-}function checkComputationForNaN(e, t, n) {
+}function checkForNaN(e, t, n) {
   if ("float32" === t) for (var r = 0; r < e.length; r++) if (isNaN(e[r])) throw Error("The result of the '" + n + "' has NaNs.");
-}function checkConversionForNaN(e, t) {
-  if ("float32" !== t) for (var n = 0; n < e.length; n++) if (isNaN(e[n])) throw Error("NaN is not a valid value for dtype: '" + t + "'.");
 }function hasEncodingLoss(e, t) {
   return "float32" !== t && ("int32" !== t || "float32" === e) && ("bool" !== t || "bool" !== e);
-}function copyTypedArray(e, t, n) {
-  if (null == t || "float32" === t) return new Float32Array(e);if ("int32" === t) return n && checkConversionForNaN(e, t), new Int32Array(e);if ("bool" === t) {
-    for (var r = new Uint8Array(e.length), o = 0; o < r.length; ++o) 0 !== Math.round(e[o]) && (r[o] = 1);return r;
+}function copyTypedArray(e, t) {
+  if (null == t || "float32" === t) return new Float32Array(e);if ("int32" === t) return new Int32Array(e);if ("bool" === t) {
+    for (var n = new Uint8Array(e.length), r = 0; r < n.length; ++r) 0 !== Math.round(e[r]) && (n[r] = 1);return n;
   }throw new Error("Unknown data type " + t);
 }function isTypedArray(e) {
   return e instanceof Float32Array || e instanceof Int32Array || e instanceof Uint8Array;
@@ -24484,8 +24496,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   for (var n = t; n < e; ++n) if (e % n == 0) return n;return e;
 }function computeStrides(e) {
   var t = e.length;if (t < 2) return [];var n = new Array(t - 1);n[t - 2] = e[t - 1];for (var r = t - 3; r >= 0; --r) n[r] = n[r + 1] * e[r + 1];return n;
-}function toTypedArray(e, t, n) {
-  return noConversionNeeded(e, t) ? e : (Array.isArray(e) && (e = flatten(e)), copyTypedArray(e, t, n));
+}function toTypedArray(e, t) {
+  return noConversionNeeded(e, t) ? e : (Array.isArray(e) && (e = flatten(e)), copyTypedArray(e, t));
 }function noConversionNeeded(e, t) {
   return e instanceof Float32Array && "float32" === t || e instanceof Int32Array && "int32" === t || e instanceof Uint8Array && "bool" === t;
 }function makeOnesTypedArray(e, t) {
@@ -24496,7 +24508,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   if ("undefined" != typeof performance) return performance.now();if ("undefined" != typeof process) {
     var e = process.hrtime();return 1e3 * e[0] + e[1] / 1e6;
   }throw new Error("Can not measure time in this environment. You should run tf.js in the browser or in Node.js");
-}var util = Object.freeze({ shuffle: shuffle, clamp: clamp, randUniform: randUniform, distSquared: distSquared, assert: assert, assertShapesMatch: assertShapesMatch, assertNonNull: assertNonNull, flatten: flatten, inferShape: inferShape, sizeFromShape: sizeFromShape, isScalarShape: isScalarShape, arraysEqual: arraysEqual, isInt: isInt, tanh: tanh, sizeToSquarishShape: sizeToSquarishShape, createShuffledIndices: createShuffledIndices, rightPad: rightPad, repeatedTry: repeatedTry, inferFromImplicitShape: inferFromImplicitShape, squeezeShape: squeezeShape, getTypedArrayFromDType: getTypedArrayFromDType, checkComputationForNaN: checkComputationForNaN, checkConversionForNaN: checkConversionForNaN, hasEncodingLoss: hasEncodingLoss, isTypedArray: isTypedArray, bytesPerElement: bytesPerElement, isFunction: isFunction, nearestDivisor: nearestDivisor, computeStrides: computeStrides, toTypedArray: toTypedArray, makeOnesTypedArray: makeOnesTypedArray, makeZerosTypedArray: makeZerosTypedArray, now: now }),
+}var util = Object.freeze({ shuffle: shuffle, clamp: clamp, randUniform: randUniform, distSquared: distSquared, assert: assert, assertShapesMatch: assertShapesMatch, assertNonNull: assertNonNull, flatten: flatten, inferShape: inferShape, sizeFromShape: sizeFromShape, isScalarShape: isScalarShape, arraysEqual: arraysEqual, isInt: isInt, tanh: tanh, sizeToSquarishShape: sizeToSquarishShape, createShuffledIndices: createShuffledIndices, rightPad: rightPad, repeatedTry: repeatedTry, getQueryParams: getQueryParams, inferFromImplicitShape: inferFromImplicitShape, squeezeShape: squeezeShape, getTypedArrayFromDType: getTypedArrayFromDType, checkForNaN: checkForNaN, hasEncodingLoss: hasEncodingLoss, copyTypedArray: copyTypedArray, isTypedArray: isTypedArray, bytesPerElement: bytesPerElement, isFunction: isFunction, nearestDivisor: nearestDivisor, computeStrides: computeStrides, toTypedArray: toTypedArray, makeOnesTypedArray: makeOnesTypedArray, makeZerosTypedArray: makeZerosTypedArray, now: now }),
     Profiler = function () {
   function e(e, t) {
     this.backendTimer = e, this.logger = t, null == t && (this.logger = new Logger());
@@ -24505,10 +24517,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         r = this,
         o = this.backendTimer.time(function () {
       n = t();
-    });return (Array.isArray(n) ? n : [n]).forEach(function (t) {
-      var n = t.dataSync();checkComputationForNaN(n, t.dtype, e), o.then(function (o) {
-        r.logger.logKernelProfile(e, t, n, o.kernelMs);
-      });
+    }),
+        a = n.dataSync();return checkForNaN(a, n.dtype, e), o.then(function (t) {
+      r.logger.logKernelProfile(e, n, a, t.kernelMs);
     }), n;
   }, e;
 }(),
@@ -24522,20 +24533,20 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e;
 }();function getFilteredNodesXToY(e, t, n) {
   for (var r = {}, o = {}, a = 0; a < t.length; a++) r[t[a].id] = !0;for (a = 0; a < e.length; a++) {
-    var i = (m = e[a]).inputs;for (var s in i) {
+    var i = (g = e[a]).inputs;for (var s in i) {
       for (var u = i[s], l = !1, c = 0; c < t.length; c++) if (r[u.id]) {
-        r[m.output.id] = !0, l = !0, o[m.id] = !0;break;
+        r[g.output.id] = !0, l = !0, o[g.id] = !0;break;
       }if (l) break;
     }
-  }var p = {};p[n.id] = !0;var d = {};for (a = e.length - 1; a >= 0; a--) {
-    i = (m = e[a]).inputs;var h = [];h.push(m.output);for (c = 0; c < h.length; c++) if (p[h[c].id]) {
-      for (var s in i) p[i[s].id] = !0, d[m.id] = !0;break;
+  }var d = {};d[n.id] = !0;var p = {};for (a = e.length - 1; a >= 0; a--) {
+    i = (g = e[a]).inputs;var h = [];h.push(g.output);for (c = 0; c < h.length; c++) if (d[h[c].id]) {
+      for (var s in i) d[i[s].id] = !0, p[g.id] = !0;break;
     }
   }var f = [];for (a = 0; a < e.length; a++) {
-    var m;if (o[(m = e[a]).id] && d[m.id]) {
-      var g = {};for (var s in m.inputs) {
-        var v = m.inputs[s];r[v.id] && (g[s] = v);
-      }var y = Object.assign({}, m);y.inputs = g, y.output = m.output, f.push(y);
+    var g;if (o[(g = e[a]).id] && p[g.id]) {
+      var m = {};for (var s in g.inputs) {
+        var v = g.inputs[s];r[v.id] && (m[s] = v);
+      }var y = Object.assign({}, g);y.inputs = m, y.output = g.output, f.push(y);
     }
   }return f;
 }function backpropagateGradients(e, t) {
@@ -24579,16 +24590,16 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     }).join(", ") + "]"];
   }var l = t.slice(1),
       c = n.slice(1),
-      p = n[0],
-      d = [];if (a > FORMAT_LIMIT_NUM_VALS) {
+      d = n[0],
+      p = [];if (a > FORMAT_LIMIT_NUM_VALS) {
     for (var h = 0; h < FORMAT_NUM_FIRST_LAST_VALS; h++) {
-      var f = (m = h * p) + p;d.push.apply(d, subTensorToString(e.subarray(m, f), l, c, r, !1));
-    }d.push("...");for (h = a - FORMAT_NUM_FIRST_LAST_VALS; h < a; h++) {
-      f = (m = h * p) + p;d.push.apply(d, subTensorToString(e.subarray(m, f), l, c, r, h === a - 1));
+      var f = (g = h * d) + d;p.push.apply(p, subTensorToString(e.subarray(g, f), l, c, r, !1));
+    }p.push("...");for (h = a - FORMAT_NUM_FIRST_LAST_VALS; h < a; h++) {
+      f = (g = h * d) + d;p.push.apply(p, subTensorToString(e.subarray(g, f), l, c, r, h === a - 1));
     }
   } else for (h = 0; h < a; h++) {
-    var m;f = (m = h * p) + p;d.push.apply(d, subTensorToString(e.subarray(m, f), l, c, r, h === a - 1));
-  }var g = 2 === i ? "," : "";d[0] = "[" + d[0] + g;for (h = 1; h < d.length - 1; h++) d[h] = " " + d[h] + g;var v = ",\n";for (h = 2; h < i; h++) v += "\n";return d[d.length - 1] = " " + d[d.length - 1] + "]" + (o ? "" : v), d;
+    var g;f = (g = h * d) + d;p.push.apply(p, subTensorToString(e.subarray(g, f), l, c, r, h === a - 1));
+  }var m = 2 === i ? "," : "";p[0] = "[" + p[0] + m;for (h = 1; h < p.length - 1; h++) p[h] = " " + p[h] + m;var v = ",\n";for (h = 2; h < i; h++) v += "\n";return p[p.length - 1] = " " + p[p.length - 1] + "]" + (o ? "" : v), p;
 }var TensorBuffer = function () {
   function e(e, t, n) {
     if (this.dtype = t, null != n) {
@@ -24607,7 +24618,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       return this.shape.length;
     }, enumerable: !0, configurable: !0 }), e.prototype.toTensor = function () {
     return Tensor.make(this.shape, { values: this.values }, this.dtype);
-  }, e;
+  }, __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e.prototype, "set", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e.prototype, "get", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e.prototype, "toTensor", null), e = __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e);
 }(),
     trackerFn = null,
     opHandler = null;function setTensorTracker(e) {
@@ -24615,10 +24626,10 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
 }function setOpHandler(e) {
   opHandler = e;
 }var Tensor = function () {
-  function e(t, n, r, o) {
-    this.isDisposedInternal = !1, this.size = sizeFromShape(t), null != r && assert(this.size === r.length, "Constructing tensor of shape (" + this.size + ") should match the length of values (" + r.length + ")"), this.shape = t.slice(), this.dtype = n || "float32", this.strides = computeStrides(t), this.dataId = null != o ? o : {}, this.id = e.nextId++, this.rankType = this.rank < 5 ? this.rank.toString() : "higher", trackerFn().registerTensor(this), null != r && trackerFn().write(this.dataId, r);
-  }return e.make = function (t, n, r) {
-    return new e(t, r, n.values, n.dataId);
+  function e(e, n, r, o) {
+    this.isDisposedInternal = !1, this.size = sizeFromShape(e), null != r && assert(this.size === r.length, "Constructing tensor of shape (" + this.size + ") should match the length of values (" + r.length + ")"), this.shape = e.slice(), this.dtype = n || "float32", this.strides = computeStrides(e), this.dataId = null != o ? o : {}, this.id = t.nextId++, this.rankType = this.rank < 5 ? this.rank.toString() : "higher", trackerFn().registerTensor(this), null != r && trackerFn().write(this.dataId, r);
+  }var t;return t = e, e.make = function (e, n, r) {
+    return new t(e, r, n.values, n.dataId);
   }, e.prototype.flatten = function () {
     return this.throwIfDisposed(), this.as1D();
   }, e.prototype.asScalar = function () {
@@ -24891,29 +24902,31 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return void 0 === e && (e = !0), this.throwIfDisposed(), Variable.variable(this, e, t, n);
   }, e.prototype.unsortedSegmentSum = function (e, t) {
     return this.throwIfDisposed(), opHandler.unsortedSegmentSum(this, e, t);
-  }, e.prototype.batchToSpaceND = function (e, t) {
-    return this.throwIfDisposed(), opHandler.batchToSpaceND(this, e, t);
-  }, e.prototype.spaceToBatchND = function (e, t) {
-    return this.throwIfDisposed(), opHandler.spaceToBatchND(this, e, t);
-  }, e.nextId = 0, e;
+  }, e.nextId = 0, __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "flatten", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "asScalar", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "as1D", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "as2D", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "as3D", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "as4D", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "asType", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "buffer", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "data", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "dataSync", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "dispose", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "toFloat", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "toInt", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "toBool", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "print", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "reshape", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "reshapeAs", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "expandDims", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "cumsum", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "squeeze", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "clone", null), __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e.prototype, "toString", null), e = t = __decorate([doc({ heading: "Tensors", subheading: "Classes" })], e);
 }();Object.defineProperty(Tensor, Symbol.hasInstance, { value: function (e) {
-    return !!e && null != e.shape && null != e.dtype;
+    return null != e.shape && null != e.dtype;
   } });var Variable = function (e) {
-  function t(n, r, o) {
-    void 0 === r && (r = !0);var a = e.call(this, n.shape, n.dtype, null, n.dataId) || this;a.trainable = r, a.name = o, null == a.name && (a.name = t.nextVarId.toString(), t.nextVarId++);try {
+  function t(t, r, o) {
+    void 0 === r && (r = !0);var a = e.call(this, t.shape, t.dtype, null, t.dataId) || this;a.trainable = r, a.name = o, null == a.name && (a.name = n.nextVarId.toString(), n.nextVarId++);try {
       trackerFn().registerVariable(a);
     } catch (e) {
       throw trackerFn().disposeTensor(a), e;
     }return a;
-  }return __extends(t, e), t.variable = function (e, n, r, o) {
-    return void 0 === n && (n = !0), null != o && o !== e.dtype && (e = e.asType(o)), new t(e, n, r);
+  }var n;return __extends(t, e), n = t, t.variable = function (e, t, r, o) {
+    return void 0 === t && (t = !0), null != o && o !== e.dtype && (e = e.asType(o)), new n(e, t, r);
   }, t.prototype.assign = function (e) {
     if (e.dtype !== this.dtype) throw new Error("dtype of the new value (" + e.dtype + ") and previous value (" + this.dtype + ") must match");if (!arraysEqual(e.shape, this.shape)) throw new Error("shape of the new value (" + e.shape + ") and previous value (" + this.shape + ") must match");trackerFn().disposeTensor(this), this.dataId = e.dataId, trackerFn().registerTensor(this);
-  }, t.nextVarId = 0, t;
+  }, t.nextVarId = 0, __decorate([doc({ heading: "Tensors", subheading: "Classes" })], t.prototype, "assign", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], t, "variable", null), t = n = __decorate([doc({ heading: "Tensors", subheading: "Classes" })], t);
 }(Tensor);Object.defineProperty(Variable, Symbol.hasInstance, { value: function (e) {
     return e instanceof Tensor && null != e.assign && e.assign instanceof Function;
   } });var variable = Variable.variable;function assertTypesMatch(e, t) {
   assert(e.dtype === t.dtype, " The dtypes of the first(" + e.dtype + ") and second(" + t.dtype + ") input must match");
+}function convertToTensor(e, t, n, r) {
+  if (void 0 === r && (r = "float32"), r = r || "float32", e instanceof Tensor) return e;if (!isTypedArray(e) && !Array.isArray(e) && "number" != typeof e && "boolean" != typeof e) throw new Error("Argument '" + t + "' passed to '" + n + "' must be a Tensor or TensorLike, but got " + e.constructor.name);var o = inferShape(e);return isTypedArray(e) || Array.isArray(e) || (e = [e]), Tensor.make(o, { values: toTypedArray(e, r) }, r);
+}function convertToTensorArray(e, t, n) {
+  if (!Array.isArray(e)) throw new Error("Argument " + t + " passed to " + n + " must be a `Tensor[]` or `TensorLike[]`");return e.map(function (e, r) {
+    return convertToTensor(e, t + "[" + r + "]", n);
+  });
 }function isTensorInList(e, t) {
   for (var n = 0; n < t.length; n++) if (t[n].id === e.id) return !0;return !1;
 }function getTensorsInContainer(e) {
@@ -24965,7 +24978,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         return e(o.backend, i);
       }) : e(o.backend, i);
     }), this.shouldRecord()) {
-      var u = { id: this.nextTapeNodeId++, name: s, inputs: t, output: Array.isArray(r) ? r[0] : r };null != n && (u.gradient = function (e) {
+      var u = { id: this.nextTapeNodeId++, name: s, inputs: t, output: r };null != n && (u.gradient = function (e) {
         return n(e, a);
       }), this.activeTape.push(u);
     }return r;
@@ -25060,7 +25073,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   var t = makeOnesTypedArray(sizeFromShape(e), "float32");return Tensor.make(e, { values: t });
 }!function (e) {
   e[e.NUMBER = 0] = "NUMBER", e[e.BOOLEAN = 1] = "BOOLEAN", e[e.STRING = 2] = "STRING";
-}(Type || (Type = {}));var URL_PROPERTIES = [{ name: "DEBUG", type: Type.BOOLEAN }, { name: "IS_BROWSER", type: Type.BOOLEAN }, { name: "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION", type: Type.NUMBER }, { name: "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE", type: Type.BOOLEAN }, { name: "WEBGL_VERSION", type: Type.NUMBER }, { name: "WEBGL_RENDER_FLOAT32_ENABLED", type: Type.BOOLEAN }, { name: "WEBGL_DOWNLOAD_FLOAT_ENABLED", type: Type.BOOLEAN }, { name: "WEBGL_FENCE_API_ENABLED", type: Type.BOOLEAN }, { name: "BACKEND", type: Type.STRING }];function isWebGLVersionEnabled(e, t) {
+}(Type || (Type = {}));var URL_PROPERTIES = [{ name: "DEBUG", type: Type.BOOLEAN }, { name: "IS_BROWSER", type: Type.BOOLEAN }, { name: "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION", type: Type.NUMBER }, { name: "WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE", type: Type.BOOLEAN }, { name: "WEBGL_VERSION", type: Type.NUMBER }, { name: "WEBGL_RENDER_FLOAT32_ENABLED", type: Type.BOOLEAN }, { name: "WEBGL_DOWNLOAD_FLOAT_ENABLED", type: Type.BOOLEAN }, { name: "WEBGL_GET_BUFFER_SUB_DATA_ASYNC_EXTENSION_ENABLED", type: Type.BOOLEAN }, { name: "BACKEND", type: Type.STRING }];function isWebGLVersionEnabled(e, t) {
   var n;try {
     n = getWebGLRenderingContext(e, t);
   } catch (e) {
@@ -25077,9 +25090,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   if (0 === e) return !1;var n = getWebGLRenderingContext(e, t);if (1 === e) {
     if (!hasExtension(n, "OES_texture_float")) return !1;
   } else if (!hasExtension(n, "EXT_color_buffer_float")) return !1;createFloatTextureAndBindToFramebuffer(n, e), n.readPixels(0, 0, 1, 1, n.RGBA, n.FLOAT, new Float32Array(4));var r = n.getError() === n.NO_ERROR;return loseContext(n), r;
-}function isWebGLFenceEnabled(e, t) {
-  if (2 !== e) return !1;var n = getWebGLRenderingContext(e, t),
-      r = null != n.fenceSync;return loseContext(n), r;
+}function isWebGLGetBufferSubDataAsyncExtensionEnabled(e, t) {
+  if (e > 0) return !1;if (2 !== e) return !1;var n = getWebGLRenderingContext(e, t),
+      r = hasExtension(n, "WEBGL_get_buffer_sub_data_async");return loseContext(n), r;
 }function isChrome() {
   return "undefined" != typeof navigator && null != navigator && null != navigator.userAgent && /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 }var TENSORFLOWJS_FLAGS_PREFIX = "tfjsflags";function getFeaturesFromURL() {
@@ -25103,21 +25116,15 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
 }function createFloatTextureAndBindToFramebuffer(e, t) {
   var n = e.createFramebuffer(),
       r = e.createTexture();e.bindTexture(e.TEXTURE_2D, r);var o = 2 === t ? e.RGBA32F : e.RGBA;e.texImage2D(e.TEXTURE_2D, 0, o, 1, 1, 0, e.RGBA, e.FLOAT, null), e.bindFramebuffer(e.FRAMEBUFFER, n), e.framebufferTexture2D(e.FRAMEBUFFER, e.COLOR_ATTACHMENT0, e.TEXTURE_2D, r, 0);
-}function getQueryParams(e) {
-  var t = {};return e.replace(/[?&]([^=?&]+)(?:=([^&]*))?/g, function (e) {
-    for (var n = [], r = 1; r < arguments.length; r++) n[r - 1] = arguments[r];return decodeParam(t, n[0], n[1]), n.join("=");
-  }), t;
-}function decodeParam(e, t, n) {
-  e[decodeURIComponent(t)] = decodeURIComponent(n || "");
 }var TEST_EPSILON_FLOAT32_ENABLED = .001,
     TEST_EPSILON_FLOAT32_DISABLED = .1,
     Environment = function () {
   function e(e) {
     this.features = {}, this.registry = {}, null != e && (this.features = e), this.get("DEBUG") && console.warn("Debugging mode is ON. The output of every math call will be downloaded to CPU and checked for NaNs. This significantly impacts performance.");
   }return e.setBackend = function (e, t) {
-    if (void 0 === t && (t = !1), !(e in ENV.registry)) throw new Error("Backend name '" + e + "' not found in registry");ENV.initBackend(e, t);
+    if (void 0 === t && (t = !1), !(e in ENV.registry)) throw new Error("Backend type '" + e + "' not found in registry");ENV.initBackend(e, t);
   }, e.getBackend = function () {
-    return ENV.initDefaultBackend(), ENV.backendName;
+    return ENV.initDefaultBackend(), ENV.currentBackend;
   }, e.disposeVariables = function () {
     ENV.engine.disposeVariables();
   }, e.memory = function () {
@@ -25138,22 +25145,22 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return this.features;
   }, e.prototype.set = function (e, t) {
     this.features[e] = t;
-  }, e.prototype.getBestBackendName = function () {
+  }, e.prototype.getBestBackendType = function () {
     var e = this;if (0 === Object.keys(this.registry).length) throw new Error("No backend found in registry.");return Object.keys(this.registry).map(function (t) {
       return { name: t, entry: e.registry[t] };
     }).sort(function (e, t) {
       return t.entry.priority - e.entry.priority;
     })[0].name;
   }, e.prototype.evaluateFeature = function (e) {
-    if ("DEBUG" === e) return !1;if ("IS_BROWSER" === e) return "undefined" != typeof window;if ("IS_NODE" === e) return "undefined" != typeof process && void 0 !== process.versions.node;if ("IS_CHROME" === e) return isChrome();if ("IS_TEST" === e) return !1;if ("BACKEND" === e) return this.getBestBackendName();if ("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION" === e) {
-      var t = this.get("WEBGL_VERSION");return 0 === t ? 0 : t > 0 ? 0 : getWebGLDisjointQueryTimerVersion(t, this.get("IS_BROWSER"));
-    }if ("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE" === e) return this.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") > 0 && !isMobile();if ("HAS_WEBGL" === e) return this.get("WEBGL_VERSION") > 0;if ("WEBGL_VERSION" === e) return isWebGLVersionEnabled(2, this.get("IS_BROWSER")) ? 2 : isWebGLVersionEnabled(1, this.get("IS_BROWSER")) ? 1 : 0;if ("WEBGL_RENDER_FLOAT32_ENABLED" === e) return isRenderToFloatTextureEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("WEBGL_DOWNLOAD_FLOAT_ENABLED" === e) return isDownloadFloatTextureEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("WEBGL_FENCE_API_ENABLED" === e) return isWebGLFenceEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("TEST_EPSILON" === e) return this.get("WEBGL_RENDER_FLOAT32_ENABLED") ? TEST_EPSILON_FLOAT32_ENABLED : TEST_EPSILON_FLOAT32_DISABLED;throw new Error("Unknown feature " + e + ".");
+    if ("DEBUG" === e) return !1;if ("IS_BROWSER" === e) return "undefined" != typeof window;if ("IS_NODE" === e) return "undefined" != typeof process && void 0 !== process.versions.node;if ("IS_CHROME" === e) return isChrome();if ("IS_TEST" === e) return !1;if ("BACKEND" === e) return this.getBestBackendType();if ("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION" === e) {
+      var t = this.get("WEBGL_VERSION");return 0 === t ? 0 : getWebGLDisjointQueryTimerVersion(t, this.get("IS_BROWSER"));
+    }if ("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_RELIABLE" === e) return this.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") > 0 && !isMobile();if ("HAS_WEBGL" === e) return this.get("WEBGL_VERSION") > 0;if ("WEBGL_VERSION" === e) return isWebGLVersionEnabled(2, this.get("IS_BROWSER")) ? 2 : isWebGLVersionEnabled(1, this.get("IS_BROWSER")) ? 1 : 0;if ("WEBGL_RENDER_FLOAT32_ENABLED" === e) return isRenderToFloatTextureEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("WEBGL_DOWNLOAD_FLOAT_ENABLED" === e) return isDownloadFloatTextureEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("WEBGL_GET_BUFFER_SUB_DATA_ASYNC_EXTENSION_ENABLED" === e) return isWebGLGetBufferSubDataAsyncExtensionEnabled(this.get("WEBGL_VERSION"), this.get("IS_BROWSER"));if ("TEST_EPSILON" === e) return this.get("WEBGL_RENDER_FLOAT32_ENABLED") ? TEST_EPSILON_FLOAT32_ENABLED : TEST_EPSILON_FLOAT32_DISABLED;throw new Error("Unknown feature " + e + ".");
   }, e.prototype.setFeatures = function (e) {
     this.features = Object.assign({}, e);
   }, e.prototype.reset = function () {
     this.features = getFeaturesFromURL(), null != this.globalEngine && (this.globalEngine = null);
   }, e.prototype.initBackend = function (e, t) {
-    var n = this;void 0 === t && (t = !1), this.backendName = e, this.backend = this.findBackend(e), this.globalEngine = new Engine(this.backend, t, function () {
+    var n = this;void 0 === t && (t = !1), this.currentBackend = e;var r = this.findBackend(e);this.globalEngine = new Engine(r, t, function () {
       return n.get("DEBUG");
     });
   }, e.prototype.findBackend = function (e) {
@@ -25172,7 +25179,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       return this.initDefaultBackend(), this.globalEngine;
     }, enumerable: !0, configurable: !0 }), e.prototype.initDefaultBackend = function () {
     null == this.globalEngine && this.initBackend(this.get("BACKEND"), !1);
-  }, e;
+  }, __decorate([doc({ heading: "Environment" })], e, "setBackend", null), __decorate([doc({ heading: "Environment" })], e, "getBackend", null), __decorate([doc({ heading: "Environment" })], e, "disposeVariables", null), __decorate([doc({ heading: "Performance", subheading: "Memory" })], e, "memory", null), __decorate([doc({ heading: "Performance", subheading: "Memory" })], e, "tidy", null), __decorate([doc({ heading: "Performance", subheading: "Memory" })], e, "dispose", null), __decorate([doc({ heading: "Performance", subheading: "Memory" })], e, "keep", null), __decorate([doc({ heading: "Performance", subheading: "Timing" })], e, "time", null), e;
 }();function getGlobalNamespace() {
   var e;if ("undefined" != typeof window) e = window;else {
     if ("undefined" == typeof process) throw new Error("Could not find a global object");e = process;
@@ -25182,26 +25189,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return e.ENV.engine;
   })), e.ENV;
 }var ENV = getOrMakeEnvironment(),
-    environment = Object.freeze({ Environment: Environment, ENV: ENV });function warn() {
-  for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];ENV.get("IS_TEST") || console.warn.apply(console, e);
-}function getReshaped(e, t, n, r) {
-  void 0 === r && (r = !0);var o = [];if (r) (o = o.concat(t.slice(0))).push(e[0] / n), o = o.concat(e.slice(1));else {
-    o = o.concat(e[0]);for (var a = t.length, i = 0; i < a; ++i) o = o.concat([e[i + 1] / t[i], t[i]]);o = o.concat(e.slice(a + 1));
-  }return o;
-}function getPermuted(e, t, n) {
-  void 0 === n && (n = !0);var r = [];if (n) {
-    r.push(t);for (var o = t + 1; o < e; ++o) o <= 2 * t ? (r.push(o), r.push(o - (t + 1))) : r.push(o);
-  } else {
-    var a = [],
-        i = [];for (o = 1; o < e; ++o) o >= 2 * t + 1 || o % 2 == 1 ? i.push(o) : a.push(o);r.push.apply(r, a), r.push(0), r.push.apply(r, i);
-  }return r;
-}function getReshapedPermuted(e, t, n, r) {
-  void 0 === r && (r = !0);var o = [];r ? o.push(e[0] / n) : o.push(e[0] * n);for (var a = 1; a < e.length; ++a) a <= t.length ? r ? o.push(t[a - 1] * e[a]) : o.push(e[a] / t[a - 1]) : o.push(e[a]);return o;
-}function getSliceBeginCoords(e, t) {
-  for (var n = [0], r = 0; r < t; ++r) n.push(e[r][0]);return n;
-}function getSliceSize(e, t, n) {
-  for (var r = e.slice(0, 1), o = 0; o < n; ++o) r.push(e[o + 1] - t[o][0] - t[o][1]);return r;
-}function axesAreInnerMostDims(e, t) {
+    environment = Object.freeze({ Environment: Environment, ENV: ENV });function axesAreInnerMostDims(e, t) {
   for (var n = 0; n < e.length; ++n) if (e[e.length - n - 1] !== t - 1 - n) return !1;return !0;
 }function combineLocations(e, t, n) {
   for (var r = e.length + t.length, o = [], a = 0, i = 0, s = 0; s < r; s++) -1 === n.indexOf(s) ? o.push(e[a++]) : o.push(t[i++]);return o;
@@ -25239,18 +25227,1132 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   });
 }function getInnerMostAxes(e, t) {
   for (var n = [], r = t - e; r < t; ++r) n.push(r);return n;
-}var PARALLELIZE_THRESHOLD = 30;function computeOptimalWindowSize(e) {
-  return e <= PARALLELIZE_THRESHOLD ? e : nearestDivisor(e, Math.floor(Math.sqrt(e)));
-}function segOpComputeOptimalWindowSize(e, t) {
-  var n,
-      r = !1;for (e <= PARALLELIZE_THRESHOLD ? (n = e, r = !0) : n = nearestDivisor(e, Math.floor(Math.sqrt(e))); !r;) {
-    if (n > t || n === e) {
-      r = !0;break;
-    }n = nearestDivisor(e, n + 1);
-  }return n;
+}function assertParams(e, t, n) {
+  var r = e.length,
+      o = t.length;assert(e.length === t.length, "Error in concat" + r + "D: rank of x1 (" + r + ") and x2 (" + o + ") must be the same."), assert(n >= 0 && n < r, "Error in concat" + r + "D: axis must be between 0 and " + (r - 1) + ".");for (var a = 0; a < r; a++) assert(a === n || e[a] === t[a], "Error in concat" + r + "D: Shape (" + e + ") does not match (" + t + ") along the non-concatenated axis " + a + ".");
 }function computeOutShape(e, t, n) {
-  for (var r = [], o = e.length, a = 0; a < o; a++) a !== t ? r.push(e[a]) : r.push(n);return r;
-}function assertParamsValid(e, t, n) {
+  assert(e.length === t.length, "x1 and x2 should have the same rank.");var r = e.slice();return r[n] += t[n], r;
+}function computeGradientSliceShapes(e, t) {
+  return { aBegin: [0, 0], aSize: e, bBegin: [0, e[1]], bSize: t };
+}function op(e) {
+  return function () {
+    for (var t = [], n = 0; n < arguments.length; n++) t[n] = arguments[n];ENV.engine.startScope(e.name);try {
+      var r = e.apply(void 0, t);return r instanceof Promise && console.error("Cannot return a Promise inside of tidy."), ENV.engine.endScope(r), r;
+    } catch (e) {
+      throw ENV.engine.endScope(null), e;
+    }
+  };
+}var ConcatOps = function () {
+  function e() {}return e.concat1d = function (t) {
+    return e.concat(t, 0);
+  }, e.concat2d = function (t, n) {
+    return e.concat(t, n);
+  }, e.concat3d = function (t, n) {
+    return e.concat(t, n);
+  }, e.concat4d = function (t, n) {
+    return e.concat(t, n);
+  }, e.concat = function (e, t) {
+    void 0 === t && (t = 0), assert(e.length >= 1, "Pass at least one tensor to concat");var n = convertToTensorArray(e, "tensors", "concat"),
+        r = n[0];if (1 === n.length) return r;for (var o = parseAxisParam(t, r.shape), a = 1; a < n.length; ++a) r = concat2Tensors(r, n[a], o[0]);return r;
+  }, __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "concat", null), e;
+}();function concat2Tensors(e, t, n) {
+  assertParams(e.shape, t.shape, n);var r = computeOutShape(e.shape, t.shape, n),
+      o = e.as2D(-1, sizeFromShape(e.shape.slice(n))),
+      a = t.as2D(-1, sizeFromShape(t.shape.slice(n))),
+      i = computeGradientSliceShapes(o.shape, a.shape),
+      s = i.aBegin,
+      u = i.aSize,
+      l = i.bBegin,
+      c = i.bSize;return ENV.engine.runKernel(function (e) {
+    return e.concat(o, a);
+  }, { a: o, b: a }, function (e) {
+    return { a: function () {
+        return e.slice(s, u);
+      }, b: function () {
+        return e.slice(l, c);
+      } };
+  }).reshape(r);
+}var concat = op(ConcatOps.concat),
+    concat1d = op(ConcatOps.concat1d),
+    concat2d = op(ConcatOps.concat2d),
+    concat3d = op(ConcatOps.concat3d),
+    concat4d = op(ConcatOps.concat4d),
+    commonjsGlobal = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};function createCommonjsModule(e, t) {
+  return e(t = { exports: {} }, t.exports), t.exports;
+}var alea = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.c = e.c, t.s0 = e.s0, t.s1 = e.s1, t.s2 = e.s2, t;
+    }function o(e, t) {
+      var n = new function (e) {
+        var t,
+            n = this,
+            r = (t = 4022871197, function (e) {
+          e = e.toString();for (var n = 0; n < e.length; n++) {
+            var r = .02519603282416938 * (t += e.charCodeAt(n));r -= t = r >>> 0, t = (r *= t) >>> 0, t += 4294967296 * (r -= t);
+          }return 2.3283064365386963e-10 * (t >>> 0);
+        });n.next = function () {
+          var e = 2091639 * n.s0 + 2.3283064365386963e-10 * n.c;return n.s0 = n.s1, n.s1 = n.s2, n.s2 = e - (n.c = 0 | e);
+        }, n.c = 1, n.s0 = r(" "), n.s1 = r(" "), n.s2 = r(" "), n.s0 -= r(e), n.s0 < 0 && (n.s0 += 1), n.s1 -= r(e), n.s1 < 0 && (n.s1 += 1), n.s2 -= r(e), n.s2 < 0 && (n.s2 += 1), r = null;
+      }(e),
+          o = t && t.state,
+          a = n.next;return a.int32 = function () {
+        return 4294967296 * n.next() | 0;
+      }, a.double = function () {
+        return a() + 1.1102230246251565e-16 * (2097152 * a() | 0);
+      }, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.alea = o;
+  }(0, e, !1);
+}),
+    xor128 = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.x = e.x, t.y = e.y, t.z = e.z, t.w = e.w, t;
+    }function o(e, t) {
+      var n = new function (e) {
+        var t = this,
+            n = "";t.x = 0, t.y = 0, t.z = 0, t.w = 0, t.next = function () {
+          var e = t.x ^ t.x << 11;return t.x = t.y, t.y = t.z, t.z = t.w, t.w ^= t.w >>> 19 ^ e ^ e >>> 8;
+        }, e === (0 | e) ? t.x = e : n += e;for (var r = 0; r < n.length + 64; r++) t.x ^= 0 | n.charCodeAt(r), t.next();
+      }(e),
+          o = t && t.state,
+          a = function () {
+        return (n.next() >>> 0) / 4294967296;
+      };return a.double = function () {
+        do {
+          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
+        } while (0 === e);return e;
+      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.xor128 = o;
+  }(0, e, !1);
+}),
+    xorwow = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.x = e.x, t.y = e.y, t.z = e.z, t.w = e.w, t.v = e.v, t.d = e.d, t;
+    }function o(e, t) {
+      var n = new function (e) {
+        var t = this,
+            n = "";t.next = function () {
+          var e = t.x ^ t.x >>> 2;return t.x = t.y, t.y = t.z, t.z = t.w, t.w = t.v, (t.d = t.d + 362437 | 0) + (t.v = t.v ^ t.v << 4 ^ e ^ e << 1) | 0;
+        }, t.x = 0, t.y = 0, t.z = 0, t.w = 0, t.v = 0, e === (0 | e) ? t.x = e : n += e;for (var r = 0; r < n.length + 64; r++) t.x ^= 0 | n.charCodeAt(r), r == n.length && (t.d = t.x << 10 ^ t.x >>> 4), t.next();
+      }(e),
+          o = t && t.state,
+          a = function () {
+        return (n.next() >>> 0) / 4294967296;
+      };return a.double = function () {
+        do {
+          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
+        } while (0 === e);return e;
+      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.xorwow = o;
+  }(0, e, !1);
+}),
+    xorshift7 = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.x = e.x.slice(), t.i = e.i, t;
+    }function o(e, t) {
+      null == e && (e = +new Date());var n = new function (e) {
+        var t = this;t.next = function () {
+          var e,
+              n,
+              r = t.x,
+              o = t.i;return e = r[o], n = (e ^= e >>> 7) ^ e << 24, n ^= (e = r[o + 1 & 7]) ^ e >>> 10, n ^= (e = r[o + 3 & 7]) ^ e >>> 3, n ^= (e = r[o + 4 & 7]) ^ e << 7, e = r[o + 7 & 7], n ^= (e ^= e << 13) ^ e << 9, r[o] = n, t.i = o + 1 & 7, n;
+        }, function (e, t) {
+          var n,
+              r = [];if (t === (0 | t)) r[0] = t;else for (t = "" + t, n = 0; n < t.length; ++n) r[7 & n] = r[7 & n] << 15 ^ t.charCodeAt(n) + r[n + 1 & 7] << 13;for (; r.length < 8;) r.push(0);for (n = 0; n < 8 && 0 === r[n]; ++n);for (8 == n ? r[7] = -1 : r[n], e.x = r, e.i = 0, n = 256; n > 0; --n) e.next();
+        }(t, e);
+      }(e),
+          o = t && t.state,
+          a = function () {
+        return (n.next() >>> 0) / 4294967296;
+      };return a.double = function () {
+        do {
+          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
+        } while (0 === e);return e;
+      }, a.int32 = n.next, a.quick = a, o && (o.x && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.xorshift7 = o;
+  }(0, e, !1);
+}),
+    xor4096 = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.i = e.i, t.w = e.w, t.X = e.X.slice(), t;
+    }function o(e, t) {
+      null == e && (e = +new Date());var n = new function (e) {
+        var t = this;t.next = function () {
+          var e,
+              n,
+              r = t.w,
+              o = t.X,
+              a = t.i;return t.w = r = r + 1640531527 | 0, n = o[a + 34 & 127], e = o[a = a + 1 & 127], n ^= n << 13, e ^= e << 17, n ^= n >>> 15, e ^= e >>> 12, n = o[a] = n ^ e, t.i = a, n + (r ^ r >>> 16) | 0;
+        }, function (e, t) {
+          var n,
+              r,
+              o,
+              a,
+              i,
+              s = [],
+              u = 128;for (t === (0 | t) ? (r = t, t = null) : (t += "\0", r = 0, u = Math.max(u, t.length)), o = 0, a = -32; a < u; ++a) t && (r ^= t.charCodeAt((a + 32) % t.length)), 0 === a && (i = r), r ^= r << 10, r ^= r >>> 15, r ^= r << 4, r ^= r >>> 13, a >= 0 && (i = i + 1640531527 | 0, o = 0 == (n = s[127 & a] ^= r + i) ? o + 1 : 0);for (o >= 128 && (s[127 & (t && t.length || 0)] = -1), o = 127, a = 512; a > 0; --a) r = s[o + 34 & 127], n = s[o = o + 1 & 127], r ^= r << 13, n ^= n << 17, r ^= r >>> 15, n ^= n >>> 12, s[o] = r ^ n;e.w = i, e.X = s, e.i = o;
+        }(t, e);
+      }(e),
+          o = t && t.state,
+          a = function () {
+        return (n.next() >>> 0) / 4294967296;
+      };return a.double = function () {
+        do {
+          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
+        } while (0 === e);return e;
+      }, a.int32 = n.next, a.quick = a, o && (o.X && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.xor4096 = o;
+  }(0, e, !1);
+}),
+    tychei = createCommonjsModule(function (e) {
+  !function (e, t, n) {
+    function r(e, t) {
+      return t.a = e.a, t.b = e.b, t.c = e.c, t.d = e.d, t;
+    }function o(e, t) {
+      var n = new function (e) {
+        var t = this,
+            n = "";t.next = function () {
+          var e = t.b,
+              n = t.c,
+              r = t.d,
+              o = t.a;return e = e << 25 ^ e >>> 7 ^ n, n = n - r | 0, r = r << 24 ^ r >>> 8 ^ o, o = o - e | 0, t.b = e = e << 20 ^ e >>> 12 ^ n, t.c = n = n - r | 0, t.d = r << 16 ^ n >>> 16 ^ o, t.a = o - e | 0;
+        }, t.a = 0, t.b = 0, t.c = -1640531527, t.d = 1367130551, e === Math.floor(e) ? (t.a = e / 4294967296 | 0, t.b = 0 | e) : n += e;for (var r = 0; r < n.length + 20; r++) t.b ^= 0 | n.charCodeAt(r), t.next();
+      }(e),
+          o = t && t.state,
+          a = function () {
+        return (n.next() >>> 0) / 4294967296;
+      };return a.double = function () {
+        do {
+          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
+        } while (0 === e);return e;
+      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
+        return r(n, {});
+      }), a;
+    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
+      return o;
+    }) : this.tychei = o;
+  }(0, e, !1);
+}),
+    seedrandom = createCommonjsModule(function (e) {
+  !function (t, n) {
+    var r,
+        o = this,
+        a = 256,
+        i = 6,
+        s = "random",
+        u = n.pow(a, i),
+        l = n.pow(2, 52),
+        c = 2 * l,
+        d = a - 1;function p(e, p, m) {
+      var v = [],
+          y = f(function e(t, n) {
+        var r,
+            o = [],
+            a = typeof t;if (n && "object" == a) for (r in t) try {
+          o.push(e(t[r], n - 1));
+        } catch (e) {}return o.length ? o : "string" == a ? t : t + "\0";
+      }((p = 1 == p ? { entropy: !0 } : p || {}).entropy ? [e, g(t)] : null == e ? function () {
+        try {
+          var e;return r && (e = r.randomBytes) ? e = e(a) : (e = new Uint8Array(a), (o.crypto || o.msCrypto).getRandomValues(e)), g(e);
+        } catch (e) {
+          var n = o.navigator,
+              i = n && n.plugins;return [+new Date(), o, i, o.screen, g(t)];
+        }
+      }() : e, 3), v),
+          x = new function (e) {
+        var t,
+            n = e.length,
+            r = this,
+            o = 0,
+            i = r.i = r.j = 0,
+            s = r.S = [];n || (e = [n++]);for (; o < a;) s[o] = o++;for (o = 0; o < a; o++) s[o] = s[i = d & i + e[o % n] + (t = s[o])], s[i] = t;(r.g = function (e) {
+          for (var t, n = 0, o = r.i, i = r.j, s = r.S; e--;) t = s[o = d & o + 1], n = n * a + s[d & (s[o] = s[i = d & i + t]) + (s[i] = t)];return r.i = o, r.j = i, n;
+        })(a);
+      }(v),
+          T = function () {
+        for (var e = x.g(i), t = u, n = 0; e < l;) e = (e + n) * a, t *= a, n = x.g(1);for (; e >= c;) e /= 2, t /= 2, n >>>= 1;return (e + n) / t;
+      };return T.int32 = function () {
+        return 0 | x.g(4);
+      }, T.quick = function () {
+        return x.g(4) / 4294967296;
+      }, T.double = T, f(g(x.S), t), (p.pass || m || function (e, t, r, o) {
+        return o && (o.S && h(o, x), e.state = function () {
+          return h(x, {});
+        }), r ? (n[s] = e, t) : e;
+      })(T, y, "global" in p ? p.global : this == n, p.state);
+    }function h(e, t) {
+      return t.i = e.i, t.j = e.j, t.S = e.S.slice(), t;
+    }function f(e, t) {
+      for (var n, r = e + "", o = 0; o < r.length;) t[d & o] = d & (n ^= 19 * t[d & o]) + r.charCodeAt(o++);return g(t);
+    }function g(e) {
+      return String.fromCharCode.apply(0, e);
+    }if (n["seed" + s] = p, f(n.random(), t), e.exports) {
+      e.exports = p;try {
+        r = require("crypto");
+      } catch (e) {}
+    } else 0;
+  }([], Math);
+});seedrandom.alea = alea, seedrandom.xor128 = xor128, seedrandom.xorwow = xorwow, seedrandom.xorshift7 = xorshift7, seedrandom.xor4096 = xor4096, seedrandom.tychei = tychei;var seedrandom$1 = seedrandom,
+    seedrandom_1 = seedrandom$1.alea,
+    MPRandGauss = function () {
+  function e(e, t, n, r, o) {
+    this.mean = e, this.stdDev = t, this.dtype = n, this.nextVal = NaN, this.truncated = r, this.truncated && (this.upper = this.mean + 2 * this.stdDev, this.lower = this.mean - 2 * this.stdDev);var a = o || Math.random();this.random = seedrandom_1(a.toString());
+  }return e.prototype.nextValue = function () {
+    if (!isNaN(this.nextVal)) {
+      var e = this.nextVal;return this.nextVal = NaN, e;
+    }for (var t, n, r = !1; !r;) {
+      var o = void 0,
+          a = void 0,
+          i = void 0;do {
+        i = (o = 2 * this.random() - 1) * o + (a = 2 * this.random() - 1) * a;
+      } while (i >= 1 || 0 === i);var s = Math.sqrt(-2 * Math.log(i) / i);t = this.mean + this.stdDev * o * s, n = this.mean + this.stdDev * a * s, this.truncated && !this.isValidTruncated(t) || (r = !0);
+    }return this.truncated && !this.isValidTruncated(n) || (this.nextVal = this.convertValue(n)), this.convertValue(t);
+  }, e.prototype.convertValue = function (e) {
+    return null == this.dtype || "float32" === this.dtype ? e : Math.round(e);
+  }, e.prototype.isValidTruncated = function (e) {
+    return e <= this.upper && e >= this.lower;
+  }, e;
+}(),
+    TensorOps = function () {
+  function e() {}return e.tensor = function (e, t, n) {
+    if (void 0 === n && (n = "float32"), !isTypedArray(e) && !Array.isArray(e) && "number" != typeof e && "boolean" != typeof e) throw new Error("values passed to tensor(values) must be an array of numbers or booleans, or a TypedArray");var r = inferShape(e);return null != t && 1 !== r.length && assertShapesMatch(t, r, "Error creating a new Tensor. Inferred shape (" + r + ") does not match the provided shape (" + t + "). "), isTypedArray(e) || Array.isArray(e) || (e = [e]), t = t || r, Tensor.make(t, { values: toTypedArray(e, n) }, n);
+  }, e.scalar = function (t, n) {
+    if (void 0 === n && (n = "float32"), isTypedArray(t) || Array.isArray(t)) throw new Error("Error creating a new Scalar: value must be a primitive (number|boolean)");return e.tensor(t, [], n);
+  }, e.tensor1d = function (t, n) {
+    void 0 === n && (n = "float32"), assertNonNull(t);var r = inferShape(t);if (1 !== r.length) throw new Error("tensor1d() requires values to be a flat/TypedArray");return e.tensor(t, r, n);
+  }, e.tensor2d = function (t, n, r) {
+    if (void 0 === r && (r = "float32"), assertNonNull(t), null != n && 2 !== n.length) throw new Error("tensor2d() requires shape to have two numbers");var o = inferShape(t);if (2 !== o.length && 1 !== o.length) throw new Error("tensor2d() requires values to be number[][] or flat/TypedArray");if (1 === o.length && null == n) throw new Error("tensor2d() requires shape to be provided when `values` are a flat/TypedArray");return n = n || o, e.tensor(t, n, r);
+  }, e.tensor3d = function (t, n, r) {
+    if (void 0 === r && (r = "float32"), assertNonNull(t), null != n && 3 !== n.length) throw new Error("tensor3d() requires shape to have three numbers");var o = inferShape(t);if (3 !== o.length && 1 !== o.length) throw new Error("tensor3d() requires values to be number[][][] or flat/TypedArray");if (1 === o.length && null == n) throw new Error("tensor3d() requires shape to be provided when `values` are a flat array");return n = n || o, e.tensor(t, n, r);
+  }, e.tensor4d = function (t, n, r) {
+    if (void 0 === r && (r = "float32"), assertNonNull(t), null != n && 4 !== n.length) throw new Error("tensor4d() requires shape to have four numbers");var o = inferShape(t);if (4 !== o.length && 1 !== o.length) throw new Error("tensor4d() requires values to be number[][][][] or flat/TypedArray");if (1 === o.length && null == n) throw new Error("tensor4d() requires shape to be provided when `values` are a flat array");return n = n || o, e.tensor(t, n, r);
+  }, e.tensor5d = function (t, n, r) {
+    if (void 0 === r && (r = "float32"), assertNonNull(t), null != n && 5 !== n.length) throw new Error("tensor5d() requires shape to have five numbers");var o = inferShape(t);if (5 !== o.length && 1 !== o.length) throw new Error("tensor5d() requires values to be number[][][][][] or flat/TypedArray");if (1 === o.length && null == n) throw new Error("tensor5d() requires shape to be provided when `values` are a flat array");return n = n || o, e.tensor(t, n, r);
+  }, e.tensor6d = function (t, n, r) {
+    if (void 0 === r && (r = "float32"), assertNonNull(t), null != n && 6 !== n.length) throw new Error("tensor6d() requires shape to have six numbers");var o = inferShape(t);if (6 !== o.length && 1 !== o.length) throw new Error("tensor6d() requires values to be number[][][][] or flat/TypedArray");if (1 === o.length && null == n) throw new Error("tensor6d() requires shape to be provided when `values` are a flat array");return n = n || o, e.tensor(t, n, r);
+  }, e.ones = function (e, t) {
+    void 0 === t && (t = "float32");var n = makeOnesTypedArray(sizeFromShape(e), t);return Tensor.make(e, { values: n }, t);
+  }, e.zeros = function (e, t) {
+    void 0 === t && (t = "float32");var n = makeZerosTypedArray(sizeFromShape(e), t);return Tensor.make(e, { values: n }, t);
+  }, e.fill = function (e, t, n) {
+    void 0 === n && (n = "float32");var r = getTypedArrayFromDType(n, sizeFromShape(e));return r.fill(t), Tensor.make(e, { values: r }, n);
+  }, e.onesLike = function (t) {
+    var n = convertToTensor(t, "x", "onesLike");return e.ones(n.shape, n.dtype);
+  }, e.zerosLike = function (t) {
+    var n = convertToTensor(t, "x", "zerosLike");return e.zeros(n.shape, n.dtype);
+  }, e.linspace = function (t, n, r) {
+    if (0 === r) throw new Error("Cannot request zero samples");var o = (n - t) / (r - 1),
+        a = makeZerosTypedArray(r, "float32");a[0] = t;for (var i = 1; i < a.length; i++) a[i] = a[i - 1] + o;return e.tensor1d(a, "float32");
+  }, e.range = function (t, n, r, o) {
+    if (void 0 === r && (r = 1), void 0 === o && (o = "float32"), 0 === r) throw new Error("Cannot have a step of zero");if (t === n || t < n && r < 0 || n < t && r > 1) return e.zeros([0], o);var a = makeZerosTypedArray(Math.abs(Math.ceil((n - t) / r)), o);n < t && 1 === r && (r = -1), a[0] = t;for (var i = 1; i < a.length; i++) a[i] = a[i - 1] + r;return e.tensor1d(a, o);
+  }, __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "scalar", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor1d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor2d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor3d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor4d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor5d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "tensor6d", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "ones", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "zeros", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "fill", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "onesLike", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "zerosLike", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "linspace", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "range", null), e;
+}(),
+    fill = TensorOps.fill,
+    linspace = TensorOps.linspace,
+    ones$1 = TensorOps.ones,
+    range = TensorOps.range,
+    scalar = TensorOps.scalar,
+    tensor = TensorOps.tensor,
+    tensor1d = TensorOps.tensor1d,
+    tensor2d = TensorOps.tensor2d,
+    tensor3d = TensorOps.tensor3d,
+    tensor4d = TensorOps.tensor4d,
+    tensor5d = TensorOps.tensor5d,
+    tensor6d = TensorOps.tensor6d,
+    zeros = TensorOps.zeros,
+    onesLike = op(TensorOps.onesLike),
+    zerosLike = op(TensorOps.zerosLike),
+    ArrayOps = function () {
+  function e() {}return e.clone = function (e) {
+    var t = convertToTensor(e, "x", "clone");return ENV.engine.runKernel(function (e) {
+      return Tensor.make(t.shape, { dataId: t.dataId }, t.dtype);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.toFloat();
+        } };
+    });
+  }, e.eye = function (t, n, r, o) {
+    void 0 === o && (o = "float32"), null == n && (n = t);for (var a = e.buffer([t, n], o), i = t <= n ? t : n, s = 0; s < i; ++s) a.set(1, s, s);var u = a.toTensor().as2D(t, n);if (null == r) return u;if (1 === r.length) return e.tile(e.expandDims(u, 0), [r[0], 1, 1]);if (2 === r.length) return e.tile(e.expandDims(e.expandDims(u, 0), 0), [r[0], r[1], 1, 1]);if (3 === r.length) return e.tile(e.expandDims(e.expandDims(e.expandDims(u, 0), 0), 0), [r[0], r[1], r[2], 1, 1]);throw new Error("eye() currently supports only 1D and 2D batchShapes, but received " + r.length + "D.");
+  }, e.randomNormal = function (t, n, r, o, a) {
+    if (void 0 === n && (n = 0), void 0 === r && (r = 1), null != o && "bool" === o) throw new Error("Unsupported data type " + o);for (var i = new MPRandGauss(n, r, o, !1, a), s = e.buffer(t, o), u = 0; u < s.values.length; u++) s.values[u] = i.nextValue();return s.toTensor();
+  }, e.truncatedNormal = function (t, n, r, o, a) {
+    if (void 0 === n && (n = 0), void 0 === r && (r = 1), null != o && "bool" === o) throw new Error("Unsupported data type " + o);for (var i = new MPRandGauss(n, r, o, !0, a), s = e.buffer(t, o), u = 0; u < s.values.length; u++) s.values[u] = i.nextValue();return s.toTensor();
+  }, e.randomUniform = function (t, n, r, o) {
+    void 0 === n && (n = 0), void 0 === r && (r = 1), void 0 === o && (o = "float32");for (var a = e.buffer(t, o), i = 0; i < a.values.length; i++) a.values[i] = randUniform(n, r);return a.toTensor();
+  }, e.rand = function (e, t, n) {
+    var r = sizeFromShape(e),
+        o = null;if (null == n || "float32" === n) o = new Float32Array(r);else if ("int32" === n) o = new Int32Array(r);else {
+      if ("bool" !== n) throw new Error("Unknown data type " + n);o = new Uint8Array(r);
+    }for (var a = 0; a < r; a++) o[a] = t();return Tensor.make(e, { values: o }, n);
+  }, e.multinomial = function (e, t, n, r) {
+    void 0 === r && (r = !1);var o = convertToTensor(e, "logits", "multinomial"),
+        a = o.size,
+        i = o.rank;if (a < 2) throw new Error("Error in multinomial: you need at least 2 outcomes, but got " + a + ".");if (i > 2) throw new Error("Rank of probabilities must be 1 or 2, but is " + i);n = n || Math.random();var s = 1 === i ? o.as2D(1, -1) : o,
+        u = ENV.engine.runKernel(function (e) {
+      return e.multinomial(s, r, t, n);
+    }, { logits2D: s });return 1 === i ? u.as1D() : u;
+  }, e.oneHot = function (e, t, n, r) {
+    void 0 === n && (n = 1), void 0 === r && (r = 0);var o = convertToTensor(e, "indices", "oneHot", "int32");if (assert("int32" === o.dtype, "Indices must be of dtype `int32`"), t < 2) throw new Error("Error in oneHot: depth must be >=2, but it is " + t);return ENV.engine.runKernel(function (e) {
+      return e.oneHot(o, t, n, r);
+    }, { $indices: o });
+  }, e.fromPixels = function (e, t) {
+    if (void 0 === t && (t = 3), t > 4) throw new Error("Cannot construct Tensor with more than 4 channels from pixels.");return ENV.engine.fromPixels(e, t);
+  }, e.toPixels = function (e, t) {
+    return __awaiter(this, void 0, void 0, function () {
+      var n, r, o, a, i, s, u, l, c, d, p, h, f, g, m, v, y, x, T, b;return __generator(this, function (S) {
+        switch (S.label) {case 0:
+            if (2 !== (n = convertToTensor(e, "img", "toPixels", "int32")).rank && 3 !== n.rank) throw new Error("toPixels only supports rank 2 or 3 tensors, got rank " + n.rank + ".");if (r = n.shape.slice(0, 2), o = r[0], a = r[1], (i = 2 === n.rank ? 1 : n.shape[2]) > 4 || 2 === i) throw new Error("toPixels only supports depth of size 1, 3 or 4 but got " + i);return s = n.min(), u = n.max(), [4, s.data()];case 1:
+            return l = S.sent()[0], [4, u.data()];case 2:
+            if (c = S.sent()[0], s.dispose(), u.dispose(), "float32" === n.dtype) {
+              if (l < 0 || c > 1) throw new Error("Tensor values for a float32 Tensor must be in the range [0 - 1] but got range [" + l + " - " + c + "].");
+            } else {
+              if ("int32" !== n.dtype) throw new Error("Unsupported type for toPixels: " + n.dtype + ". Please use float32 or int32 tensors.");if (l < 0 || c > 255) throw new Error("Tensor values for a int32 Tensor must be in the range [0 - 255] but got range [" + l + " - " + c + "].");
+            }return [4, n.data()];case 3:
+            for (d = S.sent(), p = "float32" === n.dtype ? 255 : 1, h = new Uint8ClampedArray(a * o * 4), f = 0; f < o * a; ++f) g = void 0, m = void 0, v = void 0, y = void 0, 1 === i ? (g = d[f] * p, m = d[f] * p, v = d[f] * p, y = 255) : 3 === i ? (g = d[3 * f] * p, m = d[3 * f + 1] * p, v = d[3 * f + 2] * p, y = 255) : 4 === i && (g = d[4 * f] * p, m = d[4 * f + 1] * p, v = d[4 * f + 2] * p, y = d[4 * f + 3] * p), h[(x = 4 * f) + 0] = Math.round(g), h[x + 1] = Math.round(m), h[x + 2] = Math.round(v), h[x + 3] = Math.round(y);return null != t && (t.width = a, t.height = o, T = t.getContext("2d"), b = new ImageData(h, a, o), T.putImageData(b, 0, 0)), n !== e && n.dispose(), [2, h];}
+      });
+    });
+  }, e.reshape = function (e, t) {
+    var n = convertToTensor(e, "x", "reshape");t = inferFromImplicitShape(t, n.size), assert(n.size === sizeFromShape(t), "new shape and old shape must have the same number of elements.");return ENV.engine.runKernel(function (e) {
+      return e.reshape(n, t);
+    }, { $x: n }, function (e) {
+      return { $x: function () {
+          return e.reshape(n.shape);
+        } };
+    });
+  }, e.squeeze = function (t, n) {
+    var r = convertToTensor(t, "x", "squeeze");return e.reshape(r, squeezeShape(r.shape, n).newShape);
+  }, e.cast = function (e, t) {
+    var n = convertToTensor(e, "x", "cast");return ENV.engine.runKernel(function (e) {
+      return e.cast(n, t);
+    }, { $x: n }, function (e) {
+      return { $x: function () {
+          return e.clone();
+        } };
+    });
+  }, e.tile = function (e, t) {
+    var n = convertToTensor(e, "x", "tile");assert(n.rank === t.length, "Error in transpose: rank of input " + n.rank + " must match length of reps " + t + ".");return ENV.engine.runKernel(function (e) {
+      return e.tile(n, t);
+    }, { $x: n }, function (e) {
+      return { $x: function () {
+          var r = zerosLike(n);if (1 === n.rank) for (var o = 0; o < t[0]; ++o) r = r.add(e.slice([o * n.shape[0]], [n.shape[0]]));else if (2 === n.rank) for (o = 0; o < t[0]; ++o) for (var a = 0; a < t[1]; ++a) r = r.add(e.slice([o * n.shape[0], a * n.shape[1]], [n.shape[0], n.shape[1]]));else if (3 === n.rank) for (o = 0; o < t[0]; ++o) for (a = 0; a < t[1]; ++a) for (var i = 0; i < t[2]; ++i) r = r.add(e.slice([o * n.shape[0], a * n.shape[1], i * n.shape[2]], [n.shape[0], n.shape[1], n.shape[2]]));else {
+            if (4 !== n.rank) throw new Error("Gradient for tile operation is not implemented for rank-" + n.rank + " tensors yet.");for (o = 0; o < t[0]; ++o) for (a = 0; a < t[1]; ++a) for (i = 0; i < t[2]; ++i) for (var s = 0; s < t[3]; ++s) r = r.add(e.slice([o * n.shape[0], a * n.shape[1], i * n.shape[2], s * n.shape[3]], [n.shape[0], n.shape[1], n.shape[2], n.shape[3]]));
+          }return r;
+        } };
+    });
+  }, e.pad1d = function (t, n, r) {
+    return void 0 === r && (r = 0), assert(2 === n.length, "Invalid number of paddings. Must be length of 2."), e.pad(t, [n], r);
+  }, e.pad2d = function (t, n, r) {
+    return void 0 === r && (r = 0), assert(2 === n.length && 2 === n[0].length && 2 === n[1].length, "Invalid number of paddings. Must be length of 2 each."), e.pad(t, n, r);
+  }, e.pad3d = function (t, n, r) {
+    return void 0 === r && (r = 0), assert(3 === n.length && 2 === n[0].length && 2 === n[1].length && 2 === n[2].length, "Invalid number of paddings. Must be length of 2 each."), e.pad(t, n, r);
+  }, e.pad4d = function (t, n, r) {
+    return void 0 === r && (r = 0), assert(4 === n.length && 2 === n[0].length && 2 === n[1].length && 2 === n[2].length && 2 === n[3].length, "Invalid number of paddings. Must be length of 2 each."), e.pad(t, n, r);
+  }, e.pad = function (e, t, n) {
+    void 0 === n && (n = 0);var r = convertToTensor(e, "x", "pad");if (0 === r.rank) throw new Error("pad(scalar) is not defined. Pass non-scalar to pad");var o = t.map(function (e) {
+      return e[0];
+    });return ENV.engine.runKernel(function (e) {
+      return e.pad(r, t, n);
+    }, { $x: r }, function (e) {
+      return { $x: function () {
+          return e.slice(o, r.shape);
+        } };
+    });
+  }, e.stack = function (e, t) {
+    void 0 === t && (t = 0);var n = convertToTensorArray(e, "tensors", "stack");if (assert(n.length >= 1, "Pass at least one tensor to tf.stack"), 1 === n.length) return n[0].expandDims(t);var r = n[0].rank,
+        o = n[0].shape,
+        a = n[0].dtype;assert(t <= r, "Axis must be <= rank of the tensor"), n.forEach(function (e) {
+      assertShapesMatch(o, e.shape, "All tensors passed to stack must have matching shapes");
+    }), n.forEach(function (e) {
+      assert(a === e.dtype, "All tensors passed to stack must have matching dtypes");
+    });var i = n.map(function (e) {
+      return e.expandDims(t);
+    });return concat(i, t);
+  }, e.unstack = function (e, t) {
+    void 0 === t && (t = 0);for (var n, r = convertToTensor(e, "x", "unstack"), o = r.shape[t], a = Array(r.rank - 1).fill(0), i = 0, s = 0; s < r.rank; s++) s !== t && (a[i] = r.shape[s], i++);n = Array(o).fill(1);var u = Array(r.rank).fill(0),
+        l = r.shape.slice();return n.map(function (e) {
+      l[t] = e;var n = r.slice(u, l);return u[t] += e, n.reshape(a);
+    });
+  }, e.split = function (e, t, n) {
+    void 0 === n && (n = 0);var r,
+        o = convertToTensor(e, "x", "split");n = parseAxisParam(n, o.shape)[0], "number" == typeof t ? (assert(o.shape[n] % t == 0, "Number of splits must evenly divide the axis."), r = Array(t).fill(o.shape[n] / t)) : (assert(o.shape[n] === t.reduce(function (e, t) {
+      return e + t;
+    }), "The sum of sizes must match the size of the axis dimension."), r = t);var a = Array(o.rank).fill(0),
+        i = o.shape.slice();return r.map(function (e) {
+      i[n] = e;var t = o.slice(a, i);return a[n] += e, t;
+    });
+  }, e.cumsum = function (e, t, n, r) {
+    void 0 === t && (t = 0), void 0 === n && (n = !1), void 0 === r && (r = !1);var o = convertToTensor(e, "x", "cumsum"),
+        a = getAxesPermutation([t |= 0], o.rank),
+        i = o;null != a && (i = o.transpose(a));var s = getInnerMostAxes(1, o.rank)[0],
+        u = ENV.engine.runKernel(function (e) {
+      return e.cumsum(i, s, n, r);
+    }, { permutedX: i }, function (e) {
+      return { permutedX: function () {
+          return e.cumsum(t, n, !r);
+        } };
+    });return null != a && (u = u.transpose(a)), u;
+  }, e.expandDims = function (t, n) {
+    void 0 === n && (n = 0);var r = convertToTensor(t, "x", "expandDims");assert(n <= r.rank, "Axis must be <= rank of the tensor");var o = r.shape.slice();return n < 0 && (assert(-(r.rank + 1) <= n, "Axis must be in the interval [" + -(r.rank + 1) + ", " + r.rank + "]"), n = r.rank + n + 1), o.splice(n, 0, 1), e.reshape(r, o);
+  }, e.buffer = function (e, t, n) {
+    return void 0 === t && (t = "float32"), new TensorBuffer(e, t, n);
+  }, e.print = function (e, t) {
+    void 0 === t && (t = !1), console.log(e.toString(t));
+  }, __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "clone", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "eye", null), __decorate([doc({ heading: "Tensors", subheading: "Random" })], e, "randomNormal", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "truncatedNormal", null), __decorate([doc({ heading: "Tensors", subheading: "Random" })], e, "randomUniform", null), __decorate([doc({ heading: "Tensors", subheading: "Random" })], e, "multinomial", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "oneHot", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "fromPixels", null), __decorate([doc({ heading: "Visualization" })], e, "toPixels", null), __decorate([doc({ heading: "Tensors", subheading: "Transformations" })], e, "reshape", null), __decorate([doc({ heading: "Tensors", subheading: "Transformations" })], e, "squeeze", null), __decorate([doc({ heading: "Tensors", subheading: "Transformations" })], e, "cast", null), __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "tile", null), __decorate([doc({ heading: "Tensors", subheading: "Transformations" })], e, "pad", null), __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "stack", null), __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "unstack", null), __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "split", null), __decorate([doc({ heading: "Operations", subheading: "Scan" })], e, "cumsum", null), __decorate([doc({ heading: "Tensors", subheading: "Transformations" })], e, "expandDims", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "buffer", null), __decorate([doc({ heading: "Tensors", subheading: "Creation" })], e, "print", null), e;
+}(),
+    buffer = ArrayOps.buffer,
+    toPixels = ArrayOps.toPixels,
+    cast = op(ArrayOps.cast),
+    clone = op(ArrayOps.clone),
+    cumsum = op(ArrayOps.cumsum),
+    expandDims = op(ArrayOps.expandDims),
+    eye = op(ArrayOps.eye),
+    fromPixels = op(ArrayOps.fromPixels),
+    multinomial = op(ArrayOps.multinomial),
+    oneHot = op(ArrayOps.oneHot),
+    pad = op(ArrayOps.pad),
+    pad1d = op(ArrayOps.pad1d),
+    pad2d = op(ArrayOps.pad2d),
+    pad3d = op(ArrayOps.pad3d),
+    pad4d = op(ArrayOps.pad4d),
+    print = op(ArrayOps.print),
+    rand = op(ArrayOps.rand),
+    randomNormal = op(ArrayOps.randomNormal),
+    randomUniform = op(ArrayOps.randomUniform),
+    reshape = op(ArrayOps.reshape),
+    split = op(ArrayOps.split),
+    squeeze = op(ArrayOps.squeeze),
+    stack = op(ArrayOps.stack),
+    tile = op(ArrayOps.tile),
+    truncatedNormal = op(ArrayOps.truncatedNormal),
+    unstack = op(ArrayOps.unstack);function getBroadcastDims(e, t) {
+  for (var n = e.length, r = [], o = 0; o < n; o++) {
+    var a = n - 1 - o,
+        i = e[a] || 1;(t[t.length - 1 - o] || 1) > 1 && 1 === i && r.unshift(a);
+  }return r;
+}function getReductionAxes(e, t) {
+  for (var n = [], r = 0; r < t.length; r++) {
+    var o = e[e.length - r - 1],
+        a = t.length - r - 1,
+        i = t[a];(null == o || 1 === o && i > 1) && n.unshift(a);
+  }return n;
+}function broadcastDimsAreOuter(e) {
+  for (var t = 0; t < e.length; t++) if (e[t] !== t) return !1;return !0;
+}function assertAndGetBroadcastShape(e, t) {
+  for (var n = [], r = "Operands could not be broadcast together with shapes " + e + " and " + t + ".", o = Math.max(e.length, t.length), a = 0; a < o; a++) {
+    var i = e[e.length - a - 1] || 1,
+        s = t[t.length - a - 1] || 1;if (i > 1 && s > 1 && i !== s) throw Error(r);n.unshift(Math.max(i, s));
+  }return n;
+}var UnaryOps = function () {
+  function e() {}return e.neg = function (e) {
+    var t = convertToTensor(e, "x", "neg");return ENV.engine.runKernel(function (e) {
+      return e.neg(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.neg();
+        } };
+    });
+  }, e.ceil = function (e) {
+    var t = convertToTensor(e, "x", "ceil");return ENV.engine.runKernel(function (e) {
+      return e.ceil(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return zerosLike(e);
+        } };
+    });
+  }, e.floor = function (e) {
+    var t = convertToTensor(e, "x", "floor");return ENV.engine.runKernel(function (e) {
+      return e.floor(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return zerosLike(e);
+        } };
+    });
+  }, e.sign = function (e) {
+    var t = convertToTensor(e, "x", "sign");return ENV.engine.runKernel(function (e) {
+      return e.sign(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return zerosLike(e);
+        } };
+    });
+  }, e.round = function (e) {
+    var t = convertToTensor(e, "x", "round");return ENV.engine.runKernel(function (e) {
+      return e.round(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return zerosLike(e);
+        } };
+    });
+  }, e.exp = function (e) {
+    var t = convertToTensor(e, "x", "exp");return ENV.engine.runKernel(function (e, n) {
+      return n(e.exp(t));
+    }, { $x: t }, function (e, t) {
+      var n = t[0];return { $x: function () {
+          return e.mulStrict(n);
+        } };
+    });
+  }, e.expm1 = function (e) {
+    var t = convertToTensor(e, "x", "expm1");return ENV.engine.runKernel(function (e) {
+      return e.expm1(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(t.exp());
+        } };
+    });
+  }, e.log = function (e) {
+    var t = convertToTensor(e, "x", "log");return ENV.engine.runKernel(function (e) {
+      return e.log(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.toFloat());
+        } };
+    });
+  }, e.log1p = function (e) {
+    var t = convertToTensor(e, "x", "log1p");return ENV.engine.runKernel(function (e) {
+      return e.log1p(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.add(scalar(1)));
+        } };
+    });
+  }, e.sqrt = function (e) {
+    var t = convertToTensor(e, "x", "sqrt");return ENV.engine.runKernel(function (e) {
+      return e.sqrt(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.toFloat().sqrt().mul(scalar(2)));
+        } };
+    });
+  }, e.rsqrt = function (e) {
+    var t = convertToTensor(e, "x", "rsqrt");return ENV.engine.runKernel(function (e) {
+      return e.rsqrt(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.pow(scalar(1.5)).mul(scalar(2))).neg();
+        } };
+    });
+  }, e.square = function (e) {
+    var t = convertToTensor(e, "x", "square");return ENV.engine.runKernel(function (e) {
+      return e.square(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(t.toFloat().mul(scalar(2)));
+        } };
+    });
+  }, e.reciprocal = function (e) {
+    var t = convertToTensor(e, "x", "reciprocal");return ENV.engine.runKernel(function (e) {
+      return e.reciprocal(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.square().neg());
+        } };
+    });
+  }, e.abs = function (e) {
+    var t = convertToTensor(e, "x", "abs");return ENV.engine.runKernel(function (e) {
+      return e.abs(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(t.toFloat().step(-1));
+        } };
+    });
+  }, e.clipByValue = function (e, t, n) {
+    var r = convertToTensor(e, "x", "clipByValue");assert(t <= n, "Error in clip: min (" + t + ") must be less than or equal to max (" + n + ").");return ENV.engine.runKernel(function (e) {
+      return e.clip(r, t, n);
+    }, { $x: r }, function (e) {
+      return { $x: function () {
+          return e.where(r.greaterEqual(scalar(t)).logicalAnd(r.lessEqual(scalar(n))), zerosLike(e));
+        } };
+    });
+  }, e.sigmoid = function (e) {
+    var t = convertToTensor(e, "x", "sigmoid");return ENV.engine.runKernel(function (e, n) {
+      return n(e.sigmoid(t));
+    }, { $x: t }, function (e, t) {
+      var n = t[0];return { $x: function () {
+          return e.mulStrict(n.mul(scalar(1).sub(n)));
+        } };
+    });
+  }, e.logSigmoid = function (e) {
+    var t = convertToTensor(e, "x", "logSigmoid");return ENV.engine.runKernel(function (e) {
+      return e.softplus(t.neg()).neg();
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(t.neg().sigmoid());
+        } };
+    });
+  }, e.softplus = function (e) {
+    var t = convertToTensor(e, "x", "softplus");return ENV.engine.runKernel(function (e) {
+      return e.softplus(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(t.sigmoid());
+        } };
+    });
+  }, e.sin = function (e) {
+    var t = convertToTensor(e, "x", "sin");return ENV.engine.runKernel(function (e) {
+      return e.sin(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return t.toFloat().cos().mulStrict(e);
+        } };
+    });
+  }, e.cos = function (e) {
+    var t = convertToTensor(e, "x", "cos");return ENV.engine.runKernel(function (e) {
+      return e.cos(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return t.toFloat().sin().neg().mulStrict(e);
+        } };
+    });
+  }, e.tan = function (e) {
+    var t = convertToTensor(e, "x", "tan");return ENV.engine.runKernel(function (e) {
+      return e.tan(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.cos().square());
+        } };
+    });
+  }, e.asin = function (e) {
+    var t = convertToTensor(e, "x", "asin");return ENV.engine.runKernel(function (e) {
+      return e.asin(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(scalar(1).sub(t.toFloat().square()).sqrt());
+        } };
+    });
+  }, e.acos = function (e) {
+    var t = convertToTensor(e, "x", "acos");return ENV.engine.runKernel(function (e) {
+      return e.acos(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(scalar(1).sub(t.toFloat().square()).sqrt()).neg();
+        } };
+    });
+  }, e.atan = function (e) {
+    var t = convertToTensor(e, "x", "atan");return ENV.engine.runKernel(function (e) {
+      return e.atan(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(scalar(1).add(t.toFloat().square()));
+        } };
+    });
+  }, e.sinh = function (e) {
+    var t = convertToTensor(e, "x", "sinh");return ENV.engine.runKernel(function (e) {
+      return e.sinh(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return t.toFloat().cosh().mulStrict(e);
+        } };
+    });
+  }, e.cosh = function (e) {
+    var t = convertToTensor(e, "x", "cosh");return ENV.engine.runKernel(function (e) {
+      return e.cosh(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return t.toFloat().sinh().mulStrict(e);
+        } };
+    });
+  }, e.tanh = function (e) {
+    var t = convertToTensor(e, "x", "tanh");return ENV.engine.runKernel(function (e, n) {
+      return n(e.tanh(t));
+    }, { $x: t }, function (e, t) {
+      var n = t[0];return { $x: function () {
+          return scalar(1).sub(n.square()).mulStrict(e);
+        } };
+    });
+  }, e.asinh = function (e) {
+    var t = convertToTensor(e, "x", "asinh");return ENV.engine.runKernel(function (e) {
+      return e.asinh(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(scalar(1).add(t.toFloat().square()).sqrt());
+        } };
+    });
+  }, e.acosh = function (e) {
+    var t = convertToTensor(e, "x", "acosh");return ENV.engine.runKernel(function (e) {
+      return e.acosh(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(t.toFloat().square().sub(scalar(1)).sqrt());
+        } };
+    });
+  }, e.atanh = function (e) {
+    var t = convertToTensor(e, "x", "atanh");return ENV.engine.runKernel(function (e) {
+      return e.atanh(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.divStrict(scalar(1).sub(t.toFloat().square()));
+        } };
+    });
+  }, e.erf = function (e) {
+    var t = convertToTensor(e, "x", "erf");assert("int32" === t.dtype || "float32" === t.dtype, "Input dtype must be `int32` or `float32`."), "int32" === t.dtype && (t = t.toFloat());return ENV.engine.runKernel(function (e) {
+      return e.erf(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          return e.mulStrict(scalar(2 / Math.sqrt(Math.PI)).mul(t.square().neg().exp()));
+        } };
+    });
+  }, e.step = function (e, t) {
+    void 0 === t && (t = 0);var n = convertToTensor(e, "x", "step");return ENV.engine.runKernel(function (e) {
+      return e.step(n, t);
+    }, { $x: n }, function (e) {
+      return { $x: function () {
+          return zerosLike(e);
+        } };
+    });
+  }, __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "neg", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "ceil", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "floor", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "sign", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "round", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "exp", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "expm1", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "log", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "log1p", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "sqrt", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "rsqrt", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "square", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "reciprocal", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "abs", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "clipByValue", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "sigmoid", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "logSigmoid", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "softplus", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "sin", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "cos", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "tan", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "asin", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "acos", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "atan", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "sinh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "cosh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "tanh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "asinh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "acosh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "atanh", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "erf", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "step", null), e;
+}(),
+    abs = op(UnaryOps.abs),
+    acos = op(UnaryOps.acos),
+    acosh = op(UnaryOps.acosh),
+    asin = op(UnaryOps.asin),
+    asinh = op(UnaryOps.asinh),
+    atan = op(UnaryOps.atan),
+    atanh = op(UnaryOps.atanh),
+    ceil = op(UnaryOps.ceil),
+    clipByValue = op(UnaryOps.clipByValue),
+    cos = op(UnaryOps.cos),
+    cosh = op(UnaryOps.cosh),
+    erf = op(UnaryOps.erf),
+    exp = op(UnaryOps.exp),
+    expm1 = op(UnaryOps.expm1),
+    floor = op(UnaryOps.floor),
+    log = op(UnaryOps.log),
+    log1p = op(UnaryOps.log1p),
+    logSigmoid = op(UnaryOps.logSigmoid),
+    neg = op(UnaryOps.neg),
+    reciprocal = op(UnaryOps.reciprocal),
+    round = op(UnaryOps.round),
+    rsqrt = op(UnaryOps.rsqrt),
+    sigmoid = op(UnaryOps.sigmoid),
+    sign = op(UnaryOps.sign),
+    sin = op(UnaryOps.sin),
+    sinh = op(UnaryOps.sinh),
+    softplus = op(UnaryOps.softplus),
+    sqrt = op(UnaryOps.sqrt),
+    square = op(UnaryOps.square),
+    step = op(UnaryOps.step),
+    tan = op(UnaryOps.tan),
+    tanh$1 = op(UnaryOps.tanh),
+    BatchNormOps = function () {
+  function e() {}return e.batchNormalization2d = function (t, n, r, o, a, i) {
+    void 0 === o && (o = .001);var s,
+        u,
+        l = convertToTensor(t, "x", "batchNormalization"),
+        c = convertToTensor(n, "mean", "batchNormalization"),
+        d = convertToTensor(r, "variance", "batchNormalization");return null != a && (s = convertToTensor(a, "scale", "batchNormalization")), null != i && (u = convertToTensor(i, "offset", "batchNormalization")), assert(2 === l.rank, "Error in batchNormalization3D: x must be rank 3 but got rank " + l.rank + "."), assert(2 === c.rank || 1 === c.rank, "Error in batchNormalization2D: mean must be rank 2 or rank 1 but got rank " + c.rank + "."), assert(2 === d.rank || 1 === d.rank, "Error in batchNormalization2D: variance must be rank 2 or rank 1 but got rank " + d.rank + "."), null != s && assert(2 === s.rank || 1 === s.rank, "Error in batchNormalization2D: scale must be rank 2 or rank 1 but got rank " + s.rank + "."), null != u && assert(2 === u.rank || 1 === u.rank, "Error in batchNormalization2D: offset must be rank 2 or rank 1 but got rank " + u.rank + "."), e.batchNormalization(l, c, d, o, s, u);
+  }, e.batchNormalization3d = function (t, n, r, o, a, i) {
+    void 0 === o && (o = .001);var s,
+        u,
+        l = convertToTensor(t, "x", "batchNormalization"),
+        c = convertToTensor(n, "mean", "batchNormalization"),
+        d = convertToTensor(r, "variance", "batchNormalization");return null != a && (s = convertToTensor(a, "scale", "batchNormalization")), null != i && (u = convertToTensor(i, "offset", "batchNormalization")), assert(3 === l.rank, "Error in batchNormalization3D: x must be rank 3 but got rank " + l.rank + "."), assert(3 === c.rank || 1 === c.rank, "Error in batchNormalization3D: mean must be rank 3 or rank 1 but got rank " + c.rank + "."), assert(3 === d.rank || 1 === d.rank, "Error in batchNormalization3D: variance must be rank 3 or rank 1 but got rank " + d.rank + "."), null != s && assert(3 === s.rank || 1 === s.rank, "Error in batchNormalization3D: scale must be rank 3 or rank 1 but got rank " + s.rank + "."), null != u && assert(3 === u.rank || 1 === u.rank, "Error in batchNormalization3D: offset must be rank 3 or rank 1 but got rank " + u.rank + "."), e.batchNormalization(l, c, d, o, s, u);
+  }, e.batchNormalization4d = function (t, n, r, o, a, i) {
+    void 0 === o && (o = .001);var s,
+        u,
+        l = convertToTensor(t, "x", "batchNormalization"),
+        c = convertToTensor(n, "mean", "batchNormalization"),
+        d = convertToTensor(r, "variance", "batchNormalization");return null != a && (s = convertToTensor(a, "scale", "batchNormalization")), null != i && (u = convertToTensor(i, "offset", "batchNormalization")), assert(4 === l.rank, "Error in batchNormalization4D: x must be rank 4 but got rank " + l.rank + "."), assert(4 === c.rank || 1 === c.rank, "Error in batchNormalization4D: mean must be rank 4 or rank 1 but got rank " + c.rank + "."), assert(4 === d.rank || 1 === d.rank, "Error in batchNormalization4D: variance must be rank 4 or rank 1 but got rank " + d.rank + "."), null != s && assert(4 === s.rank || 1 === s.rank, "Error in batchNormalization4D: scale must be rank 4 or rank 1 but got rank " + s.rank + "."), null != u && assert(4 === u.rank || 1 === u.rank, "Error in batchNormalization4D: offset must be rank 4 or rank 1 but got rank " + u.rank + "."), e.batchNormalization(l, c, d, o, s, u);
+  }, e.batchNormalization = function (e, t, n, r, o, a) {
+    void 0 === r && (r = .001);var i,
+        s,
+        u,
+        l = convertToTensor(e, "x", "batchNormalization"),
+        c = convertToTensor(t, "mean", "batchNormalization"),
+        d = convertToTensor(n, "variance", "batchNormalization");null != o && (i = convertToTensor(o, "scale", "batchNormalization")), null != a && (s = convertToTensor(a, "offset", "batchNormalization")), assert(c.rank === d.rank, "Batch normalization gradient requires mean and variance to have equal ranks."), assert(null == s || c.rank === s.rank, "Batch normalization gradient requires mean and offset to have equal ranks."), assert(null == i || c.rank === i.rank, "Batch normalization gradient requires mean and scale to have equal ranks."), u = 0 === l.rank || 1 === l.rank ? l.as4D(1, 1, 1, l.size) : 2 === l.rank ? l.as4D(1, 1, l.shape[0], l.shape[1]) : 3 === l.rank ? l.as4D(1, l.shape[0], l.shape[1], l.shape[2]) : l;return ENV.engine.runKernel(function (e) {
+      return e.batchNormalization(u, batchnormReshape4D(c), batchnormReshape4D(d), r, batchnormReshape4D(i), batchnormReshape4D(s));
+    }, { $x: l, $mean: c, $variance: d, $scale: i, $offset: s }, function (e) {
+      var t = null == i ? scalar(1) : i,
+          n = getReductionAxes(c.shape, u.shape),
+          o = [];if (1 === c.rank) {
+        for (var a = 0; a < u.shape.length - 1; ++a) o.push(u.shape[a]);o.push(1);
+      }var s = l.sub(c),
+          p = e.mul(t),
+          h = rsqrt(d.add(scalar(r))),
+          f = h.mul(h).mul(h).mul(scalar(-.5));return { $x: function () {
+          return 1 === c.rank ? e.mul(tile(h.as4D(1, 1, 1, c.shape[0]), o)).mul(t).reshape(l.shape) : e.mul(h).mul(t).reshape(l.shape);
+        }, $mean: function () {
+          var e = h.mul(scalar(-1)).mul(p);return 1 === c.rank && (e = e.sum(n)), e.reshape(c.shape);
+        }, $variance: function () {
+          var e = f.mul(s).mul(p);return 1 === c.rank && (e = e.sum(n)), e.reshape(c.shape);
+        }, $scale: function () {
+          var t = s.mul(h),
+              r = e.mul(t);return 1 === c.rank && (r = r.sum(n)), r.reshape(c.shape);
+        }, $offset: function () {
+          var t = e;return 1 === c.rank && (t = t.sum(n)), t.reshape(c.shape);
+        } };
+    }).reshape(l.shape);
+  }, __decorate([doc({ heading: "Operations", subheading: "Normalization" })], e, "batchNormalization", null), e;
+}();function batchnormReshape4D(e) {
+  return null == e ? null : 0 === e.rank ? e.as1D() : 1 === e.rank ? e : 2 === e.rank ? e.as4D(1, 1, e.shape[0], e.shape[1]) : 3 === e.rank ? e.as4D(1, e.shape[0], e.shape[1], e.shape[2]) : e;
+}var batchNormalization2d = op(BatchNormOps.batchNormalization2d),
+    batchNormalization3d = op(BatchNormOps.batchNormalization3d),
+    batchNormalization4d = op(BatchNormOps.batchNormalization4d),
+    batchNormalization = op(BatchNormOps.batchNormalization);function computePool2DInfo(e, t, n, r, o, a) {
+  void 0 === a && (a = "channelsLast");var i,
+      s = parseTupleParam(t),
+      u = s[0],
+      l = s[1];if ("channelsLast" === a) i = [u, l, e[3], e[3]];else {
+    if ("channelsFirst" !== a) throw new Error("Unknown dataFormat " + a);i = [u, l, e[1], e[1]];
+  }return computeConv2DInfo(e, i, n, 1, r, o, !1, a);
+}function computeConv2DInfo(e, t, n, r, o, a, i, s) {
+  void 0 === i && (i = !1), void 0 === s && (s = "channelsLast");var u = [-1, -1, -1, -1],
+      l = u[0],
+      c = u[1],
+      d = u[2],
+      p = u[3];if ("channelsLast" === s) l = e[0], c = e[1], d = e[2], p = e[3];else {
+    if ("channelsFirst" !== s) throw new Error("Unknown dataFormat " + s);l = e[0], p = e[1], c = e[2], d = e[3];
+  }var h,
+      f = t[0],
+      g = t[1],
+      m = t[3],
+      v = parseTupleParam(n),
+      y = v[0],
+      x = v[1],
+      T = parseTupleParam(r),
+      b = T[0],
+      S = T[1],
+      E = getPadAndOutInfo(o, c, d, y, x, getEffectiveFilterSize(f, b), getEffectiveFilterSize(g, S), a),
+      w = E.padInfo,
+      A = E.outHeight,
+      R = E.outWidth,
+      C = i ? m * p : m;return "channelsFirst" === s ? h = [l, C, A, R] : "channelsLast" === s && (h = [l, A, R, C]), { batchSize: l, dataFormat: s, inHeight: c, inWidth: d, inChannels: p, outHeight: A, outWidth: R, outChannels: C, padInfo: w, strideHeight: y, strideWidth: x, filterHeight: f, filterWidth: g, dilationHeight: b, dilationWidth: S, inShape: e, outShape: h, filterShape: t };
+}function computeOutputShape3D(e, t, n, r, o, a) {
+  null == o && (o = computeDefaultPad(e, t, r));var i = e[0],
+      s = e[1],
+      u = conditionalRound((i - t + 2 * o) / r + 1, a);assert(isInt(u), "The output # of rows (" + u + ") must be an integer. Change the stride and/or zero pad parameters");var l = conditionalRound((s - t + 2 * o) / r + 1, a);return assert(isInt(l), "The output # of columns (" + l + ") must be an integer. Change the stride and/or zero pad parameters"), [u, l, n];
+}function computeDefaultPad(e, t, n, r) {
+  void 0 === r && (r = 1);var o = getEffectiveFilterSize(t, r);return Math.floor((e[0] * (n - 1) - n + o) / 2);
+}function parseTupleParam(e) {
+  return "number" == typeof e ? [e, e] : e;
+}function getEffectiveFilterSize(e, t) {
+  return t <= 1 ? e : e + (e - 1) * (t - 1);
+}function getPadAndOutInfo(e, t, n, r, o, a, i, s) {
+  var u, l, c;if ("number" == typeof e) {
+    u = { top: e, bottom: e, left: e, right: e, type: 0 === e ? "VALID" : "NUMBER" };var d = computeOutputShape3D([t, n, 1], a, 1, r, e, s);l = d[0], c = d[1];
+  } else if ("same" === e) {
+    var p = ((l = Math.ceil(t / r)) - 1) * r + a - t,
+        h = ((c = Math.ceil(n / o)) - 1) * o + i - n,
+        f = Math.floor(p / 2),
+        g = p - f,
+        m = Math.floor(h / 2);u = { top: f, bottom: g, left: m, right: h - m, type: "SAME" };
+  } else {
+    if ("valid" !== e) throw Error("Unknown padding parameter: " + e);u = { top: 0, bottom: 0, left: 0, right: 0, type: "VALID" }, l = Math.ceil((t - a + 1) / r), c = Math.ceil((n - i + 1) / o);
+  }return { padInfo: u, outHeight: l, outWidth: c };
+}function conditionalRound(e, t) {
+  if (!t) return e;switch (t) {case "round":
+      return Math.round(e);case "ceil":
+      return Math.ceil(e);case "floor":
+      return Math.floor(e);default:
+      throw new Error("Unknown roundingMode " + t);}
+}var ConvOps = function () {
+  function e() {}return e.conv1d = function (t, n, r, o, a, i, s) {
+    void 0 === a && (a = "NWC"), void 0 === i && (i = 1);var u = convertToTensor(t, "x", "conv1d"),
+        l = convertToTensor(n, "filter", "conv1d"),
+        c = u,
+        d = !1;2 === u.rank && (d = !0, c = u.as3D(1, u.shape[0], u.shape[1])), assert(3 === c.rank, "Error in conv1d: input must be rank 3, but got rank " + c.rank + "."), assert(3 === l.rank, "Error in conv1d: filter must be rank 3, but got rank " + l.rank + "."), null != s && assert(isInt(o), "Error in conv1d: pad must be an integer when using, dimRoundingMode " + s + " but got pad " + o + "."), assert(c.shape[2] === l.shape[1], "Error in conv1d: depth of input (" + c.shape[2] + ") must match input depth for filter " + l.shape[1] + "."), assert(eitherStridesOrDilationsAreOne(r, i), "Error in conv1D: Either stride or dilation must be 1. Got stride " + r + " and dilation '" + i + "'"), assert("NWC" === a, "Error in conv1d: got dataFormat of " + a + " but only NWC is currently supported.");var p = l.as4D(1, l.shape[0], l.shape[1], l.shape[2]),
+        h = c.as4D(c.shape[0], 1, c.shape[1], c.shape[2]),
+        f = [1, r],
+        g = [1, i],
+        m = e.conv2d(h, p, f, o, "NHWC", g, s);return d ? m.as2D(m.shape[2], m.shape[3]) : m.as3D(m.shape[0], m.shape[2], m.shape[3]);
+  }, e.conv2d = function (t, n, r, o, a, i, s) {
+    void 0 === a && (a = "NHWC"), void 0 === i && (i = [1, 1]);var u = convertToTensor(t, "x", "conv2d"),
+        l = convertToTensor(n, "filter", "conv2d"),
+        c = u,
+        d = !1;3 === u.rank && (d = !0, c = u.as4D(1, u.shape[0], u.shape[1], u.shape[2])), assert(4 === c.rank, "Error in conv2d: input must be rank 4, but got rank " + c.rank + "."), assert(4 === l.rank, "Error in conv2d: filter must be rank 4, but got rank " + l.rank + "."), null != s && assert(isInt(o), "Error in conv2d: pad must be an integer when using, dimRoundingMode " + s + " but got pad " + o + "."), assert(c.shape[3] === l.shape[2], "Error in conv2d: depth of input (" + c.shape[3] + ") must match input depth for filter " + l.shape[2] + "."), assert(eitherStridesOrDilationsAreOne(r, i), "Error in conv2D: Either strides or dilations must be 1. Got strides " + r + " and dilations '" + i + "'"), assert("NHWC" === a, "Error in conv2d: got dataFormat of " + a + " but only NHWC is currently supported.");var p = computeConv2DInfo(c.shape, l.shape, r, i, o, s),
+        h = ENV.engine.runKernel(function (e) {
+      return e.conv2d(c, l, p);
+    }, { x: c, $filter: l }, function (t) {
+      return assert(tupleValuesAreOne(i), "Error in gradient of conv2D: dilation rates greater than 1 are notyet supported in gradients. Got dilations '" + i + "'"), { x: function () {
+          return e.conv2dDerInput(c.shape, t, l, r, o);
+        }, $filter: function () {
+          return e.conv2dDerFilter(c, t, l.shape, r, o);
+        } };
+    });return d ? h.as3D(h.shape[1], h.shape[2], h.shape[3]) : h;
+  }, e.conv2dDerInput = function (e, t, n, r, o, a) {
+    assert(e.length === t.rank, "Length of inShape (" + e.length + ") and rank of dy (" + t.rank + ") must match");var i = e,
+        s = t,
+        u = !1;3 === t.rank && (u = !0, s = t.as4D(1, t.shape[0], t.shape[1], t.shape[2]), i = [1, e[0], e[1], e[2]]);var l = i[3],
+        c = s.shape[3];assert(4 === i.length, "Error in conv2dDerInput: inShape must be length 4, but got length " + i.length + "."), assert(4 === s.rank, "Error in conv2dDerInput: dy must be rank 4, but got rank " + s.rank), assert(4 === n.rank, "Error in conv2dDerInput: filter must be rank 4, but got rank " + n.rank), assert(l === n.shape[2], "Error in conv2dDerInput: depth of input (" + l + ") must match input depth for filter " + n.shape[2] + "."), assert(c === n.shape[3], "Error in conv2dDerInput: depth of output (" + c + ") must match output depth for filter " + n.shape[3] + "."), null != a && assert(isInt(o), "Error in conv2dDerInput: pad must be an integer when using, dimRoundingMode " + a + " but got pad " + o + ".");var d = computeConv2DInfo(i, n.shape, r, 1, o, a),
+        p = ENV.engine.runKernel(function (e) {
+      return e.conv2dDerInput(s, n, d);
+    }, { dy4D: s });return u ? p.as3D(p.shape[1], p.shape[2], p.shape[3]) : p;
+  }, e.conv2dDerFilter = function (e, t, n, r, o, a) {
+    var i = e;3 === e.rank && (i = e.as4D(1, e.shape[0], e.shape[1], e.shape[2]));var s = t;3 === s.rank && (s = t.as4D(1, t.shape[0], t.shape[1], t.shape[2])), assert(4 === i.rank, "Error in conv2dDerFilter: input must be rank 4, but got shape " + i.shape + "."), assert(4 === s.rank, "Error in conv2dDerFilter: dy must be rank 4, but got shape " + s.shape + "."), assert(4 === n.length, "Error in conv2dDerFilter: filterShape must be length 4, but got " + n + "."), assert(i.shape[3] === n[2], "Error in conv2dDerFilter: depth of input " + i.shape[3] + ") must match input depth in filter (" + n[2] + "."), assert(s.shape[3] === n[3], "Error in conv2dDerFilter: depth of dy (" + s.shape[3] + ") must match output depth for filter (" + n[3] + ")."), null != a && assert(isInt(o), "Error in conv2dDerFilter: pad must be an integer when using, dimRoundingMode " + a + " but got pad " + o + ".");var u = computeConv2DInfo(i.shape, n, r, 1, o, a);return ENV.engine.runKernel(function (e) {
+      return e.conv2dDerFilter(i, s, u);
+    }, { x4D: i, dy4D: s });
+  }, e.conv2dTranspose = function (t, n, r, o, a, i) {
+    var s = convertToTensor(t, "x", "conv2dTranspose"),
+        u = convertToTensor(n, "filter", "conv2dTranspose");return e.conv2dDerInput(r, s, u, o, a, i);
+  }, e.depthwiseConv2d = function (e, t, n, r, o, a, i) {
+    void 0 === o && (o = "NHWC"), void 0 === a && (a = [1, 1]);var s = convertToTensor(e, "x", "depthwiseConv2d"),
+        u = convertToTensor(t, "filter", "depthwiseConv2d"),
+        l = s,
+        c = !1;3 === s.rank && (c = !0, l = s.as4D(1, s.shape[0], s.shape[1], s.shape[2])), assert(4 === l.rank, "Error in depthwiseConv2d: input must be rank 4, but got rank " + l.rank + "."), assert(4 === u.rank, "Error in depthwiseConv2d: filter must be rank 4, but got rank " + u.rank + "."), assert(l.shape[3] === u.shape[2], "Error in depthwiseConv2d: number of input channels (" + l.shape[3] + ") must match the inChannels dimension in filter " + u.shape[2] + "."), null == a && (a = [1, 1]), assert(eitherStridesOrDilationsAreOne(n, a), "Error in depthwiseConv2d: Either strides or dilations must be 1. Got strides " + n + " and dilations '" + a + "'"), null != i && assert(isInt(r), "Error in depthwiseConv2d: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + r + ".");var d = computeConv2DInfo(l.shape, u.shape, n, a, r, i, !0),
+        p = ENV.engine.runKernel(function (e) {
+      return e.depthwiseConv2D(l, u, d);
+    }, { x: l, $filter: u }, function (e) {
+      return assert(tupleValuesAreOne(a), "Error in gradient of depthwiseConv2d: dilation rates greater than 1 are not yet supported. Got dilations '" + a + "'"), { x: function () {
+          return depthwiseConv2dDerInput(l.shape, e, u, d);
+        }, $filter: function () {
+          return depthwiseConv2dDerFilter(l, e, u.shape, d);
+        } };
+    });return c ? p.as3D(p.shape[1], p.shape[2], p.shape[3]) : p;
+  }, e.separableConv2d = function (t, n, r, o, a, i, s) {
+    void 0 === i && (i = [1, 1]), void 0 === s && (s = "NHWC");var u = convertToTensor(t, "x", "separableConv2d"),
+        l = convertToTensor(n, "depthwiseFilter", "separableConv2d"),
+        c = convertToTensor(r, "pointwiseFilter", "separableConv2d"),
+        d = u,
+        p = !1;if (3 === u.rank && (p = !0, d = u.as4D(1, u.shape[0], u.shape[1], u.shape[2])), "NCHW" === s) throw new Error("separableConv2d currently does not support dataFormat NCHW; only NHWC is supported");assert(4 === d.rank, "Error in separableConv2d: input must be rank 4, but got rank " + d.rank + "."), assert(4 === l.rank, "Error in separableConv2d: depthwise filter must be rank 4, but got rank " + l.rank + "."), assert(4 === c.rank, "Error in separableConv2d: pointwise filter must be rank 4, but got rank " + l.rank + "."), assert(1 === c.shape[0], "Error in separableConv2d: the first dimension of pointwise filter  must be 1, but got " + c.shape[0] + "."), assert(1 === c.shape[1], "Error in separableConv2d: the second dimension of pointwise filter  must be 1, but got " + c.shape[1] + ".");var h = l.shape[2],
+        f = l.shape[3];assert(c.shape[2] === h * f, "Error in separableConv2d: the third dimension of pointwise filter must be " + h * f + ", but got " + c.shape[2] + ".");var g = e.depthwiseConv2d(d, l, o, a, s, i),
+        m = e.conv2d(g, c, 1, "valid", s);return p ? m.as3D(m.shape[1], m.shape[2], m.shape[3]) : m;
+  }, __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "conv1d", null), __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "conv2d", null), __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "conv2dTranspose", null), __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "depthwiseConv2d", null), __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "separableConv2d", null), e;
+}();function parseTupleParam$1(e) {
+  return "number" == typeof e ? [e, e] : e;
+}function tupleValuesAreOne(e) {
+  var t = parseTupleParam$1(e),
+      n = t[0],
+      r = t[1];return 1 === n && 1 === r;
+}function eitherStridesOrDilationsAreOne(e, t) {
+  return tupleValuesAreOne(e) || tupleValuesAreOne(t);
+}function depthwiseConv2dDerInput(e, t, n, r) {
+  var o = t,
+      a = !1;3 === t.rank && (a = !0, o = t.as4D(1, t.shape[0], t.shape[1], t.shape[2]));var i = ENV.engine.runKernel(function (e) {
+    return e.depthwiseConv2DDerInput(o, n, r);
+  }, { dy4D: o });return a ? i.as3D(i.shape[1], i.shape[2], i.shape[3]) : i;
+}function depthwiseConv2dDerFilter(e, t, n, r) {
+  var o = e;3 === e.rank && (o = e.as4D(1, e.shape[0], e.shape[1], e.shape[2]));var a = t;return 3 === a.rank && (a = t.as4D(1, t.shape[0], t.shape[1], t.shape[2])), ENV.engine.runKernel(function (e) {
+    return e.depthwiseConv2DDerFilter(o, a, r);
+  }, { x4D: o, dy4D: a });
+}var conv1d = op(ConvOps.conv1d),
+    conv2d = op(ConvOps.conv2d),
+    depthwiseConv2d = op(ConvOps.depthwiseConv2d),
+    separableConv2d = op(ConvOps.separableConv2d),
+    conv2dTranspose = op(ConvOps.conv2dTranspose),
+    MatmulOps = function () {
+  function e() {}return e.matMul = function (e, t, n, r) {
+    void 0 === n && (n = !1), void 0 === r && (r = !1);var o = convertToTensor(e, "a", "matMul"),
+        a = convertToTensor(t, "b", "matMul"),
+        i = n ? o.shape[0] : o.shape[1],
+        s = r ? a.shape[1] : a.shape[0];assert(2 === o.rank && 2 === a.rank, "Error in matMul: inputs must be rank 2, got ranks " + o.rank + " and " + a.rank + "."), assert(i === s, "Error in matMul: inner shapes (" + i + ") and (" + s + ") of Tensors with shapes " + o.shape + " and " + a.shape + " and transposeA=" + n + " and transposeB=" + r + " must match.");return ENV.engine.runKernel(function (e) {
+      return e.matMul(o, a, n, r);
+    }, { $a: o, $b: a }, function (e) {
+      return n || r ? !n && r ? { $a: function () {
+          return e.matMul(a.toFloat(), !1, !1);
+        }, $b: function () {
+          return e.matMul(o.toFloat(), !0, !1);
+        } } : n && !r ? { $a: function () {
+          return a.toFloat().matMul(e, !1, !0);
+        }, $b: function () {
+          return o.toFloat().matMul(e, !1, !1);
+        } } : { $a: function () {
+          return a.toFloat().matMul(e, !0, !0);
+        }, $b: function () {
+          return e.matMul(o.toFloat(), !0, !0);
+        } } : { $a: function () {
+          return e.matMul(a.toFloat(), !1, !0);
+        }, $b: function () {
+          return o.toFloat().matMul(e, !0, !1);
+        } };
+    });
+  }, e.outerProduct = function (e, t) {
+    var n = convertToTensor(e, "v1", "outerProduct"),
+        r = convertToTensor(t, "v2", "outerProduct");return assert(1 === n.rank && 1 === r.rank, "Error in outerProduct: inputs must be rank 1, but got ranks " + n.rank + " and " + r.rank + "."), n.as2D(-1, 1).matMul(r.as2D(1, -1));
+  }, e.dot = function (e, t) {
+    var n = convertToTensor(e, "t1", "dot"),
+        r = convertToTensor(t, "t2", "dot");assert(!(1 !== n.rank && 2 !== n.rank || 1 !== r.rank && 2 !== r.rank), "Error in dot: inputs must all be rank 1 or 2, but got ranks " + n.rank + " and " + r.rank + ".");var o = 1 === n.rank ? n.size : n.shape[1],
+        a = 1 === r.rank ? r.size : r.shape[0];return assert(o === a, "Error in dot: inner dimensions of inputs must match, but got " + o + " and " + a + "."), 1 === n.rank && 1 === r.rank ? n.as2D(1, -1).matMul(r.as2D(-1, 1)).asScalar() : 1 === n.rank && 2 === r.rank ? n.as2D(1, -1).matMul(r.as2D(r.shape[0], r.shape[1])).as1D() : 2 === n.rank && 1 === r.rank ? n.matMul(r.as2D(-1, 1)).as1D() : n.matMul(r.as2D(r.shape[0], r.shape[1]));
+  }, __decorate([doc({ heading: "Operations", subheading: "Matrices" })], e, "matMul", null), __decorate([doc({ heading: "Operations", subheading: "Matrices" })], e, "outerProduct", null), __decorate([doc({ heading: "Operations", subheading: "Matrices" })], e, "dot", null), e;
+}(),
+    matMul = op(MatmulOps.matMul),
+    dot = op(MatmulOps.dot),
+    outerProduct = op(MatmulOps.outerProduct),
+    ReverseOps = function () {
+  function e() {}return e.reverse1d = function (t) {
+    var n = convertToTensor(t, "x", "reverse");return assert(1 === n.rank, "Error in reverse1D: x must be rank 1 but got\n             rank " + n.rank + "."), e.reverse(n, 0);
+  }, e.reverse2d = function (t, n) {
+    var r = convertToTensor(t, "x", "reverse");return assert(2 === r.rank, "Error in reverse2D: x must be rank 2 but got\n             rank " + r.rank + "."), e.reverse(r, n);
+  }, e.reverse3d = function (t, n) {
+    var r = convertToTensor(t, "x", "reverse");return assert(3 === r.rank, "Error in reverse3D: x must be rank 3 but got\n             rank " + r.rank + "."), e.reverse(r, n);
+  }, e.reverse4d = function (t, n) {
+    var r = convertToTensor(t, "x", "reverse");return assert(4 === r.rank, "Error in reverse4D: x must be rank 4 but got\n             rank " + r.rank + "."), e.reverse(r, n);
+  }, e.reverse = function (e, t) {
+    var n = convertToTensor(e, "x", "reverse");if (0 === n.rank) return n.clone();var r = parseAxisParam(t, n.shape);return ENV.engine.runKernel(function (e) {
+      return e.reverse(n, r);
+    }, { $x: n }, function (e) {
+      return { $x: function () {
+          return e.reverse(r);
+        } };
+    }).reshapeAs(n);
+  }, __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "reverse", null), e;
+}(),
+    reverse = op(ReverseOps.reverse),
+    reverse1d = op(ReverseOps.reverse1d),
+    reverse2d = op(ReverseOps.reverse2d),
+    reverse3d = op(ReverseOps.reverse3d),
+    reverse4d = op(ReverseOps.reverse4d),
+    PoolOps = function () {
+  function e() {}return e.maxPool = function (e, t, n, r, o) {
+    var a = convertToTensor(e, "x", "maxPool"),
+        i = a,
+        s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === i.rank, "Error in maxPool: input must be rank 4 but got rank " + i.rank + "."), null != o && assert(isInt(r), "Error in maxPool: pad must be an integer when using, dimRoundingMode " + o + " but got pad " + r + ".");var u = computePool2DInfo(i.shape, t, n, r, o),
+        l = ENV.engine.runKernel(function (e, t) {
+      return t(e.maxPool(i, u));
+    }, { x: i }, function (e, o) {
+      var a = o[0];return { x: function () {
+          return maxPoolBackprop(e, i, a, t, n, r);
+        } };
+    });return s ? l.as3D(l.shape[1], l.shape[2], l.shape[3]) : l;
+  }, e.avgPool = function (e, t, n, r, o) {
+    var a = convertToTensor(e, "x", "avgPool");assert("float32" === a.dtype, "The input dtype to avgPool must be float32");var i = a,
+        s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === i.rank, "Error in avgPool: x must be rank 4 but got rank " + i.rank + "."), null != o && assert(isInt(r), "Error in avgPool: pad must be an integer when using, dimRoundingMode " + o + " but got pad " + r + ".");var u = computePool2DInfo(i.shape, t, n, r),
+        l = ENV.engine.runKernel(function (e) {
+      return e.avgPool(i, u);
+    }, { x: i }, function (e) {
+      return { x: function () {
+          return avgPoolBackprop(e, i, t, n, r);
+        } };
+    });return l = l.cast(a.dtype), s ? l.as3D(l.shape[1], l.shape[2], l.shape[3]) : l;
+  }, __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "maxPool", null), __decorate([doc({ heading: "Operations", subheading: "Convolution" })], e, "avgPool", null), e;
+}();function maxPoolBackprop(e, t, n, r, o, a, i) {
+  var s = convertToTensor(e, "dy", "maxPoolBackprop"),
+      u = convertToTensor(t, "input", "maxPoolBackprop"),
+      l = convertToTensor(n, "output", "maxPoolBackprop");assert(u.rank === s.rank, "Rank of input (" + u.rank + ") does not match rank of dy (" + s.rank + ")"), assert(4 === s.rank, "Error in maxPoolBackprop: dy must be rank 4 but got rank " + s.rank + "."), assert(4 === u.rank, "Error in maxPoolBackprop: input must be rank 4 but got rank " + u.rank + "."), null != i && assert(isInt(a), "Error in maxPoolBackprop: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + a + ".");var c = computePool2DInfo(u.shape, r, o, a, i);return ENV.engine.runKernel(function (e) {
+    return e.maxPoolBackprop(s, u, l, c);
+  }, { $dy: s, $input: u });
+}function avgPoolBackprop(e, t, n, r, o) {
+  var a = convertToTensor(e, "dy", "avgPoolBackprop"),
+      i = convertToTensor(t, "input", "avgPoolBackprop");assert(i.rank === a.rank, "Rank of input (" + i.rank + ") does not match rank of dy (" + a.rank + ")");var s = i,
+      u = a,
+      l = !1;3 === i.rank && (l = !0, s = i.as4D(1, i.shape[0], i.shape[1], i.shape[2]), u = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === u.rank, "Error in avgPoolBackprop: dy must be rank 4 but got rank " + u.rank + "."), assert(4 === s.rank, "Error in avgPoolBackprop: input must be rank 4 but got rank " + s.rank + ".");var c = computePool2DInfo(s.shape, n, r, o),
+      d = ENV.engine.runKernel(function (e) {
+    return e.avgPoolBackprop(u, s, c);
+  }, { dy4D: u, input4D: s });return l ? d.as3D(d.shape[1], d.shape[2], d.shape[3]) : d;
+}var maxPool = op(PoolOps.maxPool),
+    avgPool = op(PoolOps.avgPool);function assertParamsValid(e, t, n) {
   assert(e.rank === t.length, "Error in slice" + e.rank + "D: Length of begin " + t + " must match the rank of the array (" + e.rank + ")."), assert(e.rank === n.length, "Error in slice" + e.rank + "D: Length of size " + n + " must match the rank of the array (" + e.rank + ").");for (var r = 0; r < e.rank; ++r) assert(t[r] + n[r] <= e.shape[r], "Error in slice" + e.rank + "D: begin[" + r + "] + size[" + r + "] (" + (t[r] + n[r]) + ") would overflow input.shape[" + r + "] (" + e.shape[r] + ")");
 }function getStridedSlicedInfo(e, t, n, r, o, a) {
   void 0 === o && (o = 0), void 0 === a && (a = 0);for (var i = [], s = [], u = 0; u < e.length; u++) i[u] = startForAxis(o, t, r, e, u), s[u] = stopForAxis(a, n, r, e, u);var l = new Array(e.length).fill(0);return l = l.map(function (e, t) {
@@ -25260,122 +26362,265 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   var a = t[o];e & 1 << o && (a = n[o] > 0 ? Number.MIN_SAFE_INTEGER : Number.MAX_SAFE_INTEGER);var i = r[o];return a < 0 && (a += i), a = clamp(0, a, i - 1);
 }function stopForAxis(e, t, n, r, o) {
   var a = t[o];e & 1 << o && (a = n[o] > 0 ? Number.MAX_SAFE_INTEGER : Number.MIN_SAFE_INTEGER);var i = r[o];return a < 0 && (a += i), a = n[o] > 0 ? clamp(0, a, i) : clamp(-1, a, i - 1);
-}function grad(e) {
-  return assert(isFunction(e), "The f passed in grad(f) must be a function"), function (t, n) {
-    return assert(t instanceof Tensor, "The x passed in grad(f)(x) must be a tensor"), assert(null == n || n instanceof Tensor, "The dy passed in grad(f)(x, dy) must be a tensor"), ENV.engine.tidy(function () {
-      var r = ENV.engine.gradients(function () {
+}var SliceOps = function () {
+  function e() {}return e.slice1d = function (t, n, r) {
+    var o = convertToTensor(t, "x", "slice1d");return assert(1 === o.rank, "slice1d expects a rank-1 tensor, but got a rank-" + o.rank + " tensor"), e.slice(o, [n], [r]);
+  }, e.slice2d = function (t, n, r) {
+    var o = convertToTensor(t, "x", "slice2d");return assert(2 === o.rank, "slice1d expects a rank-2 tensor, but got a rank-" + o.rank + " tensor"), e.slice(o, n, r);
+  }, e.slice3d = function (t, n, r) {
+    var o = convertToTensor(t, "x", "slice3d");return assert(3 === o.rank, "slice1d expects a rank-3 tensor, but got a rank-" + o.rank + " tensor"), e.slice(o, n, r);
+  }, e.slice4d = function (t, n, r) {
+    var o = convertToTensor(t, "x", "slice4d");return assert(4 === o.rank, "slice1d expects a rank-4 tensor, but got a rank-" + o.rank + " tensor"), e.slice(o, n, r);
+  }, e.slice = function (e, t, n) {
+    var r,
+        o,
+        a = convertToTensor(e, "x", "slice");if (0 === a.rank) throw new Error("Slicing scalar is not possible");r = "number" == typeof t ? [t].concat(new Array(a.rank - 1).fill(0)) : t.length < a.rank ? t.concat(new Array(a.rank - t.length).fill(0)) : t, o = (o = null == n ? new Array(a.rank).fill(-1) : "number" == typeof n ? [n].concat(new Array(a.rank - 1).fill(-1)) : n.length < a.rank ? n.concat(new Array(a.rank - n.length).fill(-1)) : n).map(function (e, t) {
+      return e >= 0 ? e : (assert(-1 === e, "Bad value in size"), a.shape[t] - r[t]);
+    }), assertParamsValid(a, r, o);var i = a.shape;return ENV.engine.runKernel(function (e) {
+      return e.slice(a, r, o);
+    }, { $x: a }, function (e) {
+      for (var t = [], n = 0; n < e.rank; n++) t.push([r[n], i[n] - r[n] - o[n]]);return { $x: function () {
+          return e.pad(t);
+        } };
+    });
+  }, __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "slice", null), e;
+}(),
+    slice = op(SliceOps.slice),
+    slice1d = op(SliceOps.slice1d),
+    slice2d = op(SliceOps.slice2d),
+    slice3d = op(SliceOps.slice3d),
+    slice4d = op(SliceOps.slice4d),
+    Gradients = function () {
+  function e() {}return e.gradScope = function (e, t) {
+    return ENV.engine.tidy(e, t, !0);
+  }, e.grad = function (e) {
+    return assert(isFunction(e), "The f passed in grad(f) must be a function"), function (t, n) {
+      return assert(t instanceof Tensor, "The x passed in grad(f)(x) must be a tensor"), assert(null == n || n instanceof Tensor, "The dy passed in grad(f)(x, dy) must be a tensor"), ENV.engine.tidy(function () {
+        var r = ENV.engine.gradients(function () {
+          return e(t);
+        }, [t], n),
+            o = r.value,
+            a = r.grads;return null != n && assertShapesMatch(o.shape, n.shape, "The shape of dy passed in grad(f)(x, dy) must match the shape returned by f(x)"), checkGrads(a), a[0];
+      });
+    };
+  }, e.grads = function (e) {
+    return assert(isFunction(e), "The f passed in grads(f) must be a function"), function (t, n) {
+      return assert(Array.isArray(t) && t.every(function (e) {
+        return e instanceof Tensor;
+      }), "The args passed in grads(f)(args) must be an array of tensors"), assert(null == n || n instanceof Tensor, "The dy passed in grads(f)(args, dy) must be a tensor"), ENV.engine.tidy(function () {
+        var r = ENV.engine.gradients(function () {
+          return e.apply(void 0, t);
+        }, t, n),
+            o = r.value,
+            a = r.grads;return null != n && assertShapesMatch(o.shape, n.shape, "The shape of dy passed in grads(f)([x1,...], dy) must match the shape returned by f([x1,...])"), checkGrads(a), a;
+      });
+    };
+  }, e.valueAndGrad = function (e) {
+    return assert(isFunction(e), "The f passed in valueAndGrad(f) must be a function"), function (t, n) {
+      assert(t instanceof Tensor, "The x passed in valueAndGrad(f)(x) must be a tensor"), assert(null == n || n instanceof Tensor, "The dy passed in valueAndGrad(f)(x, dy) must be a tensor");var r = ENV.engine.gradients(function () {
         return e(t);
       }, [t], n),
-          o = r.value,
-          a = r.grads;return null != n && assertShapesMatch(o.shape, n.shape, "The shape of dy passed in grad(f)(x, dy) must match the shape returned by f(x)"), checkGrads(a), a[0];
-    });
-  };
-}function grads(e) {
-  return assert(isFunction(e), "The f passed in grads(f) must be a function"), function (t, n) {
-    return assert(Array.isArray(t) && t.every(function (e) {
-      return e instanceof Tensor;
-    }), "The args passed in grads(f)(args) must be an array of tensors"), assert(null == n || n instanceof Tensor, "The dy passed in grads(f)(args, dy) must be a tensor"), ENV.engine.tidy(function () {
-      var r = ENV.engine.gradients(function () {
+          o = r.grads,
+          a = r.value;return checkGrads(o), { grad: o[0], value: a };
+    };
+  }, e.valueAndGrads = function (e) {
+    return assert(isFunction(e), "The f passed in valueAndGrads(f) must be a function"), function (t, n) {
+      assert(Array.isArray(t) && t.every(function (e) {
+        return e instanceof Tensor;
+      }), "The args passed in valueAndGrads(f)(args) must be array of tensors"), assert(null == n || n instanceof Tensor, "The dy passed in valueAndGrads(f)(args, dy) must be a tensor");var r = ENV.engine.gradients(function () {
         return e.apply(void 0, t);
-      }, t, n),
-          o = r.value,
-          a = r.grads;return null != n && assertShapesMatch(o.shape, n.shape, "The shape of dy passed in grads(f)([x1,...], dy) must match the shape returned by f([x1,...])"), checkGrads(a), a;
-    });
-  };
-}function valueAndGrad(e) {
-  return assert(isFunction(e), "The f passed in valueAndGrad(f) must be a function"), function (t, n) {
-    assert(t instanceof Tensor, "The x passed in valueAndGrad(f)(x) must be a tensor"), assert(null == n || n instanceof Tensor, "The dy passed in valueAndGrad(f)(x, dy) must be a tensor");var r = ENV.engine.gradients(function () {
-      return e(t);
-    }, [t], n),
-        o = r.grads,
-        a = r.value;return checkGrads(o), { grad: o[0], value: a };
-  };
-}function valueAndGrads(e) {
-  return assert(isFunction(e), "The f passed in valueAndGrads(f) must be a function"), function (t, n) {
-    assert(Array.isArray(t) && t.every(function (e) {
-      return e instanceof Tensor;
-    }), "The args passed in valueAndGrads(f)(args) must be array of tensors"), assert(null == n || n instanceof Tensor, "The dy passed in valueAndGrads(f)(args, dy) must be a tensor");var r = ENV.engine.gradients(function () {
-      return e.apply(void 0, t);
-    }, t, n);return null != n && assertShapesMatch(r.value.shape, n.shape, "The shape of dy passed in valueAndGrads(f)([x1,...], dy) must match the shape returned by f([x1,...])"), checkGrads(r.grads), r;
-  };
-}function variableGrads(e, t) {
-  if (assert(isFunction(e), "The f passed in variableGrads(f) must be a function"), assert(null == t || Array.isArray(t) && t.every(function (e) {
-    return e instanceof Variable;
-  }), "The varList passed in variableGrads(f, varList) must be an array of variables"), null == t) for (var n in t = [], ENV.engine.registeredVariables) t.push(ENV.engine.registeredVariables[n]);var r = t.length;assert((t = t.filter(function (e) {
-    return e.trainable;
-  })).length > 0, "variableGrads() expects at least one of the input variables to be trainable, but none of the " + r + " variables is trainable.");var o = ENV.engine.gradients(e, t, null, !0),
-      a = o.value,
-      i = o.grads;assert(i.some(function (e) {
-    return null != e;
-  }), "Cannot find a connection between any variable and the result of the loss function y=f(x). Please make sure the operations that use variables are inside the function f passed to minimize()."), assert(0 === a.rank, "The f passed in variableGrads(f) must return a scalar, but it returned a rank-" + a.rank + " tensor");var s = {};return t.forEach(function (e, t) {
-    null != i[t] && (s[e.name] = i[t]);
-  }), { value: a, grads: s };
-}function customGrad(e) {
-  return ENV.engine.customGrad(e);
-}function checkGrads(e) {
+      }, t, n);return null != n && assertShapesMatch(r.value.shape, n.shape, "The shape of dy passed in valueAndGrads(f)([x1,...], dy) must match the shape returned by f([x1,...])"), checkGrads(r.grads), r;
+    };
+  }, e.variableGrads = function (e, t) {
+    if (assert(isFunction(e), "The f passed in variableGrads(f) must be a function"), assert(null == t || Array.isArray(t) && t.every(function (e) {
+      return e instanceof Variable;
+    }), "The varList passed in variableGrads(f, varList) must be an array of variables"), null == t) for (var n in t = [], ENV.engine.registeredVariables) t.push(ENV.engine.registeredVariables[n]);var r = t.length;assert((t = t.filter(function (e) {
+      return e.trainable;
+    })).length > 0, "variableGrads() expects at least one of the input variables to be trainable, but none of the " + r + " variables is trainable.");var o = ENV.engine.gradients(e, t, null, !0),
+        a = o.value,
+        i = o.grads;assert(i.some(function (e) {
+      return null != e;
+    }), "Cannot find a connection between any variable and the result of the loss function y=f(x). Please make sure the operations that use variables are inside the function f passed to minimize()."), assert(0 === a.rank, "The f passed in variableGrads(f) must return a scalar, but it returned a rank-" + a.rank + " tensor");var s = {};return t.forEach(function (e, t) {
+      null != i[t] && (s[e.name] = i[t]);
+    }), { value: a, grads: s };
+  }, e.customGrad = function (e) {
+    return ENV.engine.customGrad(e);
+  }, __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "grad", null), __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "grads", null), __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "valueAndGrad", null), __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "valueAndGrads", null), __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "variableGrads", null), __decorate([doc({ heading: "Training", subheading: "Gradients" })], e, "customGrad", null), e;
+}();function checkGrads(e) {
   if (e.filter(function (e) {
     return null == e;
   }).length > 0) throw new Error("Cannot compute gradient of y=f(x) with respect to x. Make sure that\n    the f you passed encloses all operations that lead from x to y.");
-}function convertToTensor(e, t, n, r) {
-  if (void 0 === r && (r = "float32"), r = r || "float32", e instanceof Tensor) return e;if (!isTypedArray(e) && !Array.isArray(e) && "number" != typeof e && "boolean" != typeof e) throw new Error("Argument '" + t + "' passed to '" + n + "' must be a Tensor or TensorLike, but got " + e.constructor.name);var o = inferShape(e);return isTypedArray(e) || Array.isArray(e) || (e = [e]), Tensor.make(o, { values: toTypedArray(e, r, ENV.get("DEBUG")) }, r);
-}function convertToTensorArray(e, t, n) {
-  if (!Array.isArray(e)) throw new Error("Argument " + t + " passed to " + n + " must be a `Tensor[]` or `TensorLike[]`");return e.map(function (e, r) {
-    return convertToTensor(e, t + "[" + r + "]", n);
-  });
-}function op(e) {
-  var t = Object.keys(e);if (1 !== t.length) throw new Error("Please provide an object with a single key (operation name) mapping to a function. Got an object with " + t.length + " keys.");var n = t[0],
-      r = e[n];n.endsWith("_") && (n = n.substring(0, n.length - 1));var o = function () {
-    for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];ENV.engine.startScope(n);try {
-      var o = r.apply(void 0, e);return o instanceof Promise && console.error("Cannot return a Promise inside of tidy."), ENV.engine.endScope(o), o;
-    } catch (e) {
-      throw ENV.engine.endScope(null), e;
-    }
-  };return Object.defineProperty(o, "name", { value: n, configurable: !0 }), o;
-}function softmax_(e, t) {
-  void 0 === t && (t = -1);var n = convertToTensor(e, "logits", "softmax");if (-1 === t && (t = n.rank - 1), t !== n.rank - 1) throw Error("Softmax along a non-last dimension is not yet supported. Logits was rank " + n.rank + " and dim was " + t);return customGrad(function (e) {
-    var n = e.logSumExp([t], !0),
-        r = e.toFloat().sub(n).exp();return { value: r, gradFunc: function (e) {
-        var n = e.mul(r);return n.sub(n.sum([t], !0).mul(r));
-      } };
-  })(n);
-}var softmax = op({ softmax_: softmax_ });function tensor(e, t, n) {
-  if (void 0 === n && (n = "float32"), !isTypedArray(e) && !Array.isArray(e) && "number" != typeof e && "boolean" != typeof e) throw new Error("values passed to tensor(values) must be an array of numbers or booleans, or a TypedArray");var r = inferShape(e);return null != t && 1 !== r.length && assertShapesMatch(t, r, "Error creating a new Tensor. Inferred shape (" + r + ") does not match the provided shape (" + t + "). "), isTypedArray(e) || Array.isArray(e) || (e = [e]), t = t || r, Tensor.make(t, { values: toTypedArray(e, n, ENV.get("DEBUG")) }, n);
-}function scalar(e, t) {
-  if (void 0 === t && (t = "float32"), isTypedArray(e) || Array.isArray(e)) throw new Error("Error creating a new Scalar: value must be a primitive (number|boolean)");return tensor(e, [], t);
-}function tensor1d(e, t) {
-  void 0 === t && (t = "float32"), assertNonNull(e);var n = inferShape(e);if (1 !== n.length) throw new Error("tensor1d() requires values to be a flat/TypedArray");return tensor(e, n, t);
-}function tensor2d(e, t, n) {
-  if (void 0 === n && (n = "float32"), assertNonNull(e), null != t && 2 !== t.length) throw new Error("tensor2d() requires shape to have two numbers");var r = inferShape(e);if (2 !== r.length && 1 !== r.length) throw new Error("tensor2d() requires values to be number[][] or flat/TypedArray");if (1 === r.length && null == t) throw new Error("tensor2d() requires shape to be provided when `values` are a flat/TypedArray");return tensor(e, t = t || r, n);
-}function tensor3d(e, t, n) {
-  if (void 0 === n && (n = "float32"), assertNonNull(e), null != t && 3 !== t.length) throw new Error("tensor3d() requires shape to have three numbers");var r = inferShape(e);if (3 !== r.length && 1 !== r.length) throw new Error("tensor3d() requires values to be number[][][] or flat/TypedArray");if (1 === r.length && null == t) throw new Error("tensor3d() requires shape to be provided when `values` are a flat array");return tensor(e, t = t || r, n);
-}function tensor4d(e, t, n) {
-  if (void 0 === n && (n = "float32"), assertNonNull(e), null != t && 4 !== t.length) throw new Error("tensor4d() requires shape to have four numbers");var r = inferShape(e);if (4 !== r.length && 1 !== r.length) throw new Error("tensor4d() requires values to be number[][][][] or flat/TypedArray");if (1 === r.length && null == t) throw new Error("tensor4d() requires shape to be provided when `values` are a flat array");return tensor(e, t = t || r, n);
-}function tensor5d(e, t, n) {
-  if (void 0 === n && (n = "float32"), assertNonNull(e), null != t && 5 !== t.length) throw new Error("tensor5d() requires shape to have five numbers");var r = inferShape(e);if (5 !== r.length && 1 !== r.length) throw new Error("tensor5d() requires values to be number[][][][][] or flat/TypedArray");if (1 === r.length && null == t) throw new Error("tensor5d() requires shape to be provided when `values` are a flat array");return tensor(e, t = t || r, n);
-}function tensor6d(e, t, n) {
-  if (void 0 === n && (n = "float32"), assertNonNull(e), null != t && 6 !== t.length) throw new Error("tensor6d() requires shape to have six numbers");var r = inferShape(e);if (6 !== r.length && 1 !== r.length) throw new Error("tensor6d() requires values to be number[][][][] or flat/TypedArray");if (1 === r.length && null == t) throw new Error("tensor6d() requires shape to be provided when `values` are a flat array");return tensor(e, t = t || r, n);
-}function ones$1(e, t) {
-  void 0 === t && (t = "float32");var n = makeOnesTypedArray(sizeFromShape(e), t);return Tensor.make(e, { values: n }, t);
-}function zeros(e, t) {
-  void 0 === t && (t = "float32");var n = makeZerosTypedArray(sizeFromShape(e), t);return Tensor.make(e, { values: n }, t);
-}function fill(e, t, n) {
-  void 0 === n && (n = "float32");var r = getTypedArrayFromDType(n, sizeFromShape(e));return r.fill(t), Tensor.make(e, { values: r }, n);
-}function onesLike_(e) {
-  var t = convertToTensor(e, "x", "onesLike");return ones$1(t.shape, t.dtype);
-}function zerosLike_(e) {
-  var t = convertToTensor(e, "x", "zerosLike");return zeros(t.shape, t.dtype);
-}function linspace(e, t, n) {
-  if (0 === n) throw new Error("Cannot request zero samples");var r = (t - e) / (n - 1),
-      o = makeZerosTypedArray(n, "float32");o[0] = e;for (var a = 1; a < o.length; a++) o[a] = o[a - 1] + r;return tensor1d(o, "float32");
-}function range(e, t, n, r) {
-  if (void 0 === n && (n = 1), void 0 === r && (r = "float32"), 0 === n) throw new Error("Cannot have a step of zero");if (e === t || e < t && n < 0 || t < e && n > 1) return zeros([0], r);var o = makeZerosTypedArray(Math.abs(Math.ceil((t - e) / n)), r);t < e && 1 === n && (n = -1), o[0] = e;for (var a = 1; a < o.length; a++) o[a] = o[a - 1] + n;return tensor1d(o, r);
 }var DType,
     Rank,
     UpcastInt32AndMap,
     UpcastBoolAndMap,
     UpcastFloat32AndMap,
-    onesLike = op({ onesLike_: onesLike_ }),
-    zerosLike = op({ zerosLike_: zerosLike_ });!function (e) {
+    tidy = Environment.tidy,
+    keep = Environment.keep,
+    dispose = Environment.dispose,
+    time = Environment.time,
+    grad = Gradients.grad,
+    valueAndGrad = Gradients.valueAndGrad,
+    grads = Gradients.grads,
+    valueAndGrads = Gradients.valueAndGrads,
+    variableGrads = Gradients.variableGrads,
+    customGrad = Gradients.customGrad,
+    ReductionOps = function () {
+  function e() {}return e.logSumExp = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "logSumExp"),
+        o = parseAxisParam(t, r.shape),
+        a = r.max(o, !0),
+        i = r.sub(a).exp().sum(o).log(),
+        s = a.reshape(i.shape).add(i);if (n) {
+      var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
+    }return s;
+  }, e.sum = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "sum");"bool" === r.dtype && (r = r.toInt());var o = parseAxisParam(t, r.shape);return customGrad(function (e) {
+      var t = getAxesPermutation(o, e.rank),
+          r = o,
+          a = e;null != t && (a = e.transpose(t), r = getInnerMostAxes(r.length, e.rank));var i = ENV.engine.runKernel(function (e) {
+        return e.sum(a, r);
+      }, { permutedX: a });if (n) {
+        var s = expandShapeToKeepDim(i.shape, o);i = i.reshape(s);
+      }return { value: i, gradFunc: function (t) {
+          var n = e.shape.slice();return o.forEach(function (e) {
+            n[e] = 1;
+          }), t.reshape(n).mul(ones$1(e.shape, "float32"));
+        } };
+    })(r);
+  }, e.mean = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "mean"),
+        o = parseAxisParam(t, r.shape),
+        a = sizeFromShape(computeOutAndReduceShapes(r.shape, o)[1]);return customGrad(function (e) {
+      var r = scalar(a);return { value: (r.dtype === e.dtype ? e : e.cast(r.dtype)).div(r).sum(t, n), gradFunc: function (t) {
+          var n = e.shape.slice();return o.forEach(function (e) {
+            n[e] = 1;
+          }), t.reshape(n).mul(ones$1(e.shape, "float32")).div(r);
+        } };
+    })(r);
+  }, e.min = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "min"),
+        o = parseAxisParam(t, r.shape),
+        a = o,
+        i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
+      return e.min(r, a);
+    }, { $x: r });if (n) {
+      var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
+    }return s;
+  }, e.max = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "max"),
+        o = parseAxisParam(t, r.shape),
+        a = o,
+        i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
+      return e.max(r, a);
+    }, { $x: r });if (n) {
+      var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
+    }return s;
+  }, e.argMin = function (e, t) {
+    void 0 === t && (t = 0);var n = convertToTensor(e, "x", "argMin");null == t && (t = 0);var r = parseAxisParam(t, n.shape),
+        o = getAxesPermutation(r, n.rank);return null != o && (n = n.transpose(o), r = getInnerMostAxes(r.length, n.rank)), ENV.engine.runKernel(function (e) {
+      return e.argMin(n, r[0]);
+    }, { $x: n });
+  }, e.argMax = function (e, t) {
+    void 0 === t && (t = 0);var n = convertToTensor(e, "x", "argMax");null == t && (t = 0);var r = parseAxisParam(t, n.shape),
+        o = getAxesPermutation(r, n.rank);return null != o && (n = n.transpose(o), r = getInnerMostAxes(r.length, n.rank)), ENV.engine.runKernel(function (e) {
+      return e.argMax(n, r[0]);
+    }, { $x: n });
+  }, e.all = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "all", "bool");assert("bool" === r.dtype, "Error Tensor must be of type bool. Got: " + r.dtype);var o = parseAxisParam(t, r.shape),
+        a = o,
+        i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
+      return e.all(r, a);
+    }, { $x: r });if (n) {
+      var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
+    }return s;
+  }, e.any = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "any", "bool");assert("bool" === r.dtype, "Error Tensor must be of type bool. Got: " + r.dtype);var o = parseAxisParam(t, r.shape),
+        a = o,
+        i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
+      return e.any(r, a);
+    }, { $x: r });if (n) {
+      var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
+    }return s;
+  }, e.moments = function (e, t, n) {
+    void 0 === t && (t = null), void 0 === n && (n = !1);var r = parseAxisParam(t, (e = convertToTensor(e, "x", "moments")).shape),
+        o = e.mean(r, n),
+        a = o.shape;return n || (a = expandShapeToKeepDim(o.shape, r)), { mean: o, variance: e.toFloat().sub(o.reshape(a)).square().mean(r, n) };
+  }, __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "logSumExp", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "sum", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "mean", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "min", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "max", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "argMin", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "argMax", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "all", null), __decorate([doc({ heading: "Operations", subheading: "Reduction" })], e, "any", null), __decorate([doc({ heading: "Operations", subheading: "Normalization" })], e, "moments", null), e;
+}(),
+    all = op(ReductionOps.all),
+    any = op(ReductionOps.any),
+    argMax = op(ReductionOps.argMax),
+    argMin = op(ReductionOps.argMin),
+    logSumExp = op(ReductionOps.logSumExp),
+    max = op(ReductionOps.max),
+    mean = op(ReductionOps.mean),
+    min = op(ReductionOps.min),
+    moments = op(ReductionOps.moments),
+    sum = op(ReductionOps.sum),
+    CompareOps = function () {
+  function e() {}return e.notEqual = function (e, t) {
+    var n = convertToTensor(e, "a", "notEqual"),
+        r = convertToTensor(t, "b", "notEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.notEqual(n, r);
+    }, { $a: n, $b: r });
+  }, e.notEqualStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "notEqualStrict"),
+        r = convertToTensor(t, "b", "notEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in notEqualStrict: "), n.notEqual(r);
+  }, e.less = function (e, t) {
+    var n = convertToTensor(e, "a", "less"),
+        r = convertToTensor(t, "b", "less");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.less(n, r);
+    }, { $a: n, $b: r });
+  }, e.lessStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "lessStrict"),
+        r = convertToTensor(t, "b", "lessStrict");return assertShapesMatch(n.shape, r.shape, "Error in lessStrict: "), n.less(r);
+  }, e.equal = function (e, t) {
+    var n = convertToTensor(e, "a", "equal"),
+        r = convertToTensor(t, "b", "equal");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.equal(n, r);
+    }, { $a: n, $b: r });
+  }, e.equalStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "equalStrict"),
+        r = convertToTensor(t, "b", "equalStrict");return assertShapesMatch(n.shape, r.shape, "Error in equalStrict: "), n.equal(r);
+  }, e.lessEqual = function (e, t) {
+    var n = convertToTensor(e, "a", "lessEqual"),
+        r = convertToTensor(t, "b", "lessEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.lessEqual(n, r);
+    }, { $a: n, $b: r });
+  }, e.lessEqualStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "lessEqualStrict"),
+        r = convertToTensor(t, "b", "lessEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in lessEqualStrict: "), n.lessEqual(r);
+  }, e.greater = function (e, t) {
+    var n = convertToTensor(e, "a", "greater"),
+        r = convertToTensor(t, "b", "greater");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.greater(n, r);
+    }, { $a: n, $b: r });
+  }, e.greaterStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "greaterStrict"),
+        r = convertToTensor(t, "b", "greaterStrict");return assertShapesMatch(n.shape, r.shape, "Error in greaterStrict: "), n.greater(r);
+  }, e.greaterEqual = function (e, t) {
+    var n = convertToTensor(e, "a", "greaterEqual"),
+        r = convertToTensor(t, "b", "greaterEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.greaterEqual(n, r);
+    }, { $a: n, $b: r });
+  }, e.greaterEqualStrict = function (e, t) {
+    var n = convertToTensor(e, "a", "greaterEqualStrict"),
+        r = convertToTensor(t, "b", "greaterEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in greaterEqualStrict: "), n.greaterEqual(r);
+  }, __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "notEqual", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "less", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "equal", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "lessEqual", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "greater", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "greaterEqual", null), e;
+}(),
+    equal = op(CompareOps.equal),
+    equalStrict = op(CompareOps.equalStrict),
+    greater = op(CompareOps.greater),
+    greaterEqual = op(CompareOps.greaterEqual),
+    greaterEqualStrict = op(CompareOps.greaterEqualStrict),
+    greaterStrict = op(CompareOps.greaterStrict),
+    less = op(CompareOps.less),
+    lessEqual = op(CompareOps.lessEqual),
+    lessEqualStrict = op(CompareOps.lessEqualStrict),
+    lessStrict = op(CompareOps.lessStrict),
+    notEqual = op(CompareOps.notEqual),
+    notEqualStrict = op(CompareOps.notEqualStrict);!function (e) {
   e.float32 = "float32", e.int32 = "int32", e.bool = "bool";
 }(DType || (DType = {})), function (e) {
   e.R0 = "R0", e.R1 = "R1", e.R2 = "R2", e.R3 = "R3", e.R4 = "R4", e.R5 = "R5", e.R6 = "R6";
@@ -25389,51 +26634,572 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   return upcastTypeMap[e][t];
 }function sumOutType(e) {
   return upcastType(e, "int32");
+}var BinaryOps = function () {
+  function e() {}return e.add = function (e, t) {
+    var n = convertToTensor(e, "a", "add"),
+        r = convertToTensor(t, "b", "add");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.add(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          var t = e,
+              r = getReductionAxes(n.shape, o);return r.length > 0 && (t = t.sum(r)), t.reshape(n.shape);
+        }, $b: function () {
+          var t = e,
+              n = getReductionAxes(r.shape, o);return n.length > 0 && (t = t.sum(n)), t.reshape(r.shape);
+        } };
+    });
+  }, e.addStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in addStrict: "), e.add(t);
+  }, e.sub = function (e, t) {
+    var n = convertToTensor(e, "a", "sub"),
+        r = convertToTensor(t, "b", "sub");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.subtract(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          var t = e,
+              r = getReductionAxes(n.shape, o);return r.length > 0 && (t = t.sum(r)), t.reshape(n.shape);
+        }, $b: function () {
+          var t = e,
+              n = getReductionAxes(r.shape, o);return n.length > 0 && (t = t.sum(n)), t.neg().reshape(r.shape);
+        } };
+    });
+  }, e.subStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in subStrict: "), e.sub(t);
+  }, e.pow = function (e, t) {
+    var n = convertToTensor(e, "base", "pow"),
+        r = convertToTensor(t, "exp", "pow"),
+        o = assertAndGetBroadcastShape(n.shape, r.shape);e = n.cast(upcastType(n.dtype, r.dtype)), t = r.cast(upcastType(n.dtype, r.dtype));return ENV.engine.runKernel(function (e, t) {
+      return t(e.pow(n, r));
+    }, { $base: n, $exp: r }, function (e, t) {
+      var a = t[0];return { $base: function () {
+          var t = e.mul(r.toFloat().mul(a.div(n))),
+              i = getReductionAxes(n.shape, o);return i.length > 0 && (t = t.sum(i)), t.reshape(n.shape);
+        }, $exp: function () {
+          var t = e.mul(a.mul(n.log()).toFloat()),
+              i = getReductionAxes(r.shape, o);return i.length > 0 && (t = t.sum(i)), t.reshape(r.shape);
+        } };
+    });
+  }, e.powStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in powStrict: "), e.pow(t);
+  }, e.mul = function (e, t) {
+    var n = convertToTensor(e, "a", "mul"),
+        r = convertToTensor(t, "b", "mul");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.multiply(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          var t = e.mul(r.toFloat()),
+              a = getReductionAxes(n.shape, o);return a.length > 0 ? t.sum(a).reshape(n.shape) : t;
+        }, $b: function () {
+          var t = e.mul(n.toFloat()),
+              a = getReductionAxes(r.shape, o);return a.length > 0 ? t.sum(a).reshape(r.shape) : t;
+        } };
+    });
+  }, e.mulStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in multiplyStrict: "), e.mul(t);
+  }, e.div = function (t, n) {
+    var r,
+        o = convertToTensor(t, "a", "div"),
+        a = convertToTensor(n, "b", "div");if (assertTypesMatch(o, a), "int32" === o.dtype && "int32" === a.dtype) return e.floorDiv(o, a);r = function (e) {
+      return e.realDivide(o, a);
+    };var i = assertAndGetBroadcastShape(o.shape, a.shape);return ENV.engine.runKernel(r, { $a: o, $b: a }, function (e) {
+      return { $a: function () {
+          var t = e.div(a.toFloat()),
+              n = getReductionAxes(o.shape, i);return n.length > 0 ? t.sum(n).reshape(o.shape) : t;
+        }, $b: function () {
+          var t = e.mul(o.toFloat()),
+              n = getReductionAxes(a.shape, i);n.length > 0 && (t = t.sum(n).reshape(a.shape));var r = a.square();return t.div(r.toFloat()).neg();
+        } };
+    });
+  }, e.floorDiv = function (e, t) {
+    var n = convertToTensor(e, "a", "floorDiv"),
+        r = convertToTensor(t, "b", "floorDiv");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.floorDiv(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          var t = e.div(r.toFloat()),
+              a = getReductionAxes(n.shape, o);return a.length > 0 ? t.sum(a).reshape(n.shape) : t;
+        }, $b: function () {
+          var t = e.mul(n.toFloat()),
+              a = getReductionAxes(r.shape, o);a.length > 0 && (t = t.sum(a).reshape(r.shape));var i = r.square();return t.div(i.toFloat()).neg();
+        } };
+    });
+  }, e.divStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in divideStrict: "), e.div(t);
+  }, e.mod = function (e, t) {
+    var n = convertToTensor(e, "a", "mod"),
+        r = convertToTensor(t, "b", "mod");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.mod(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          var t = getReductionAxes(n.shape, o);return t.length > 0 ? e.sum(t).reshape(n.shape) : e;
+        }, $b: function () {
+          var t = e.mul(n.div(r).floor().neg()),
+              a = getReductionAxes(r.shape, o);return a.length > 0 ? t.sum(a).reshape(r.shape) : t;
+        } };
+    });
+  }, e.modStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in modStrict: "), e.mod(t);
+  }, e.minimum = function (e, t) {
+    var n = convertToTensor(e, "a", "minimum"),
+        r = convertToTensor(t, "b", "minimum");assertTypesMatch(n, r), "bool" === n.dtype && (n = n.toInt()), "bool" === r.dtype && (r = r.toInt()), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.minimum(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          return e.mul(n.lessEqual(r).toFloat());
+        }, $b: function () {
+          return e.mul(n.greater(r).toFloat());
+        } };
+    });
+  }, e.minimumStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in minimumStrict: "), e.minimum(t);
+  }, e.maximum = function (e, t) {
+    var n = convertToTensor(e, "a", "maximum"),
+        r = convertToTensor(t, "b", "maximum");assertTypesMatch(n, r), "bool" === n.dtype && (n = n.toInt()), "bool" === r.dtype && (r = r.toInt()), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.maximum(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      return { $a: function () {
+          return e.mul(n.greaterEqual(r).toFloat());
+        }, $b: function () {
+          return e.mul(n.less(r).toFloat());
+        } };
+    });
+  }, e.maximumStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in minimumStrict: "), e.maximum(t);
+  }, e.squaredDifference = function (e, t) {
+    var n = convertToTensor(e, "a", "squaredDifference"),
+        r = convertToTensor(t, "b", "squaredDifference");assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
+      return e.squaredDifference(n, r);
+    }, { $a: n, $b: r }, function (e) {
+      var t = scalar(2);return { $a: function () {
+          return e.mul(n.sub(r).mul(t));
+        }, $b: function () {
+          return e.mul(r.sub(n).mul(t));
+        } };
+    });
+  }, e.squaredDifferenceStrict = function (e, t) {
+    return assertShapesMatch(e.shape, t.shape, "Error in squaredDifferenceStrict: "), e.squaredDifference(t);
+  }, e.atan2 = function (t, n) {
+    var r = convertToTensor(t, "a", "atan2"),
+        o = convertToTensor(n, "b", "atan2");assertTypesMatch(r, o);var a = assertAndGetBroadcastShape(r.shape, o.shape);return ENV.engine.runKernel(function (e) {
+      return e.atan2(r, o);
+    }, { $a: r, $b: o }, function (t) {
+      return { $a: function () {
+          var n = e.add(r.square(), o.square()),
+              i = t.mul(o.div(n)),
+              s = getReductionAxes(r.shape, a);return s.length > 0 && (i = i.sum(s)), i.reshape(r.shape);
+        }, $b: function () {
+          var n = e.add(r.square(), o.square()),
+              i = neg(t.mul(r.div(n))),
+              s = getReductionAxes(o.shape, a);return s.length > 0 && (i = i.sum(s)), i.reshape(o.shape);
+        } };
+    });
+  }, __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "add", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "sub", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "pow", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "mul", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "div", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "floorDiv", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "mod", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "minimum", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "maximum", null), __decorate([doc({ heading: "Operations", subheading: "Arithmetic" })], e, "squaredDifference", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "atan2", null), e;
+}(),
+    add = op(BinaryOps.add),
+    addStrict = op(BinaryOps.addStrict),
+    atan2 = op(BinaryOps.atan2),
+    div = op(BinaryOps.div),
+    divStrict = op(BinaryOps.divStrict),
+    floorDiv = op(BinaryOps.floorDiv),
+    maximum = op(BinaryOps.maximum),
+    maximumStrict = op(BinaryOps.maximumStrict),
+    minimum = op(BinaryOps.minimum),
+    minimumStrict = op(BinaryOps.minimumStrict),
+    mod = op(BinaryOps.mod),
+    modStrict = op(BinaryOps.modStrict),
+    mul = op(BinaryOps.mul),
+    mulStrict = op(BinaryOps.mulStrict),
+    pow = op(BinaryOps.pow),
+    powStrict = op(BinaryOps.powStrict),
+    squaredDifference = op(BinaryOps.squaredDifference),
+    squaredDifferenceStrict = op(BinaryOps.squaredDifferenceStrict),
+    sub = op(BinaryOps.sub),
+    subStrict = op(BinaryOps.subStrict),
+    SigmoidCrossEntropyOps = function () {
+  function e() {}return e.sigmoidCrossEntropyWithLogits = function (e, t) {
+    var n = convertToTensor(e, "labels", "sigmoidCrossEntropyWithLogits"),
+        r = convertToTensor(t, "logits", "sigmoidCrossEntropyWithLogits");assertShapesMatch(n.shape, r.shape, "Error in sigmoidCrossEntropyWithLogits: ");var o = r.relu(),
+        a = r.mul(n),
+        i = r.abs().neg().exp().log1p();return o.sub(a).add(i);
+  }, __decorate([doc({ heading: "Operations", subheading: "Cross Entropy" })], e, "sigmoidCrossEntropyWithLogits", null), e;
+}(),
+    sigmoidCrossEntropyWithLogits = op(SigmoidCrossEntropyOps.sigmoidCrossEntropyWithLogits),
+    LogicalOps = function () {
+  function e() {}return e.logicalNot = function (e) {
+    var t = convertToTensor(e, "x", "logicalNot", "bool");return assert("bool" === t.dtype, "Error Array must be of type bool."), ENV.engine.runKernel(function (e) {
+      return e.logicalNot(t);
+    }, { $x: t });
+  }, e.logicalAnd = function (e, t) {
+    var n = convertToTensor(e, "a", "logicalAnd", "bool"),
+        r = convertToTensor(t, "b", "logicalAnd", "bool");return assert("bool" === n.dtype && "bool" === r.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.logicalAnd(n, r);
+    }, { $a: n, $b: r });
+  }, e.logicalOr = function (e, t) {
+    var n = convertToTensor(e, "a", "logicalOr", "bool"),
+        r = convertToTensor(t, "b", "logicalOr", "bool");return assert("bool" === n.dtype && "bool" === r.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
+      return e.logicalOr(n, r);
+    }, { $a: n, $b: r });
+  }, e.logicalXor = function (t, n) {
+    var r = convertToTensor(t, "a", "logicalXor", "bool"),
+        o = convertToTensor(n, "b", "logicalXor", "bool");return assert("bool" === r.dtype && "bool" === o.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(r.shape, o.shape), e.logicalOr(t, n).logicalAnd(e.logicalAnd(t, n).logicalNot());
+  }, e.where = function (e, t, n) {
+    var r = convertToTensor(t, "a", "where"),
+        o = convertToTensor(n, "b", "where"),
+        a = convertToTensor(e, "condition", "where", "bool");assert("bool" === a.dtype, "Error Condition must be of type bool."), assertShapesMatch(r.shape, o.shape, "Error in where: "), 1 === a.rank ? assert(a.shape[0] === r.shape[0], "The first dimension of `a` must match the size of `condition`.") : assertShapesMatch(a.shape, o.shape, "Error in where: ");var i = upcastType(r.dtype, o.dtype);return ENV.engine.runKernel(function (e) {
+      return e.where(a, r, o, i);
+    }, { $condition: a, $a: r, $b: o }, function (e) {
+      return { $condition: function () {
+          return zerosLike(a);
+        }, $a: function () {
+          return e.mul(a.cast(r.dtype));
+        }, $b: function () {
+          return e.mul(a.logicalNot().cast(o.dtype));
+        } };
+    });
+  }, __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "logicalNot", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "logicalAnd", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "logicalOr", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "logicalXor", null), __decorate([doc({ heading: "Operations", subheading: "Logical" })], e, "where", null), e;
+}(),
+    logicalAnd = op(LogicalOps.logicalAnd),
+    logicalNot = op(LogicalOps.logicalNot),
+    logicalOr = op(LogicalOps.logicalOr),
+    logicalXor = op(LogicalOps.logicalXor),
+    where = op(LogicalOps.where),
+    SELU_SCALEALPHA = 1.7580993408473768,
+    SELU_SCALE = 1.0507009873554805,
+    ReluOps = function () {
+  function e() {}return e.relu = function (e) {
+    var t = convertToTensor(e, "x", "relu");if ("bool" === t.dtype) return t.toInt();return ENV.engine.runKernel(function (e) {
+      return e.relu(t);
+    }, { $x: t }, function (e) {
+      var n = t.step();return { $x: function () {
+          return e.mulStrict(n.toFloat());
+        } };
+    });
+  }, e.elu = function (e) {
+    var t = convertToTensor(e, "x", "elu");return ENV.engine.runKernel(function (e, n) {
+      return n(e.elu(t));
+    }, { $x: t }, function (e, t) {
+      var n = t[0];return { $x: function () {
+          return ENV.engine.runKernel(function (t) {
+            return t.eluDer(e, n);
+          }, { dy: e, y: n });
+        } };
+    });
+  }, e.selu = function (e) {
+    var t = convertToTensor(e, "x", "selu");return ENV.engine.runKernel(function (e) {
+      return e.selu(t);
+    }, { $x: t }, function (e) {
+      return { $x: function () {
+          var n = t.greater(scalar(0)),
+              r = scalar(SELU_SCALEALPHA),
+              o = scalar(SELU_SCALE),
+              a = e.mul(o),
+              i = e.mul(r).mul(t.toFloat().exp());return where(n, a, i);
+        } };
+    });
+  }, e.leakyRelu = function (e, t) {
+    void 0 === t && (t = .2);var n = convertToTensor(e, "x", "leakyRelu");return maximum(scalar(t).mul(n), n);
+  }, e.prelu = function (e, t) {
+    var n = convertToTensor(e, "x", "prelu"),
+        r = convertToTensor(t, "alpha", "prelu"),
+        o = scalar(0);return maximum(o, n).add(r.mul(minimum(o, n)));
+  }, __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "relu", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "elu", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "selu", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "leakyRelu", null), __decorate([doc({ heading: "Operations", subheading: "Basic math" })], e, "prelu", null), e;
+}(),
+    elu = op(ReluOps.elu),
+    leakyRelu = op(ReluOps.leakyRelu),
+    prelu = op(ReluOps.prelu),
+    relu = op(ReluOps.relu),
+    selu = op(ReluOps.selu),
+    TransposeOps = function () {
+  function e() {}return e.transpose = function (e, t) {
+    var n = convertToTensor(e, "x", "transpose");if (null == t && (t = n.shape.map(function (e, t) {
+      return t;
+    }).reverse()), assert(n.rank === t.length, "Error in transpose: rank of input " + n.rank + " must match length of perm " + t + "."), t.forEach(function (e) {
+      assert(e >= 0 && e < n.rank, "All entries in 'perm' must be between 0 and " + (n.rank - 1) + " but got " + t);
+    }), n.rank <= 1) return n.clone();return ENV.engine.runKernel(function (e) {
+      return e.transpose(n, t);
+    }, { $x: n }, function (e) {
+      var n = getUndoAxesPermutation(t);return { $x: function () {
+          return e.transpose(n);
+        } };
+    });
+  }, __decorate([doc({ heading: "Operations", subheading: "Matrices" })], e, "transpose", null), e;
+}(),
+    transpose = op(TransposeOps.transpose),
+    SoftmaxOps = function () {
+  function e() {}return e.softmax = function (e, t) {
+    void 0 === t && (t = -1);var n = convertToTensor(e, "logits", "softmax");if (-1 === t && (t = n.rank - 1), t !== n.rank - 1) throw Error("Softmax along a non-last dimension is not yet supported. Logits was rank " + n.rank + " and dim was " + t);return Gradients.customGrad(function (e) {
+      var n = e.logSumExp([t], !0),
+          r = e.toFloat().sub(n).exp();return { value: r, gradFunc: function (e) {
+          var n = e.mul(r);return n.sub(n.sum([t], !0).mul(r));
+        } };
+    })(n);
+  }, __decorate([doc({ heading: "Operations", subheading: "Normalization" })], e, "softmax", null), e;
+}(),
+    softmax = op(SoftmaxOps.softmax),
+    LRNOps = function () {
+  function e() {}return e.localResponseNormalization = function (e, t, n, r, o) {
+    void 0 === t && (t = 5), void 0 === n && (n = 1), void 0 === r && (r = 1), void 0 === o && (o = .5);var a = convertToTensor(e, "x", "localResponseNormalization");assert(4 === a.rank || 3 === a.rank, "Error in localResponseNormalization: x must be rank 3 or 4 but got\n               rank " + a.rank + "."), assert(isInt(t), "Error in localResponseNormalization: depthRadius must be an integer\n                     but got depthRadius " + t + ".");var i = a,
+        s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2]));var u = ENV.engine.runKernel(function (e) {
+      return e.localResponseNormalization4D(i, t, n, r, o);
+    }, { x4D: i });return s ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
+  }, __decorate([doc({ heading: "Operations", subheading: "Normalization" })], e, "localResponseNormalization", null), e;
+}(),
+    localResponseNormalization = op(LRNOps.localResponseNormalization),
+    NormOps = function () {
+  function e() {}return e.norm = function (e, t, n, r) {
+    void 0 === t && (t = "euclidean"), void 0 === n && (n = null), void 0 === r && (r = !1);var o = normImpl(e = convertToTensor(e, "x", "norm"), t, n),
+        a = o.shape;if (r) {
+      var i = parseAxisParam(n, e.shape);a = expandShapeToKeepDim(o.shape, i);
+    }return o.reshape(a);
+  }, __decorate([doc({ heading: "Operations", subheading: "Matrices" })], e, "norm", null), e;
+}();function normImpl(e, t, n) {
+  if (void 0 === n && (n = null), 0 === e.rank) return e.abs();if (1 !== e.rank && null === n) return normImpl(e.reshape([-1]), t, n);if (1 === e.rank || "number" == typeof n || n instanceof Array && 1 === n.length) {
+    if (1 === t) return e.abs().sum(n);if (t === 1 / 0) return e.abs().max(n);if (t === -1 / 0) return e.abs().min(n);if ("euclidean" === t || 2 === t) return e.abs().pow(scalar(2, "int32")).sum(n).sqrt();throw new Error("Error in norm: invalid ord value: " + t);
+  }if (n instanceof Array && 2 === n.length) {
+    if (1 === t) return e.abs().sum(n[0]).max(n[1] - 1);if (t === 1 / 0) return e.abs().sum(n[1]).max(n[0]);if (t === -1 / 0) return e.abs().sum(n[1]).min(n[0]);if ("fro" === t || "euclidean" === t) return e.square().sum(n).sqrt();throw new Error("Error in norm: invalid ord value: " + t);
+  }throw new Error("Error in norm: invalid axis: " + n);
+}var norm = op(NormOps.norm),
+    SegmentOps = function () {
+  function e() {}return e.unsortedSegmentSum = function (e, t, n) {
+    var r = convertToTensor(e, "x", "unsortedSegmentSum"),
+        o = convertToTensor(t, "segmentIds", "unsortedSegmentSum", "int32");assert("int32" === o.dtype, "segmentIds must be of dtype `int32`"), assert(isInt(n), "numSegments must be of dtype int");return ENV.engine.runKernel(function (e) {
+      return e.unsortedSegmentSum(r, o, n);
+    }, { $x: r }, function (e) {
+      return { $x: function () {
+          return gatherDropNegatives(e, o);
+        } };
+    });
+  }, e.gather = function (t, n, r) {
+    void 0 === r && (r = 0);var o = convertToTensor(t, "x", "gather"),
+        a = convertToTensor(n, "indices", "gather", "int32");assert("int32" === a.dtype, "Indices must be of dtype `int32`"), r = parseAxisParam(r, o.shape)[0];return ENV.engine.runKernel(function (e) {
+      return e.gather(o, a, r);
+    }, { $x: o }, function (t) {
+      return { $x: function () {
+          if (0 === r) return e.unsortedSegmentSum(t, a, o.shape[r]);var n = o.shape,
+              i = a.size,
+              s = n.slice(0, r),
+              u = s.length,
+              l = n.slice(r, n.length).slice(1),
+              c = l.length,
+              d = arrayRange(0, u),
+              p = arrayRange(u + 1, u + 1 + c),
+              h = arrayConcat([s, [i], l]),
+              f = t.reshape(h),
+              g = a.reshape([i]),
+              m = arrayConcat([[u], d, p]),
+              v = f.transpose(m),
+              y = e.unsortedSegmentSum(v, g, o.shape[r]),
+              x = getUndoAxesPermutation(m);return y = y.transpose(x);
+        } };
+    });
+  }, __decorate([doc({ heading: "Operations", subheading: "Segment" })], e, "unsortedSegmentSum", null), __decorate([doc({ heading: "Tensors", subheading: "Slicing and Joining" })], e, "gather", null), e;
+}();function arrayRange(e, t) {
+  for (var n = [], r = e; r < t; ++r) n.push(r);return n;
+}function arrayConcat(e) {
+  for (var t = [], n = 0; n < e.length; ++n) for (var r = 0; r < e[n].length; ++r) t.push(e[n][r]);return t;
+}function gatherDropNegatives(e, t) {
+  for (var n = maximum(t, zerosLike(t)), r = SegmentOps.gather(e, n), o = greaterEqual(t, scalar(0, "int32")), a = r.rank - o.rank, i = 0; i < a; ++i) o = expandDims(o, i + 1);o = logicalAnd(o, ones$1(r.shape, "bool"));var s = zerosLike(r);return where(o, r, s);
+}var Reduction,
+    gather = op(SegmentOps.gather),
+    unsortedSegmentSum = op(SegmentOps.unsortedSegmentSum),
+    LSTMOps = function () {
+  function e() {}return e.multiRNNCell = function (e, t, n, r) {
+    for (var o = convertToTensor(t, "data", "multiRNNCell"), a = convertToTensorArray(n, "c", "multiRNNCell"), i = convertToTensorArray(r, "h", "multiRNNCell"), s = o, u = [], l = 0; l < e.length; l++) {
+      var c = e[l](s, a[l], i[l]);u.push(c[0]), u.push(c[1]), s = c[1];
+    }var d = [],
+        p = [];for (l = 0; l < u.length; l += 2) d.push(u[l]), p.push(u[l + 1]);return [d, p];
+  }, e.basicLSTMCell = function (e, t, n, r, o, a) {
+    var i = convertToTensor(e, "forgetBias", "basicLSTMCell"),
+        s = convertToTensor(t, "lstmKernel", "basicLSTMCell"),
+        u = convertToTensor(n, "lstmBias", "basicLSTMCell"),
+        l = convertToTensor(r, "data", "basicLSTMCell"),
+        c = convertToTensor(o, "c", "basicLSTMCell"),
+        d = convertToTensor(a, "h", "basicLSTMCell"),
+        p = l.concat(d, 1).matMul(s).add(u),
+        h = p.shape[0],
+        f = p.shape[1] / 4,
+        g = [h, f],
+        m = p.slice([0, 0], g),
+        v = p.slice([0, f], g),
+        y = p.slice([0, 2 * f], g),
+        x = p.slice([0, 3 * f], g),
+        T = m.sigmoid().mulStrict(v.tanh()).addStrict(c.mulStrict(i.add(y).sigmoid()));return [T, T.tanh().mulStrict(x.sigmoid())];
+  }, __decorate([doc({ heading: "Operations", subheading: "RNN" })], e, "multiRNNCell", null), __decorate([doc({ heading: "Operations", subheading: "RNN" })], e, "basicLSTMCell", null), e;
+}(),
+    basicLSTMCell = op(LSTMOps.basicLSTMCell),
+    multiRNNCell = op(LSTMOps.multiRNNCell),
+    MovingAverageOps = function () {
+  function e() {}return e.movingAverage = function (e, t, n, r, o) {
+    void 0 === o && (o = !0);var a = convertToTensor(e, "v", "movingAverage"),
+        i = convertToTensor(t, "x", "movingAverage"),
+        s = convertToTensor(n, "decay", "movingAverage");assertTypesMatch(a, i), assert(arraysEqual(a.shape, i.shape), "Shape mismatch in v and x");var u = scalar(1),
+        l = u.sub(s),
+        c = i.sub(a).mul(l);if (o) {
+      assert(null != r, "When using zeroDebias: true, step is required.");var d = convertToTensor(r, "step", "movingAverage");c = c.div(u.sub(pow(s, d)));
+    }return a.add(c);
+  }, __decorate([doc({ heading: "Operations", subheading: "Moving Average" })], e, "movingAverage", null), e;
+}(),
+    movingAverage = op(MovingAverageOps.movingAverage),
+    StridedSliceOps = function () {
+  function e() {}return e.stridedSlice = function (e, t, n, r, o, a) {
+    void 0 === o && (o = 0), void 0 === a && (a = 0);var i = convertToTensor(e, "x", "stridedSlice");return ENV.engine.runKernel(function (e) {
+      return e.stridedSlice(i, t, n, r, o, a);
+    }, { $x: i });
+  }, __decorate([doc({ heading: "Operations", subheading: "Slicing and Joining" })], e, "stridedSlice", null), e;
+}(),
+    stridedSlice = op(StridedSliceOps.stridedSlice);!function (e) {
+  e[e.NONE = 0] = "NONE", e[e.MEAN = 1] = "MEAN", e[e.SUM = 2] = "SUM", e[e.SUM_BY_NONZERO_WEIGHTS = 3] = "SUM_BY_NONZERO_WEIGHTS";
+}(Reduction || (exports.Reduction = Reduction = {}));var LossOps = function () {
+  function e() {}return e.computeWeightedLoss = function (e, t, n) {
+    void 0 === n && (n = Reduction.SUM_BY_NONZERO_WEIGHTS);var r = convertToTensor(e, "losses", "computeWeightedLoss"),
+        o = null;null != t && (o = convertToTensor(t, "weights", "computeWeightedLoss"));var a = null == o ? r : r.mul(o);if (n === Reduction.NONE) return a;if (n === Reduction.SUM) return a.sum();if (n === Reduction.MEAN) return null == o ? a.mean() : a.sum().div(o.sum());if (n === Reduction.SUM_BY_NONZERO_WEIGHTS) {
+      if (null == o) return a.sum().div(scalar(r.size));var i = o.mul(ones$1(r.shape)).notEqual(scalar(0)).sum().toFloat();return a.sum().div(i);
+    }throw Error("Unknown reduction: " + n);
+  }, e.absoluteDifference = function (t, n, r, o) {
+    void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(t, "labels", "absoluteDifference"),
+        i = convertToTensor(n, "predictions", "absoluteDifference"),
+        s = null;null != r && (s = convertToTensor(r, "weights", "absoluteDifference")), assertShapesMatch(a.shape, i.shape, "Error in absoluteDifference: ");var u = a.sub(i).abs();return e.computeWeightedLoss(u, s, o);
+  }, e.meanSquaredError = function (t, n, r, o) {
+    void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(t, "labels", "meanSquaredError"),
+        i = convertToTensor(n, "predictions", "meanSquaredError"),
+        s = null;null != r && (s = convertToTensor(r, "weights", "meanSquaredError")), assertShapesMatch(a.shape, i.shape, "Error in meanSquaredError: ");var u = a.squaredDifference(i);return e.computeWeightedLoss(u, s, o);
+  }, e.cosineDistance = function (t, n, r, o, a) {
+    void 0 === a && (a = Reduction.SUM_BY_NONZERO_WEIGHTS);var i = convertToTensor(t, "labels", "cosineDistance"),
+        s = convertToTensor(n, "predictions", "cosineDistance"),
+        u = null;null != o && (u = convertToTensor(o, "weights", "cosineDistance")), assertShapesMatch(i.shape, s.shape, "Error in cosineDistance: ");var l = scalar(1).sub(i.mul(s).sum(r, !0));return e.computeWeightedLoss(l, u, a);
+  }, e.hingeLoss = function (t, n, r, o) {
+    void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(t, "labels", "hingeLoss"),
+        i = convertToTensor(n, "predictions", "hingeLoss"),
+        s = null;null != r && (s = convertToTensor(r, "weights", "hingeLoss")), assertShapesMatch(a.shape, i.shape, "Error in hingeLoss: ");var u = scalar(1);a = scalar(2).mul(a).sub(u);var l = u.sub(a.mul(i)).relu();return e.computeWeightedLoss(l, s, o);
+  }, e.logLoss = function (t, n, r, o, a) {
+    void 0 === o && (o = 1e-7), void 0 === a && (a = Reduction.SUM_BY_NONZERO_WEIGHTS);var i = convertToTensor(t, "labels", "logLoss"),
+        s = convertToTensor(n, "predictions", "logLoss"),
+        u = null;null != r && (u = convertToTensor(r, "weights", "logLoss")), assertShapesMatch(i.shape, s.shape, "Error in logLoss: ");var l = scalar(1),
+        c = scalar(o),
+        d = i.mul(s.add(c).log()).neg().sub(l.sub(i).mul(l.sub(s).add(c).log()));return e.computeWeightedLoss(d, u, a);
+  }, e.huberLoss = function (t, n, r, o, a) {
+    void 0 === o && (o = 1), void 0 === a && (a = Reduction.SUM_BY_NONZERO_WEIGHTS);var i = convertToTensor(t, "labels", "huberLoss"),
+        s = convertToTensor(n, "predictions", "huberLoss"),
+        u = null;null != r && (u = convertToTensor(r, "weights", "huberLoss")), assertShapesMatch(i.shape, s.shape, "Error in huberLoss: ");var l = scalar(o),
+        c = s.sub(i).abs(),
+        d = minimum(c, l),
+        p = c.sub(d),
+        h = scalar(.5).mul(d.square()).add(l.mul(p));return e.computeWeightedLoss(h, u, a);
+  }, e.softmaxCrossEntropy = function (e, t, n) {
+    void 0 === n && (n = -1);var r = convertToTensor(e, "labels", "softmaxCrossEntropy"),
+        o = convertToTensor(t, "logits", "softmaxCrossEntropy");if (assertShapesMatch(r.shape, o.shape, "Error in softmaxCrossEntropy: "), -1 === n && (n = o.rank - 1), n !== o.rank - 1) throw Error("Softmax cross entropy along a non-last dimension is not yet supported. Labels / logits was rank " + o.rank + " and dim was " + n);return customGrad(function (e, t) {
+      var r = t.softmax(n);return { value: scalar(1e-5).add(r).log().mul(e).neg().sum([n]), gradFunc: function (t) {
+          var o = expandShapeToKeepDim(t.shape, [n]);return [t.reshape(o).mul(e.toFloat().sub(r)), t.reshape(o).mul(r.sub(e.toFloat()))];
+        } };
+    })(r, o);
+  }, __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "computeWeightedLoss", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "absoluteDifference", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "meanSquaredError", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "cosineDistance", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "hingeLoss", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "logLoss", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "huberLoss", null), __decorate([doc({ heading: "Training", subheading: "Losses", namespace: "losses" })], e, "softmaxCrossEntropy", null), e;
+}(),
+    absoluteDifference = op(LossOps.absoluteDifference),
+    computeWeightedLoss = op(LossOps.computeWeightedLoss),
+    cosineDistance = op(LossOps.cosineDistance),
+    hingeLoss = op(LossOps.hingeLoss),
+    huberLoss = op(LossOps.huberLoss),
+    logLoss = op(LossOps.logLoss),
+    meanSquaredError = op(LossOps.meanSquaredError),
+    softmaxCrossEntropy = op(LossOps.softmaxCrossEntropy),
+    loss_ops = Object.freeze({ get Reduction() {
+    return Reduction;
+  }, absoluteDifference: absoluteDifference, computeWeightedLoss: computeWeightedLoss, cosineDistance: cosineDistance, hingeLoss: hingeLoss, huberLoss: huberLoss, logLoss: logLoss, meanSquaredError: meanSquaredError, softmaxCrossEntropy: softmaxCrossEntropy }),
+    LinalgOps = function () {
+  function e() {}return e.gramSchmidt = function (e) {
+    var t;if (Array.isArray(e)) {
+      t = !1, assert(null != e && e.length > 0, "Gram-Schmidt process: input must not be null, undefined, or empty");for (var n = e[0].shape[0], r = 1; r < e.length; ++r) assert(e[r].shape[0] === n, "Gram-Schmidt: Non-unique lengths found in the input vectors: (" + e[r].shape[0] + " vs. " + n + ")");
+    } else t = !0, e = split(e, e.shape[0], 0).map(function (e) {
+      return squeeze(e, [0]);
+    });assert(e.length <= e[0].shape[0], "Gram-Schmidt: Number of vectors (" + e.length + ") exceeds number of dimensions (" + e[0].shape[0] + ").");var o = [],
+        a = e,
+        i = function (e) {
+      o.push(ENV.engine.tidy(function () {
+        var t = a[e];if (e > 0) for (var n = 0; n < e; ++n) {
+          var r = sum(o[n].mulStrict(t)).mul(o[n]);t = t.sub(r);
+        }return t.div(norm(t, "euclidean"));
+      }));
+    };for (r = 0; r < e.length; ++r) i(r);return t ? stack(o, 0) : o;
+  }, e.qr = function (e, t) {
+    if (void 0 === t && (t = !1), e.rank < 2) throw new Error("qr() requires input tensor to have a rank >= 2, but got rank " + e.rank);if (2 === e.rank) return qr2d(e, t);var n = e.shape.slice(0, e.shape.length - 2).reduce(function (e, t) {
+      return e * t;
+    }),
+        r = [],
+        o = [];return unstack(e.reshape([n, e.shape[e.shape.length - 2], e.shape[e.shape.length - 1]]), 0).forEach(function (e) {
+      var n = qr2d(e, t),
+          a = n[0],
+          i = n[1];r.push(a), o.push(i);
+    }), [stack(r, 0).reshape(e.shape), stack(o, 0).reshape(e.shape)];
+  }, __decorate([doc({ heading: "Operations", subheading: "Linear Algebra" })], e, "gramSchmidt", null), __decorate([doc({ heading: "Operations", subheading: "Linear Algebra" })], e, "qr", null), e;
+}();function qr2d(e, t) {
+  return void 0 === t && (t = !1), ENV.engine.tidy(function () {
+    if (2 !== e.shape.length) throw new Error("qr2d() requires a 2D Tensor, but got a " + e.shape.length + "D Tensor.");for (var n = e.shape[0], r = e.shape[1], o = eye(n), a = e.clone(), i = tensor2d([[1]], [1, 1]), s = i.clone(), u = n >= r ? r : n, l = function (e) {
+      var t,
+          u = a,
+          l = s,
+          c = o;t = ENV.engine.tidy(function () {
+        var t = a.slice([e, e], [n - e, 1]),
+            u = t.norm(),
+            l = a.slice([e, e], [1, 1]),
+            c = l.sign().neg(),
+            d = l.sub(c.mul(u)),
+            p = t.div(d);s = 1 === p.shape[0] ? i.clone() : i.concat(p.slice([1, 0], [p.shape[0] - 1, p.shape[1]]), 0);var h = c.matMul(d).div(u).neg(),
+            f = a.slice([e, 0], [n - e, r]),
+            g = h.mul(s);a = 0 === e ? f.sub(g.matMul(s.transpose().matMul(f))) : a.slice([0, 0], [e, r]).concat(f.sub(g.matMul(s.transpose().matMul(f))), 0);var m = o.slice([0, e], [n, o.shape[1] - e]);return o = 0 === e ? m.sub(m.matMul(s).matMul(g.transpose())) : o.slice([0, 0], [n, e]).concat(m.sub(m.matMul(s).matMul(g.transpose())), 1), [s, a, o];
+      }), s = t[0], a = t[1], o = t[2], dispose([u, l, c]);
+    }, c = 0; c < u; ++c) l(c);return !t && n > r && (o = o.slice([0, 0], [n, r]), a = a.slice([0, 0], [r, r])), [o, a];
+  });
+}var gramSchmidt = op(LinalgOps.gramSchmidt),
+    qr = op(LinalgOps.qr),
+    linalg_ops = Object.freeze({ gramSchmidt: gramSchmidt, qr: qr }),
+    ImageOps = function () {
+  function e() {}return e.resizeBilinear = function (e, t, n) {
+    void 0 === n && (n = !1);var r = convertToTensor(e, "images", "resizeBilinear");assert(3 === r.rank || 4 === r.rank, "Error in resizeBilinear: x must be rank 3 or 4, but got rank " + r.rank + "."), assert(2 === t.length, "Error in resizeBilinear: new shape must 2D, but got shape " + t + ".");var o = r,
+        a = !1;3 === r.rank && (a = !0, o = r.as4D(1, r.shape[0], r.shape[1], r.shape[2]));var i = t[0],
+        s = t[1],
+        u = ENV.engine.runKernel(function (e, t) {
+      return e.resizeBilinear(o, i, s, n);
+    }, { batchImages: o }, function (e, t) {
+      return { batchImages: function () {
+          return ENV.engine.runKernel(function (t) {
+            return t.resizeBilinearBackprop(e, o, n);
+          }, {});
+        } };
+    });return a ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
+  }, e.resizeNearestNeighbor = function (e, t, n) {
+    void 0 === n && (n = !1);var r = convertToTensor(e, "images", "resizeNearestNeighbor");assert(3 === r.rank || 4 === r.rank, "Error in resizeNearestNeighbor: x must be rank 3 or 4, but got rank " + r.rank + "."), assert(2 === t.length, "Error in resizeNearestNeighbor: new shape must 2D, but got shape " + t + "."), assert("float32" === r.dtype || "int32" === r.dtype, "`images` must have `int32` or `float32` as dtype");var o = r,
+        a = !1;3 === r.rank && (a = !0, o = r.as4D(1, r.shape[0], r.shape[1], r.shape[2]));var i = t[0],
+        s = t[1],
+        u = ENV.engine.runKernel(function (e, t) {
+      return e.resizeNearestNeighbor(o, i, s, n);
+    }, { batchImages: o }, function (e, t) {
+      return { batchImages: function () {
+          return ENV.engine.runKernel(function (t) {
+            return t.resizeNearestNeighborBackprop(e, o, n);
+          }, {});
+        } };
+    });return a ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
+  }, __decorate([doc({ heading: "Operations", subheading: "Images", namespace: "image" })], e, "resizeBilinear", null), __decorate([doc({ heading: "Operations", subheading: "Images", namespace: "image" })], e, "resizeNearestNeighbor", null), e;
+}(),
+    resizeBilinear = op(ImageOps.resizeBilinear),
+    resizeNearestNeighbor = op(ImageOps.resizeNearestNeighbor),
+    image_ops = Object.freeze({ resizeBilinear: resizeBilinear, resizeNearestNeighbor: resizeNearestNeighbor }),
+    ops = Object.freeze({ image: image_ops, linalg: linalg_ops, losses: loss_ops, op: op, batchNormalization2d: batchNormalization2d, batchNormalization3d: batchNormalization3d, batchNormalization4d: batchNormalization4d, batchNormalization: batchNormalization, concat: concat, concat1d: concat1d, concat2d: concat2d, concat3d: concat3d, concat4d: concat4d, conv1d: conv1d, conv2d: conv2d, depthwiseConv2d: depthwiseConv2d, separableConv2d: separableConv2d, conv2dTranspose: conv2dTranspose, matMul: matMul, dot: dot, outerProduct: outerProduct, reverse: reverse, reverse1d: reverse1d, reverse2d: reverse2d, reverse3d: reverse3d, reverse4d: reverse4d, maxPool: maxPool, avgPool: avgPool, slice: slice, slice1d: slice1d, slice2d: slice2d, slice3d: slice3d, slice4d: slice4d, abs: abs, acos: acos, acosh: acosh, asin: asin, asinh: asinh, atan: atan, atanh: atanh, ceil: ceil, clipByValue: clipByValue, cos: cos, cosh: cosh, erf: erf, exp: exp, expm1: expm1, floor: floor, log: log, log1p: log1p, logSigmoid: logSigmoid, neg: neg, reciprocal: reciprocal, round: round, rsqrt: rsqrt, sigmoid: sigmoid, sign: sign, sin: sin, sinh: sinh, softplus: softplus, sqrt: sqrt, square: square, step: step, tan: tan, tanh: tanh$1, all: all, any: any, argMax: argMax, argMin: argMin, logSumExp: logSumExp, max: max, mean: mean, min: min, moments: moments, sum: sum, equal: equal, equalStrict: equalStrict, greater: greater, greaterEqual: greaterEqual, greaterEqualStrict: greaterEqualStrict, greaterStrict: greaterStrict, less: less, lessEqual: lessEqual, lessEqualStrict: lessEqualStrict, lessStrict: lessStrict, notEqual: notEqual, notEqualStrict: notEqualStrict, add: add, addStrict: addStrict, atan2: atan2, div: div, divStrict: divStrict, floorDiv: floorDiv, maximum: maximum, maximumStrict: maximumStrict, minimum: minimum, minimumStrict: minimumStrict, mod: mod, modStrict: modStrict, mul: mul, mulStrict: mulStrict, pow: pow, powStrict: powStrict, squaredDifference: squaredDifference, squaredDifferenceStrict: squaredDifferenceStrict, sub: sub, subStrict: subStrict, sigmoidCrossEntropyWithLogits: sigmoidCrossEntropyWithLogits, elu: elu, leakyRelu: leakyRelu, prelu: prelu, relu: relu, selu: selu, logicalAnd: logicalAnd, logicalNot: logicalNot, logicalOr: logicalOr, logicalXor: logicalXor, where: where, buffer: buffer, toPixels: toPixels, cast: cast, clone: clone, cumsum: cumsum, expandDims: expandDims, eye: eye, fromPixels: fromPixels, multinomial: multinomial, oneHot: oneHot, pad: pad, pad1d: pad1d, pad2d: pad2d, pad3d: pad3d, pad4d: pad4d, print: print, rand: rand, randomNormal: randomNormal, randomUniform: randomUniform, reshape: reshape, split: split, squeeze: squeeze, stack: stack, tile: tile, truncatedNormal: truncatedNormal, unstack: unstack, fill: fill, linspace: linspace, ones: ones$1, range: range, scalar: scalar, tensor: tensor, tensor1d: tensor1d, tensor2d: tensor2d, tensor3d: tensor3d, tensor4d: tensor4d, tensor5d: tensor5d, tensor6d: tensor6d, zeros: zeros, onesLike: onesLike, zerosLike: zerosLike, transpose: transpose, softmax: softmax, localResponseNormalization: localResponseNormalization, norm: norm, gather: gather, unsortedSegmentSum: unsortedSegmentSum, basicLSTMCell: basicLSTMCell, multiRNNCell: multiRNNCell, movingAverage: movingAverage, stridedSlice: stridedSlice }),
+    PARALLELIZE_THRESHOLD = 30;function computeOptimalWindowSize(e) {
+  return e <= PARALLELIZE_THRESHOLD ? e : nearestDivisor(e, Math.floor(Math.sqrt(e)));
+}function segOpComputeOptimalWindowSize(e, t) {
+  var n,
+      r = !1;for (e <= PARALLELIZE_THRESHOLD ? (n = e, r = !0) : n = nearestDivisor(e, Math.floor(Math.sqrt(e))); !r;) {
+    if (n > t || n === e) {
+      r = !0;break;
+    }n = nearestDivisor(e, n + 1);
+  }return n;
+}function computeOutShape$1(e, t, n) {
+  for (var r = [], o = e.length, a = 0; a < o; a++) a !== t ? r.push(e[a]) : r.push(n);return r;
 }function castTensor(e, t, n) {
   if (!hasEncodingLoss(e.dtype, t)) return Tensor.make(e.shape, { dataId: e.dataId }, t);if ("int32" === t) return n.int(e);if ("bool" === t) return n.notEqual(e, scalar(0, e.dtype));throw new Error("Error in Cast: unknown dtype argument (" + t + ")");
 }function reshapeTensor(e, t) {
   return Tensor.make(t, { dataId: e.dataId }, e.dtype);
-}function nonMaxSuppressionImpl(e, t, n, r, o) {
-  for (var a = Array.from(t).map(function (e, t) {
-    return { score: e, boxIndex: t };
-  }).filter(function (e) {
-    return e.score > o;
-  }).sort(function (e, t) {
-    return t.score - e.score;
-  }), i = [], s = 0; s < a.length; s++) {
-    var u = a[s],
-        l = u.score,
-        c = u.boxIndex;if (l < o) break;for (var p = !1, d = i.length - 1; d >= 0; --d) {
-      if (intersectionOverUnion(e, c, i[d]) >= r) {
-        p = !0;break;
-      }
-    }if (!p && (i.push(c), i.length >= n)) break;
-  }return tensor1d(i, "int32");
-}function intersectionOverUnion(e, t, n) {
-  var r = e.subarray(4 * t, 4 * t + 4),
-      o = e.subarray(4 * n, 4 * n + 4),
-      a = Math.min(r[0], r[2]),
-      i = Math.min(r[1], r[3]),
-      s = Math.max(r[0], r[2]),
-      u = Math.max(r[1], r[3]),
-      l = Math.min(o[0], o[2]),
-      c = Math.min(o[1], o[3]),
-      p = Math.max(o[0], o[2]),
-      d = Math.max(o[1], o[3]),
-      h = (s - a) * (u - i),
-      f = (p - l) * (d - c);if (h <= 0 || f <= 0) return 0;var m = Math.max(a, l),
-      g = Math.max(i, c),
-      v = Math.min(s, p),
-      y = Math.min(u, d),
-      x = Math.max(v - m, 0) * Math.max(y - g, 0);return x / (h + f - x);
-}function topkImpl(e, t, n, r, o) {
-  for (var a = t[t.length - 1], i = [e.length / a, a], s = i[0], u = i[1], l = getTypedArrayFromDType(n, s * r), c = getTypedArrayFromDType("int32", s * r), p = 0; p < s; p++) {
-    for (var d = p * u, h = e.subarray(d, d + u), f = [], m = 0; m < h.length; m++) f.push({ value: h[m], index: m });f.sort(function (e, t) {
-      return t.value - e.value;
-    });var g = p * r,
-        v = l.subarray(g, g + r),
-        y = c.subarray(g, g + r);for (m = 0; m < r; m++) v[m] = f[m].value, y[m] = f[m].index;
-  }var x = t.slice();return x[x.length - 1] = r, [tensor(l, x, n), tensor(c, x, "int32")];
 }var ArgMinMaxProgram = function () {
   return function (e, t, n) {
     this.variableNames = ["A"];var r = e.windowSize,
@@ -25453,25 +27219,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         i = n - 1 - e.padInfo.left,
         s = 1 / (t * n);this.userCode = "\n      const ivec2 pads = ivec2(" + a + ", " + i + ");\n      const float avgMultiplier = float(" + s + ");\n\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int d = coords[3];\n\n        ivec2 dyRCCorner = coords.yz - pads;\n        int dyRCorner = dyRCCorner.x;\n        int dyCCorner = dyRCCorner.y;\n\n        // Convolve dy(?, ?, d) with pos mask(:, :, d) to get dx(xR, xC, d).\n        // ? = to be determined. : = across all values in that axis.\n        float dotProd = 0.0;\n        for (int wR = 0; wR < " + t + "; wR++) {\n          float dyR = float(dyRCorner + wR) / " + r + ".0;\n\n          if (dyR < 0.0 || dyR >= " + e.outHeight + ".0 || fract(dyR) > 0.0) {\n            continue;\n          }\n          int idyR = int(dyR);\n\n          for (int wC = 0; wC < " + n + "; wC++) {\n            float dyC = float(dyCCorner + wC) / " + o + ".0;\n\n            if (dyC < 0.0 || dyC >= " + e.outWidth + ".0 ||\n                fract(dyC) > 0.0) {\n              continue;\n            }\n            int idyC = int(dyC);\n\n            float dyValue = getDy(b, idyR, idyC, d);\n\n            dotProd += dyValue * avgMultiplier;\n          }\n        }\n        setOutput(dotProd);\n      }\n    ";
   };
-}();function getBroadcastDims(e, t) {
-  for (var n = e.length, r = [], o = 0; o < n; o++) {
-    var a = n - 1 - o,
-        i = e[a] || 1;(t[t.length - 1 - o] || 1) > 1 && 1 === i && r.unshift(a);
-  }return r;
-}function getReductionAxes(e, t) {
-  for (var n = [], r = 0; r < t.length; r++) {
-    var o = e[e.length - r - 1],
-        a = t.length - r - 1,
-        i = t[a];(null == o || 1 === o && i > 1) && n.unshift(a);
-  }return n;
-}function broadcastDimsAreOuter(e) {
-  for (var t = 0; t < e.length; t++) if (e[t] !== t) return !1;return !0;
-}function assertAndGetBroadcastShape(e, t) {
-  for (var n = [], r = "Operands could not be broadcast together with shapes " + e + " and " + t + ".", o = Math.max(e.length, t.length), a = 0; a < o; a++) {
-    var i = e[e.length - a - 1] || 1,
-        s = t[t.length - a - 1] || 1;if (i > 1 && s > 1 && i !== s) throw Error(r);n.unshift(Math.max(i, s));
-  }return n;
-}var BatchNormProgram = function () {
+}(),
+    BatchNormProgram = function () {
   return function (e, t, n, r, o, a) {
     this.outputShape = [], this.supportsBroadcasting = !0, this.variableNames = ["x", "mean", "variance"], assertAndGetBroadcastShape(e, t), assertAndGetBroadcastShape(e, n);var i = "0.0";null != r && (assertAndGetBroadcastShape(e, r), this.variableNames.push("offset"), i = "getOffsetAtOutCoords()");var s = "1.0";null != o && (assertAndGetBroadcastShape(e, o), this.variableNames.push("scale"), s = "getScaleAtOutCoords()"), this.outputShape = e, this.userCode = "\n      void main() {\n        float x = getXAtOutCoords();\n        float mean = getMeanAtOutCoords();\n        float variance = getVarianceAtOutCoords();\n        float offset = " + i + ";\n        float scale = " + s + ";\n        float inv = scale * inversesqrt(variance + float(" + a + "));\n        setOutput((x - mean) * inv + offset);\n      }\n    ";
   };
@@ -25511,16 +27260,10 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     this.variableNames = ["A"], this.outputShape = e;var r = t.toFixed(20),
         o = n.toFixed(20);this.userCode = "\n      void main() {\n        float value = getAAtOutCoords();\n        if (isNaN(value)) {\n          setOutput(value);\n          return;\n        }\n\n        setOutput(clamp(value, " + r + ", " + o + "));\n      }\n    ";
   };
-}();function assertParams(e, t, n) {
-  var r = e.length,
-      o = t.length;assert(e.length === t.length, "Error in concat" + r + "D: rank of x1 (" + r + ") and x2 (" + o + ") must be the same."), assert(n >= 0 && n < r, "Error in concat" + r + "D: axis must be between 0 and " + (r - 1) + ".");for (var a = 0; a < r; a++) assert(a === n || e[a] === t[a], "Error in concat" + r + "D: Shape (" + e + ") does not match (" + t + ") along the non-concatenated axis " + a + ".");
-}function computeOutShape$1(e, t, n) {
-  assert(e.length === t.length, "x1 and x2 should have the same rank.");var r = e.slice();return r[n] += t[n], r;
-}function computeGradientSliceShapes(e, t) {
-  return { aBegin: [0, 0], aSize: e, bBegin: [0, e[1]], bSize: t };
-}var ConcatProgram = function () {
+}(),
+    ConcatProgram = function () {
   return function (e, t) {
-    this.variableNames = ["A", "B"], this.outputShape = [], this.outputShape = computeOutShape$1(e, t, 1), this.userCode = "\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int yR = coords.x;\n        int yC = coords.y;\n\n        float value = 0.0;\n        if (yC < " + e[1] + ") {\n          value = getA(yR, yC);\n        } else {\n          yC -= " + e[1] + ";\n          value = getB(yR, yC);\n        }\n\n        setOutput(value);\n      }\n    ";
+    this.variableNames = ["A", "B"], this.outputShape = [], this.outputShape = computeOutShape(e, t, 1), this.userCode = "\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int yR = coords.x;\n        int yC = coords.y;\n\n        float value = 0.0;\n        if (yC < " + e[1] + ") {\n          value = getA(yR, yC);\n        } else {\n          yC -= " + e[1] + ";\n          value = getB(yR, yC);\n        }\n\n        setOutput(value);\n      }\n    ";
   };
 }(),
     Conv2DDerFilterProgram = function () {
@@ -25587,7 +27330,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = e.dilationWidth,
         l = e.filterHeight,
         c = e.filterWidth,
-        p = e.outChannels / e.inChannels;this.userCode = "\n      const ivec2 strides = ivec2(" + a + ", " + i + ");\n      const ivec2 pads = ivec2(" + r + ", " + o + ");\n\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int batch = coords.x;\n        ivec2 xRCCorner = coords.yz * strides - pads;\n        int d2 = coords.w;\n        int d1 = d2 / " + p + ";\n        int q = d2 - d1 * " + p + ";\n\n        int xRCorner = xRCCorner.x;\n        int xCCorner = xRCCorner.y;\n\n        // Convolve x(?, ?, d1) with w(:, :, d1, q) to get y(yR, yC, d2).\n        // ? = to be determined. : = across all values in that axis.\n        float dotProd = 0.0;\n        // TODO(dsmilkov): Flatten the two for loops and vec4 the operations.\n        for (int wR = 0; wR < " + l + "; wR++) {\n          int xR = xRCorner + wR * " + s + ";\n\n          if (xR < 0 || xR >= " + t + ") {\n            continue;\n          }\n\n          for (int wC = 0; wC < " + c + "; wC++) {\n            int xC = xCCorner + wC * " + u + ";\n\n            if (xC < 0 || xC >= " + n + ") {\n              continue;\n            }\n\n            float xVal = getX(batch, xR, xC, d1);\n            float wVal = getW(wR, wC, d1, q);\n            dotProd += xVal * wVal;\n          }\n        }\n        setOutput(dotProd);\n      }\n    ";
+        d = e.outChannels / e.inChannels;this.userCode = "\n      const ivec2 strides = ivec2(" + a + ", " + i + ");\n      const ivec2 pads = ivec2(" + r + ", " + o + ");\n\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int batch = coords.x;\n        ivec2 xRCCorner = coords.yz * strides - pads;\n        int d2 = coords.w;\n        int d1 = d2 / " + d + ";\n        int q = d2 - d1 * " + d + ";\n\n        int xRCorner = xRCCorner.x;\n        int xCCorner = xRCCorner.y;\n\n        // Convolve x(?, ?, d1) with w(:, :, d1, q) to get y(yR, yC, d2).\n        // ? = to be determined. : = across all values in that axis.\n        float dotProd = 0.0;\n        // TODO(dsmilkov): Flatten the two for loops and vec4 the operations.\n        for (int wR = 0; wR < " + l + "; wR++) {\n          int xR = xRCorner + wR * " + s + ";\n\n          if (xR < 0 || xR >= " + t + ") {\n            continue;\n          }\n\n          for (int wC = 0; wC < " + c + "; wC++) {\n            int xC = xCCorner + wC * " + u + ";\n\n            if (xC < 0 || xC >= " + n + ") {\n              continue;\n            }\n\n            float xVal = getX(batch, xR, xC, d1);\n            float wVal = getW(wR, wC, d1, q);\n            dotProd += xVal * wVal;\n          }\n        }\n        setOutput(dotProd);\n      }\n    ";
   };
 }();function makeShader(e, t, n, r) {
   var o = e.map(function (e) {
@@ -25669,7 +27412,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       l = s;if (l.length < t.length) {
     return "\n      " + getSamplerFromInInfo(squeezeInputInfo(e, l)) + "\n      float " + r + "(int row, int col) {\n        return " + r + "(" + getSqueezedParams(["row", "col"], u) + ");\n      }\n    ";
   }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col) {\n        int index = row * " + t[1] + " + col;\n        return " + r + "Flat(index);\n      }\n    ";var c = o[0],
-      p = o[1];return 1 === p ? "\n    float " + r + "(int row, int col) {\n      int index = row * " + t[1] + " + col;\n      vec2 uv = vec2(0.5, (float(index) + 0.5) / " + c + ".0);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : 1 === c ? "\n    float " + r + "(int row, int col) {\n      int index = row * " + t[1] + " + col;\n      vec2 uv = vec2((float(index) + 0.5) / " + p + ".0, 0.5);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : "\n  float " + r + "(int row, int col) {\n    vec2 uv = UVfrom2D(" + c + ", " + p + ", " + t[1] + ", row, col);\n    return sampleTexture(" + n + ", uv);\n  }\n";
+      d = o[1];return 1 === d ? "\n    float " + r + "(int row, int col) {\n      int index = row * " + t[1] + " + col;\n      vec2 uv = vec2(0.5, (float(index) + 0.5) / " + c + ".0);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : 1 === c ? "\n    float " + r + "(int row, int col) {\n      int index = row * " + t[1] + " + col;\n      vec2 uv = vec2((float(index) + 0.5) / " + d + ".0, 0.5);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : "\n  float " + r + "(int row, int col) {\n    vec2 uv = UVfrom2D(" + c + ", " + d + ", " + t[1] + ", row, col);\n    return sampleTexture(" + n + ", uv);\n  }\n";
 }function getSampler3D(e) {
   var t = e.shapeInfo.logicalShape,
       n = e.name,
@@ -25682,8 +27425,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       l = s;if (l.length < t.length) {
     return "\n        " + getSamplerFromInInfo(squeezeInputInfo(e, l)) + "\n        float " + r + "(int row, int col, int depth) {\n          return " + r + "(" + getSqueezedParams(["row", "col", "depth"], u) + ");\n        }\n      ";
   }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth) {\n        int index = row * " + o + " + col * " + a + " + depth;\n        return " + r + "Flat(index);\n      }\n    ";var c = e.shapeInfo.texShape,
-      p = c[0],
-      d = c[1];return d === o ? "\n        float " + r + "(int row, int col, int depth) {\n          int texR = row;\n          int texC = col * " + a + " + depth;\n          vec2 uv = (vec2(texC, texR) + halfCR) /\n                     vec2(" + d + ".0, " + p + ".0);\n          return sampleTexture(" + n + ", uv);\n        }\n      " : d === a ? "\n    float " + r + "(int row, int col, int depth) {\n      int texR = row * " + t[1] + " + col;\n      int texC = depth;\n      vec2 uv = (vec2(texC, texR) + halfCR) / vec2(" + d + ".0, " + p + ".0);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : "\n      float " + r + "(int row, int col, int depth) {\n        vec2 uv = UVfrom3D(\n            " + p + ", " + d + ", " + o + ", " + a + ", row, col, depth);\n        return sampleTexture(" + n + ", uv);\n      }\n  ";
+      d = c[0],
+      p = c[1];return p === o ? "\n        float " + r + "(int row, int col, int depth) {\n          int texR = row;\n          int texC = col * " + a + " + depth;\n          vec2 uv = (vec2(texC, texR) + halfCR) /\n                     vec2(" + p + ".0, " + d + ".0);\n          return sampleTexture(" + n + ", uv);\n        }\n      " : p === a ? "\n    float " + r + "(int row, int col, int depth) {\n      int texR = row * " + t[1] + " + col;\n      int texC = depth;\n      vec2 uv = (vec2(texC, texR) + halfCR) / vec2(" + p + ".0, " + d + ".0);\n      return sampleTexture(" + n + ", uv);\n    }\n  " : "\n      float " + r + "(int row, int col, int depth) {\n        vec2 uv = UVfrom3D(\n            " + d + ", " + p + ", " + o + ", " + a + ", row, col, depth);\n        return sampleTexture(" + n + ", uv);\n      }\n  ";
 }function getSampler4D(e) {
   var t = e.shapeInfo.logicalShape,
       n = e.name,
@@ -25696,8 +27439,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       l = s.keptDims;if (u.length < t.length) {
     return "\n      " + getSamplerFromInInfo(squeezeInputInfo(e, u)) + "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        return " + r + "(" + getSqueezedParams(["row", "col", "depth", "depth2"], l) + ");\n      }\n    ";
   }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        int index = row * " + i + " + col * " + a + " +\n            depth * " + o + " + depth2;\n        return " + r + "Flat(index);\n      }\n    ";var c = e.shapeInfo.texShape,
-      p = c[0],
-      d = c[1];return d === i ? "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        int texR = row;\n        int texC = col * " + a + " + depth * " + o + " + depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + d + ".0, " + p + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : d === o ? "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " + depth;\n        int texC = depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + d + ".0, " + p + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth, int depth2) {\n      vec2 uv = UVfrom4D(" + p + ", " + d + ", " + i + ", " + a + ",\n          " + o + ", row, col, depth, depth2);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
+      d = c[0],
+      p = c[1];return p === i ? "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        int texR = row;\n        int texC = col * " + a + " + depth * " + o + " + depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + p + ".0, " + d + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : p === o ? "\n      float " + r + "(int row, int col, int depth, int depth2) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " + depth;\n        int texC = depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + p + ".0, " + d + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth, int depth2) {\n      vec2 uv = UVfrom4D(" + d + ", " + p + ", " + i + ", " + a + ",\n          " + o + ", row, col, depth, depth2);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
 }function getSampler5D(e) {
   var t = e.shapeInfo.logicalShape,
       n = e.name,
@@ -25710,9 +27453,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       l = u.newShape,
       c = u.keptDims;if (l.length < t.length) {
     return "\n      " + getSamplerFromInInfo(squeezeInputInfo(e, l)) + "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        return " + r + "(" + getSqueezedParams(["row", "col", "depth", "depth2", "depth3"], c) + ");\n      }\n    ";
-  }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int index = row * " + s + " + col * " + i + " +\n            depth * " + a + " + depth2 * " + o + " + depth3;\n        return " + r + "Flat(index);\n      }\n    ";var p = e.shapeInfo.texShape,
-      d = p[0],
-      h = p[1];return h === s ? "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int texR = row;\n        int texC = col * " + i + " + depth * " + a + " +\n                   depth2 * " + o + " + depth3;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + h + ".0, " + d + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : h === o ? "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " +\n                   depth * " + t[3] + " + depth2;\n        int texC = depth3;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + h + ".0, " + d + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n      vec2 uv = UVfrom5D(" + d + ", " + h + ", " + s + ", " + i + ",\n          " + a + ", " + o + ", row, col, depth, depth2, depth3);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
+  }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int index = row * " + s + " + col * " + i + " +\n            depth * " + a + " + depth2 * " + o + " + depth3;\n        return " + r + "Flat(index);\n      }\n    ";var d = e.shapeInfo.texShape,
+      p = d[0],
+      h = d[1];return h === s ? "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int texR = row;\n        int texC = col * " + i + " + depth * " + a + " +\n                   depth2 * " + o + " + depth3;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + h + ".0, " + p + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : h === o ? "\n      float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " +\n                   depth * " + t[3] + " + depth2;\n        int texC = depth3;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + h + ".0, " + p + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth, int depth2, int depth3) {\n      vec2 uv = UVfrom5D(" + p + ", " + h + ", " + s + ", " + i + ",\n          " + a + ", " + o + ", row, col, depth, depth2, depth3);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
 }function getSampler6D(e) {
   var t = e.shapeInfo.logicalShape,
       n = e.name,
@@ -25724,11 +27467,11 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       u = t[1] * s,
       l = squeezeShape(t),
       c = l.newShape,
-      p = l.keptDims;if (c.length < t.length) {
-    return "\n      " + getSamplerFromInInfo(squeezeInputInfo(e, c)) + "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        return " + r + "(" + getSqueezedParams(["row", "col", "depth", "depth2", "depth3", "depth4"], p) + ");\n      }\n    ";
-  }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth,\n                  int depth2, int depth3, int depth4) {\n        int index = row * " + u + " + col * " + s + " +\n            depth * " + i + " + depth2 * " + a + " + depth3 * " + a + "\n            + depth4\n        return " + r + "Flat(index);\n      }\n    ";var d = e.shapeInfo.texShape,
-      h = d[0],
-      f = d[1];return f === u ? "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        int texR = row;\n        int texC = col * " + s + " + depth * " + i + " + depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + f + ".0, " + h + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : f === o ? "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " + depth;\n        int texC = depth4;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + f + ".0, " + h + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth,\n                  int depth2, int depth3, int depth4) {\n      vec2 uv = UVfrom6D(" + h + ", " + f + ", " + u + ", " + s + ",\n          " + i + ", " + a + ", " + o + "\n          ,row, col, depth, depth2, depth3, depth4);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
+      d = l.keptDims;if (c.length < t.length) {
+    return "\n      " + getSamplerFromInInfo(squeezeInputInfo(e, c)) + "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        return " + r + "(" + getSqueezedParams(["row", "col", "depth", "depth2", "depth3", "depth4"], d) + ");\n      }\n    ";
+  }if (e.shapeInfo.isUniform) return "\n      float " + r + "(int row, int col, int depth,\n                  int depth2, int depth3, int depth4) {\n        int index = row * " + u + " + col * " + s + " +\n            depth * " + i + " + depth2 * " + a + " + depth3 * " + a + "\n            + depth4\n        return " + r + "Flat(index);\n      }\n    ";var p = e.shapeInfo.texShape,
+      h = p[0],
+      f = p[1];return f === u ? "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        int texR = row;\n        int texC = col * " + s + " + depth * " + i + " + depth2;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                   vec2(" + f + ".0, " + h + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : f === o ? "\n      float " + r + "(int row, int col, int depth,\n                    int depth2, int depth3, int depth4) {\n        int texR = row * " + t[1] * t[2] + " + col * " + t[2] + " + depth;\n        int texC = depth4;\n        vec2 uv = (vec2(texC, texR) + halfCR) /\n                  vec2(" + f + ".0, " + h + ".0);\n        return sampleTexture(" + n + ", uv);\n      }\n    " : "\n    float " + r + "(int row, int col, int depth,\n                  int depth2, int depth3, int depth4) {\n      vec2 uv = UVfrom6D(" + h + ", " + f + ", " + u + ", " + s + ",\n          " + i + ", " + a + ", " + o + "\n          ,row, col, depth, depth2, depth3, depth4);\n      return sampleTexture(" + n + ", uv);\n    }\n  ";
 }function getSamplerFlat(e) {
   var t = e.name,
       n = "get" + t.charAt(0).toUpperCase() + t.slice(1) + "Flat",
@@ -25753,8 +27496,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       u = t.logicalShape.length,
       l = n && (u > s || i.length > 0),
       c = broadcastDimsAreOuter(i),
-      p = e.shapeInfo.isUniform;if (l && !c) return getBroadcastOutputCoordsSampler(e, t, o, a);var d = sizeFromShape(e.shapeInfo.logicalShape),
-      h = "";l && c && (h = "\n        int mainPart = index / " + d + ";\n        index -= mainPart * " + d + ";\n      ");var f = t.texShape;if (p) return 1 === d ? "float " + a + "() {return " + r + ";}" : "\n      float " + a + "() {\n        ivec2 resTexRC = ivec2(resultUV.yx *\n                              vec2(" + f[0] + ", " + f[1] + "));\n        int index = resTexRC.x * " + f[1] + " + resTexRC.y;\n        " + h + "\n        return get" + o + "Flat(index);\n      }\n    ";var m = e.shapeInfo.texShape;return arraysEqual(m, f) ? "\n      float " + a + "() {\n        return sampleTexture(" + r + ", resultUV);\n      }\n    " : "\n    float " + a + "() {\n      ivec2 resTexRC = ivec2(resultUV.yx *\n                             vec2(" + f[0] + ", " + f[1] + "));\n      int index = resTexRC.x * " + f[1] + " + resTexRC.y;\n      " + h + "\n      int texR = index / " + m[1] + ";\n      int texC = index - texR * " + m[1] + ";\n      vec2 uv = (vec2(texC, texR) + halfCR) /\n                 vec2(" + m[1] + ".0, " + m[0] + ".0);\n\n      return sampleTexture(" + r + ", uv);\n    }\n  ";
+      d = e.shapeInfo.isUniform;if (l && !c) return getBroadcastOutputCoordsSampler(e, t, o, a);var p = sizeFromShape(e.shapeInfo.logicalShape),
+      h = "";l && c && (h = "\n        int mainPart = index / " + p + ";\n        index -= mainPart * " + p + ";\n      ");var f = t.texShape;if (d) return 1 === p ? "float " + a + "() {return " + r + ";}" : "\n      float " + a + "() {\n        ivec2 resTexRC = ivec2(resultUV.yx *\n                              vec2(" + f[0] + ", " + f[1] + "));\n        int index = resTexRC.x * " + f[1] + " + resTexRC.y;\n        " + h + "\n        return get" + o + "Flat(index);\n      }\n    ";var g = e.shapeInfo.texShape;return arraysEqual(g, f) ? "\n      float " + a + "() {\n        return sampleTexture(" + r + ", resultUV);\n      }\n    " : "\n    float " + a + "() {\n      ivec2 resTexRC = ivec2(resultUV.yx *\n                             vec2(" + f[0] + ", " + f[1] + "));\n      int index = resTexRC.x * " + f[1] + " + resTexRC.y;\n      " + h + "\n      int texR = index / " + g[1] + ";\n      int texC = index - texR * " + g[1] + ";\n      vec2 uv = (vec2(texC, texR) + halfCR) /\n                 vec2(" + g[1] + ".0, " + g[0] + ".0);\n\n      return sampleTexture(" + r + ", uv);\n    }\n  ";
 }function getCoordsDataType(e) {
   if (e <= 1) return "int";if (2 === e) return "ivec2";if (3 === e) return "ivec3";if (4 === e) return "ivec4";if (5 === e) return "ivec5";if (6 === e) return "ivec6";throw Error("GPU for rank " + e + " is not yet supported");
 }function squeezeInputInfo(e, t) {
@@ -25808,19 +27551,19 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
 }function getPackedRGBAArraySizeFromMatrixShape(e, t) {
   var n = getPackedMatrixTextureShapeWidthHeight(e, t);return n[0] * n[1] * 4;
 }function encodeMatrixToPackedRGBA(e, t, n, r) {
-  var o = getPackedRGBAArraySizeFromMatrixShape(t, n);if (r.length < o) throw new Error("packedRGBA length (" + r.length + ") must be >= " + o);for (var a = getPackedMatrixTextureShapeWidthHeight(t, n), i = a[0], s = a[1], u = n % 2 == 1, l = t % 2 == 1, c = Math.floor(n / 2), p = Math.floor(t / 2), d = u ? 4 : 0, h = n, f = 0, m = 0; m < p; ++m) {
-    for (var g = 2 * m * n, v = 0; v < c; ++v) {
-      var y = g + 2 * v;r[f] = e[y], r[f + 1] = e[y + 1], r[f + 2] = e[y + h], r[f + 3] = e[y + h + 1], f += 4;
-    }f += d;
+  var o = getPackedRGBAArraySizeFromMatrixShape(t, n);if (r.length < o) throw new Error("packedRGBA length (" + r.length + ") must be >= " + o);for (var a = getPackedMatrixTextureShapeWidthHeight(t, n), i = a[0], s = a[1], u = n % 2 == 1, l = t % 2 == 1, c = Math.floor(n / 2), d = Math.floor(t / 2), p = u ? 4 : 0, h = n, f = 0, g = 0; g < d; ++g) {
+    for (var m = 2 * g * n, v = 0; v < c; ++v) {
+      var y = m + 2 * v;r[f] = e[y], r[f + 1] = e[y + 1], r[f + 2] = e[y + h], r[f + 3] = e[y + h + 1], f += 4;
+    }f += p;
   }if (u) {
-    y = n - 1, f = 4 * (i - 1);var x = 2 * n;for (d = 4 * i, m = 0; m < p; ++m) r[f] = e[y], r[f + 2] = e[y + n], y += x, f += d;
+    y = n - 1, f = 4 * (i - 1);var x = 2 * n;for (p = 4 * i, g = 0; g < d; ++g) r[f] = e[y], r[f + 2] = e[y + n], y += x, f += p;
   }if (l) for (y = (t - 1) * n, f = (s - 1) * i * 4, v = 0; v < c; ++v) r[f++] = e[y++], r[f++] = e[y++], f += 2;return u && l && (r[r.length - 4] = e[e.length - 1]), r;
 }function decodeMatrixFromPackedRGBA(e, t, n, r) {
-  var o = t * n;if (o < r.length) throw new Error("matrix length (" + r.length + ") must be >= " + o);for (var a = n % 2 == 1, i = t % 2 == 1, s = Math.floor(n / 2), u = Math.floor(t / 2), l = getPackedMatrixTextureShapeWidthHeight(t, n), c = l[0], p = l[1], d = a ? 4 : 0, h = n + (a ? 1 : 0), f = 0, m = 0, g = n, v = 0; v < u; ++v) {
-    for (var y = 0; y < s; ++y) r[m++] = e[f++], r[m++] = e[f++], r[g++] = e[f++], r[g++] = e[f++];f += d, m += h, g += h;
+  var o = t * n;if (o < r.length) throw new Error("matrix length (" + r.length + ") must be >= " + o);for (var a = n % 2 == 1, i = t % 2 == 1, s = Math.floor(n / 2), u = Math.floor(t / 2), l = getPackedMatrixTextureShapeWidthHeight(t, n), c = l[0], d = l[1], p = a ? 4 : 0, h = n + (a ? 1 : 0), f = 0, g = 0, m = n, v = 0; v < u; ++v) {
+    for (var y = 0; y < s; ++y) r[g++] = e[f++], r[g++] = e[f++], r[m++] = e[f++], r[m++] = e[f++];f += p, g += h, m += h;
   }if (a) {
-    f = 4 * (c - 1);var x = n - 1;for (d = 4 * c, h = 2 * n, v = 0; v < u; ++v) r[x] = e[f], r[x + n] = e[f + 2], f += d, x += h;
-  }if (i) for (f = (p - 1) * c * 4, x = (t - 1) * n, y = 0; y < s; ++y) r[x++] = e[f++], r[x++] = e[f++], f += 2;return a && i && (r[r.length - 1] = e[e.length - 4]), r;
+    f = 4 * (c - 1);var x = n - 1;for (p = 4 * c, h = 2 * n, v = 0; v < u; ++v) r[x] = e[f], r[x + n] = e[f + 2], f += p, x += h;
+  }if (i) for (f = (d - 1) * c * 4, x = (t - 1) * n, y = 0; y < s; ++y) r[x++] = e[f++], r[x++] = e[f++], f += 2;return a && i && (r[r.length - 1] = e[e.length - 4]), r;
 }!function (e) {
   e[e.RENDER = 0] = "RENDER", e[e.UPLOAD = 1] = "UPLOAD", e[e.PIXELS = 2] = "PIXELS", e[e.DOWNLOAD = 3] = "DOWNLOAD";
 }(TextureUsage || (TextureUsage = {})), function (e) {
@@ -25873,7 +27616,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return rightPad((t + 1).toString(), a) + e;
   }), s = 0, u = 0; u < i.length; u++) s = Math.max(i[u].length, s);var l = i.slice(0, r - 1),
       c = i.slice(r - 1, r),
-      p = i.slice(r);console.log(l.join("\n")), console.log(t.split("\n")[0]), console.log("%c " + rightPad(c[0], s), "border:1px solid red; background-color:#e3d2d2; color:#a61717"), console.log(p.join("\n"));
+      d = i.slice(r);console.log(l.join("\n")), console.log(t.split("\n")[0]), console.log("%c " + rightPad(c[0], s), "border:1px solid red; background-color:#e3d2d2; color:#a61717"), console.log(d.join("\n"));
 }function createProgram(e) {
   return throwIfNull(e, function () {
     return e.createProgram();
@@ -26086,22 +27829,20 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       s = i[0],
       u = i[1],
       l = new Float32Array(getPackedRGBAArraySizeFromMatrixShape(n, r));encodeMatrixToPackedRGBA(o, n, r, l), uploadDataToTexture(e, t, s, u, l, e.RGBA);
-}function maybeCreateBufferFromOutputTexture(e, t, n, r, o) {
-  var a = t;if (2 === ENV.get("WEBGL_VERSION")) {
-    var i = e,
-        s = i.createBuffer();callAndCheck(e, function () {
-      return e.bindBuffer(i.PIXEL_PACK_BUFFER, s);
-    });var u = 4 * getUnpackedArraySizeFromMatrixSize(n * r, o.downloadUnpackNumChannels);callAndCheck(e, function () {
-      return e.bufferData(i.PIXEL_PACK_BUFFER, u, e.STATIC_DRAW);
-    }), callAndCheck(e, function () {
-      return i.readPixels(0, 0, r, n, e.RGBA, e.FLOAT, 0);
-    }), callAndCheck(e, function () {
-      return e.bindBuffer(i.PIXEL_PACK_BUFFER, null);
-    }), a = s;
-  }return a;
-}function downloadFloat32MatrixFromBuffer(e, t, n, r, o) {
-  var a = e,
-      i = new Float32Array(getUnpackedArraySizeFromMatrixSize(n * r, o.downloadUnpackNumChannels));a.bindBuffer(e.ARRAY_BUFFER, t), a.getBufferSubData(e.ARRAY_BUFFER, 0, i), a.bindBuffer(e.ARRAY_BUFFER, null);var s = new Float32Array(n * r);return decodeMatrixFromUnpackedArray(i, s, o.downloadUnpackNumChannels), s;
+}function downloadMatrixFromOutputTextureAsync(e, t, n, r, o) {
+  return __awaiter(this, void 0, void 0, function () {
+    var a, i, s, u, l;return __generator(this, function (c) {
+      switch (c.label) {case 0:
+          return a = e, i = new Float32Array(getUnpackedArraySizeFromMatrixSize(n * r, o.downloadUnpackNumChannels)), s = i instanceof Float32Array ? 4 * i.length : i, u = e.createBuffer(), callAndCheck(e, function () {
+            return e.bindBuffer(a.PIXEL_PACK_BUFFER, u);
+          }), callAndCheck(e, function () {
+            return e.bufferData(a.PIXEL_PACK_BUFFER, s, e.STATIC_DRAW);
+          }), callAndCheck(e, function () {
+            return a.readPixels(0, 0, r, n, e.RGBA, e.FLOAT, 0);
+          }), [4, t.getBufferSubDataAsync(a.PIXEL_PACK_BUFFER, 0, i)];case 1:
+          return c.sent(), l = new Float32Array(n * r), decodeMatrixFromUnpackedArray(i, l, o.downloadUnpackNumChannels), [2, l];}
+    });
+  });
 }function downloadFloat32MatrixFromOutputTexture(e, t, n, r) {
   var o = getUnpackedMatrixTextureShapeWidthHeight(t, n),
       a = o[0],
@@ -26123,10 +27864,10 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       s = new Float32Array(getPackedRGBAArraySizeFromMatrixShape(t, n));callAndCheck(e, function () {
     return e.readPixels(0, 0, a, i, e.RGBA, e.FLOAT, s);
   });var u = new Float32Array(t * n);return decodeMatrixFromPackedRGBA(s, t, n, u);
-}var gpgpu_util = Object.freeze({ getWebGLContextAttributes: getWebGLContextAttributes, createWebGLContext: createWebGLContext, createVertexShader: createVertexShader$1, createVertexBuffer: createVertexBuffer, createIndexBuffer: createIndexBuffer, getTextureConfig: getTextureConfig, createFloat32MatrixTexture: createFloat32MatrixTexture, createFloat16MatrixTexture: createFloat16MatrixTexture, createUnsignedBytesMatrixTexture: createUnsignedBytesMatrixTexture, createPackedMatrixTexture: createPackedMatrixTexture, bindVertexProgramAttributeStreams: bindVertexProgramAttributeStreams, uploadPixelDataToTexture: uploadPixelDataToTexture, uploadMatrixToTexture: uploadMatrixToTexture, uploadMatrixToPackedTexture: uploadMatrixToPackedTexture, maybeCreateBufferFromOutputTexture: maybeCreateBufferFromOutputTexture, downloadFloat32MatrixFromBuffer: downloadFloat32MatrixFromBuffer, downloadFloat32MatrixFromOutputTexture: downloadFloat32MatrixFromOutputTexture, downloadByteEncodedFloatMatrixFromOutputTexture: downloadByteEncodedFloatMatrixFromOutputTexture, downloadMatrixFromPackedOutputTexture: downloadMatrixFromPackedOutputTexture }),
+}var gpgpu_util = Object.freeze({ getWebGLContextAttributes: getWebGLContextAttributes, createWebGLContext: createWebGLContext, createVertexShader: createVertexShader$1, createVertexBuffer: createVertexBuffer, createIndexBuffer: createIndexBuffer, getTextureConfig: getTextureConfig, createFloat32MatrixTexture: createFloat32MatrixTexture, createFloat16MatrixTexture: createFloat16MatrixTexture, createUnsignedBytesMatrixTexture: createUnsignedBytesMatrixTexture, createPackedMatrixTexture: createPackedMatrixTexture, bindVertexProgramAttributeStreams: bindVertexProgramAttributeStreams, uploadPixelDataToTexture: uploadPixelDataToTexture, uploadMatrixToTexture: uploadMatrixToTexture, uploadMatrixToPackedTexture: uploadMatrixToPackedTexture, downloadMatrixFromOutputTextureAsync: downloadMatrixFromOutputTextureAsync, downloadFloat32MatrixFromOutputTexture: downloadFloat32MatrixFromOutputTexture, downloadByteEncodedFloatMatrixFromOutputTexture: downloadByteEncodedFloatMatrixFromOutputTexture, downloadMatrixFromPackedOutputTexture: downloadMatrixFromPackedOutputTexture }),
     GPGPUContext = function () {
   function e(e) {
-    this.outputTexture = null, this.program = null, this.disposed = !1, this.autoDebugValidate = !1, this.vertexAttrsAreBound = !1, this.itemsToPoll = [], this.gl = null != e ? e : createWebGLContext(), 1 === ENV.get("WEBGL_VERSION") ? (this.textureFloatExtension = getExtensionOrThrow(this.gl, "OES_texture_float"), this.colorBufferFloatExtension = this.gl.getExtension("WEBGL_color_buffer_float"), ENV.get("WEBGL_RENDER_FLOAT32_ENABLED") || (this.textureHalfFloatExtension = getExtensionOrThrow(this.gl, "OES_texture_half_float"), this.colorBufferHalfFloatExtension = this.gl.getExtension("EXT_color_buffer_half_float"))) : this.colorBufferFloatExtension = getExtensionOrThrow(this.gl, "EXT_color_buffer_float"), this.loseContextExtension = getExtensionOrThrow(this.gl, "WEBGL_lose_context"), this.vertexBuffer = createVertexBuffer(this.gl), this.indexBuffer = createIndexBuffer(this.gl), this.framebuffer = createFramebuffer(this.gl), this.textureConfig = getTextureConfig(this.gl, this.textureHalfFloatExtension);
+    this.outputTexture = null, this.program = null, this.disposed = !1, this.autoDebugValidate = !1, this.vertexAttrsAreBound = !1, this.itemsToPoll = [], this.gl = null != e ? e : createWebGLContext(), 1 === ENV.get("WEBGL_VERSION") ? (this.textureFloatExtension = getExtensionOrThrow(this.gl, "OES_texture_float"), this.colorBufferFloatExtension = this.gl.getExtension("WEBGL_color_buffer_float"), ENV.get("WEBGL_RENDER_FLOAT32_ENABLED") || (this.textureHalfFloatExtension = getExtensionOrThrow(this.gl, "OES_texture_half_float"), this.colorBufferHalfFloatExtension = this.gl.getExtension("EXT_color_buffer_half_float"))) : this.colorBufferFloatExtension = getExtensionOrThrow(this.gl, "EXT_color_buffer_float"), this.loseContextExtension = getExtensionOrThrow(this.gl, "WEBGL_lose_context"), ENV.get("WEBGL_GET_BUFFER_SUB_DATA_ASYNC_EXTENSION_ENABLED") && (this.getBufferSubDataAsyncExtension = this.gl.getExtension("WEBGL_get_buffer_sub_data_async")), this.vertexBuffer = createVertexBuffer(this.gl), this.indexBuffer = createIndexBuffer(this.gl), this.framebuffer = createFramebuffer(this.gl), this.textureConfig = getTextureConfig(this.gl, this.textureHalfFloatExtension);
   }return e.prototype.dispose = function () {
     var e = this;if (!this.disposed) {
       null != this.program && console.warn("Disposing a GPGPUContext that still has a bound WebGLProgram. This is probably a resource leak, delete the program with GPGPUContext.deleteProgram before disposing."), null != this.outputTexture && console.warn("Disposing a GPGPUContext that still has a bound output matrix texture.  This is probably a resource leak, delete the output matrix texture with GPGPUContext.deleteMatrixTexture before disposing.");var t = this.gl;callAndCheck(t, function () {
@@ -26173,25 +27914,14 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     var r = this;return this.downloadMatrixDriver(e, function () {
       return downloadByteEncodedFloatMatrixFromOutputTexture(r.gl, t, n, r.textureConfig);
     });
-  }, e.prototype.downloadFloat32MatrixFromBuffer = function (e, t, n) {
-    return downloadFloat32MatrixFromBuffer(this.gl, e, t, n, this.textureConfig);
-  }, e.prototype.maybeCreateBufferFromTexture = function (e, t, n) {
-    this.bindTextureToFrameBuffer(e);var r = maybeCreateBufferFromOutputTexture(this.gl, e, t, n, this.textureConfig);return this.unbindTextureToFrameBuffer(), r;
-  }, e.prototype.createAndWaitForFence = function () {
-    var e = this.createFence(this.gl);return this.pollFence(e);
-  }, e.prototype.createFence = function (e) {
-    var t,
-        n,
-        r = this;if (ENV.get("WEBGL_FENCE_API_ENABLED")) {
-      var o = e,
-          a = o.fenceSync(o.SYNC_GPU_COMMANDS_COMPLETE, 0);e.flush(), n = function () {
-        var e = o.clientWaitSync(a, 0, 0);return e === o.ALREADY_SIGNALED || e === o.CONDITION_SATISFIED;
-      }, t = a;
-    } else ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") > 0 ? (t = this.beginQuery(), this.endQuery(), n = function () {
-      return r.isQueryAvailable(t, ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION"));
-    }) : n = function () {
-      return !0;
-    };return { query: t, isFencePassed: n };
+  }, e.prototype.downloadMatrixFromTextureAsync = function (e, t, n) {
+    return __awaiter(this, void 0, void 0, function () {
+      var r = this;return __generator(this, function (o) {
+        if (null == this.getBufferSubDataAsyncExtension) throw new Error("Cannot download matrix from output texture asynchronously, WEBGL_get_buffer_sub_data_async is not enabled.");return [2, this.downloadMatrixDriverAsync(e, function () {
+          return downloadMatrixFromOutputTextureAsync(r.gl, r.getBufferSubDataAsyncExtension, t, n, r.textureConfig);
+        })];
+      });
+    });
   }, e.prototype.downloadMatrixFromPackedTexture = function (e, t, n) {
     var r = this;return this.downloadMatrixDriver(e, function () {
       return downloadMatrixFromPackedOutputTexture(r.gl, t, n, r.textureConfig);
@@ -26249,6 +27979,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return this.getQueryTimerExtension();
   }, e.prototype.getQueryTimerExtensionWebGL1 = function () {
     return this.getQueryTimerExtension();
+  }, e.prototype.runQuery = function (e) {
+    var t = this.beginQuery();return e(), this.endQuery(), this.pollQueryTime(t);
   }, e.prototype.beginQuery = function () {
     if (2 === ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION")) {
       var e = this.gl,
@@ -26263,32 +27995,18 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       var t = this.gl,
           n = this.getQueryTimerExtensionWebGL2();t.endQuery(n.TIME_ELAPSED_EXT);
     }
-  }, e.prototype.waitForQueryAndGetTime = function (e) {
-    return __awaiter(this, void 0, void 0, function () {
-      var t = this;return __generator(this, function (n) {
-        switch (n.label) {case 0:
-            return [4, repeatedTry(function () {
-              return t.isQueryAvailable(e, ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION"));
-            })];case 1:
-            return n.sent(), [2, this.getQueryTime(e, ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION"))];}
-      });
-    });
-  }, e.prototype.getQueryTime = function (e, t) {
-    if (0 === t) return null;if (2 === t) {
-      var n = this.gl;return n.getQueryParameter(e, n.QUERY_RESULT) / 1e6;
-    }var r = this.getQueryTimerExtensionWebGL1();return r.getQueryObjectEXT(e, r.QUERY_RESULT_EXT) / 1e6;
   }, e.prototype.isQueryAvailable = function (e, t) {
     if (0 === t) return !0;if (2 === t) {
       var n = this.gl,
           r = this.getQueryTimerExtensionWebGL2(),
           o = n.getQueryParameter(e, n.QUERY_RESULT_AVAILABLE);return null == this.disjoint && (this.disjoint = this.gl.getParameter(r.GPU_DISJOINT_EXT)), o && !this.disjoint;
     }o = (r = this.getQueryTimerExtensionWebGL1()).getQueryObjectEXT(e, r.QUERY_RESULT_AVAILABLE_EXT);return null == this.disjoint && (this.disjoint = this.gl.getParameter(r.GPU_DISJOINT_EXT)), o && !this.disjoint;
-  }, e.prototype.pollFence = function (e) {
+  }, e.prototype.pollQueryTime = function (e) {
     var t = this;return new Promise(function (n) {
-      t.addItemToPoll(function () {
-        return e.isFencePassed();
+      var r = ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION");t.addItemToPoll(function () {
+        return t.isQueryAvailable(e, r);
       }, function () {
-        return n();
+        return n(t.getQueryTime(e, r));
       });
     });
   }, e.prototype.pollItems = function () {
@@ -26301,12 +28019,24 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     var n = this;this.itemsToPoll.push({ isDoneFn: e, resolveFn: t }), this.itemsToPoll.length > 1 || repeatedTry(function () {
       return n.pollItems(), 0 === n.itemsToPoll.length;
     });
-  }, e.prototype.bindTextureToFrameBuffer = function (e) {
+  }, e.prototype.getQueryTime = function (e, t) {
+    if (0 === t) return null;if (2 === t) {
+      var n = this.gl;return n.getQueryParameter(e, n.QUERY_RESULT) / 1e6;
+    }var r = this.getQueryTimerExtensionWebGL1();return r.getQueryObjectEXT(e, r.QUERY_RESULT_EXT) / 1e6;
+  }, e.prototype.downloadMatrixDriverSetup = function (e) {
     this.throwIfDisposed(), bindColorTextureToFramebuffer(this.gl, e, this.framebuffer), this.autoDebugValidate && validateFramebuffer(this.gl);
-  }, e.prototype.unbindTextureToFrameBuffer = function () {
+  }, e.prototype.downloadMatrixDriverTeardown = function () {
     null != this.outputTexture ? (bindColorTextureToFramebuffer(this.gl, this.outputTexture, this.framebuffer), this.autoDebugValidate && validateFramebuffer(this.gl)) : unbindColorTextureFromFramebuffer(this.gl, this.framebuffer);
   }, e.prototype.downloadMatrixDriver = function (e, t) {
-    this.bindTextureToFrameBuffer(e);var n = t();return this.unbindTextureToFrameBuffer(), n;
+    this.downloadMatrixDriverSetup(e);var n = t();return this.downloadMatrixDriverTeardown(), n;
+  }, e.prototype.downloadMatrixDriverAsync = function (e, t) {
+    return __awaiter(this, void 0, void 0, function () {
+      var n;return __generator(this, function (r) {
+        switch (r.label) {case 0:
+            return this.downloadMatrixDriverSetup(e), [4, t()];case 1:
+            return n = r.sent(), this.downloadMatrixDriverTeardown(), [2, n];}
+      });
+    });
   }, e.prototype.setOutputMatrixTextureDriver = function (e, t, n) {
     this.throwIfDisposed();var r = this.gl;bindColorTextureToFramebuffer(r, e, this.framebuffer), this.autoDebugValidate && validateFramebuffer(r), this.outputTexture = e, callAndCheck(r, function () {
       return r.viewport(0, 0, t, n);
@@ -26331,8 +28061,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     var r = { logicalShape: e.tensor.shape, texShape: e.isUniform ? null : e.texData.texShape, isUniform: e.isUniform };return { name: t.variableNames[n], shapeInfo: r };
   }), i = a.map(function (e) {
     return e.shapeInfo;
-  }), s = { logicalShape: r.tensor.shape, texShape: r.texData.texShape, isUniform: !1 }, u = makeShader(a, s, o, !0 === t.supportsBroadcasting), l = e.createProgram(u), c = {}, p = 0; p < t.variableNames.length; p++) {
-    var d = t.variableNames[p];c[d] = e.getUniformLocation(l, d, !1);
+  }), s = { logicalShape: r.tensor.shape, texShape: r.texData.texShape, isUniform: !1 }, u = makeShader(a, s, o, !0 === t.supportsBroadcasting), l = e.createProgram(u), c = {}, d = 0; d < t.variableNames.length; d++) {
+    var p = t.variableNames[d];c[p] = e.getUniformLocation(l, p, !1);
   }return { program: t, source: u, webGLProgram: l, uniformLocations: c, gpgpu: e, inShapeInfos: i, outShapeInfo: s };
 }function validateBinaryAndProgram(e, t) {
   if (e.length !== t.length) throw Error("Binary was compiled with " + e.length + " inputs, but was executed with " + t.length + " inputs");e.forEach(function (e, n) {
@@ -26362,16 +28092,18 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   });var o = e.userCode,
       a = (!0 === e.supportsBroadcasting).toString(),
       i = e.constructor.name;return i += "_" + a + "_" + r + "_" + o;
-}var LRNProgram = function () {
+}var WhereProgram = function () {
+  return function (e, t, n) {
+    var r, o;if (this.variableNames = ["c", "a", "b"], this.outputShape = t, n > 4) throw Error("Where for rank " + n + " is not yet supported");if (1 === n) o = "resRC", r = "resRC";else {
+      for (var a = ["resRC.x", "resRC.y", "resRC.z", "resRC.w"], i = [], s = [], u = 0; u < t.length; u++) s.push("" + a[u]), u < e && i.push("" + a[u]);r = i.join(), o = s.join();
+    }var l = getCoordsDataType(n);this.userCode = "\n      void main() {\n        " + l + " resRC = getOutputCoords();\n        float cVal = getC(" + r + ");\n        if (cVal >= 1.0) {\n          setOutput(getA(" + o + "));\n        } else {\n          setOutput(getB(" + o + "));\n        }\n      }\n    ";
+  };
+}(),
+    LRNProgram = function () {
   return function (e, t, n, r, o) {
     this.variableNames = ["x"], this.outputShape = [];var a,
         i = t,
         s = e[3] - 1;this.outputShape = e;var u = "float(" + n + ") + float(" + r + ") * sum";a = .5 === o ? "inversesqrt(" + u + ")" : 1 === o ? "1.0/(" + u + ")" : "exp(log(" + u + ") * float(-" + o + "));", this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int r = coords[1];\n        int c = coords[2];\n        int d = coords[3];\n        float x = getX(b, r, c, d);\n        float sum = 0.0;\n        for (int j = -" + i + "; j <= " + i + "; j++) {\n          int idx = d + j;\n          if (idx >= 0 && idx <=  " + s + ") {\n            float z = getX(b, r, c, idx);\n            sum += z * z;\n          }\n        }\n        float val = x * " + a + ";\n        setOutput(val);\n      }\n    ";
-  };
-}(),
-    LRNGradProgram = function () {
-  return function (e, t, n, r, o) {
-    this.variableNames = ["inputImage", "outputImage", "dy"], this.outputShape = [], this.outputShape = e, this.depth = e[3], this.depthRadius = t, this.bias = n, this.alpha = r, this.beta = o, this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int r = coords[1];\n        int c = coords[2];\n\n        float result = 0.0;\n        for (int d = 0; d < " + this.depth + "; ++d) {\n          int depthBegin = int(max(0.0, float(d - " + t + ")));\n          int depthEnd = int(min(float(" + this.depth + "),\n              float(d + " + t + " + 1)));\n\n          const int MIN_DEPTH_BEGIN = 0;\n          const int MAX_DEPTH_END = " + this.depth + ";\n\n          float norm = 0.0;\n          for (int k = MIN_DEPTH_BEGIN; k < MAX_DEPTH_END; ++k) {\n            if (k < depthBegin){\n              continue;\n            }\n            else if (k >= depthBegin && k < depthEnd) {\n              norm += getInputImage(b, r, c, k) * getInputImage(b, r, c, k);\n            }\n            else {\n              break;\n            }\n          }\n\n          norm = float(" + r + ") * norm + float(" + n + ");\n\n          for(int k = MIN_DEPTH_BEGIN; k < MAX_DEPTH_END; ++k){\n            if (k < depthBegin){\n              continue;\n            }\n            else if (k >= depthBegin && k < depthEnd){\n              float dyi = -2.0 * float(" + r + ")\n                * float(" + o + ")\n                * getInputImage(b ,r ,c, k) * getOutputImage(b, r, c, d)\n                / norm;\n              if (k == d) {\n                dyi += pow(norm, -1.0 * " + o + ");\n              }\n              if (k == coords[3]) {\n                dyi *= getDy(b, r, c, d);\n                result += dyi;\n              }\n            }\n            else {\n              break;\n            }\n          }\n      }\n      setOutput(result);\n      }\n    ";
   };
 }(),
     MaxPool2DBackpropProgram = function () {
@@ -26437,9 +28169,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         s = e.padInfo.top,
         u = e.padInfo.left;this.outputShape = e.outShape;var l = "avg" === t,
         c = "0.0";if (l || (c = "-1.0 / 0.0"), n) this.userCode = "\n        const ivec2 strides = ivec2(" + a + ", " + i + ");\n        const ivec2 pads = ivec2(" + s + ", " + u + ");\n\n        void main() {\n          ivec4 coords = getOutputCoords();\n          int batch = coords[0];\n          int d = coords[3];\n\n          ivec2 xRCCorner = coords.yz * strides - pads;\n          int xRCorner = xRCCorner.x;\n          int xCCorner = xRCCorner.y;\n\n          // max/min x(?, ?, d) to get y(yR, yC, d).\n          // ? = to be determined\n          float minMaxValue = 0.0;\n          float minMaxValueFound = 0.0;\n          int minMaxPosition = 0;\n          float avgValue = 0.0;\n\n          for (int wR = 0; wR < " + r + "; wR++) {\n            int xR = xRCorner + wR;\n\n            if (xR < 0 || xR >= " + e.inHeight + ") {\n              continue;\n            }\n\n            for (int wC = 0; wC < " + o + "; wC++) {\n              int xC = xCCorner + wC;\n\n              if (xC < 0 || xC >= " + e.inWidth + ") {\n                continue;\n              }\n\n              float value = getX(batch, xR, xC, d);\n\n              // If a min / max value has already been found, use it. If not,\n              // use the current value.\n              float currMinMaxValue = mix(\n                  value, minMaxValue, minMaxValueFound);\n              if (value >= currMinMaxValue) {\n                minMaxValue = value;\n                minMaxValueFound = 1.0;\n                minMaxPosition = wR * " + o + " + wC;\n              }\n            }\n          }\n          setOutput(float(minMaxPosition));\n        }\n      ";else {
-      var p = t + "(" + t + "(" + t + "(minMaxValue[0], minMaxValue[1]), minMaxValue[2]), minMaxValue[3])";"avg" === t && (p = "avgValue / count");var d = 4 * Math.floor(o / 4),
+      var d = t + "(" + t + "(" + t + "(minMaxValue[0], minMaxValue[1]), minMaxValue[2]), minMaxValue[3])";"avg" === t && (d = "avgValue / count");var p = 4 * Math.floor(o / 4),
           h = o % 4,
-          f = "\n      if (" + l + ") {\n        avgValue += dot(values, ones);\n      } else {\n        minMaxValue = max(values, minMaxValue);\n      }\n    ";this.userCode = "\n      const ivec2 strides = ivec2(" + a + ", " + i + ");\n      const ivec2 pads = ivec2(" + s + ", " + u + ");\n      const float initializationValue = " + c + ";\n      const vec4 ones = vec4(1.0, 1.0, 1.0, 1.0);\n\n      float count = 0.0;\n\n      float getValue(int batch, int xR, int xC, int d) {\n        if (xC < 0 || xC >= " + e.inWidth + ") {\n          return initializationValue;\n        }\n        count += 1.0;\n        return getX(batch, xR, xC, d);\n      }\n\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int batch = coords[0];\n        int d = coords[3];\n\n        ivec2 xRCCorner = coords.yz * strides - pads;\n        int xRCorner = xRCCorner.x;\n        int xCCorner = xRCCorner.y;\n\n        // max/min x(?, ?, d) to get y(yR, yC, d).\n        // ? = to be determined\n        vec4 minMaxValue = vec4(" + c + ");\n        float avgValue = 0.0;\n        count = 0.0;\n\n        for (int wR = 0; wR < " + r + "; wR++) {\n          int xR = xRCorner + wR;\n\n          if (xR < 0 || xR >= " + e.inHeight + ") {\n            continue;\n          }\n\n          for (int wC = 0; wC < " + d + "; wC += 4) {\n            int xC = xCCorner + wC;\n\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              getValue(batch, xR, xC + 2, d),\n              getValue(batch, xR, xC + 3, d)\n            );\n\n            " + f + "\n          }\n\n          int xC = xCCorner + " + d + ";\n          if (" + (1 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              initializationValue,\n              initializationValue,\n              initializationValue\n            );\n\n            " + f + "\n          } else if (" + (2 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              initializationValue,\n              initializationValue\n            );\n\n            " + f + "\n          } else if (" + (3 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              getValue(batch, xR, xC + 2, d),\n              initializationValue\n            );\n\n            " + f + "\n          }\n        }\n        setOutput(" + p + ");\n      }\n    ";
+          f = "\n      if (" + l + ") {\n        avgValue += dot(values, ones);\n      } else {\n        minMaxValue = max(values, minMaxValue);\n      }\n    ";this.userCode = "\n      const ivec2 strides = ivec2(" + a + ", " + i + ");\n      const ivec2 pads = ivec2(" + s + ", " + u + ");\n      const float initializationValue = " + c + ";\n      const vec4 ones = vec4(1.0, 1.0, 1.0, 1.0);\n\n      float count = 0.0;\n\n      float getValue(int batch, int xR, int xC, int d) {\n        if (xC < 0 || xC >= " + e.inWidth + ") {\n          return initializationValue;\n        }\n        count += 1.0;\n        return getX(batch, xR, xC, d);\n      }\n\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int batch = coords[0];\n        int d = coords[3];\n\n        ivec2 xRCCorner = coords.yz * strides - pads;\n        int xRCorner = xRCCorner.x;\n        int xCCorner = xRCCorner.y;\n\n        // max/min x(?, ?, d) to get y(yR, yC, d).\n        // ? = to be determined\n        vec4 minMaxValue = vec4(" + c + ");\n        float avgValue = 0.0;\n        count = 0.0;\n\n        for (int wR = 0; wR < " + r + "; wR++) {\n          int xR = xRCorner + wR;\n\n          if (xR < 0 || xR >= " + e.inHeight + ") {\n            continue;\n          }\n\n          for (int wC = 0; wC < " + p + "; wC += 4) {\n            int xC = xCCorner + wC;\n\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              getValue(batch, xR, xC + 2, d),\n              getValue(batch, xR, xC + 3, d)\n            );\n\n            " + f + "\n          }\n\n          int xC = xCCorner + " + p + ";\n          if (" + (1 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              initializationValue,\n              initializationValue,\n              initializationValue\n            );\n\n            " + f + "\n          } else if (" + (2 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              initializationValue,\n              initializationValue\n            );\n\n            " + f + "\n          } else if (" + (3 === h) + ") {\n            vec4 values = vec4(\n              getValue(batch, xR, xC, d),\n              getValue(batch, xR, xC + 1, d),\n              getValue(batch, xR, xC + 2, d),\n              initializationValue\n            );\n\n            " + f + "\n          }\n        }\n        setOutput(" + d + ");\n      }\n    ";
     }
   };
 }(),
@@ -26451,8 +28183,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         a = Math.ceil(o / n);this.outputShape = [r, a];var i = "0.0",
         s = "";"min" === t ? (i = "1.0 / 0.0", s = "min") : "max" === t && (i = "-1.0 / 0.0", s = "max");var u = t + "(" + t + "(" + t + "(minMaxValue[0], minMaxValue[1]), minMaxValue[2]), minMaxValue[3])";"sum" === t ? u = "sumValue" : "all" === t ? u = "allValue" : "any" === t && (u = "anyValue");var l = 4 * Math.floor(n / 4),
         c = n % 4,
-        p = "\n      if (" + ("sum" === t) + ") {\n        sumValue += dot(values, ones);\n      } else {\n        minMaxValue = " + s + "(values, minMaxValue);\n      }\n    ",
-        d = "vec4";"all" === t ? (i = "1.0", p = "\n        bool reducedAllValue = all(values);\n        float floatedReducedAllValue = float(reducedAllValue);\n        allValue = float(allValue >= 1.0 && floatedReducedAllValue >= 1.0);\n      ", d = "bvec4") : "any" === t && (i = "0.0", p = "\n        bool reducedAnyValue = any(values);\n        float floatedReducedAnyValue = float(reducedAnyValue);\n        anyValue = float(anyValue >= 1.0 || floatedReducedAnyValue >= 1.0);\n      ", d = "bvec4");var h = "";o % n > 0 && (h = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return initializationValue;\n        }\n      "), this.userCode = "\n      const float initializationValue = " + i + ";\n      const vec4 ones = vec4(1.0, 1.0, 1.0, 1.0);\n\n      float getValue(int batch, int inIdx) {\n        " + h + "\n        return getX(batch, inIdx);\n      }\n\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int batch = coords[0];\n        int outIdx = coords[1];\n        int inOffset = outIdx * " + n + ";\n\n        vec4 minMaxValue = vec4(" + i + ");\n        float sumValue = 0.0;\n        float allValue = 1.0;\n        float anyValue = 0.0;\n\n        for (int i = 0; i < " + l + "; i += 4) {\n          int inIdx = inOffset + i;\n          " + d + " values = " + d + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            getValue(batch, inIdx + 3)\n          );\n\n          " + p + "\n        }\n\n        int inIdx = inOffset + " + l + ";\n        if (" + (1 === c) + ") {\n          " + d + " values = " + d + "(\n            getValue(batch, inIdx),\n            initializationValue,\n            initializationValue,\n            initializationValue\n          );\n\n          " + p + "\n        } else if (" + (2 === c) + ") {\n          " + d + " values = " + d + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            initializationValue,\n            initializationValue\n          );\n\n          " + p + "\n        } else if (" + (3 === c) + ") {\n          " + d + " values = " + d + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            initializationValue\n          );\n\n          " + p + "\n        }\n        setOutput(" + u + ");\n      }\n    ";
+        d = "\n      if (" + ("sum" === t) + ") {\n        sumValue += dot(values, ones);\n      } else {\n        minMaxValue = " + s + "(values, minMaxValue);\n      }\n    ",
+        p = "vec4";"all" === t ? (i = "1.0", d = "\n        bool reducedAllValue = all(values);\n        float floatedReducedAllValue = float(reducedAllValue);\n        allValue = float(allValue >= 1.0 && floatedReducedAllValue >= 1.0);\n      ", p = "bvec4") : "any" === t && (i = "0.0", d = "\n        bool reducedAnyValue = any(values);\n        float floatedReducedAnyValue = float(reducedAnyValue);\n        anyValue = float(anyValue >= 1.0 || floatedReducedAnyValue >= 1.0);\n      ", p = "bvec4");var h = "";o % n > 0 && (h = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return initializationValue;\n        }\n      "), this.userCode = "\n      const float initializationValue = " + i + ";\n      const vec4 ones = vec4(1.0, 1.0, 1.0, 1.0);\n\n      float getValue(int batch, int inIdx) {\n        " + h + "\n        return getX(batch, inIdx);\n      }\n\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int batch = coords[0];\n        int outIdx = coords[1];\n        int inOffset = outIdx * " + n + ";\n\n        vec4 minMaxValue = vec4(" + i + ");\n        float sumValue = 0.0;\n        float allValue = 1.0;\n        float anyValue = 0.0;\n\n        for (int i = 0; i < " + l + "; i += 4) {\n          int inIdx = inOffset + i;\n          " + p + " values = " + p + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            getValue(batch, inIdx + 3)\n          );\n\n          " + d + "\n        }\n\n        int inIdx = inOffset + " + l + ";\n        if (" + (1 === c) + ") {\n          " + p + " values = " + p + "(\n            getValue(batch, inIdx),\n            initializationValue,\n            initializationValue,\n            initializationValue\n          );\n\n          " + d + "\n        } else if (" + (2 === c) + ") {\n          " + p + " values = " + p + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            initializationValue,\n            initializationValue\n          );\n\n          " + d + "\n        } else if (" + (3 === c) + ") {\n          " + p + " values = " + p + "(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            initializationValue\n          );\n\n          " + d + "\n        }\n        setOutput(" + u + ");\n      }\n    ";
   };
 }(),
     ResizeBilinearBackpropProgram = function () {
@@ -26465,12 +28197,12 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = i[2],
         l = [n && s > 1 ? o - 1 : o, n && u > 1 ? a - 1 : a],
         c = [n && s > 1 ? s - 1 : s, n && u > 1 ? u - 1 : u],
-        p = l[0] / c[0],
-        d = l[1] / c[1],
-        h = 1 / p,
-        f = 1 / d,
-        m = 2 * Math.ceil(h) + 2,
-        g = 2 * Math.ceil(f) + 2;this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int d = coords[3];\n        int r = coords[1];\n        int c = coords[2];\n\n        float accumulator = 0.0;\n\n        const float heightScale = float(" + p + ");\n        const float widthScale = float(" + d + ");\n\n        const float invHeightScale = float(" + h + ");\n        const float invWidthScale = float(" + f + ");\n\n        const int winHeight = int(" + m + ");\n        const int winWidth = int(" + g + ");\n\n        // Compute bounds for where in dy we will look\n        float startRLerp = floor(float(r) * invHeightScale);\n        int startDyR = int(startRLerp - float(winHeight / 2));\n\n        float startCLerp = floor(float(c) * invWidthScale);\n        int startDyC = int(startCLerp - float(winWidth / 2));\n\n        // Loop over dy\n        for (int dyROffset = 0; dyROffset < winHeight; dyROffset++) {\n          int dyR = dyROffset + startDyR;\n\n          // Guard against the window exceeding the bounds of dy\n          if (dyR < 0 || dyR >= " + s + ") {\n            continue;\n          }\n\n          for (int dyCOffset = 0; dyCOffset < winWidth; dyCOffset++) {\n            int dyC = dyCOffset + startDyC;\n\n            // Guard against the window exceeding the bounds of dy\n            if (dyC < 0 || dyC >= " + u + ") {\n              continue;\n            }\n\n            float dxR = float(dyR) * heightScale;\n            int topDxRIndex = int(floor(dxR));\n            int bottomDxRIndex = int(min(ceil(dxR), " + (o - 1) + ".0));\n            float dxRLerp = dxR - float(topDxRIndex);\n            float inverseDxRLerp = 1.0 - dxRLerp;\n\n            float dxC = float(dyC) * widthScale;\n            int leftDxCIndex = int(floor(dxC));\n            int rightDxCIndex = int(min(ceil(dxC), " + (a - 1) + ".0));\n            float dxCLerp = dxC - float(leftDxCIndex);\n            float inverseDxCLerp = 1.0 - dxCLerp;\n\n            if (r == topDxRIndex && c == leftDxCIndex) {\n              // topLeft\n              accumulator +=\n                getDy(b, dyR, dyC, d) * inverseDxRLerp * inverseDxCLerp;\n            }\n\n            if (r == topDxRIndex && c == rightDxCIndex) {\n              // topRight\n              accumulator += getDy(b, dyR, dyC, d) * inverseDxRLerp * dxCLerp;\n            }\n\n            if (r == bottomDxRIndex && c == leftDxCIndex) {\n              // bottomLeft\n              accumulator += getDy(b, dyR, dyC, d) * dxRLerp * inverseDxCLerp;\n            }\n\n            if (r == bottomDxRIndex && c == rightDxCIndex) {\n              // bottomRight\n              accumulator += getDy(b, dyR, dyC, d) * dxRLerp * dxCLerp;\n            }\n          }\n        }\n        // End loop over dy\n\n        setOutput(accumulator);\n      }\n    ";
+        d = l[0] / c[0],
+        p = l[1] / c[1],
+        h = 1 / d,
+        f = 1 / p,
+        g = 2 * Math.ceil(h) + 2,
+        m = 2 * Math.ceil(f) + 2;this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int d = coords[3];\n        int r = coords[1];\n        int c = coords[2];\n\n        float accumulator = 0.0;\n\n        const float heightScale = float(" + d + ");\n        const float widthScale = float(" + p + ");\n\n        const float invHeightScale = float(" + h + ");\n        const float invWidthScale = float(" + f + ");\n\n        const int winHeight = int(" + g + ");\n        const int winWidth = int(" + m + ");\n\n        // Compute bounds for where in dy we will look\n        float startRLerp = floor(float(r) * invHeightScale);\n        int startDyR = int(startRLerp - float(winHeight / 2));\n\n        float startCLerp = floor(float(c) * invWidthScale);\n        int startDyC = int(startCLerp - float(winWidth / 2));\n\n        // Loop over dy\n        for (int dyROffset = 0; dyROffset < winHeight; dyROffset++) {\n          int dyR = dyROffset + startDyR;\n\n          // Guard against the window exceeding the bounds of dy\n          if (dyR < 0 || dyR >= " + s + ") {\n            continue;\n          }\n\n          for (int dyCOffset = 0; dyCOffset < winWidth; dyCOffset++) {\n            int dyC = dyCOffset + startDyC;\n\n            // Guard against the window exceeding the bounds of dy\n            if (dyC < 0 || dyC >= " + u + ") {\n              continue;\n            }\n\n            float dxR = float(dyR) * heightScale;\n            int topDxRIndex = int(floor(dxR));\n            int bottomDxRIndex = int(min(ceil(dxR), " + (o - 1) + ".0));\n            float dxRLerp = dxR - float(topDxRIndex);\n            float inverseDxRLerp = 1.0 - dxRLerp;\n\n            float dxC = float(dyC) * widthScale;\n            int leftDxCIndex = int(floor(dxC));\n            int rightDxCIndex = int(min(ceil(dxC), " + (a - 1) + ".0));\n            float dxCLerp = dxC - float(leftDxCIndex);\n            float inverseDxCLerp = 1.0 - dxCLerp;\n\n            if (r == topDxRIndex && c == leftDxCIndex) {\n              // topLeft\n              accumulator +=\n                getDy(b, dyR, dyC, d) * inverseDxRLerp * inverseDxCLerp;\n            }\n\n            if (r == topDxRIndex && c == rightDxCIndex) {\n              // topRight\n              accumulator += getDy(b, dyR, dyC, d) * inverseDxRLerp * dxCLerp;\n            }\n\n            if (r == bottomDxRIndex && c == leftDxCIndex) {\n              // bottomLeft\n              accumulator += getDy(b, dyR, dyC, d) * dxRLerp * inverseDxCLerp;\n            }\n\n            if (r == bottomDxRIndex && c == rightDxCIndex) {\n              // bottomRight\n              accumulator += getDy(b, dyR, dyC, d) * dxRLerp * dxCLerp;\n            }\n          }\n        }\n        // End loop over dy\n\n        setOutput(accumulator);\n      }\n    ";
   };
 }(),
     ResizeBilinearProgram = function () {
@@ -26492,12 +28224,12 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = i[2],
         l = [n && s > 1 ? o - 1 : o, n && u > 1 ? a - 1 : a],
         c = [n && s > 1 ? s - 1 : s, n && u > 1 ? u - 1 : u],
-        p = l[0] / c[0],
-        d = l[1] / c[1],
-        h = 1 / p,
-        f = 1 / d,
-        m = 2 * Math.ceil(h) + 2,
-        g = 2 * Math.ceil(f) + 2;this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int d = coords[3];\n        int r = coords[1];\n        int c = coords[2];\n\n        float accumulator = 0.0;\n\n        const float heightScale = float(" + p + ");\n        const float widthScale = float(" + d + ");\n\n        const float invHeightScale = float(" + h + ");\n        const float invWidthScale = float(" + f + ");\n\n        const int winHeight = int(" + m + ");\n        const int winWidth = int(" + g + ");\n\n        // Compute bounds for where in dy we will look\n        float startRLerp = floor(float(r) * invHeightScale);\n        int startDyR = int(floor(startRLerp - float(winHeight / 2)));\n\n        float startCLerp = floor(float(c) * invWidthScale);\n        int startDyC = int(floor(startCLerp - float(winWidth / 2)));\n\n        // Loop over dy\n        for (int dyROffset = 0; dyROffset < winHeight; dyROffset++) {\n          int dyR = dyROffset + startDyR;\n\n          // Guard against the window exceeding the bounds of dy\n          if (dyR < 0 || dyR >= " + s + ") {\n            continue;\n          }\n\n          for (int dyCOffset = 0; dyCOffset < winWidth; dyCOffset++) {\n            int dyC = dyCOffset + startDyC;\n\n            // Guard against the window exceeding the bounds of dy\n            if (dyC < 0 || dyC >= " + u + ") {\n              continue;\n            }\n\n            float sourceFracRow =\n              float(" + l[0] + ") *\n                (float(dyR) / float(" + c[0] + "));\n\n            float sourceFracCol =\n                float(" + l[1] + ") *\n                  (float(dyC) / float(" + c[1] + "));\n\n            int sourceNearestRow = int(min(\n                float(int(" + o + ") - 1),\n                " + n + " ? float(round(sourceFracRow)) :\n                                  float(floor(sourceFracRow))));\n\n            int sourceNearestCol = int(min(\n                float(int(" + a + ") - 1),\n                " + n + " ? float(round(sourceFracCol)) :\n                                  float(floor(sourceFracCol))));\n\n            if (r == sourceNearestRow && c == sourceNearestCol) {\n              accumulator += getDy(b, dyR, dyC, d);\n            }\n          }\n        }\n        // End loop over dy\n\n        setOutput(accumulator);\n      }\n    ";
+        d = l[0] / c[0],
+        p = l[1] / c[1],
+        h = 1 / d,
+        f = 1 / p,
+        g = 2 * Math.ceil(h) + 2,
+        m = 2 * Math.ceil(f) + 2;this.userCode = "\n      void main() {\n        ivec4 coords = getOutputCoords();\n        int b = coords[0];\n        int d = coords[3];\n        int r = coords[1];\n        int c = coords[2];\n\n        float accumulator = 0.0;\n\n        const float heightScale = float(" + d + ");\n        const float widthScale = float(" + p + ");\n\n        const float invHeightScale = float(" + h + ");\n        const float invWidthScale = float(" + f + ");\n\n        const int winHeight = int(" + g + ");\n        const int winWidth = int(" + m + ");\n\n        // Compute bounds for where in dy we will look\n        float startRLerp = floor(float(r) * invHeightScale);\n        int startDyR = int(floor(startRLerp - float(winHeight / 2)));\n\n        float startCLerp = floor(float(c) * invWidthScale);\n        int startDyC = int(floor(startCLerp - float(winWidth / 2)));\n\n        // Loop over dy\n        for (int dyROffset = 0; dyROffset < winHeight; dyROffset++) {\n          int dyR = dyROffset + startDyR;\n\n          // Guard against the window exceeding the bounds of dy\n          if (dyR < 0 || dyR >= " + s + ") {\n            continue;\n          }\n\n          for (int dyCOffset = 0; dyCOffset < winWidth; dyCOffset++) {\n            int dyC = dyCOffset + startDyC;\n\n            // Guard against the window exceeding the bounds of dy\n            if (dyC < 0 || dyC >= " + u + ") {\n              continue;\n            }\n\n            float sourceFracRow =\n              float(" + l[0] + ") *\n                (float(dyR) / float(" + c[0] + "));\n\n            float sourceFracCol =\n                float(" + l[1] + ") *\n                  (float(dyC) / float(" + c[1] + "));\n\n            int sourceNearestRow = int(min(\n                float(int(" + o + ") - 1),\n                " + n + " ? float(round(sourceFracRow)) :\n                                  float(floor(sourceFracRow))));\n\n            int sourceNearestCol = int(min(\n                float(int(" + a + ") - 1),\n                " + n + " ? float(round(sourceFracCol)) :\n                                  float(floor(sourceFracCol))));\n\n            if (r == sourceNearestRow && c == sourceNearestCol) {\n              accumulator += getDy(b, dyR, dyC, d);\n            }\n          }\n        }\n        // End loop over dy\n\n        setOutput(accumulator);\n      }\n    ";
   };
 }(),
     ResizeNearestNeighborProgram = function () {
@@ -26531,14 +28263,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         i = a * Math.ceil(o / n);this.outputShape = [r, i];var s = 4 * Math.floor(n / 4),
         u = n % 4,
         l = "\n        sumValue += dot(values, filter);\n    ",
-        c = "";o % n > 0 && (c = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return initializationValue;\n        }\n      ");var p = "";o % n > 0 && (p = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return -1.0;\n        }\n      "), this.userCode = "\n      const float initializationValue = 0.0;\n\n      float getValue(int batch, int inIdx) {\n        " + c + "\n        return getX(batch, inIdx);\n      }\n\n      float getSegmentIdAtIndex(int inIdx) {\n        " + p + "\n        return getSegmentIds(inIdx);\n      }\n\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int batch = coords[0];\n        int outIdx = coords[1];\n        int inOffset = int(floor(float(outIdx) / float(\n          " + a + ")) * float(" + n + "));\n        int currentSeg = int(mod(float(outIdx), float(" + a + ")));\n\n        float sumValue = 0.0;\n\n        for (int i = 0; i < " + s + "; i += 4) {\n          int inIdx = inOffset + i;\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            getValue(batch, inIdx + 3)\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 2)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 3)) == currentSeg ? 1 : 0\n          );\n\n          " + l + "\n        }\n\n        int inIdx = inOffset + " + s + ";\n        if (" + (1 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            initializationValue,\n            initializationValue,\n            initializationValue\n          );\n\n          int inIdxSeg = int(getSegmentIdAtIndex(inIdx));\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            0,\n            0,\n            0\n          );\n\n          " + l + "\n        } else if (" + (2 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            initializationValue,\n            initializationValue\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n              0,\n              0\n          );\n\n          " + l + "\n        } else if (" + (3 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            initializationValue\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 2)) == currentSeg ? 1 : 0,\n            0\n          );\n\n          " + l + "\n        }\n        setOutput(sumValue);\n      }\n    ";
-  };
-}(),
-    SelectProgram = function () {
-  return function (e, t, n) {
-    var r, o;if (this.variableNames = ["c", "a", "b"], this.outputShape = t, n > 4) throw Error("Where for rank " + n + " is not yet supported");if (1 === n) o = "resRC", r = "resRC";else {
-      for (var a = ["resRC.x", "resRC.y", "resRC.z", "resRC.w"], i = [], s = [], u = 0; u < t.length; u++) s.push("" + a[u]), u < e && i.push("" + a[u]);r = i.join(), o = s.join();
-    }var l = getCoordsDataType(n);this.userCode = "\n      void main() {\n        " + l + " resRC = getOutputCoords();\n        float cVal = getC(" + r + ");\n        if (cVal >= 1.0) {\n          setOutput(getA(" + o + "));\n        } else {\n          setOutput(getB(" + o + "));\n        }\n      }\n    ";
+        c = "";o % n > 0 && (c = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return initializationValue;\n        }\n      ");var d = "";o % n > 0 && (d = "\n        if (inIdx < 0 || inIdx >= " + o + ") {\n          return -1.0;\n        }\n      "), this.userCode = "\n      const float initializationValue = 0.0;\n\n      float getValue(int batch, int inIdx) {\n        " + c + "\n        return getX(batch, inIdx);\n      }\n\n      float getSegmentIdAtIndex(int inIdx) {\n        " + d + "\n        return getSegmentIds(inIdx);\n      }\n\n      void main() {\n        ivec2 coords = getOutputCoords();\n        int batch = coords[0];\n        int outIdx = coords[1];\n        int inOffset = int(floor(float(outIdx) / float(\n          " + a + ")) * float(" + n + "));\n        int currentSeg = int(mod(float(outIdx), float(" + a + ")));\n\n        float sumValue = 0.0;\n\n        for (int i = 0; i < " + s + "; i += 4) {\n          int inIdx = inOffset + i;\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            getValue(batch, inIdx + 3)\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 2)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 3)) == currentSeg ? 1 : 0\n          );\n\n          " + l + "\n        }\n\n        int inIdx = inOffset + " + s + ";\n        if (" + (1 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            initializationValue,\n            initializationValue,\n            initializationValue\n          );\n\n          int inIdxSeg = int(getSegmentIdAtIndex(inIdx));\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            0,\n            0,\n            0\n          );\n\n          " + l + "\n        } else if (" + (2 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            initializationValue,\n            initializationValue\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n              0,\n              0\n          );\n\n          " + l + "\n        } else if (" + (3 === u) + ") {\n          vec4 values = vec4(\n            getValue(batch, inIdx),\n            getValue(batch, inIdx + 1),\n            getValue(batch, inIdx + 2),\n            initializationValue\n          );\n\n          vec4 filter = vec4(\n            int(getSegmentIdAtIndex(inIdx)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 1)) == currentSeg ? 1 : 0,\n            int(getSegmentIdAtIndex(inIdx + 2)) == currentSeg ? 1 : 0,\n            0\n          );\n\n          " + l + "\n        }\n        setOutput(sumValue);\n      }\n    ";
   };
 }(),
     SliceProgram = function () {
@@ -26615,8 +28340,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     ERF_A3 = 1.421413741,
     ERF_A4 = -1.453152027,
     ERF_A5 = 1.061405429,
-    SELU_SCALEALPHA = 1.7580993408473768,
-    SELU_SCALE = 1.0507009873554805,
     UnaryOpProgram = function () {
   function e(e, t) {
     this.variableNames = ["A"], this.outputShape = e, this.userCode = "\n      uniform float NAN;\n      float unaryOperation(float x) {\n        " + t + "\n      }\n\n      void main() {\n        float x = getAAtOutCoords();\n        float y = unaryOperation(x);\n\n        setOutput(y);\n      }\n    ";
@@ -26661,476 +28384,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     SQUARE = "return x * x;",
     RECIPROCAL = "return 1.0 / x;",
     LOGICAL_NOT = "return float(!(x >= 1.0));",
-    TO_INT = "return float(int(x));";function concat1d_(e) {
-  return concat(e, 0);
-}function concat2d_(e, t) {
-  return concat(e, t);
-}function concat3d_(e, t) {
-  return concat(e, t);
-}function concat4d_(e, t) {
-  return concat(e, t);
-}function concat_(e, t) {
-  void 0 === t && (t = 0), assert(e.length >= 1, "Pass at least one tensor to concat");var n = convertToTensorArray(e, "tensors", "concat"),
-      r = n[0];if (1 === n.length) return r;for (var o = parseAxisParam(t, r.shape), a = 1; a < n.length; ++a) r = concat2Tensors(r, n[a], o[0]);return r;
-}function concat2Tensors(e, t, n) {
-  assertParams(e.shape, t.shape, n);var r = computeOutShape$1(e.shape, t.shape, n),
-      o = e.as2D(-1, sizeFromShape(e.shape.slice(n))),
-      a = t.as2D(-1, sizeFromShape(t.shape.slice(n))),
-      i = computeGradientSliceShapes(o.shape, a.shape),
-      s = i.aBegin,
-      u = i.aSize,
-      l = i.bBegin,
-      c = i.bSize;return ENV.engine.runKernel(function (e) {
-    return e.concat(o, a);
-  }, { a: o, b: a }, function (e) {
-    return { a: function () {
-        return e.slice(s, u);
-      }, b: function () {
-        return e.slice(l, c);
-      } };
-  }).reshape(r);
-}var concat = op({ concat_: concat_ }),
-    concat1d = op({ concat1d_: concat1d_ }),
-    concat2d = op({ concat2d_: concat2d_ }),
-    concat3d = op({ concat3d_: concat3d_ }),
-    concat4d = op({ concat4d_: concat4d_ }),
-    commonjsGlobal = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};function createCommonjsModule(e, t) {
-  return e(t = { exports: {} }, t.exports), t.exports;
-}var alea = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.c = e.c, t.s0 = e.s0, t.s1 = e.s1, t.s2 = e.s2, t;
-    }function o(e, t) {
-      var n = new function (e) {
-        var t,
-            n = this,
-            r = (t = 4022871197, function (e) {
-          e = e.toString();for (var n = 0; n < e.length; n++) {
-            var r = .02519603282416938 * (t += e.charCodeAt(n));r -= t = r >>> 0, t = (r *= t) >>> 0, t += 4294967296 * (r -= t);
-          }return 2.3283064365386963e-10 * (t >>> 0);
-        });n.next = function () {
-          var e = 2091639 * n.s0 + 2.3283064365386963e-10 * n.c;return n.s0 = n.s1, n.s1 = n.s2, n.s2 = e - (n.c = 0 | e);
-        }, n.c = 1, n.s0 = r(" "), n.s1 = r(" "), n.s2 = r(" "), n.s0 -= r(e), n.s0 < 0 && (n.s0 += 1), n.s1 -= r(e), n.s1 < 0 && (n.s1 += 1), n.s2 -= r(e), n.s2 < 0 && (n.s2 += 1), r = null;
-      }(e),
-          o = t && t.state,
-          a = n.next;return a.int32 = function () {
-        return 4294967296 * n.next() | 0;
-      }, a.double = function () {
-        return a() + 1.1102230246251565e-16 * (2097152 * a() | 0);
-      }, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.alea = o;
-  }(0, e, !1);
-}),
-    xor128 = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.x = e.x, t.y = e.y, t.z = e.z, t.w = e.w, t;
-    }function o(e, t) {
-      var n = new function (e) {
-        var t = this,
-            n = "";t.x = 0, t.y = 0, t.z = 0, t.w = 0, t.next = function () {
-          var e = t.x ^ t.x << 11;return t.x = t.y, t.y = t.z, t.z = t.w, t.w ^= t.w >>> 19 ^ e ^ e >>> 8;
-        }, e === (0 | e) ? t.x = e : n += e;for (var r = 0; r < n.length + 64; r++) t.x ^= 0 | n.charCodeAt(r), t.next();
-      }(e),
-          o = t && t.state,
-          a = function () {
-        return (n.next() >>> 0) / 4294967296;
-      };return a.double = function () {
-        do {
-          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
-        } while (0 === e);return e;
-      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.xor128 = o;
-  }(0, e, !1);
-}),
-    xorwow = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.x = e.x, t.y = e.y, t.z = e.z, t.w = e.w, t.v = e.v, t.d = e.d, t;
-    }function o(e, t) {
-      var n = new function (e) {
-        var t = this,
-            n = "";t.next = function () {
-          var e = t.x ^ t.x >>> 2;return t.x = t.y, t.y = t.z, t.z = t.w, t.w = t.v, (t.d = t.d + 362437 | 0) + (t.v = t.v ^ t.v << 4 ^ e ^ e << 1) | 0;
-        }, t.x = 0, t.y = 0, t.z = 0, t.w = 0, t.v = 0, e === (0 | e) ? t.x = e : n += e;for (var r = 0; r < n.length + 64; r++) t.x ^= 0 | n.charCodeAt(r), r == n.length && (t.d = t.x << 10 ^ t.x >>> 4), t.next();
-      }(e),
-          o = t && t.state,
-          a = function () {
-        return (n.next() >>> 0) / 4294967296;
-      };return a.double = function () {
-        do {
-          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
-        } while (0 === e);return e;
-      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.xorwow = o;
-  }(0, e, !1);
-}),
-    xorshift7 = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.x = e.x.slice(), t.i = e.i, t;
-    }function o(e, t) {
-      null == e && (e = +new Date());var n = new function (e) {
-        var t = this;t.next = function () {
-          var e,
-              n,
-              r = t.x,
-              o = t.i;return e = r[o], n = (e ^= e >>> 7) ^ e << 24, n ^= (e = r[o + 1 & 7]) ^ e >>> 10, n ^= (e = r[o + 3 & 7]) ^ e >>> 3, n ^= (e = r[o + 4 & 7]) ^ e << 7, e = r[o + 7 & 7], n ^= (e ^= e << 13) ^ e << 9, r[o] = n, t.i = o + 1 & 7, n;
-        }, function (e, t) {
-          var n,
-              r = [];if (t === (0 | t)) r[0] = t;else for (t = "" + t, n = 0; n < t.length; ++n) r[7 & n] = r[7 & n] << 15 ^ t.charCodeAt(n) + r[n + 1 & 7] << 13;for (; r.length < 8;) r.push(0);for (n = 0; n < 8 && 0 === r[n]; ++n);for (8 == n ? r[7] = -1 : r[n], e.x = r, e.i = 0, n = 256; n > 0; --n) e.next();
-        }(t, e);
-      }(e),
-          o = t && t.state,
-          a = function () {
-        return (n.next() >>> 0) / 4294967296;
-      };return a.double = function () {
-        do {
-          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
-        } while (0 === e);return e;
-      }, a.int32 = n.next, a.quick = a, o && (o.x && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.xorshift7 = o;
-  }(0, e, !1);
-}),
-    xor4096 = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.i = e.i, t.w = e.w, t.X = e.X.slice(), t;
-    }function o(e, t) {
-      null == e && (e = +new Date());var n = new function (e) {
-        var t = this;t.next = function () {
-          var e,
-              n,
-              r = t.w,
-              o = t.X,
-              a = t.i;return t.w = r = r + 1640531527 | 0, n = o[a + 34 & 127], e = o[a = a + 1 & 127], n ^= n << 13, e ^= e << 17, n ^= n >>> 15, e ^= e >>> 12, n = o[a] = n ^ e, t.i = a, n + (r ^ r >>> 16) | 0;
-        }, function (e, t) {
-          var n,
-              r,
-              o,
-              a,
-              i,
-              s = [],
-              u = 128;for (t === (0 | t) ? (r = t, t = null) : (t += "\0", r = 0, u = Math.max(u, t.length)), o = 0, a = -32; a < u; ++a) t && (r ^= t.charCodeAt((a + 32) % t.length)), 0 === a && (i = r), r ^= r << 10, r ^= r >>> 15, r ^= r << 4, r ^= r >>> 13, a >= 0 && (i = i + 1640531527 | 0, o = 0 == (n = s[127 & a] ^= r + i) ? o + 1 : 0);for (o >= 128 && (s[127 & (t && t.length || 0)] = -1), o = 127, a = 512; a > 0; --a) r = s[o + 34 & 127], n = s[o = o + 1 & 127], r ^= r << 13, n ^= n << 17, r ^= r >>> 15, n ^= n >>> 12, s[o] = r ^ n;e.w = i, e.X = s, e.i = o;
-        }(t, e);
-      }(e),
-          o = t && t.state,
-          a = function () {
-        return (n.next() >>> 0) / 4294967296;
-      };return a.double = function () {
-        do {
-          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
-        } while (0 === e);return e;
-      }, a.int32 = n.next, a.quick = a, o && (o.X && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.xor4096 = o;
-  }(0, e, !1);
-}),
-    tychei = createCommonjsModule(function (e) {
-  !function (e, t, n) {
-    function r(e, t) {
-      return t.a = e.a, t.b = e.b, t.c = e.c, t.d = e.d, t;
-    }function o(e, t) {
-      var n = new function (e) {
-        var t = this,
-            n = "";t.next = function () {
-          var e = t.b,
-              n = t.c,
-              r = t.d,
-              o = t.a;return e = e << 25 ^ e >>> 7 ^ n, n = n - r | 0, r = r << 24 ^ r >>> 8 ^ o, o = o - e | 0, t.b = e = e << 20 ^ e >>> 12 ^ n, t.c = n = n - r | 0, t.d = r << 16 ^ n >>> 16 ^ o, t.a = o - e | 0;
-        }, t.a = 0, t.b = 0, t.c = -1640531527, t.d = 1367130551, e === Math.floor(e) ? (t.a = e / 4294967296 | 0, t.b = 0 | e) : n += e;for (var r = 0; r < n.length + 20; r++) t.b ^= 0 | n.charCodeAt(r), t.next();
-      }(e),
-          o = t && t.state,
-          a = function () {
-        return (n.next() >>> 0) / 4294967296;
-      };return a.double = function () {
-        do {
-          var e = ((n.next() >>> 11) + (n.next() >>> 0) / 4294967296) / (1 << 21);
-        } while (0 === e);return e;
-      }, a.int32 = n.next, a.quick = a, o && ("object" == typeof o && r(o, n), a.state = function () {
-        return r(n, {});
-      }), a;
-    }t && t.exports ? t.exports = o : n && n.amd ? n(function () {
-      return o;
-    }) : this.tychei = o;
-  }(0, e, !1);
-}),
-    seedrandom = createCommonjsModule(function (e) {
-  !function (t, n) {
-    var r,
-        o = this,
-        a = 256,
-        i = 6,
-        s = "random",
-        u = n.pow(a, i),
-        l = n.pow(2, 52),
-        c = 2 * l,
-        p = a - 1;function d(e, d, g) {
-      var v = [],
-          y = f(function e(t, n) {
-        var r,
-            o = [],
-            a = typeof t;if (n && "object" == a) for (r in t) try {
-          o.push(e(t[r], n - 1));
-        } catch (e) {}return o.length ? o : "string" == a ? t : t + "\0";
-      }((d = 1 == d ? { entropy: !0 } : d || {}).entropy ? [e, m(t)] : null == e ? function () {
-        try {
-          var e;return r && (e = r.randomBytes) ? e = e(a) : (e = new Uint8Array(a), (o.crypto || o.msCrypto).getRandomValues(e)), m(e);
-        } catch (e) {
-          var n = o.navigator,
-              i = n && n.plugins;return [+new Date(), o, i, o.screen, m(t)];
-        }
-      }() : e, 3), v),
-          x = new function (e) {
-        var t,
-            n = e.length,
-            r = this,
-            o = 0,
-            i = r.i = r.j = 0,
-            s = r.S = [];n || (e = [n++]);for (; o < a;) s[o] = o++;for (o = 0; o < a; o++) s[o] = s[i = p & i + e[o % n] + (t = s[o])], s[i] = t;(r.g = function (e) {
-          for (var t, n = 0, o = r.i, i = r.j, s = r.S; e--;) t = s[o = p & o + 1], n = n * a + s[p & (s[o] = s[i = p & i + t]) + (s[i] = t)];return r.i = o, r.j = i, n;
-        })(a);
-      }(v),
-          T = function () {
-        for (var e = x.g(i), t = u, n = 0; e < l;) e = (e + n) * a, t *= a, n = x.g(1);for (; e >= c;) e /= 2, t /= 2, n >>>= 1;return (e + n) / t;
-      };return T.int32 = function () {
-        return 0 | x.g(4);
-      }, T.quick = function () {
-        return x.g(4) / 4294967296;
-      }, T.double = T, f(m(x.S), t), (d.pass || g || function (e, t, r, o) {
-        return o && (o.S && h(o, x), e.state = function () {
-          return h(x, {});
-        }), r ? (n[s] = e, t) : e;
-      })(T, y, "global" in d ? d.global : this == n, d.state);
-    }function h(e, t) {
-      return t.i = e.i, t.j = e.j, t.S = e.S.slice(), t;
-    }function f(e, t) {
-      for (var n, r = e + "", o = 0; o < r.length;) t[p & o] = p & (n ^= 19 * t[p & o]) + r.charCodeAt(o++);return m(t);
-    }function m(e) {
-      return String.fromCharCode.apply(0, e);
-    }if (n["seed" + s] = d, f(n.random(), t), e.exports) {
-      e.exports = d;try {
-        r = require("crypto");
-      } catch (e) {}
-    } else 0;
-  }([], Math);
-});seedrandom.alea = alea, seedrandom.xor128 = xor128, seedrandom.xorwow = xorwow, seedrandom.xorshift7 = xorshift7, seedrandom.xor4096 = xor4096, seedrandom.tychei = tychei;var seedrandom$1 = seedrandom,
-    seedrandom_1 = seedrandom$1.alea,
-    MPRandGauss = function () {
-  function e(e, t, n, r, o) {
-    this.mean = e, this.stdDev = t, this.dtype = n, this.nextVal = NaN, this.truncated = r, this.truncated && (this.upper = this.mean + 2 * this.stdDev, this.lower = this.mean - 2 * this.stdDev);var a = o || Math.random();this.random = seedrandom_1(a.toString());
-  }return e.prototype.nextValue = function () {
-    if (!isNaN(this.nextVal)) {
-      var e = this.nextVal;return this.nextVal = NaN, e;
-    }for (var t, n, r = !1; !r;) {
-      var o = void 0,
-          a = void 0,
-          i = void 0;do {
-        i = (o = 2 * this.random() - 1) * o + (a = 2 * this.random() - 1) * a;
-      } while (i >= 1 || 0 === i);var s = Math.sqrt(-2 * Math.log(i) / i);t = this.mean + this.stdDev * o * s, n = this.mean + this.stdDev * a * s, this.truncated && !this.isValidTruncated(t) || (r = !0);
-    }return this.truncated && !this.isValidTruncated(n) || (this.nextVal = this.convertValue(n)), this.convertValue(t);
-  }, e.prototype.convertValue = function (e) {
-    return null == this.dtype || "float32" === this.dtype ? e : Math.round(e);
-  }, e.prototype.isValidTruncated = function (e) {
-    return e <= this.upper && e >= this.lower;
-  }, e;
-}();function clone_(e) {
-  var t = convertToTensor(e, "x", "clone");return ENV.engine.runKernel(function (e) {
-    return Tensor.make(t.shape, { dataId: t.dataId }, t.dtype);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.toFloat();
-      } };
-  });
-}function eye_(e, t, n, r) {
-  void 0 === r && (r = "float32"), null == t && (t = e);for (var o = buffer([e, t], r), a = e <= t ? e : t, i = 0; i < a; ++i) o.set(1, i, i);var s = o.toTensor().as2D(e, t);if (null == n) return s;if (1 === n.length) return tile(expandDims(s, 0), [n[0], 1, 1]);if (2 === n.length) return tile(expandDims(expandDims(s, 0), 0), [n[0], n[1], 1, 1]);if (3 === n.length) return tile(expandDims(expandDims(expandDims(s, 0), 0), 0), [n[0], n[1], n[2], 1, 1]);throw new Error("eye() currently supports only 1D and 2D batchShapes, but received " + n.length + "D.");
-}function randomNormal_(e, t, n, r, o) {
-  if (void 0 === t && (t = 0), void 0 === n && (n = 1), null != r && "bool" === r) throw new Error("Unsupported data type " + r);for (var a = new MPRandGauss(t, n, r, !1, o), i = buffer(e, r), s = 0; s < i.values.length; s++) i.values[s] = a.nextValue();return i.toTensor();
-}function truncatedNormal_(e, t, n, r, o) {
-  if (void 0 === t && (t = 0), void 0 === n && (n = 1), null != r && "bool" === r) throw new Error("Unsupported data type " + r);for (var a = new MPRandGauss(t, n, r, !0, o), i = buffer(e, r), s = 0; s < i.values.length; s++) i.values[s] = a.nextValue();return i.toTensor();
-}function randomUniform_(e, t, n, r) {
-  void 0 === t && (t = 0), void 0 === n && (n = 1), void 0 === r && (r = "float32");for (var o = buffer(e, r), a = 0; a < o.values.length; a++) o.values[a] = randUniform(t, n);return o.toTensor();
-}function rand_(e, t, n) {
-  var r = sizeFromShape(e),
-      o = null;if (null == n || "float32" === n) o = new Float32Array(r);else if ("int32" === n) o = new Int32Array(r);else {
-    if ("bool" !== n) throw new Error("Unknown data type " + n);o = new Uint8Array(r);
-  }for (var a = 0; a < r; a++) o[a] = t();return Tensor.make(e, { values: o }, n);
-}function multinomial_(e, t, n, r) {
-  void 0 === r && (r = !1);var o = convertToTensor(e, "logits", "multinomial"),
-      a = o.size,
-      i = o.rank;if (a < 2) throw new Error("Error in multinomial: you need at least 2 outcomes, but got " + a + ".");if (i > 2) throw new Error("Rank of probabilities must be 1 or 2, but is " + i);n = n || Math.random();var s = 1 === i ? o.as2D(1, -1) : o,
-      u = ENV.engine.runKernel(function (e) {
-    return e.multinomial(s, r, t, n);
-  }, { logits2D: s });return 1 === i ? u.as1D() : u;
-}function oneHot_(e, t, n, r) {
-  void 0 === n && (n = 1), void 0 === r && (r = 0);var o = convertToTensor(e, "indices", "oneHot", "int32");if (assert("int32" === o.dtype, "Indices must be of dtype `int32`"), t < 2) throw new Error("Error in oneHot: depth must be >=2, but it is " + t);return ENV.engine.runKernel(function (e) {
-    return e.oneHot(o, t, n, r);
-  }, { $indices: o });
-}function fromPixels_(e, t) {
-  if (void 0 === t && (t = 3), t > 4) throw new Error("Cannot construct Tensor with more than 4 channels from pixels.");return ENV.engine.fromPixels(e, t);
-}function toPixels(e, t) {
-  return __awaiter(this, void 0, void 0, function () {
-    var n, r, o, a, i, s, u, l, c, p, d, h, f, m, g, v, y, x, T, S;return __generator(this, function (b) {
-      switch (b.label) {case 0:
-          if (2 !== (n = convertToTensor(e, "img", "toPixels", "int32")).rank && 3 !== n.rank) throw new Error("toPixels only supports rank 2 or 3 tensors, got rank " + n.rank + ".");if (r = n.shape.slice(0, 2), o = r[0], a = r[1], (i = 2 === n.rank ? 1 : n.shape[2]) > 4 || 2 === i) throw new Error("toPixels only supports depth of size 1, 3 or 4 but got " + i);return s = n.min(), u = n.max(), [4, s.data()];case 1:
-          return l = b.sent()[0], [4, u.data()];case 2:
-          if (c = b.sent()[0], s.dispose(), u.dispose(), "float32" === n.dtype) {
-            if (l < 0 || c > 1) throw new Error("Tensor values for a float32 Tensor must be in the range [0 - 1] but got range [" + l + " - " + c + "].");
-          } else {
-            if ("int32" !== n.dtype) throw new Error("Unsupported type for toPixels: " + n.dtype + ". Please use float32 or int32 tensors.");if (l < 0 || c > 255) throw new Error("Tensor values for a int32 Tensor must be in the range [0 - 255] but got range [" + l + " - " + c + "].");
-          }return [4, n.data()];case 3:
-          for (p = b.sent(), d = "float32" === n.dtype ? 255 : 1, h = new Uint8ClampedArray(a * o * 4), f = 0; f < o * a; ++f) m = void 0, g = void 0, v = void 0, y = void 0, 1 === i ? (m = p[f] * d, g = p[f] * d, v = p[f] * d, y = 255) : 3 === i ? (m = p[3 * f] * d, g = p[3 * f + 1] * d, v = p[3 * f + 2] * d, y = 255) : 4 === i && (m = p[4 * f] * d, g = p[4 * f + 1] * d, v = p[4 * f + 2] * d, y = p[4 * f + 3] * d), h[(x = 4 * f) + 0] = Math.round(m), h[x + 1] = Math.round(g), h[x + 2] = Math.round(v), h[x + 3] = Math.round(y);return null != t && (t.width = a, t.height = o, T = t.getContext("2d"), S = new ImageData(h, a, o), T.putImageData(S, 0, 0)), n !== e && n.dispose(), [2, h];}
-    });
-  });
-}function reshape_(e, t) {
-  var n = convertToTensor(e, "x", "reshape");t = inferFromImplicitShape(t, n.size), assert(n.size === sizeFromShape(t), "new shape and old shape must have the same number of elements.");return ENV.engine.runKernel(function (e) {
-    return e.reshape(n, t);
-  }, { $x: n }, function (e) {
-    return { $x: function () {
-        return e.reshape(n.shape);
-      } };
-  });
-}function squeeze_(e, t) {
-  var n = convertToTensor(e, "x", "squeeze");return reshape(n, squeezeShape(n.shape, t).newShape);
-}function cast_(e, t) {
-  var n = convertToTensor(e, "x", "cast");return ENV.engine.runKernel(function (e) {
-    return e.cast(n, t);
-  }, { $x: n }, function (e) {
-    return { $x: function () {
-        return e.clone();
-      } };
-  });
-}function tile_(e, t) {
-  var n = convertToTensor(e, "x", "tile");assert(n.rank === t.length, "Error in transpose: rank of input " + n.rank + " must match length of reps " + t + ".");return ENV.engine.runKernel(function (e) {
-    return e.tile(n, t);
-  }, { $x: n }, function (e) {
-    return { $x: function () {
-        var r = zerosLike(n);if (1 === n.rank) for (var o = 0; o < t[0]; ++o) r = r.add(e.slice([o * n.shape[0]], [n.shape[0]]));else if (2 === n.rank) for (o = 0; o < t[0]; ++o) for (var a = 0; a < t[1]; ++a) r = r.add(e.slice([o * n.shape[0], a * n.shape[1]], [n.shape[0], n.shape[1]]));else if (3 === n.rank) for (o = 0; o < t[0]; ++o) for (a = 0; a < t[1]; ++a) for (var i = 0; i < t[2]; ++i) r = r.add(e.slice([o * n.shape[0], a * n.shape[1], i * n.shape[2]], [n.shape[0], n.shape[1], n.shape[2]]));else {
-          if (4 !== n.rank) throw new Error("Gradient for tile operation is not implemented for rank-" + n.rank + " tensors yet.");for (o = 0; o < t[0]; ++o) for (a = 0; a < t[1]; ++a) for (i = 0; i < t[2]; ++i) for (var s = 0; s < t[3]; ++s) r = r.add(e.slice([o * n.shape[0], a * n.shape[1], i * n.shape[2], s * n.shape[3]], [n.shape[0], n.shape[1], n.shape[2], n.shape[3]]));
-        }return r;
-      } };
-  });
-}function pad1d_(e, t, n) {
-  return void 0 === n && (n = 0), assert(2 === t.length, "Invalid number of paddings. Must be length of 2."), pad(e, [t], n);
-}function pad2d_(e, t, n) {
-  return void 0 === n && (n = 0), assert(2 === t.length && 2 === t[0].length && 2 === t[1].length, "Invalid number of paddings. Must be length of 2 each."), pad(e, t, n);
-}function pad3d_(e, t, n) {
-  return void 0 === n && (n = 0), assert(3 === t.length && 2 === t[0].length && 2 === t[1].length && 2 === t[2].length, "Invalid number of paddings. Must be length of 2 each."), pad(e, t, n);
-}function pad4d_(e, t, n) {
-  return void 0 === n && (n = 0), assert(4 === t.length && 2 === t[0].length && 2 === t[1].length && 2 === t[2].length && 2 === t[3].length, "Invalid number of paddings. Must be length of 2 each."), pad(e, t, n);
-}function pad_(e, t, n) {
-  void 0 === n && (n = 0);var r = convertToTensor(e, "x", "pad");if (0 === r.rank) throw new Error("pad(scalar) is not defined. Pass non-scalar to pad");var o = t.map(function (e) {
-    return e[0];
-  });return ENV.engine.runKernel(function (e) {
-    return e.pad(r, t, n);
-  }, { $x: r }, function (e) {
-    return { $x: function () {
-        return e.slice(o, r.shape);
-      } };
-  });
-}function stack_(e, t) {
-  void 0 === t && (t = 0);var n = convertToTensorArray(e, "tensors", "stack");if (assert(n.length >= 1, "Pass at least one tensor to tf.stack"), 1 === n.length) return n[0].expandDims(t);var r = n[0].rank,
-      o = n[0].shape,
-      a = n[0].dtype;assert(t <= r, "Axis must be <= rank of the tensor"), n.forEach(function (e) {
-    assertShapesMatch(o, e.shape, "All tensors passed to stack must have matching shapes");
-  }), n.forEach(function (e) {
-    assert(a === e.dtype, "All tensors passed to stack must have matching dtypes");
-  });var i = n.map(function (e) {
-    return e.expandDims(t);
-  });return concat(i, t);
-}function batchToSpaceND_(e, t, n) {
-  var r = convertToTensor(e, "x", "batchToSpaceND"),
-      o = t.reduce(function (e, t) {
-    return e * t;
-  });return assert(r.rank >= 1 + t.length, "input rank should be > than [blockShape] but got " + r.rank), assert(n.length === t.length, "crops.shape[0] must be equal to [blockShape] but got " + n.length), assert(r.shape[0] % o == 0, "input tensor batch must be divisible by prod( blockShape )"), ENV.engine.runKernel(function (e) {
-    return e.batchToSpaceND(r, t, n);
-  }, {});
-}function spaceToBatchND_(e, t, n) {
-  var r = convertToTensor(e, "x", "spaceToBatchND");return assert(r.rank >= 1 + t.length, "input rank should be > than [blockShape] but got " + r.rank), assert(n.length === t.length, "paddings.shape[0] must be equal to [blockShape], got " + n.length), assert(r.shape.reduce(function (e, n, r) {
-    return r > 0 && r <= t.length ? e && n % t[r - 1] == 0 : e;
-  }, !0), "input spatial dimensions must be divisible by blockShapes"), ENV.engine.runKernel(function (e) {
-    return e.spaceToBatchND(r, t, n);
-  }, {});
-}function unstack_(e, t) {
-  void 0 === t && (t = 0);for (var n, r = convertToTensor(e, "x", "unstack"), o = r.shape[t], a = Array(r.rank - 1).fill(0), i = 0, s = 0; s < r.rank; s++) s !== t && (a[i] = r.shape[s], i++);n = Array(o).fill(1);var u = Array(r.rank).fill(0),
-      l = r.shape.slice();return n.map(function (e) {
-    l[t] = e;var n = r.slice(u, l);return u[t] += e, n.reshape(a);
-  });
-}function split_(e, t, n) {
-  void 0 === n && (n = 0);var r,
-      o = convertToTensor(e, "x", "split");n = parseAxisParam(n, o.shape)[0], "number" == typeof t ? (assert(o.shape[n] % t == 0, "Number of splits must evenly divide the axis."), r = Array(t).fill(o.shape[n] / t)) : (assert(o.shape[n] === t.reduce(function (e, t) {
-    return e + t;
-  }), "The sum of sizes must match the size of the axis dimension."), r = t);var a = Array(o.rank).fill(0),
-      i = o.shape.slice();return r.map(function (e) {
-    i[n] = e;var t = o.slice(a, i);return a[n] += e, t;
-  });
-}function cumsum_(e, t, n, r) {
-  void 0 === t && (t = 0), void 0 === n && (n = !1), void 0 === r && (r = !1);var o = convertToTensor(e, "x", "cumsum"),
-      a = getAxesPermutation([t |= 0], o.rank),
-      i = o;null != a && (i = o.transpose(a));var s = getInnerMostAxes(1, o.rank)[0],
-      u = ENV.engine.runKernel(function (e) {
-    return e.cumsum(i, s, n, r);
-  }, { permutedX: i }, function (e) {
-    return { permutedX: function () {
-        return e.cumsum(t, n, !r);
-      } };
-  });return null != a && (u = u.transpose(a)), u;
-}function expandDims_(e, t) {
-  void 0 === t && (t = 0);var n = convertToTensor(e, "x", "expandDims");assert(t <= n.rank, "Axis must be <= rank of the tensor");var r = n.shape.slice();return t < 0 && (assert(-(n.rank + 1) <= t, "Axis must be in the interval [" + -(n.rank + 1) + ", " + n.rank + "]"), t = n.rank + t + 1), r.splice(t, 0, 1), reshape(n, r);
-}function buffer(e, t, n) {
-  return void 0 === t && (t = "float32"), new TensorBuffer(e, t, n);
-}function print(e, t) {
-  void 0 === t && (t = !1), console.log(e.toString(t));
-}var cast = op({ cast_: cast_ }),
-    clone = op({ clone_: clone_ }),
-    cumsum = op({ cumsum_: cumsum_ }),
-    expandDims = op({ expandDims_: expandDims_ }),
-    eye = op({ eye_: eye_ }),
-    fromPixels = op({ fromPixels_: fromPixels_ }),
-    multinomial = op({ multinomial_: multinomial_ }),
-    oneHot = op({ oneHot_: oneHot_ }),
-    pad = op({ pad_: pad_ }),
-    pad1d = op({ pad1d_: pad1d_ }),
-    pad2d = op({ pad2d_: pad2d_ }),
-    pad3d = op({ pad3d_: pad3d_ }),
-    pad4d = op({ pad4d_: pad4d_ }),
-    rand = op({ rand_: rand_ }),
-    randomNormal = op({ randomNormal_: randomNormal_ }),
-    randomUniform = op({ randomUniform_: randomUniform_ }),
-    reshape = op({ reshape_: reshape_ }),
-    split = op({ split_: split_ }),
-    squeeze = op({ squeeze_: squeeze_ }),
-    stack = op({ stack_: stack_ }),
-    tile = op({ tile_: tile_ }),
-    truncatedNormal = op({ truncatedNormal_: truncatedNormal_ }),
-    unstack = op({ unstack_: unstack_ }),
-    batchToSpaceND = op({ batchToSpaceND_: batchToSpaceND_ }),
-    spaceToBatchND = op({ spaceToBatchND_: spaceToBatchND_ });function whereImpl(e, t) {
-  for (var n = [], r = 0; r < t.length; r++) t[r] && n.push(r);var o = buffer(e, "int32"),
-      a = buffer([n.length, e.length], "int32");for (r = 0; r < n.length; r++) {
-    var i = o.indexToLoc(n[r]),
-        s = r * e.length;a.values.set(i, s);
-  }return a.toTensor();
-}var BEFORE_PAGING_CONSTANT = 300,
+    TO_INT = "return float(int(x));",
+    BEFORE_PAGING_CONSTANT = 300,
     SIZE_UPLOAD_UNIFORM = 32,
     MathBackendWebGL = function () {
   function e(e, t) {
@@ -27157,23 +28412,25 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         o = t.values,
         a = t.texShape,
         i = t.dtype;if (null != o) return this.cacheOnCPU(e), o;var s,
-        u = null != this.activeTimers;u && (s = performance.now());var l = this.getValuesFromTexture(r, e, i, a, n);return u && (this.downloadWaitMs += performance.now() - s), this.cacheOnCPU(e, l), t.values;
+        u,
+        l = null != this.activeTimers;if (l && (s = performance.now()), ENV.get("WEBGL_DOWNLOAD_FLOAT_ENABLED")) u = this.gpgpu.downloadFloat32MatrixFromOutputTexture(r, a[0], a[1]);else {
+      var c = Tensor.make(n, {});this.texData.get(c.dataId).usage = TextureUsage.DOWNLOAD;var d = Tensor.make(n, { dataId: e }, i),
+          p = new EncodeFloatProgram(n);this.compileAndRun(p, [d], c, null, !1);var h = this.texData.get(c.dataId);u = this.gpgpu.downloadByteEncodedFloatMatrixFromOutputTexture(h.texture, h.texShape[0], h.texShape[1]), d.dispose(), c.dispose();
+    }return l && (this.downloadWaitMs += performance.now() - s), this.cacheOnCPU(e, u), t.values;
   }, e.prototype.read = function (e) {
     return __awaiter(this, void 0, void 0, function () {
-      var t, n, r, o, a, i, s, u, l, c;return __generator(this, function (p) {
-        switch (p.label) {case 0:
-            if (this.pendingRead.has(e)) return t = this.pendingRead.get(e), [2, new Promise(function (e) {
+      var t, n, r, o, a, i, s, u;return __generator(this, function (l) {
+        switch (l.label) {case 0:
+            return this.pendingRead.has(e) ? (t = this.pendingRead.get(e), [2, new Promise(function (e) {
               return t.push(e);
-            })];if (this.throwIfNoData(e), n = this.texData.get(e), r = n.shape, o = n.texture, a = n.values, i = n.texShape, s = n.dtype, null != a) return this.cacheOnCPU(e), [2, a];if (this.pendingRead.set(e, []), !ENV.get("WEBGL_DOWNLOAD_FLOAT_ENABLED") && 2 === ENV.get("WEBGL_VERSION")) throw new Error("tensor.data() with WEBGL_DOWNLOAD_FLOAT_ENABLED=false and WEBGL_VERSION=2 not yet supported.");return u = this.gpgpu.maybeCreateBufferFromTexture(o, i[0], i[1]), [4, this.gpgpu.createAndWaitForFence()];case 1:
-            return p.sent(), l = u instanceof WebGLTexture ? this.getValuesFromTexture(o, e, s, i, r) : this.gpgpu.downloadFloat32MatrixFromBuffer(u, i[0], i[1]), this.cacheOnCPU(e, l), c = this.pendingRead.get(e), this.pendingRead.delete(e), c.forEach(function (e) {
-              return e(l);
-            }), this.pendingDisposal.has(e) && (this.pendingDisposal.delete(e), this.disposeData(e)), [2, l];}
+            })]) : (this.throwIfNoData(e), n = this.texData.get(e), r = n.texture, o = n.values, a = n.texShape, null != o ? (this.cacheOnCPU(e), [2, o]) : ENV.get("WEBGL_GET_BUFFER_SUB_DATA_ASYNC_EXTENSION_ENABLED") ? [4, this.gpgpu.downloadMatrixFromTextureAsync(r, a[0], a[1])] : [3, 2]);case 1:
+            return i = l.sent(), this.cacheOnCPU(e, i), [2, n.values];case 2:
+            return 0 === ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") ? [2, this.readSync(e)] : (this.pendingRead.set(e, []), [4, this.gpgpu.runQuery(function () {})]);case 3:
+            return l.sent(), s = this.pendingRead.get(e), this.pendingRead.delete(e), u = this.readSync(e), s.forEach(function (e) {
+              return e(u);
+            }), this.pendingDisposal.has(e) && (this.pendingDisposal.delete(e), this.disposeData(e)), [2, u];}
       });
     });
-  }, e.prototype.getValuesFromTexture = function (e, t, n, r, o) {
-    if (ENV.get("WEBGL_DOWNLOAD_FLOAT_ENABLED")) return this.gpgpu.downloadFloat32MatrixFromOutputTexture(e, r[0], r[1]);var a = Tensor.make(o, {});this.texData.get(a.dataId).usage = TextureUsage.DOWNLOAD;var i = Tensor.make(o, { dataId: t }, n),
-        s = new EncodeFloatProgram(o);this.compileAndRun(s, [i], a, null, !1);var u = this.texData.get(a.dataId),
-        l = this.gpgpu.downloadByteEncodedFloatMatrixFromOutputTexture(u.texture, u.texShape[0], u.texShape[1]);return i.dispose(), a.dispose(), l;
   }, e.prototype.time = function (e) {
     return __awaiter(this, void 0, void 0, function () {
       var t, n, r, o, a, i;return __generator(this, function (s) {
@@ -27195,7 +28452,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.getQueryTime = function (e) {
     return __awaiter(this, void 0, void 0, function () {
       var t;return __generator(this, function (n) {
-        return ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") > 0 ? [2, this.gpgpu.waitForQueryAndGetTime(e)] : [2, (t = e).endMs - t.startMs];
+        return ENV.get("WEBGL_DISJOINT_QUERY_TIMER_EXTENSION_VERSION") > 0 ? [2, this.gpgpu.pollQueryTime(e)] : [2, (t = e).endMs - t.startMs];
       });
     });
   }, e.prototype.disposeData = function (e) {
@@ -27236,8 +28493,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         s = null;null != a && (s = a.shape, i.push(a));var u = null;null != o && (u = o.shape, i.push(o));var l = new BatchNormProgram(e.shape, t.shape, n.shape, s, u, r);return this.compileAndRun(l, i);
   }, e.prototype.localResponseNormalization4D = function (e, t, n, r, o) {
     var a = new LRNProgram(e.shape, t, n, r, o);return this.compileAndRun(a, [e]);
-  }, e.prototype.LRNGrad = function (e, t, n, r, o, a, i) {
-    var s = new LRNGradProgram(t.shape, r, o, a, i);return this.compileAndRun(s, [t, n, e]);
   }, e.prototype.tile = function (e, t) {
     var n = new TileProgram(e.shape, t);return this.compileAndRun(n, [e]);
   }, e.prototype.pad = function (e, t, n) {
@@ -27246,23 +28501,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     var n = new TransposeProgram(e.shape, t);return this.compileAndRun(n, [e]);
   }, e.prototype.gather = function (e, t, n) {
     var r = new GatherProgram(e.shape, t.size, n);return this.compileAndRun(r, [e, t]);
-  }, e.prototype.batchToSpaceND = function (e, t, n) {
-    assert(e.rank <= 4, "batchToSpaceND for rank > 4 with a WebGL backend not implemented yet");var r = t.reduce(function (e, t) {
-      return e * t;
-    }),
-        o = getReshaped(e.shape, t, r),
-        a = getPermuted(o.length, t.length),
-        i = getReshapedPermuted(e.shape, t, r),
-        s = getSliceBeginCoords(n, t.length),
-        u = getSliceSize(i, n, t.length);return e.reshape(o).transpose(a).reshape(i).slice(s, u);
-  }, e.prototype.spaceToBatchND = function (e, t, n) {
-    assert(e.rank <= 4, "spaceToBatchND for rank > 4 with a WebGL backend not implemented yet");var r = t.reduce(function (e, t) {
-      return e * t;
-    }),
-        o = [[0, 0]];o.push.apply(o, n);for (var a = 1 + t.length; a < e.shape.length; ++a) o.push([0, 0]);var i = e.pad(o),
-        s = getReshaped(i.shape, t, r, !1),
-        u = getPermuted(s.length, t.length, !1),
-        l = getReshapedPermuted(i.shape, t, r, !1);return i.reshape(s).transpose(u).reshape(l);
   }, e.prototype.reduce = function (e, t, n) {
     var r = e.shape[0],
         o = e.shape[1],
@@ -27280,7 +28518,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = s[0],
         l = s[1],
         c = this.makeOutputArray([u, l], "int32"),
-        p = [e];return null != n && p.push(n), this.compileAndRun(i, p, c), 1 === c.shape[1] ? c : this.argReduce(e, t, c);
+        d = [e];return null != n && d.push(n), this.compileAndRun(i, d, c), 1 === c.shape[1] ? c : this.argReduce(e, t, c);
   }, e.prototype.sum = function (e, t) {
     assertAxesAreInnerMostDims("sum", t, e.rank);var n = computeOutAndReduceShapes(e.shape, t),
         r = n[0],
@@ -27290,7 +28528,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.unsortedSegmentSum = function (e, t, n) {
     var r = 0,
         o = getAxesPermutation([r], e.rank),
-        a = e;null != o && (a = e.transpose(o), r = getInnerMostAxes(1, e.rank)[0]);var i = computeOutShape(a.shape, r, n),
+        a = e;null != o && (a = e.transpose(o), r = getInnerMostAxes(1, e.rank)[0]);var i = computeOutShape$1(a.shape, r, n),
         s = sizeFromShape([a.shape[r]]),
         u = a.as2D(-1, s),
         l = sumOutType(e.dtype),
@@ -27302,8 +28540,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = new SegmentOpProgram({ windowSize: s, inSize: i, batchSize: a, numSegments: o }, t),
         l = u.outputShape,
         c = l[0],
-        p = l[1],
-        d = this.makeOutputArray([c, p], r);return this.compileAndRun(u, [e, n], d), d.shape[1] === o ? d : (n = range(0, o).tile([i / s]), this.segOpCompute(d, t, n, r, o));
+        d = l[1],
+        p = this.makeOutputArray([c, d], r);return this.compileAndRun(u, [e, n], p), p.shape[1] === o ? p : (n = range(0, o).tile([i / s]), this.segOpCompute(p, t, n, r, o));
   }, e.prototype.argMin = function (e, t) {
     var n = [t];assertAxesAreInnerMostDims("argMin", n, e.rank);var r = computeOutAndReduceShapes(e.shape, n),
         o = r[0],
@@ -27342,13 +28580,13 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.logicalOr = function (e, t) {
     var n = new BinaryOpProgram(LOGICAL_OR, e.shape, t.shape),
         r = this.makeOutputArray(n.outputShape, "bool");return this.compileAndRun(n, [e, t], r);
-  }, e.prototype.select = function (e, t, n) {
-    var r = new SelectProgram(e.rank, t.shape, t.rank),
-        o = this.makeOutputArray(r.outputShape, upcastType(t.dtype, n.dtype));return this.compileAndRun(r, [e, t, n], o);
-  }, e.prototype.where = function (e) {
-    warn("tf.where() in webgl locks the UI thread. Call tf.whereAsync() instead");var t = e.dataSync();return whereImpl(e.shape, t);
-  }, e.prototype.topk = function (e, t, n) {
-    return topkImpl(e.dataSync(), e.shape, e.dtype, t, n);
+  }, e.prototype.where = function (e, t, n, r) {
+    var o = new WhereProgram(e.rank, t.shape, t.rank),
+        a = this.makeOutputArray(o.outputShape, r);return this.compileAndRun(o, [e, t, n], a);
+  }, e.prototype.topKValues = function (e, t) {
+    throw new Error("topKValues GPU not yet implemented!");
+  }, e.prototype.topKIndices = function (e, t) {
+    throw new Error("topKIndices GPU not yet implemented!");
   }, e.prototype.min = function (e, t) {
     assertAxesAreInnerMostDims("min", t, e.rank);var n = computeOutAndReduceShapes(e.shape, t),
         r = n[0],
@@ -27387,8 +28625,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.add = function (e, t) {
     var n = new BinaryOpProgram(ADD, e.shape, t.shape),
         r = this.makeOutputArray(n.outputShape, upcastType(e.dtype, t.dtype));return this.compileAndRun(n, [e, t], r);
-  }, e.prototype.addN = function (e) {
-    for (var t = e[0], n = 1; n < e.length; n++) t = this.add(t, e[n]);return t;
   }, e.prototype.subtract = function (e, t) {
     var n = new BinaryOpProgram(SUB, e.shape, t.shape),
         r = this.makeOutputArray(n.outputShape, upcastType(e.dtype, t.dtype));return this.compileAndRun(n, [e, t], r);
@@ -27520,8 +28756,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         l = s.getCustomSetupFunc(r);return this.compileAndRun(s, [o], u, l);
   }, e.prototype.oneHot = function (e, t, n, r) {
     var o = new OneHotProgram(e.size, t, n, r);return this.compileAndRun(o, [e]);
-  }, e.prototype.nonMaxSuppression = function (e, t, n, r, o) {
-    return warn("tf.nonMaxSuppression() in webgl locks the UI thread. Call tf.nonMaxSuppressionAsync() instead"), nonMaxSuppressionImpl(e.dataSync(), t.dataSync(), n, r, o);
   }, e.prototype.makeOutputArray = function (e, t) {
     return Tensor.make(e, {}, t);
   }, e.prototype.compileAndRun = function (e, t, n, r, o) {
@@ -27533,12 +28767,12 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         c = this.getAndSaveBinary(l, function () {
       return compileProgram(a.gpgpu, e, i, u);
     }),
-        p = null != this.activeTimers;if (p && (s = this.startTimer()), runProgram(c, i, u, r), o && this.numBytesInGPU > this.NUM_BYTES_BEFORE_PAGING) for (var d = this.numBytesInGPU - this.NUM_BYTES_BEFORE_PAGING; d > 0 && this.lruDataGPU.length > 0;) {
+        d = null != this.activeTimers;if (d && (s = this.startTimer()), runProgram(c, i, u, r), o && this.numBytesInGPU > this.NUM_BYTES_BEFORE_PAGING) for (var p = this.numBytesInGPU - this.NUM_BYTES_BEFORE_PAGING; p > 0 && this.lruDataGPU.length > 0;) {
       var h = this.lruDataGPU.shift(),
           f = this.texData.get(h),
-          m = f.shape,
-          g = f.dtype;d -= this.computeBytes(m, g), this.read(h);
-    }return p && (s = this.endTimer(s), this.activeTimers.push(this.getQueryTime(s))), n;
+          g = f.shape,
+          m = f.dtype;p -= this.computeBytes(g, m), this.read(h);
+    }return d && (s = this.endTimer(s), this.activeTimers.push(this.getQueryTime(s))), n;
   }, e.prototype.getAndSaveBinary = function (e, t) {
     return e in this.binaryCache || (this.binaryCache[e] = t()), this.binaryCache[e];
   }, e.prototype.getTextureManager = function () {
@@ -27586,1320 +28820,13 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }throw new Error("Unknown dtype " + t);
 }function typedArrayToFloat32(e, t) {
   return e instanceof Float32Array ? e : new Float32Array(e);
-}function neg_(e) {
-  var t = convertToTensor(e, "x", "neg");return ENV.engine.runKernel(function (e) {
-    return e.neg(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.neg();
-      } };
-  });
-}function ceil_(e) {
-  var t = convertToTensor(e, "x", "ceil");return ENV.engine.runKernel(function (e) {
-    return e.ceil(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return zerosLike(e);
-      } };
-  });
-}function floor_(e) {
-  var t = convertToTensor(e, "x", "floor");return ENV.engine.runKernel(function (e) {
-    return e.floor(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return zerosLike(e);
-      } };
-  });
-}function sign_(e) {
-  var t = convertToTensor(e, "x", "sign");return ENV.engine.runKernel(function (e) {
-    return e.sign(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return zerosLike(e);
-      } };
-  });
-}function round_(e) {
-  var t = convertToTensor(e, "x", "round");return ENV.engine.runKernel(function (e) {
-    return e.round(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return zerosLike(e);
-      } };
-  });
-}function exp_(e) {
-  var t = convertToTensor(e, "x", "exp");return ENV.engine.runKernel(function (e, n) {
-    return n(e.exp(t));
-  }, { $x: t }, function (e, t) {
-    var n = t[0];return { $x: function () {
-        return e.mulStrict(n);
-      } };
-  });
-}function expm1_(e) {
-  var t = convertToTensor(e, "x", "expm1");return ENV.engine.runKernel(function (e) {
-    return e.expm1(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(t.exp());
-      } };
-  });
-}function log_(e) {
-  var t = convertToTensor(e, "x", "log");return ENV.engine.runKernel(function (e) {
-    return e.log(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.toFloat());
-      } };
-  });
-}function log1p_(e) {
-  var t = convertToTensor(e, "x", "log1p");return ENV.engine.runKernel(function (e) {
-    return e.log1p(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.add(scalar(1)));
-      } };
-  });
-}function sqrt_(e) {
-  var t = convertToTensor(e, "x", "sqrt");return ENV.engine.runKernel(function (e) {
-    return e.sqrt(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.toFloat().sqrt().mul(scalar(2)));
-      } };
-  });
-}function rsqrt_(e) {
-  var t = convertToTensor(e, "x", "rsqrt");return ENV.engine.runKernel(function (e) {
-    return e.rsqrt(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.pow(scalar(1.5)).mul(scalar(2))).neg();
-      } };
-  });
-}function square_(e) {
-  var t = convertToTensor(e, "x", "square");return ENV.engine.runKernel(function (e) {
-    return e.square(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(t.toFloat().mul(scalar(2)));
-      } };
-  });
-}function reciprocal_(e) {
-  var t = convertToTensor(e, "x", "reciprocal");return ENV.engine.runKernel(function (e) {
-    return e.reciprocal(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.square().neg());
-      } };
-  });
-}function abs_(e) {
-  var t = convertToTensor(e, "x", "abs");return ENV.engine.runKernel(function (e) {
-    return e.abs(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(t.toFloat().step(-1));
-      } };
-  });
-}function clipByValue_(e, t, n) {
-  var r = convertToTensor(e, "x", "clipByValue");assert(t <= n, "Error in clip: min (" + t + ") must be less than or equal to max (" + n + ").");return ENV.engine.runKernel(function (e) {
-    return e.clip(r, t, n);
-  }, { $x: r }, function (e) {
-    return { $x: function () {
-        return e.where(r.greaterEqual(scalar(t)).logicalAnd(r.lessEqual(scalar(n))), zerosLike(e));
-      } };
-  });
-}function sigmoid_(e) {
-  var t = convertToTensor(e, "x", "sigmoid");return ENV.engine.runKernel(function (e, n) {
-    return n(e.sigmoid(t));
-  }, { $x: t }, function (e, t) {
-    var n = t[0];return { $x: function () {
-        return e.mulStrict(n.mul(scalar(1).sub(n)));
-      } };
-  });
-}function logSigmoid_(e) {
-  var t = convertToTensor(e, "x", "logSigmoid");return ENV.engine.runKernel(function (e) {
-    return e.softplus(t.neg()).neg();
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(t.neg().sigmoid());
-      } };
-  });
-}function softplus_(e) {
-  var t = convertToTensor(e, "x", "softplus");return ENV.engine.runKernel(function (e) {
-    return e.softplus(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(t.sigmoid());
-      } };
-  });
-}function sin_(e) {
-  var t = convertToTensor(e, "x", "sin");return ENV.engine.runKernel(function (e) {
-    return e.sin(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return t.toFloat().cos().mulStrict(e);
-      } };
-  });
-}function cos_(e) {
-  var t = convertToTensor(e, "x", "cos");return ENV.engine.runKernel(function (e) {
-    return e.cos(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return t.toFloat().sin().neg().mulStrict(e);
-      } };
-  });
-}function tan_(e) {
-  var t = convertToTensor(e, "x", "tan");return ENV.engine.runKernel(function (e) {
-    return e.tan(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.cos().square());
-      } };
-  });
-}function asin_(e) {
-  var t = convertToTensor(e, "x", "asin");return ENV.engine.runKernel(function (e) {
-    return e.asin(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(scalar(1).sub(t.toFloat().square()).sqrt());
-      } };
-  });
-}function acos_(e) {
-  var t = convertToTensor(e, "x", "acos");return ENV.engine.runKernel(function (e) {
-    return e.acos(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(scalar(1).sub(t.toFloat().square()).sqrt()).neg();
-      } };
-  });
-}function atan_(e) {
-  var t = convertToTensor(e, "x", "atan");return ENV.engine.runKernel(function (e) {
-    return e.atan(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(scalar(1).add(t.toFloat().square()));
-      } };
-  });
-}function sinh_(e) {
-  var t = convertToTensor(e, "x", "sinh");return ENV.engine.runKernel(function (e) {
-    return e.sinh(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return t.toFloat().cosh().mulStrict(e);
-      } };
-  });
-}function cosh_(e) {
-  var t = convertToTensor(e, "x", "cosh");return ENV.engine.runKernel(function (e) {
-    return e.cosh(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return t.toFloat().sinh().mulStrict(e);
-      } };
-  });
-}function tanh_(e) {
-  var t = convertToTensor(e, "x", "tanh");return ENV.engine.runKernel(function (e, n) {
-    return n(e.tanh(t));
-  }, { $x: t }, function (e, t) {
-    var n = t[0];return { $x: function () {
-        return scalar(1).sub(n.square()).mulStrict(e);
-      } };
-  });
-}function asinh_(e) {
-  var t = convertToTensor(e, "x", "asinh");return ENV.engine.runKernel(function (e) {
-    return e.asinh(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(scalar(1).add(t.toFloat().square()).sqrt());
-      } };
-  });
-}function acosh_(e) {
-  var t = convertToTensor(e, "x", "acosh");return ENV.engine.runKernel(function (e) {
-    return e.acosh(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(t.toFloat().square().sub(scalar(1)).sqrt());
-      } };
-  });
-}function atanh_(e) {
-  var t = convertToTensor(e, "x", "atanh");return ENV.engine.runKernel(function (e) {
-    return e.atanh(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.divStrict(scalar(1).sub(t.toFloat().square()));
-      } };
-  });
-}function erf_(e) {
-  var t = convertToTensor(e, "x", "erf");assert("int32" === t.dtype || "float32" === t.dtype, "Input dtype must be `int32` or `float32`."), "int32" === t.dtype && (t = t.toFloat());return ENV.engine.runKernel(function (e) {
-    return e.erf(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        return e.mulStrict(scalar(2 / Math.sqrt(Math.PI)).mul(t.square().neg().exp()));
-      } };
-  });
-}function step_(e, t) {
-  void 0 === t && (t = 0);var n = convertToTensor(e, "x", "step");return ENV.engine.runKernel(function (e) {
-    return e.step(n, t);
-  }, { $x: n }, function (e) {
-    return { $x: function () {
-        return zerosLike(e);
-      } };
-  });
 }ENV.get("IS_BROWSER") && ENV.registerBackend("webgl", function () {
   return new MathBackendWebGL();
-}, 2, setTensorTracker);var abs = op({ abs_: abs_ }),
-    acos = op({ acos_: acos_ }),
-    acosh = op({ acosh_: acosh_ }),
-    asin = op({ asin_: asin_ }),
-    asinh = op({ asinh_: asinh_ }),
-    atan = op({ atan_: atan_ }),
-    atanh = op({ atanh_: atanh_ }),
-    ceil = op({ ceil_: ceil_ }),
-    clipByValue = op({ clipByValue_: clipByValue_ }),
-    cos = op({ cos_: cos_ }),
-    cosh = op({ cosh_: cosh_ }),
-    erf = op({ erf_: erf_ }),
-    exp = op({ exp_: exp_ }),
-    expm1 = op({ expm1_: expm1_ }),
-    floor = op({ floor_: floor_ }),
-    log$1 = op({ log_: log_ }),
-    log1p = op({ log1p_: log1p_ }),
-    logSigmoid = op({ logSigmoid_: logSigmoid_ }),
-    neg = op({ neg_: neg_ }),
-    reciprocal = op({ reciprocal_: reciprocal_ }),
-    round = op({ round_: round_ }),
-    rsqrt = op({ rsqrt_: rsqrt_ }),
-    sigmoid = op({ sigmoid_: sigmoid_ }),
-    sign = op({ sign_: sign_ }),
-    sin = op({ sin_: sin_ }),
-    sinh = op({ sinh_: sinh_ }),
-    softplus = op({ softplus_: softplus_ }),
-    sqrt = op({ sqrt_: sqrt_ }),
-    square = op({ square_: square_ }),
-    step = op({ step_: step_ }),
-    tan = op({ tan_: tan_ }),
-    tanh$1 = op({ tanh_: tanh_ });function batchNormalization2d_(e, t, n, r, o, a) {
-  void 0 === r && (r = .001);var i,
-      s,
-      u = convertToTensor(e, "x", "batchNormalization"),
-      l = convertToTensor(t, "mean", "batchNormalization"),
-      c = convertToTensor(n, "variance", "batchNormalization");return null != o && (i = convertToTensor(o, "scale", "batchNormalization")), null != a && (s = convertToTensor(a, "offset", "batchNormalization")), assert(2 === u.rank, "Error in batchNormalization3D: x must be rank 3 but got rank " + u.rank + "."), assert(2 === l.rank || 1 === l.rank, "Error in batchNormalization2D: mean must be rank 2 or rank 1 but got rank " + l.rank + "."), assert(2 === c.rank || 1 === c.rank, "Error in batchNormalization2D: variance must be rank 2 or rank 1 but got rank " + c.rank + "."), null != i && assert(2 === i.rank || 1 === i.rank, "Error in batchNormalization2D: scale must be rank 2 or rank 1 but got rank " + i.rank + "."), null != s && assert(2 === s.rank || 1 === s.rank, "Error in batchNormalization2D: offset must be rank 2 or rank 1 but got rank " + s.rank + "."), batchNormalization(u, l, c, r, i, s);
-}function batchNormalization3d_(e, t, n, r, o, a) {
-  void 0 === r && (r = .001);var i,
-      s,
-      u = convertToTensor(e, "x", "batchNormalization"),
-      l = convertToTensor(t, "mean", "batchNormalization"),
-      c = convertToTensor(n, "variance", "batchNormalization");return null != o && (i = convertToTensor(o, "scale", "batchNormalization")), null != a && (s = convertToTensor(a, "offset", "batchNormalization")), assert(3 === u.rank, "Error in batchNormalization3D: x must be rank 3 but got rank " + u.rank + "."), assert(3 === l.rank || 1 === l.rank, "Error in batchNormalization3D: mean must be rank 3 or rank 1 but got rank " + l.rank + "."), assert(3 === c.rank || 1 === c.rank, "Error in batchNormalization3D: variance must be rank 3 or rank 1 but got rank " + c.rank + "."), null != i && assert(3 === i.rank || 1 === i.rank, "Error in batchNormalization3D: scale must be rank 3 or rank 1 but got rank " + i.rank + "."), null != s && assert(3 === s.rank || 1 === s.rank, "Error in batchNormalization3D: offset must be rank 3 or rank 1 but got rank " + s.rank + "."), batchNormalization(u, l, c, r, i, s);
-}function batchNormalization4d_(e, t, n, r, o, a) {
-  void 0 === r && (r = .001);var i,
-      s,
-      u = convertToTensor(e, "x", "batchNormalization"),
-      l = convertToTensor(t, "mean", "batchNormalization"),
-      c = convertToTensor(n, "variance", "batchNormalization");return null != o && (i = convertToTensor(o, "scale", "batchNormalization")), null != a && (s = convertToTensor(a, "offset", "batchNormalization")), assert(4 === u.rank, "Error in batchNormalization4D: x must be rank 4 but got rank " + u.rank + "."), assert(4 === l.rank || 1 === l.rank, "Error in batchNormalization4D: mean must be rank 4 or rank 1 but got rank " + l.rank + "."), assert(4 === c.rank || 1 === c.rank, "Error in batchNormalization4D: variance must be rank 4 or rank 1 but got rank " + c.rank + "."), null != i && assert(4 === i.rank || 1 === i.rank, "Error in batchNormalization4D: scale must be rank 4 or rank 1 but got rank " + i.rank + "."), null != s && assert(4 === s.rank || 1 === s.rank, "Error in batchNormalization4D: offset must be rank 4 or rank 1 but got rank " + s.rank + "."), batchNormalization(u, l, c, r, i, s);
-}function batchNormalization_(e, t, n, r, o, a) {
-  void 0 === r && (r = .001);var i,
-      s,
-      u,
-      l = convertToTensor(e, "x", "batchNormalization"),
-      c = convertToTensor(t, "mean", "batchNormalization"),
-      p = convertToTensor(n, "variance", "batchNormalization");null != o && (i = convertToTensor(o, "scale", "batchNormalization")), null != a && (s = convertToTensor(a, "offset", "batchNormalization")), assert(c.rank === p.rank, "Batch normalization gradient requires mean and variance to have equal ranks."), assert(null == s || c.rank === s.rank, "Batch normalization gradient requires mean and offset to have equal ranks."), assert(null == i || c.rank === i.rank, "Batch normalization gradient requires mean and scale to have equal ranks."), u = 0 === l.rank || 1 === l.rank ? l.as4D(1, 1, 1, l.size) : 2 === l.rank ? l.as4D(1, 1, l.shape[0], l.shape[1]) : 3 === l.rank ? l.as4D(1, l.shape[0], l.shape[1], l.shape[2]) : l;return ENV.engine.runKernel(function (e) {
-    return e.batchNormalization(u, batchnormReshape4D(c), batchnormReshape4D(p), r, batchnormReshape4D(i), batchnormReshape4D(s));
-  }, { $x: l, $mean: c, $variance: p, $scale: i, $offset: s }, function (e) {
-    var t = null == i ? scalar(1) : i,
-        n = getReductionAxes(c.shape, u.shape),
-        o = [];if (1 === c.rank) {
-      for (var a = 0; a < u.shape.length - 1; ++a) o.push(u.shape[a]);o.push(1);
-    }var s = l.sub(c),
-        d = e.mul(t),
-        h = rsqrt(p.add(scalar(r))),
-        f = h.mul(h).mul(h).mul(scalar(-.5));return { $x: function () {
-        return 1 === c.rank ? e.mul(tile(h.as4D(1, 1, 1, c.shape[0]), o)).mul(t).reshape(l.shape) : e.mul(h).mul(t).reshape(l.shape);
-      }, $mean: function () {
-        var e = h.mul(scalar(-1)).mul(d);return 1 === c.rank && (e = e.sum(n)), e.reshape(c.shape);
-      }, $variance: function () {
-        var e = f.mul(s).mul(d);return 1 === c.rank && (e = e.sum(n)), e.reshape(c.shape);
-      }, $scale: function () {
-        var t = s.mul(h),
-            r = e.mul(t);return 1 === c.rank && (r = r.sum(n)), r.reshape(c.shape);
-      }, $offset: function () {
-        var t = e;return 1 === c.rank && (t = t.sum(n)), t.reshape(c.shape);
-      } };
-  }).reshape(l.shape);
-}function batchnormReshape4D(e) {
-  return null == e ? null : 0 === e.rank ? e.as1D() : 1 === e.rank ? e : 2 === e.rank ? e.as4D(1, 1, e.shape[0], e.shape[1]) : 3 === e.rank ? e.as4D(1, e.shape[0], e.shape[1], e.shape[2]) : e;
-}var batchNormalization2d = op({ batchNormalization2d_: batchNormalization2d_ }),
-    batchNormalization3d = op({ batchNormalization3d_: batchNormalization3d_ }),
-    batchNormalization4d = op({ batchNormalization4d_: batchNormalization4d_ }),
-    batchNormalization = op({ batchNormalization_: batchNormalization_ });function computePool2DInfo(e, t, n, r, o, a) {
-  void 0 === a && (a = "channelsLast");var i,
-      s = parseTupleParam(t),
-      u = s[0],
-      l = s[1];if ("channelsLast" === a) i = [u, l, e[3], e[3]];else {
-    if ("channelsFirst" !== a) throw new Error("Unknown dataFormat " + a);i = [u, l, e[1], e[1]];
-  }return computeConv2DInfo(e, i, n, 1, r, o, !1, a);
-}function computeConv2DInfo(e, t, n, r, o, a, i, s) {
-  void 0 === i && (i = !1), void 0 === s && (s = "channelsLast");var u = [-1, -1, -1, -1],
-      l = u[0],
-      c = u[1],
-      p = u[2],
-      d = u[3];if ("channelsLast" === s) l = e[0], c = e[1], p = e[2], d = e[3];else {
-    if ("channelsFirst" !== s) throw new Error("Unknown dataFormat " + s);l = e[0], d = e[1], c = e[2], p = e[3];
-  }var h,
-      f = t[0],
-      m = t[1],
-      g = t[3],
-      v = parseTupleParam(n),
-      y = v[0],
-      x = v[1],
-      T = parseTupleParam(r),
-      S = T[0],
-      b = T[1],
-      E = getPadAndOutInfo(o, c, p, y, x, getEffectiveFilterSize(f, S), getEffectiveFilterSize(m, b), a),
-      w = E.padInfo,
-      _ = E.outHeight,
-      A = E.outWidth,
-      R = i ? g * d : g;return "channelsFirst" === s ? h = [l, R, _, A] : "channelsLast" === s && (h = [l, _, A, R]), { batchSize: l, dataFormat: s, inHeight: c, inWidth: p, inChannels: d, outHeight: _, outWidth: A, outChannels: R, padInfo: w, strideHeight: y, strideWidth: x, filterHeight: f, filterWidth: m, dilationHeight: S, dilationWidth: b, inShape: e, outShape: h, filterShape: t };
-}function computeOutputShape3D(e, t, n, r, o, a) {
-  null == o && (o = computeDefaultPad(e, t, r));var i = e[0],
-      s = e[1],
-      u = conditionalRound((i - t + 2 * o) / r + 1, a);assert(isInt(u), "The output # of rows (" + u + ") must be an integer. Change the stride and/or zero pad parameters");var l = conditionalRound((s - t + 2 * o) / r + 1, a);return assert(isInt(l), "The output # of columns (" + l + ") must be an integer. Change the stride and/or zero pad parameters"), [u, l, n];
-}function computeDefaultPad(e, t, n, r) {
-  void 0 === r && (r = 1);var o = getEffectiveFilterSize(t, r);return Math.floor((e[0] * (n - 1) - n + o) / 2);
-}function parseTupleParam(e) {
-  return "number" == typeof e ? [e, e] : e;
-}function getEffectiveFilterSize(e, t) {
-  return t <= 1 ? e : e + (e - 1) * (t - 1);
-}function getPadAndOutInfo(e, t, n, r, o, a, i, s) {
-  var u, l, c;if ("number" == typeof e) {
-    u = { top: e, bottom: e, left: e, right: e, type: 0 === e ? "VALID" : "NUMBER" };var p = computeOutputShape3D([t, n, 1], a, 1, r, e, s);l = p[0], c = p[1];
-  } else if ("same" === e) {
-    var d = ((l = Math.ceil(t / r)) - 1) * r + a - t,
-        h = ((c = Math.ceil(n / o)) - 1) * o + i - n,
-        f = Math.floor(d / 2),
-        m = d - f,
-        g = Math.floor(h / 2);u = { top: f, bottom: m, left: g, right: h - g, type: "SAME" };
-  } else {
-    if ("valid" !== e) throw Error("Unknown padding parameter: " + e);u = { top: 0, bottom: 0, left: 0, right: 0, type: "VALID" }, l = Math.ceil((t - a + 1) / r), c = Math.ceil((n - i + 1) / o);
-  }return { padInfo: u, outHeight: l, outWidth: c };
-}function conditionalRound(e, t) {
-  if (!t) return e;switch (t) {case "round":
-      return Math.round(e);case "ceil":
-      return Math.ceil(e);case "floor":
-      return Math.floor(e);default:
-      throw new Error("Unknown roundingMode " + t);}
-}function conv1d_(e, t, n, r, o, a, i) {
-  void 0 === o && (o = "NWC"), void 0 === a && (a = 1);var s = convertToTensor(e, "x", "conv1d"),
-      u = convertToTensor(t, "filter", "conv1d"),
-      l = s,
-      c = !1;2 === s.rank && (c = !0, l = s.as3D(1, s.shape[0], s.shape[1])), assert(3 === l.rank, "Error in conv1d: input must be rank 3, but got rank " + l.rank + "."), assert(3 === u.rank, "Error in conv1d: filter must be rank 3, but got rank " + u.rank + "."), null != i && assert(isInt(r), "Error in conv1d: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + r + "."), assert(l.shape[2] === u.shape[1], "Error in conv1d: depth of input (" + l.shape[2] + ") must match input depth for filter " + u.shape[1] + "."), assert(eitherStridesOrDilationsAreOne(n, a), "Error in conv1D: Either stride or dilation must be 1. Got stride " + n + " and dilation '" + a + "'"), assert("NWC" === o, "Error in conv1d: got dataFormat of " + o + " but only NWC is currently supported.");var p = u.as4D(1, u.shape[0], u.shape[1], u.shape[2]),
-      d = l.as4D(l.shape[0], 1, l.shape[1], l.shape[2]),
-      h = conv2d(d, p, [1, n], r, "NHWC", [1, a], i);return c ? h.as2D(h.shape[2], h.shape[3]) : h.as3D(h.shape[0], h.shape[2], h.shape[3]);
-}function conv2d_(e, t, n, r, o, a, i) {
-  void 0 === o && (o = "NHWC"), void 0 === a && (a = [1, 1]);var s = convertToTensor(e, "x", "conv2d"),
-      u = convertToTensor(t, "filter", "conv2d"),
-      l = s,
-      c = !1;3 === s.rank && (c = !0, l = s.as4D(1, s.shape[0], s.shape[1], s.shape[2])), assert(4 === l.rank, "Error in conv2d: input must be rank 4, but got rank " + l.rank + "."), assert(4 === u.rank, "Error in conv2d: filter must be rank 4, but got rank " + u.rank + "."), null != i && assert(isInt(r), "Error in conv2d: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + r + "."), assert(l.shape[3] === u.shape[2], "Error in conv2d: depth of input (" + l.shape[3] + ") must match input depth for filter " + u.shape[2] + "."), assert(eitherStridesOrDilationsAreOne(n, a), "Error in conv2D: Either strides or dilations must be 1. Got strides " + n + " and dilations '" + a + "'"), assert("NHWC" === o, "Error in conv2d: got dataFormat of " + o + " but only NHWC is currently supported.");var p = computeConv2DInfo(l.shape, u.shape, n, a, r, i),
-      d = ENV.engine.runKernel(function (e) {
-    return e.conv2d(l, u, p);
-  }, { x: l, $filter: u }, function (e) {
-    return assert(tupleValuesAreOne(a), "Error in gradient of conv2D: dilation rates greater than 1 are notyet supported in gradients. Got dilations '" + a + "'"), { x: function () {
-        return conv2dDerInput_(l.shape, e, u, n, r);
-      }, $filter: function () {
-        return conv2dDerFilter_(l, e, u.shape, n, r);
-      } };
-  });return c ? d.as3D(d.shape[1], d.shape[2], d.shape[3]) : d;
-}function conv2dDerInput_(e, t, n, r, o, a) {
-  assert(e.length === t.rank, "Length of inShape (" + e.length + ") and rank of dy (" + t.rank + ") must match");var i = e,
-      s = t,
-      u = !1;3 === t.rank && (u = !0, s = t.as4D(1, t.shape[0], t.shape[1], t.shape[2]), i = [1, e[0], e[1], e[2]]);var l = i[3],
-      c = s.shape[3];assert(4 === i.length, "Error in conv2dDerInput: inShape must be length 4, but got length " + i.length + "."), assert(4 === s.rank, "Error in conv2dDerInput: dy must be rank 4, but got rank " + s.rank), assert(4 === n.rank, "Error in conv2dDerInput: filter must be rank 4, but got rank " + n.rank), assert(l === n.shape[2], "Error in conv2dDerInput: depth of input (" + l + ") must match input depth for filter " + n.shape[2] + "."), assert(c === n.shape[3], "Error in conv2dDerInput: depth of output (" + c + ") must match output depth for filter " + n.shape[3] + "."), null != a && assert(isInt(o), "Error in conv2dDerInput: pad must be an integer when using, dimRoundingMode " + a + " but got pad " + o + ".");var p = computeConv2DInfo(i, n.shape, r, 1, o, a),
-      d = ENV.engine.runKernel(function (e) {
-    return e.conv2dDerInput(s, n, p);
-  }, { dy4D: s });return u ? d.as3D(d.shape[1], d.shape[2], d.shape[3]) : d;
-}function conv2dDerFilter_(e, t, n, r, o, a) {
-  var i = e;3 === e.rank && (i = e.as4D(1, e.shape[0], e.shape[1], e.shape[2]));var s = t;3 === s.rank && (s = t.as4D(1, t.shape[0], t.shape[1], t.shape[2])), assert(4 === i.rank, "Error in conv2dDerFilter: input must be rank 4, but got shape " + i.shape + "."), assert(4 === s.rank, "Error in conv2dDerFilter: dy must be rank 4, but got shape " + s.shape + "."), assert(4 === n.length, "Error in conv2dDerFilter: filterShape must be length 4, but got " + n + "."), assert(i.shape[3] === n[2], "Error in conv2dDerFilter: depth of input " + i.shape[3] + ") must match input depth in filter (" + n[2] + "."), assert(s.shape[3] === n[3], "Error in conv2dDerFilter: depth of dy (" + s.shape[3] + ") must match output depth for filter (" + n[3] + ")."), null != a && assert(isInt(o), "Error in conv2dDerFilter: pad must be an integer when using, dimRoundingMode " + a + " but got pad " + o + ".");var u = computeConv2DInfo(i.shape, n, r, 1, o, a);return ENV.engine.runKernel(function (e) {
-    return e.conv2dDerFilter(i, s, u);
-  }, { x4D: i, dy4D: s });
-}function conv2dTranspose_(e, t, n, r, o, a) {
-  return conv2dDerInput_(n, convertToTensor(e, "x", "conv2dTranspose"), convertToTensor(t, "filter", "conv2dTranspose"), r, o, a);
-}function depthwiseConv2d_(e, t, n, r, o, a, i) {
-  void 0 === o && (o = "NHWC"), void 0 === a && (a = [1, 1]);var s = convertToTensor(e, "x", "depthwiseConv2d"),
-      u = convertToTensor(t, "filter", "depthwiseConv2d"),
-      l = s,
-      c = !1;3 === s.rank && (c = !0, l = s.as4D(1, s.shape[0], s.shape[1], s.shape[2])), assert(4 === l.rank, "Error in depthwiseConv2d: input must be rank 4, but got rank " + l.rank + "."), assert(4 === u.rank, "Error in depthwiseConv2d: filter must be rank 4, but got rank " + u.rank + "."), assert(l.shape[3] === u.shape[2], "Error in depthwiseConv2d: number of input channels (" + l.shape[3] + ") must match the inChannels dimension in filter " + u.shape[2] + "."), null == a && (a = [1, 1]), assert(eitherStridesOrDilationsAreOne(n, a), "Error in depthwiseConv2d: Either strides or dilations must be 1. Got strides " + n + " and dilations '" + a + "'"), null != i && assert(isInt(r), "Error in depthwiseConv2d: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + r + ".");var p = computeConv2DInfo(l.shape, u.shape, n, a, r, i, !0),
-      d = ENV.engine.runKernel(function (e) {
-    return e.depthwiseConv2D(l, u, p);
-  }, { x: l, $filter: u }, function (e) {
-    return assert(tupleValuesAreOne(a), "Error in gradient of depthwiseConv2d: dilation rates greater than 1 are not yet supported. Got dilations '" + a + "'"), { x: function () {
-        return depthwiseConv2dDerInput(l.shape, e, u, p);
-      }, $filter: function () {
-        return depthwiseConv2dDerFilter(l, e, u.shape, p);
-      } };
-  });return c ? d.as3D(d.shape[1], d.shape[2], d.shape[3]) : d;
-}function separableConv2d_(e, t, n, r, o, a, i) {
-  void 0 === a && (a = [1, 1]), void 0 === i && (i = "NHWC");var s = convertToTensor(e, "x", "separableConv2d"),
-      u = convertToTensor(t, "depthwiseFilter", "separableConv2d"),
-      l = convertToTensor(n, "pointwiseFilter", "separableConv2d"),
-      c = s,
-      p = !1;if (3 === s.rank && (p = !0, c = s.as4D(1, s.shape[0], s.shape[1], s.shape[2])), "NCHW" === i) throw new Error("separableConv2d currently does not support dataFormat NCHW; only NHWC is supported");assert(4 === c.rank, "Error in separableConv2d: input must be rank 4, but got rank " + c.rank + "."), assert(4 === u.rank, "Error in separableConv2d: depthwise filter must be rank 4, but got rank " + u.rank + "."), assert(4 === l.rank, "Error in separableConv2d: pointwise filter must be rank 4, but got rank " + u.rank + "."), assert(1 === l.shape[0], "Error in separableConv2d: the first dimension of pointwise filter  must be 1, but got " + l.shape[0] + "."), assert(1 === l.shape[1], "Error in separableConv2d: the second dimension of pointwise filter  must be 1, but got " + l.shape[1] + ".");var d = u.shape[2],
-      h = u.shape[3];assert(l.shape[2] === d * h, "Error in separableConv2d: the third dimension of pointwise filter must be " + d * h + ", but got " + l.shape[2] + ".");var f = depthwiseConv2d(c, u, r, o, i, a),
-      m = conv2d(f, l, 1, "valid", i);return p ? m.as3D(m.shape[1], m.shape[2], m.shape[3]) : m;
-}function parseTupleParam$1(e) {
-  return "number" == typeof e ? [e, e] : e;
-}function tupleValuesAreOne(e) {
-  var t = parseTupleParam$1(e),
-      n = t[0],
-      r = t[1];return 1 === n && 1 === r;
-}function eitherStridesOrDilationsAreOne(e, t) {
-  return tupleValuesAreOne(e) || tupleValuesAreOne(t);
-}function depthwiseConv2dDerInput(e, t, n, r) {
-  var o = t,
-      a = !1;3 === t.rank && (a = !0, o = t.as4D(1, t.shape[0], t.shape[1], t.shape[2]));var i = ENV.engine.runKernel(function (e) {
-    return e.depthwiseConv2DDerInput(o, n, r);
-  }, { dy4D: o });return a ? i.as3D(i.shape[1], i.shape[2], i.shape[3]) : i;
-}function depthwiseConv2dDerFilter(e, t, n, r) {
-  var o = e;3 === e.rank && (o = e.as4D(1, e.shape[0], e.shape[1], e.shape[2]));var a = t;return 3 === a.rank && (a = t.as4D(1, t.shape[0], t.shape[1], t.shape[2])), ENV.engine.runKernel(function (e) {
-    return e.depthwiseConv2DDerFilter(o, a, r);
-  }, { x4D: o, dy4D: a });
-}var conv1d = op({ conv1d_: conv1d_ }),
-    conv2d = op({ conv2d_: conv2d_ }),
-    depthwiseConv2d = op({ depthwiseConv2d_: depthwiseConv2d_ }),
-    separableConv2d = op({ separableConv2d_: separableConv2d_ }),
-    conv2dTranspose = op({ conv2dTranspose_: conv2dTranspose_ });function matMul_(e, t, n, r) {
-  void 0 === n && (n = !1), void 0 === r && (r = !1);var o = convertToTensor(e, "a", "matMul"),
-      a = convertToTensor(t, "b", "matMul"),
-      i = n ? o.shape[0] : o.shape[1],
-      s = r ? a.shape[1] : a.shape[0];assert(2 === o.rank && 2 === a.rank, "Error in matMul: inputs must be rank 2, got ranks " + o.rank + " and " + a.rank + "."), assert(i === s, "Error in matMul: inner shapes (" + i + ") and (" + s + ") of Tensors with shapes " + o.shape + " and " + a.shape + " and transposeA=" + n + " and transposeB=" + r + " must match.");return ENV.engine.runKernel(function (e) {
-    return e.matMul(o, a, n, r);
-  }, { $a: o, $b: a }, function (e) {
-    return n || r ? !n && r ? { $a: function () {
-        return e.matMul(a.toFloat(), !1, !1);
-      }, $b: function () {
-        return e.matMul(o.toFloat(), !0, !1);
-      } } : n && !r ? { $a: function () {
-        return a.toFloat().matMul(e, !1, !0);
-      }, $b: function () {
-        return o.toFloat().matMul(e, !1, !1);
-      } } : { $a: function () {
-        return a.toFloat().matMul(e, !0, !0);
-      }, $b: function () {
-        return e.matMul(o.toFloat(), !0, !0);
-      } } : { $a: function () {
-        return e.matMul(a.toFloat(), !1, !0);
-      }, $b: function () {
-        return o.toFloat().matMul(e, !0, !1);
-      } };
-  });
-}function outerProduct_(e, t) {
-  var n = convertToTensor(e, "v1", "outerProduct"),
-      r = convertToTensor(t, "v2", "outerProduct");return assert(1 === n.rank && 1 === r.rank, "Error in outerProduct: inputs must be rank 1, but got ranks " + n.rank + " and " + r.rank + "."), n.as2D(-1, 1).matMul(r.as2D(1, -1));
-}function dot_(e, t) {
-  var n = convertToTensor(e, "t1", "dot"),
-      r = convertToTensor(t, "t2", "dot");assert(!(1 !== n.rank && 2 !== n.rank || 1 !== r.rank && 2 !== r.rank), "Error in dot: inputs must all be rank 1 or 2, but got ranks " + n.rank + " and " + r.rank + ".");var o = 1 === n.rank ? n.size : n.shape[1],
-      a = 1 === r.rank ? r.size : r.shape[0];return assert(o === a, "Error in dot: inner dimensions of inputs must match, but got " + o + " and " + a + "."), 1 === n.rank && 1 === r.rank ? n.as2D(1, -1).matMul(r.as2D(-1, 1)).asScalar() : 1 === n.rank && 2 === r.rank ? n.as2D(1, -1).matMul(r.as2D(r.shape[0], r.shape[1])).as1D() : 2 === n.rank && 1 === r.rank ? n.matMul(r.as2D(-1, 1)).as1D() : n.matMul(r.as2D(r.shape[0], r.shape[1]));
-}var matMul = op({ matMul_: matMul_ }),
-    dot = op({ dot_: dot_ }),
-    outerProduct = op({ outerProduct_: outerProduct_ });function reverse1d_(e) {
-  var t = convertToTensor(e, "x", "reverse");return assert(1 === t.rank, "Error in reverse1D: x must be rank 1 but got\n             rank " + t.rank + "."), reverse(t, 0);
-}function reverse2d_(e, t) {
-  var n = convertToTensor(e, "x", "reverse");return assert(2 === n.rank, "Error in reverse2D: x must be rank 2 but got\n             rank " + n.rank + "."), reverse(n, t);
-}function reverse3d_(e, t) {
-  var n = convertToTensor(e, "x", "reverse");return assert(3 === n.rank, "Error in reverse3D: x must be rank 3 but got\n             rank " + n.rank + "."), reverse(n, t);
-}function reverse4d_(e, t) {
-  var n = convertToTensor(e, "x", "reverse");return assert(4 === n.rank, "Error in reverse4D: x must be rank 4 but got\n             rank " + n.rank + "."), reverse(n, t);
-}function reverse_(e, t) {
-  var n = convertToTensor(e, "x", "reverse");if (0 === n.rank) return n.clone();var r = parseAxisParam(t, n.shape);return ENV.engine.runKernel(function (e) {
-    return e.reverse(n, r);
-  }, { $x: n }, function (e) {
-    return { $x: function () {
-        return e.reverse(r);
-      } };
-  }).reshapeAs(n);
-}var reverse = op({ reverse_: reverse_ }),
-    reverse1d = op({ reverse1d_: reverse1d_ }),
-    reverse2d = op({ reverse2d_: reverse2d_ }),
-    reverse3d = op({ reverse3d_: reverse3d_ }),
-    reverse4d = op({ reverse4d_: reverse4d_ });function maxPool_(e, t, n, r, o) {
-  var a = convertToTensor(e, "x", "maxPool"),
-      i = a,
-      s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === i.rank, "Error in maxPool: input must be rank 4 but got rank " + i.rank + "."), null != o && assert(isInt(r), "Error in maxPool: pad must be an integer when using, dimRoundingMode " + o + " but got pad " + r + ".");var u = computePool2DInfo(i.shape, t, n, r, o),
-      l = ENV.engine.runKernel(function (e, t) {
-    return t(e.maxPool(i, u));
-  }, { x: i }, function (e, o) {
-    var a = o[0];return { x: function () {
-        return maxPoolBackprop(e, i, a, t, n, r);
-      } };
-  });return s ? l.as3D(l.shape[1], l.shape[2], l.shape[3]) : l;
-}function avgPool_(e, t, n, r, o) {
-  var a = convertToTensor(e, "x", "avgPool");assert("float32" === a.dtype, "The input dtype to avgPool must be float32");var i = a,
-      s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === i.rank, "Error in avgPool: x must be rank 4 but got rank " + i.rank + "."), null != o && assert(isInt(r), "Error in avgPool: pad must be an integer when using, dimRoundingMode " + o + " but got pad " + r + ".");var u = computePool2DInfo(i.shape, t, n, r),
-      l = ENV.engine.runKernel(function (e) {
-    return e.avgPool(i, u);
-  }, { x: i }, function (e) {
-    return { x: function () {
-        return avgPoolBackprop(e, i, t, n, r);
-      } };
-  });return l = l.cast(a.dtype), s ? l.as3D(l.shape[1], l.shape[2], l.shape[3]) : l;
-}function maxPoolBackprop(e, t, n, r, o, a, i) {
-  var s = convertToTensor(e, "dy", "maxPoolBackprop"),
-      u = convertToTensor(t, "input", "maxPoolBackprop"),
-      l = convertToTensor(n, "output", "maxPoolBackprop");assert(u.rank === s.rank, "Rank of input (" + u.rank + ") does not match rank of dy (" + s.rank + ")"), assert(4 === s.rank, "Error in maxPoolBackprop: dy must be rank 4 but got rank " + s.rank + "."), assert(4 === u.rank, "Error in maxPoolBackprop: input must be rank 4 but got rank " + u.rank + "."), null != i && assert(isInt(a), "Error in maxPoolBackprop: pad must be an integer when using, dimRoundingMode " + i + " but got pad " + a + ".");var c = computePool2DInfo(u.shape, r, o, a, i);return ENV.engine.runKernel(function (e) {
-    return e.maxPoolBackprop(s, u, l, c);
-  }, { $dy: s, $input: u });
-}function avgPoolBackprop(e, t, n, r, o) {
-  var a = convertToTensor(e, "dy", "avgPoolBackprop"),
-      i = convertToTensor(t, "input", "avgPoolBackprop");assert(i.rank === a.rank, "Rank of input (" + i.rank + ") does not match rank of dy (" + a.rank + ")");var s = i,
-      u = a,
-      l = !1;3 === i.rank && (l = !0, s = i.as4D(1, i.shape[0], i.shape[1], i.shape[2]), u = a.as4D(1, a.shape[0], a.shape[1], a.shape[2])), assert(4 === u.rank, "Error in avgPoolBackprop: dy must be rank 4 but got rank " + u.rank + "."), assert(4 === s.rank, "Error in avgPoolBackprop: input must be rank 4 but got rank " + s.rank + ".");var c = computePool2DInfo(s.shape, n, r, o),
-      p = ENV.engine.runKernel(function (e) {
-    return e.avgPoolBackprop(u, s, c);
-  }, { dy4D: u, input4D: s });return l ? p.as3D(p.shape[1], p.shape[2], p.shape[3]) : p;
-}var maxPool = op({ maxPool_: maxPool_ }),
-    avgPool = op({ avgPool_: avgPool_ });function slice1d_(e, t, n) {
-  var r = convertToTensor(e, "x", "slice1d");return assert(1 === r.rank, "slice1d expects a rank-1 tensor, but got a rank-" + r.rank + " tensor"), slice(r, [t], [n]);
-}function slice2d_(e, t, n) {
-  var r = convertToTensor(e, "x", "slice2d");return assert(2 === r.rank, "slice1d expects a rank-2 tensor, but got a rank-" + r.rank + " tensor"), slice(r, t, n);
-}function slice3d_(e, t, n) {
-  var r = convertToTensor(e, "x", "slice3d");return assert(3 === r.rank, "slice1d expects a rank-3 tensor, but got a rank-" + r.rank + " tensor"), slice(r, t, n);
-}function slice4d_(e, t, n) {
-  var r = convertToTensor(e, "x", "slice4d");return assert(4 === r.rank, "slice1d expects a rank-4 tensor, but got a rank-" + r.rank + " tensor"), slice(r, t, n);
-}function slice_(e, t, n) {
-  var r,
-      o,
-      a = convertToTensor(e, "x", "slice");if (0 === a.rank) throw new Error("Slicing scalar is not possible");r = "number" == typeof t ? [t].concat(new Array(a.rank - 1).fill(0)) : t.length < a.rank ? t.concat(new Array(a.rank - t.length).fill(0)) : t, o = (o = null == n ? new Array(a.rank).fill(-1) : "number" == typeof n ? [n].concat(new Array(a.rank - 1).fill(-1)) : n.length < a.rank ? n.concat(new Array(a.rank - n.length).fill(-1)) : n).map(function (e, t) {
-    return e >= 0 ? e : (assert(-1 === e, "Bad value in size"), a.shape[t] - r[t]);
-  }), assertParamsValid(a, r, o);var i = a.shape;return ENV.engine.runKernel(function (e) {
-    return e.slice(a, r, o);
-  }, { $x: a }, function (e) {
-    for (var t = [], n = 0; n < e.rank; n++) t.push([r[n], i[n] - r[n] - o[n]]);return { $x: function () {
-        return e.pad(t);
-      } };
-  });
-}var slice = op({ slice_: slice_ }),
-    slice1d = op({ slice1d_: slice1d_ }),
-    slice2d = op({ slice2d_: slice2d_ }),
-    slice3d = op({ slice3d_: slice3d_ }),
-    slice4d = op({ slice4d_: slice4d_ }),
-    tidy = Environment.tidy,
-    keep = Environment.keep,
-    dispose = Environment.dispose,
-    time = Environment.time;function logSumExp_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "logSumExp"),
-      o = parseAxisParam(t, r.shape),
-      a = r.max(o, !0),
-      i = r.sub(a).exp().sum(o).log(),
-      s = a.reshape(i.shape).add(i);if (n) {
-    var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
-  }return s;
-}function sum_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "sum");"bool" === r.dtype && (r = r.toInt());var o = parseAxisParam(t, r.shape);return customGrad(function (e) {
-    var t = getAxesPermutation(o, e.rank),
-        r = o,
-        a = e;null != t && (a = e.transpose(t), r = getInnerMostAxes(r.length, e.rank));var i = ENV.engine.runKernel(function (e) {
-      return e.sum(a, r);
-    }, { permutedX: a });if (n) {
-      var s = expandShapeToKeepDim(i.shape, o);i = i.reshape(s);
-    }return { value: i, gradFunc: function (t) {
-        var n = e.shape.slice();return o.forEach(function (e) {
-          n[e] = 1;
-        }), t.reshape(n).mul(ones$1(e.shape, "float32"));
-      } };
-  })(r);
-}function mean_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "mean"),
-      o = parseAxisParam(t, r.shape),
-      a = sizeFromShape(computeOutAndReduceShapes(r.shape, o)[1]);return customGrad(function (e) {
-    var r = scalar(a);return { value: (r.dtype === e.dtype ? e : e.cast(r.dtype)).div(r).sum(t, n), gradFunc: function (t) {
-        var n = e.shape.slice();return o.forEach(function (e) {
-          n[e] = 1;
-        }), t.reshape(n).mul(ones$1(e.shape, "float32")).div(r);
-      } };
-  })(r);
-}function min_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "min"),
-      o = parseAxisParam(t, r.shape),
-      a = o,
-      i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
-    return e.min(r, a);
-  }, { $x: r });if (n) {
-    var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
-  }return s;
-}function max_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "max"),
-      o = parseAxisParam(t, r.shape),
-      a = o,
-      i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
-    return e.max(r, a);
-  }, { $x: r });if (n) {
-    var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
-  }return s;
-}function argMin_(e, t) {
-  void 0 === t && (t = 0);var n = convertToTensor(e, "x", "argMin");null == t && (t = 0);var r = parseAxisParam(t, n.shape),
-      o = getAxesPermutation(r, n.rank);return null != o && (n = n.transpose(o), r = getInnerMostAxes(r.length, n.rank)), ENV.engine.runKernel(function (e) {
-    return e.argMin(n, r[0]);
-  }, { $x: n });
-}function argMax_(e, t) {
-  void 0 === t && (t = 0);var n = convertToTensor(e, "x", "argMax");null == t && (t = 0);var r = parseAxisParam(t, n.shape),
-      o = getAxesPermutation(r, n.rank);return null != o && (n = n.transpose(o), r = getInnerMostAxes(r.length, n.rank)), ENV.engine.runKernel(function (e) {
-    return e.argMax(n, r[0]);
-  }, { $x: n });
-}function all_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "all", "bool");assert("bool" === r.dtype, "Error Tensor must be of type bool. Got: " + r.dtype);var o = parseAxisParam(t, r.shape),
-      a = o,
-      i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
-    return e.all(r, a);
-  }, { $x: r });if (n) {
-    var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
-  }return s;
-}function any_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = convertToTensor(e, "x", "any", "bool");assert("bool" === r.dtype, "Error Tensor must be of type bool. Got: " + r.dtype);var o = parseAxisParam(t, r.shape),
-      a = o,
-      i = getAxesPermutation(a, r.rank);null != i && (r = r.transpose(i), a = getInnerMostAxes(a.length, r.rank));var s = ENV.engine.runKernel(function (e) {
-    return e.any(r, a);
-  }, { $x: r });if (n) {
-    var u = expandShapeToKeepDim(s.shape, o);return s.reshape(u);
-  }return s;
-}function moments_(e, t, n) {
-  void 0 === t && (t = null), void 0 === n && (n = !1);var r = parseAxisParam(t, (e = convertToTensor(e, "x", "moments")).shape),
-      o = e.mean(r, n),
-      a = o.shape;return n || (a = expandShapeToKeepDim(o.shape, r)), { mean: o, variance: e.toFloat().sub(o.reshape(a)).square().mean(r, n) };
-}var all = op({ all_: all_ }),
-    any = op({ any_: any_ }),
-    argMax = op({ argMax_: argMax_ }),
-    argMin = op({ argMin_: argMin_ }),
-    logSumExp = op({ logSumExp_: logSumExp_ }),
-    max = op({ max_: max_ }),
-    mean = op({ mean_: mean_ }),
-    min = op({ min_: min_ }),
-    moments = op({ moments_: moments_ }),
-    sum = op({ sum_: sum_ });function notEqual_(e, t) {
-  var n = convertToTensor(e, "a", "notEqual"),
-      r = convertToTensor(t, "b", "notEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.notEqual(n, r);
-  }, { $a: n, $b: r });
-}function notEqualStrict_(e, t) {
-  var n = convertToTensor(e, "a", "notEqualStrict"),
-      r = convertToTensor(t, "b", "notEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in notEqualStrict: "), n.notEqual(r);
-}function less_(e, t) {
-  var n = convertToTensor(e, "a", "less"),
-      r = convertToTensor(t, "b", "less");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.less(n, r);
-  }, { $a: n, $b: r });
-}function lessStrict_(e, t) {
-  var n = convertToTensor(e, "a", "lessStrict"),
-      r = convertToTensor(t, "b", "lessStrict");return assertShapesMatch(n.shape, r.shape, "Error in lessStrict: "), n.less(r);
-}function equal_(e, t) {
-  var n = convertToTensor(e, "a", "equal"),
-      r = convertToTensor(t, "b", "equal");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.equal(n, r);
-  }, { $a: n, $b: r });
-}function equalStrict_(e, t) {
-  var n = convertToTensor(e, "a", "equalStrict"),
-      r = convertToTensor(t, "b", "equalStrict");return assertShapesMatch(n.shape, r.shape, "Error in equalStrict: "), n.equal(r);
-}function lessEqual_(e, t) {
-  var n = convertToTensor(e, "a", "lessEqual"),
-      r = convertToTensor(t, "b", "lessEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.lessEqual(n, r);
-  }, { $a: n, $b: r });
-}function lessEqualStrict_(e, t) {
-  var n = convertToTensor(e, "a", "lessEqualStrict"),
-      r = convertToTensor(t, "b", "lessEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in lessEqualStrict: "), n.lessEqual(r);
-}function greater_(e, t) {
-  var n = convertToTensor(e, "a", "greater"),
-      r = convertToTensor(t, "b", "greater");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.greater(n, r);
-  }, { $a: n, $b: r });
-}function greaterStrict_(e, t) {
-  var n = convertToTensor(e, "a", "greaterStrict"),
-      r = convertToTensor(t, "b", "greaterStrict");return assertShapesMatch(n.shape, r.shape, "Error in greaterStrict: "), n.greater(r);
-}function greaterEqual_(e, t) {
-  var n = convertToTensor(e, "a", "greaterEqual"),
-      r = convertToTensor(t, "b", "greaterEqual");return assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.greaterEqual(n, r);
-  }, { $a: n, $b: r });
-}function greaterEqualStrict_(e, t) {
-  var n = convertToTensor(e, "a", "greaterEqualStrict"),
-      r = convertToTensor(t, "b", "greaterEqualStrict");return assertShapesMatch(n.shape, r.shape, "Error in greaterEqualStrict: "), n.greaterEqual(r);
-}var equal = op({ equal_: equal_ }),
-    equalStrict = op({ equalStrict_: equalStrict_ }),
-    greater = op({ greater_: greater_ }),
-    greaterEqual = op({ greaterEqual_: greaterEqual_ }),
-    greaterEqualStrict = op({ greaterEqualStrict_: greaterEqualStrict_ }),
-    greaterStrict = op({ greaterStrict_: greaterStrict_ }),
-    less = op({ less_: less_ }),
-    lessEqual = op({ lessEqual_: lessEqual_ }),
-    lessEqualStrict = op({ lessEqualStrict_: lessEqualStrict_ }),
-    lessStrict = op({ lessStrict_: lessStrict_ }),
-    notEqual = op({ notEqual_: notEqual_ }),
-    notEqualStrict = op({ notEqualStrict_: notEqualStrict_ });function add_(e, t) {
-  var n = convertToTensor(e, "a", "add"),
-      r = convertToTensor(t, "b", "add");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.add(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = e,
-            r = getReductionAxes(n.shape, o);return r.length > 0 && (t = t.sum(r)), t.reshape(n.shape);
-      }, $b: function () {
-        var t = e,
-            n = getReductionAxes(r.shape, o);return n.length > 0 && (t = t.sum(n)), t.reshape(r.shape);
-      } };
-  });
-}function addN_(e) {
-  assert(Array.isArray(e), function () {
-    return "The param passed to tf.addN() must be a list of tensors";
-  }), assert(e.length >= 1, function () {
-    return "Must pass at least one tensor to tf.addN(), but got " + e.length;
-  });var t = e.map(function (e, t) {
-    return convertToTensor(e, "tensors" + t, "addN");
-  }),
-      n = t[0];t.forEach(function (e) {
-    if (e.dtype !== n.dtype) throw new Error("All tensors passed to tf.addN() must have the same dtype");
-  }), t.forEach(function (e) {
-    if (!arraysEqual(e.shape, n.shape)) throw new Error("All tensors passed to tf.addN() must have the same shape");
-  });var r = t;return ENV.engine.runKernel(function (e) {
-    return e.addN(t);
-  }, r, function (e) {
-    var n = {};return t.forEach(function (t, r) {
-      n[r] = function () {
-        return e.clone();
-      };
-    }), n;
-  });
-}function addStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in addStrict: "), e.add(t);
-}function sub_(e, t) {
-  var n = convertToTensor(e, "a", "sub"),
-      r = convertToTensor(t, "b", "sub");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.subtract(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = e,
-            r = getReductionAxes(n.shape, o);return r.length > 0 && (t = t.sum(r)), t.reshape(n.shape);
-      }, $b: function () {
-        var t = e,
-            n = getReductionAxes(r.shape, o);return n.length > 0 && (t = t.sum(n)), t.neg().reshape(r.shape);
-      } };
-  });
-}function subStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in subStrict: "), e.sub(t);
-}function pow_(e, t) {
-  var n = convertToTensor(e, "base", "pow"),
-      r = convertToTensor(t, "exp", "pow"),
-      o = assertAndGetBroadcastShape(n.shape, r.shape);e = n.cast(upcastType(n.dtype, r.dtype)), t = r.cast(upcastType(n.dtype, r.dtype));return ENV.engine.runKernel(function (e, t) {
-    return t(e.pow(n, r));
-  }, { $base: n, $exp: r }, function (e, t) {
-    var a = t[0];return { $base: function () {
-        var t = e.mul(r.toFloat().mul(a.div(n))),
-            i = getReductionAxes(n.shape, o);return i.length > 0 && (t = t.sum(i)), t.reshape(n.shape);
-      }, $exp: function () {
-        var t = e.mul(a.mul(n.log()).toFloat()),
-            i = getReductionAxes(r.shape, o);return i.length > 0 && (t = t.sum(i)), t.reshape(r.shape);
-      } };
-  });
-}function powStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in powStrict: "), e.pow(t);
-}function mul_(e, t) {
-  var n = convertToTensor(e, "a", "mul"),
-      r = convertToTensor(t, "b", "mul");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.multiply(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = e.mul(r.toFloat()),
-            a = getReductionAxes(n.shape, o);return a.length > 0 ? t.sum(a).reshape(n.shape) : t;
-      }, $b: function () {
-        var t = e.mul(n.toFloat()),
-            a = getReductionAxes(r.shape, o);return a.length > 0 ? t.sum(a).reshape(r.shape) : t;
-      } };
-  });
-}function mulStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in multiplyStrict: "), e.mul(t);
-}function div_(e, t) {
-  var n,
-      r = convertToTensor(e, "a", "div"),
-      o = convertToTensor(t, "b", "div");if (assertTypesMatch(r, o), "int32" === r.dtype && "int32" === o.dtype) return floorDiv(r, o);n = function (e) {
-    return e.realDivide(r, o);
-  };var a = assertAndGetBroadcastShape(r.shape, o.shape);return ENV.engine.runKernel(n, { $a: r, $b: o }, function (e) {
-    return { $a: function () {
-        var t = e.div(o.toFloat()),
-            n = getReductionAxes(r.shape, a);return n.length > 0 ? t.sum(n).reshape(r.shape) : t;
-      }, $b: function () {
-        var t = e.mul(r.toFloat()),
-            n = getReductionAxes(o.shape, a);n.length > 0 && (t = t.sum(n).reshape(o.shape));var i = o.square();return t.div(i.toFloat()).neg();
-      } };
-  });
-}function floorDiv_(e, t) {
-  var n = convertToTensor(e, "a", "floorDiv"),
-      r = convertToTensor(t, "b", "floorDiv");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.floorDiv(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = e.div(r.toFloat()),
-            a = getReductionAxes(n.shape, o);return a.length > 0 ? t.sum(a).reshape(n.shape) : t;
-      }, $b: function () {
-        var t = e.mul(n.toFloat()),
-            a = getReductionAxes(r.shape, o);a.length > 0 && (t = t.sum(a).reshape(r.shape));var i = r.square();return t.div(i.toFloat()).neg();
-      } };
-  });
-}function divStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in divideStrict: "), e.div(t);
-}function mod_(e, t) {
-  var n = convertToTensor(e, "a", "mod"),
-      r = convertToTensor(t, "b", "mod");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.mod(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = getReductionAxes(n.shape, o);return t.length > 0 ? e.sum(t).reshape(n.shape) : e;
-      }, $b: function () {
-        var t = e.mul(n.div(r).floor().neg()),
-            a = getReductionAxes(r.shape, o);return a.length > 0 ? t.sum(a).reshape(r.shape) : t;
-      } };
-  });
-}function modStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in modStrict: "), e.mod(t);
-}function minimum_(e, t) {
-  var n = convertToTensor(e, "a", "minimum"),
-      r = convertToTensor(t, "b", "minimum");assertTypesMatch(n, r), "bool" === n.dtype && (n = n.toInt()), "bool" === r.dtype && (r = r.toInt()), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.minimum(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        return e.mul(n.lessEqual(r).toFloat());
-      }, $b: function () {
-        return e.mul(n.greater(r).toFloat());
-      } };
-  });
-}function minimumStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in minimumStrict: "), e.minimum(t);
-}function maximum_(e, t) {
-  var n = convertToTensor(e, "a", "maximum"),
-      r = convertToTensor(t, "b", "maximum");assertTypesMatch(n, r), "bool" === n.dtype && (n = n.toInt()), "bool" === r.dtype && (r = r.toInt()), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.maximum(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        return e.mul(n.greaterEqual(r).toFloat());
-      }, $b: function () {
-        return e.mul(n.less(r).toFloat());
-      } };
-  });
-}function maximumStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in minimumStrict: "), e.maximum(t);
-}function squaredDifference_(e, t) {
-  var n = convertToTensor(e, "a", "squaredDifference"),
-      r = convertToTensor(t, "b", "squaredDifference");assertTypesMatch(n, r), assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.squaredDifference(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    var t = scalar(2);return { $a: function () {
-        return e.mul(n.sub(r).mul(t));
-      }, $b: function () {
-        return e.mul(r.sub(n).mul(t));
-      } };
-  });
-}function squaredDifferenceStrict_(e, t) {
-  return assertShapesMatch(e.shape, t.shape, "Error in squaredDifferenceStrict: "), e.squaredDifference(t);
-}function atan2_(e, t) {
-  var n = convertToTensor(e, "a", "atan2"),
-      r = convertToTensor(t, "b", "atan2");assertTypesMatch(n, r);var o = assertAndGetBroadcastShape(n.shape, r.shape);return ENV.engine.runKernel(function (e) {
-    return e.atan2(n, r);
-  }, { $a: n, $b: r }, function (e) {
-    return { $a: function () {
-        var t = add(n.square(), r.square()),
-            a = e.mul(r.div(t)),
-            i = getReductionAxes(n.shape, o);return i.length > 0 && (a = a.sum(i)), a.reshape(n.shape);
-      }, $b: function () {
-        var t = add(n.square(), r.square()),
-            a = neg(e.mul(n.div(t))),
-            i = getReductionAxes(r.shape, o);return i.length > 0 && (a = a.sum(i)), a.reshape(r.shape);
-      } };
-  });
-}var add = op({ add_: add_ }),
-    addN = op({ addN_: addN_ }),
-    addStrict = op({ addStrict_: addStrict_ }),
-    atan2 = op({ atan2_: atan2_ }),
-    div = op({ div_: div_ }),
-    divStrict = op({ divStrict_: divStrict_ }),
-    floorDiv = op({ floorDiv_: floorDiv_ }),
-    maximum = op({ maximum_: maximum_ }),
-    maximumStrict = op({ maximumStrict_: maximumStrict_ }),
-    minimum = op({ minimum_: minimum_ }),
-    minimumStrict = op({ minimumStrict_: minimumStrict_ }),
-    mod = op({ mod_: mod_ }),
-    modStrict = op({ modStrict_: modStrict_ }),
-    mul = op({ mul_: mul_ }),
-    mulStrict = op({ mulStrict_: mulStrict_ }),
-    pow = op({ pow_: pow_ }),
-    powStrict = op({ powStrict_: powStrict_ }),
-    squaredDifference = op({ squaredDifference_: squaredDifference_ }),
-    squaredDifferenceStrict = op({ squaredDifferenceStrict_: squaredDifferenceStrict_ }),
-    sub = op({ sub_: sub_ }),
-    subStrict = op({ subStrict_: subStrict_ });function logicalNot_(e) {
-  var t = convertToTensor(e, "x", "logicalNot", "bool");return assert("bool" === t.dtype, "Error Array must be of type bool."), ENV.engine.runKernel(function (e) {
-    return e.logicalNot(t);
-  }, { $x: t });
-}function logicalAnd_(e, t) {
-  var n = convertToTensor(e, "a", "logicalAnd", "bool"),
-      r = convertToTensor(t, "b", "logicalAnd", "bool");return assert("bool" === n.dtype && "bool" === r.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.logicalAnd(n, r);
-  }, { $a: n, $b: r });
-}function logicalOr_(e, t) {
-  var n = convertToTensor(e, "a", "logicalOr", "bool"),
-      r = convertToTensor(t, "b", "logicalOr", "bool");return assert("bool" === n.dtype && "bool" === r.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(n.shape, r.shape), ENV.engine.runKernel(function (e) {
-    return e.logicalOr(n, r);
-  }, { $a: n, $b: r });
-}function logicalXor_(e, t) {
-  var n = convertToTensor(e, "a", "logicalXor", "bool"),
-      r = convertToTensor(t, "b", "logicalXor", "bool");return assert("bool" === n.dtype && "bool" === r.dtype, "Error Array must be of type bool."), assertAndGetBroadcastShape(n.shape, r.shape), logicalOr(e, t).logicalAnd(logicalAnd(e, t).logicalNot());
-}function where_(e, t, n) {
-  var r = convertToTensor(t, "a", "where"),
-      o = convertToTensor(n, "b", "where"),
-      a = convertToTensor(e, "condition", "where", "bool");assert("bool" === a.dtype, "Error Condition must be of type bool."), assertShapesMatch(r.shape, o.shape, "Error in where: "), 1 === a.rank ? assert(a.shape[0] === r.shape[0], "The first dimension of `a` must match the size of `condition`.") : assertShapesMatch(a.shape, o.shape, "Error in where: ");return ENV.engine.runKernel(function (e) {
-    return e.select(a, r, o);
-  }, { $condition: a, $a: r, $b: o }, function (e) {
-    return { $condition: function () {
-        return zerosLike(a);
-      }, $a: function () {
-        return e.mul(a.cast(r.dtype));
-      }, $b: function () {
-        return e.mul(a.logicalNot().cast(o.dtype));
-      } };
-  });
-}function whereAsync_(e) {
-  return __awaiter(this, void 0, void 0, function () {
-    var t, n, r;return __generator(this, function (o) {
-      switch (o.label) {case 0:
-          return assert("bool" === (t = convertToTensor(e, "condition", "where", "bool")).dtype, "Condition must be of type bool."), [4, t.data()];case 1:
-          return n = o.sent(), r = whereImpl(t.shape, n), e !== t && t.dispose(), [2, r];}
-    });
-  });
-}var logicalAnd = op({ logicalAnd_: logicalAnd_ }),
-    logicalNot = op({ logicalNot_: logicalNot_ }),
-    logicalOr = op({ logicalOr_: logicalOr_ }),
-    logicalXor = op({ logicalXor_: logicalXor_ }),
-    where = op({ where_: where_ }),
-    whereAsync = whereAsync_;function relu_(e) {
-  var t = convertToTensor(e, "x", "relu");if ("bool" === t.dtype) return t.toInt();return ENV.engine.runKernel(function (e) {
-    return e.relu(t);
-  }, { $x: t }, function (e) {
-    var n = t.step();return { $x: function () {
-        return e.mulStrict(n.toFloat());
-      } };
-  });
-}function elu_(e) {
-  var t = convertToTensor(e, "x", "elu");return ENV.engine.runKernel(function (e, n) {
-    return n(e.elu(t));
-  }, { $x: t }, function (e, t) {
-    var n = t[0];return { $x: function () {
-        return ENV.engine.runKernel(function (t) {
-          return t.eluDer(e, n);
-        }, { dy: e, y: n });
-      } };
-  });
-}function selu_(e) {
-  var t = convertToTensor(e, "x", "selu");return ENV.engine.runKernel(function (e) {
-    return e.selu(t);
-  }, { $x: t }, function (e) {
-    return { $x: function () {
-        var n = t.greater(scalar(0)),
-            r = scalar(SELU_SCALEALPHA),
-            o = scalar(SELU_SCALE),
-            a = e.mul(o),
-            i = e.mul(r).mul(t.toFloat().exp());return where(n, a, i);
-      } };
-  });
-}function leakyRelu_(e, t) {
-  void 0 === t && (t = .2);var n = convertToTensor(e, "x", "leakyRelu");return maximum(scalar(t).mul(n), n);
-}function prelu_(e, t) {
-  var n = convertToTensor(e, "x", "prelu"),
-      r = convertToTensor(t, "alpha", "prelu"),
-      o = scalar(0);return maximum(o, n).add(r.mul(minimum(o, n)));
-}var elu = op({ elu_: elu_ }),
-    leakyRelu = op({ leakyRelu_: leakyRelu_ }),
-    prelu = op({ prelu_: prelu_ }),
-    relu = op({ relu_: relu_ }),
-    selu = op({ selu_: selu_ });function transpose_(e, t) {
-  var n = convertToTensor(e, "x", "transpose");if (null == t && (t = n.shape.map(function (e, t) {
-    return t;
-  }).reverse()), assert(n.rank === t.length, "Error in transpose: rank of input " + n.rank + " must match length of perm " + t + "."), t.forEach(function (e) {
-    assert(e >= 0 && e < n.rank, "All entries in 'perm' must be between 0 and " + (n.rank - 1) + " but got " + t);
-  }), n.rank <= 1) return n.clone();return ENV.engine.runKernel(function (e) {
-    return e.transpose(n, t);
-  }, { $x: n }, function (e) {
-    var n = getUndoAxesPermutation(t);return { $x: function () {
-        return e.transpose(n);
-      } };
-  });
-}var transpose = op({ transpose_: transpose_ });function localResponseNormalization_(e, t, n, r, o) {
-  void 0 === t && (t = 5), void 0 === n && (n = 1), void 0 === r && (r = 1), void 0 === o && (o = .5);var a = convertToTensor(e, "x", "localResponseNormalization");assert(4 === a.rank || 3 === a.rank, "Error in localResponseNormalization: x must be rank 3 or 4 but got\n               rank " + a.rank + "."), assert(isInt(t), "Error in localResponseNormalization: depthRadius must be an integer\n                     but got depthRadius " + t + ".");var i = a,
-      s = !1;3 === a.rank && (s = !0, i = a.as4D(1, a.shape[0], a.shape[1], a.shape[2]));var u = ENV.engine.runKernel(function (e, a) {
-    return a(e.localResponseNormalization4D(i, t, n, r, o));
-  }, { x4D: i }, function (e, a) {
-    var s = a[0];return { x4D: function () {
-        return ENV.engine.runKernel(function (a) {
-          return a.LRNGrad(e, i, s, t, n, r, o);
-        }, {});
-      } };
-  });return s ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
-}var localResponseNormalization = op({ localResponseNormalization_: localResponseNormalization_ });function norm_(e, t, n, r) {
-  void 0 === t && (t = "euclidean"), void 0 === n && (n = null), void 0 === r && (r = !1);var o = normImpl(e = convertToTensor(e, "x", "norm"), t, n),
-      a = o.shape;if (r) {
-    var i = parseAxisParam(n, e.shape);a = expandShapeToKeepDim(o.shape, i);
-  }return o.reshape(a);
-}function normImpl(e, t, n) {
-  if (void 0 === n && (n = null), 0 === e.rank) return e.abs();if (1 !== e.rank && null === n) return normImpl(e.reshape([-1]), t, n);if (1 === e.rank || "number" == typeof n || n instanceof Array && 1 === n.length) {
-    if (1 === t) return e.abs().sum(n);if (t === 1 / 0) return e.abs().max(n);if (t === -1 / 0) return e.abs().min(n);if ("euclidean" === t || 2 === t) return e.abs().pow(scalar(2, "int32")).sum(n).sqrt();throw new Error("Error in norm: invalid ord value: " + t);
-  }if (n instanceof Array && 2 === n.length) {
-    if (1 === t) return e.abs().sum(n[0]).max(n[1] - 1);if (t === 1 / 0) return e.abs().sum(n[1]).max(n[0]);if (t === -1 / 0) return e.abs().sum(n[1]).min(n[0]);if ("fro" === t || "euclidean" === t) return e.square().sum(n).sqrt();throw new Error("Error in norm: invalid ord value: " + t);
-  }throw new Error("Error in norm: invalid axis: " + n);
-}var norm = op({ norm_: norm_ });function unsortedSegmentSum_(e, t, n) {
-  var r = convertToTensor(e, "x", "unsortedSegmentSum"),
-      o = convertToTensor(t, "segmentIds", "unsortedSegmentSum", "int32");assert("int32" === o.dtype, "segmentIds must be of dtype `int32`"), assert(isInt(n), "numSegments must be of dtype int");return ENV.engine.runKernel(function (e) {
-    return e.unsortedSegmentSum(r, o, n);
-  }, { $x: r }, function (e) {
-    return { $x: function () {
-        return gatherDropNegatives(e, o);
-      } };
-  });
-}function gather_(e, t, n) {
-  void 0 === n && (n = 0);var r = convertToTensor(e, "x", "gather"),
-      o = convertToTensor(t, "indices", "gather", "int32");assert("int32" === o.dtype, "Indices must be of dtype `int32`"), n = parseAxisParam(n, r.shape)[0];return ENV.engine.runKernel(function (e) {
-    return e.gather(r, o, n);
-  }, { $x: r }, function (e) {
-    return { $x: function () {
-        if (0 === n) return unsortedSegmentSum(e, o, r.shape[n]);var t = r.shape,
-            a = o.size,
-            i = t.slice(0, n),
-            s = i.length,
-            u = t.slice(n, t.length).slice(1),
-            l = u.length,
-            c = arrayRange(0, s),
-            p = arrayRange(s + 1, s + 1 + l),
-            d = arrayConcat([i, [a], u]),
-            h = e.reshape(d),
-            f = o.reshape([a]),
-            m = arrayConcat([[s], c, p]),
-            g = h.transpose(m),
-            v = unsortedSegmentSum(g, f, r.shape[n]),
-            y = getUndoAxesPermutation(m);return v = v.transpose(y);
-      } };
-  });
-}function arrayRange(e, t) {
-  for (var n = [], r = e; r < t; ++r) n.push(r);return n;
-}function arrayConcat(e) {
-  for (var t = [], n = 0; n < e.length; ++n) for (var r = 0; r < e[n].length; ++r) t.push(e[n][r]);return t;
-}function gatherDropNegatives(e, t) {
-  for (var n = maximum(t, zerosLike(t)), r = gather(e, n), o = greaterEqual(t, scalar(0, "int32")), a = r.rank - o.rank, i = 0; i < a; ++i) o = expandDims(o, i + 1);o = logicalAnd(o, ones$1(r.shape, "bool"));var s = zerosLike(r);return where(o, r, s);
-}var gather = op({ gather_: gather_ }),
-    unsortedSegmentSum = op({ unsortedSegmentSum_: unsortedSegmentSum_ });function multiRNNCell_(e, t, n, r) {
-  for (var o = convertToTensor(t, "data", "multiRNNCell"), a = convertToTensorArray(n, "c", "multiRNNCell"), i = convertToTensorArray(r, "h", "multiRNNCell"), s = o, u = [], l = 0; l < e.length; l++) {
-    var c = e[l](s, a[l], i[l]);u.push(c[0]), u.push(c[1]), s = c[1];
-  }var p = [],
-      d = [];for (l = 0; l < u.length; l += 2) p.push(u[l]), d.push(u[l + 1]);return [p, d];
-}function basicLSTMCell_(e, t, n, r, o, a) {
-  var i = convertToTensor(e, "forgetBias", "basicLSTMCell"),
-      s = convertToTensor(t, "lstmKernel", "basicLSTMCell"),
-      u = convertToTensor(n, "lstmBias", "basicLSTMCell"),
-      l = convertToTensor(r, "data", "basicLSTMCell"),
-      c = convertToTensor(o, "c", "basicLSTMCell"),
-      p = convertToTensor(a, "h", "basicLSTMCell"),
-      d = l.concat(p, 1).matMul(s).add(u),
-      h = d.shape[0],
-      f = d.shape[1] / 4,
-      m = [h, f],
-      g = d.slice([0, 0], m),
-      v = d.slice([0, f], m),
-      y = d.slice([0, 2 * f], m),
-      x = d.slice([0, 3 * f], m),
-      T = g.sigmoid().mulStrict(v.tanh()).addStrict(c.mulStrict(i.add(y).sigmoid()));return [T, T.tanh().mulStrict(x.sigmoid())];
-}var basicLSTMCell = op({ basicLSTMCell_: basicLSTMCell_ }),
-    multiRNNCell = op({ multiRNNCell_: multiRNNCell_ });function movingAverage_(e, t, n, r, o) {
-  void 0 === o && (o = !0);var a = convertToTensor(e, "v", "movingAverage"),
-      i = convertToTensor(t, "x", "movingAverage"),
-      s = convertToTensor(n, "decay", "movingAverage");assertTypesMatch(a, i), assert(arraysEqual(a.shape, i.shape), "Shape mismatch in v and x");var u = scalar(1),
-      l = u.sub(s),
-      c = i.sub(a).mul(l);if (o) {
-    assert(null != r, "When using zeroDebias: true, step is required.");var p = convertToTensor(r, "step", "movingAverage");c = c.div(u.sub(pow(s, p)));
-  }return a.add(c);
-}var movingAverage = op({ movingAverage_: movingAverage_ });function stridedSlice_(e, t, n, r, o, a) {
-  void 0 === o && (o = 0), void 0 === a && (a = 0);var i = convertToTensor(e, "x", "stridedSlice");return ENV.engine.runKernel(function (e) {
-    return e.stridedSlice(i, t, n, r, o, a);
-  }, { $x: i });
-}var stridedSlice = op({ stridedSlice_: stridedSlice_ });function topk_(e, t, n) {
-  void 0 === t && (t = 1), void 0 === n && (n = !0);var r = convertToTensor(e, "x", "topk");if (0 === r.rank) throw new Error("topk() expects the input to be of rank 1 or higher");var o = r.shape[r.shape.length - 1];if (t > o) throw new Error("'k' passed to topk() must be <= the last dimension (" + o + ") but got " + t);var a = ENV.engine.runKernel(function (e) {
-    return e.topk(r, t, n);
-  }, { $x: r });return { values: a[0], indices: a[1] };
-}var Reduction,
-    topk = op({ topk_: topk_ });function computeWeightedLoss_(e, t, n) {
-  void 0 === n && (n = Reduction.SUM_BY_NONZERO_WEIGHTS);var r = convertToTensor(e, "losses", "computeWeightedLoss"),
-      o = null;null != t && (o = convertToTensor(t, "weights", "computeWeightedLoss"));var a = null == o ? r : r.mul(o);if (n === Reduction.NONE) return a;if (n === Reduction.SUM) return a.sum();if (n === Reduction.MEAN) {
-    if (null == o) return a.mean();var i = sizeFromShape(r.shape) / sizeFromShape(o.shape),
-        s = a.sum().div(o.sum());return i > 1 ? s.div(scalar(i)) : s;
-  }if (n === Reduction.SUM_BY_NONZERO_WEIGHTS) {
-    if (null == o) return a.sum().div(scalar(r.size));var u = o.mul(ones$1(r.shape)).notEqual(scalar(0)).sum().toFloat();return a.sum().div(u);
-  }throw Error("Unknown reduction: " + n);
-}function absoluteDifference_(e, t, n, r) {
-  void 0 === r && (r = Reduction.SUM_BY_NONZERO_WEIGHTS);var o = convertToTensor(e, "labels", "absoluteDifference"),
-      a = convertToTensor(t, "predictions", "absoluteDifference"),
-      i = null;null != n && (i = convertToTensor(n, "weights", "absoluteDifference")), assertShapesMatch(o.shape, a.shape, "Error in absoluteDifference: ");var s = o.sub(a).abs();return computeWeightedLoss(s, i, r);
-}function meanSquaredError_(e, t, n, r) {
-  void 0 === r && (r = Reduction.SUM_BY_NONZERO_WEIGHTS);var o = convertToTensor(e, "labels", "meanSquaredError"),
-      a = convertToTensor(t, "predictions", "meanSquaredError"),
-      i = null;null != n && (i = convertToTensor(n, "weights", "meanSquaredError")), assertShapesMatch(o.shape, a.shape, "Error in meanSquaredError: ");var s = o.squaredDifference(a);return computeWeightedLoss(s, i, r);
-}function cosineDistance_(e, t, n, r, o) {
-  void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(e, "labels", "cosineDistance"),
-      i = convertToTensor(t, "predictions", "cosineDistance"),
-      s = null;null != r && (s = convertToTensor(r, "weights", "cosineDistance")), assertShapesMatch(a.shape, i.shape, "Error in cosineDistance: ");var u = scalar(1).sub(a.mul(i).sum(n, !0));return computeWeightedLoss(u, s, o);
-}function hingeLoss_(e, t, n, r) {
-  void 0 === r && (r = Reduction.SUM_BY_NONZERO_WEIGHTS);var o = convertToTensor(e, "labels", "hingeLoss"),
-      a = convertToTensor(t, "predictions", "hingeLoss"),
-      i = null;null != n && (i = convertToTensor(n, "weights", "hingeLoss")), assertShapesMatch(o.shape, a.shape, "Error in hingeLoss: ");var s = scalar(1);o = scalar(2).mul(o).sub(s);var u = s.sub(o.mul(a)).relu();return computeWeightedLoss(u, i, r);
-}function logLoss_(e, t, n, r, o) {
-  void 0 === r && (r = 1e-7), void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(e, "labels", "logLoss"),
-      i = convertToTensor(t, "predictions", "logLoss"),
-      s = null;null != n && (s = convertToTensor(n, "weights", "logLoss")), assertShapesMatch(a.shape, i.shape, "Error in logLoss: ");var u = scalar(1),
-      l = scalar(r),
-      c = a.mul(i.add(l).log()).neg().sub(u.sub(a).mul(u.sub(i).add(l).log()));return computeWeightedLoss(c, s, o);
-}function sigmoidCrossEntropyWithLogits_(e, t) {
-  var n = convertToTensor(e, "labels", "sigmoidCrossEntropyWithLogits"),
-      r = convertToTensor(t, "logits", "sigmoidCrossEntropyWithLogits");assertShapesMatch(n.shape, r.shape, "Error in sigmoidCrossEntropyWithLogits: ");var o = r.relu(),
-      a = r.mul(n),
-      i = r.abs().neg().exp().log1p();return o.sub(a).add(i);
-}function sigmoidCrossEntropy_(e, t, n, r, o) {
-  void 0 === r && (r = 0), void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(e, "multiClassLabels", "sigmoidCrossEntropy"),
-      i = convertToTensor(t, "logits", "sigmoidCrossEntropy"),
-      s = null;if (null != n && (s = convertToTensor(n, "weights", "sigmoidCrossEntropy")), assertShapesMatch(a.shape, i.shape, "Error in sigmoidCrossEntropy: "), r > 0) {
-    var u = scalar(r),
-        l = scalar(1),
-        c = scalar(.5);a = a.mul(l.sub(u)).add(c.mul(u));
-  }var p = sigmoidCrossEntropyWithLogits_(a, i);return computeWeightedLoss(p, s, o);
-}function huberLoss_(e, t, n, r, o) {
-  void 0 === r && (r = 1), void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(e, "labels", "huberLoss"),
-      i = convertToTensor(t, "predictions", "huberLoss"),
-      s = null;null != n && (s = convertToTensor(n, "weights", "huberLoss")), assertShapesMatch(a.shape, i.shape, "Error in huberLoss: ");var u = scalar(r),
-      l = i.sub(a).abs(),
-      c = minimum(l, u),
-      p = l.sub(c),
-      d = scalar(.5).mul(c.square()).add(u.mul(p));return computeWeightedLoss(d, s, o);
-}function softmaxCrossEntropyWithLogits_(e, t, n) {
-  if (void 0 === n && (n = -1), -1 === n && (n = t.rank - 1), n !== t.rank - 1) throw Error("Softmax cross entropy along a non-last dimension is not yet supported. Labels / logits was rank " + t.rank + " and dim was " + n);return customGrad(function (e, t) {
-    var r = t.logSumExp([n], !0),
-        o = t.toFloat().sub(r);return { value: o.mul(e).neg().sum([n]), gradFunc: function (t) {
-        var r = expandShapeToKeepDim(t.shape, [n]);return [t.reshape(r).mul(e.toFloat().sub(o.exp())), t.reshape(r).mul(o.exp().sub(e.toFloat()))];
-      } };
-  })(e, t);
-}function softmaxCrossEntropy_(e, t, n, r, o) {
-  void 0 === r && (r = 0), void 0 === o && (o = Reduction.SUM_BY_NONZERO_WEIGHTS);var a = convertToTensor(e, "onehotLabels", "softmaxCrossEntropy"),
-      i = convertToTensor(t, "logits", "softmaxCrossEntropy"),
-      s = null;if (null != n && (s = convertToTensor(n, "weights", "softmaxCrossEntropy")), assertShapesMatch(a.shape, i.shape, "Error in softmaxCrossEntropy: "), r > 0) {
-    var u = scalar(r),
-        l = scalar(1),
-        c = scalar(a.shape[1]);a = a.mul(l.sub(u)).add(u.div(c));
-  }var p = softmaxCrossEntropyWithLogits_(a, i);return computeWeightedLoss(p, s, o);
-}!function (e) {
-  e[e.NONE = 0] = "NONE", e[e.MEAN = 1] = "MEAN", e[e.SUM = 2] = "SUM", e[e.SUM_BY_NONZERO_WEIGHTS = 3] = "SUM_BY_NONZERO_WEIGHTS";
-}(Reduction || (exports.Reduction = Reduction = {}));var absoluteDifference = op({ absoluteDifference_: absoluteDifference_ }),
-    computeWeightedLoss = op({ computeWeightedLoss_: computeWeightedLoss_ }),
-    cosineDistance = op({ cosineDistance_: cosineDistance_ }),
-    hingeLoss = op({ hingeLoss_: hingeLoss_ }),
-    huberLoss = op({ huberLoss_: huberLoss_ }),
-    logLoss = op({ logLoss_: logLoss_ }),
-    meanSquaredError = op({ meanSquaredError_: meanSquaredError_ }),
-    sigmoidCrossEntropy = op({ sigmoidCrossEntropy_: sigmoidCrossEntropy_ }),
-    softmaxCrossEntropy = op({ softmaxCrossEntropy_: softmaxCrossEntropy_ }),
-    loss_ops = Object.freeze({ get Reduction() {
-    return Reduction;
-  }, absoluteDifference: absoluteDifference, computeWeightedLoss: computeWeightedLoss, cosineDistance: cosineDistance, hingeLoss: hingeLoss, huberLoss: huberLoss, logLoss: logLoss, meanSquaredError: meanSquaredError, sigmoidCrossEntropy: sigmoidCrossEntropy, softmaxCrossEntropy: softmaxCrossEntropy });function gramSchmidt_(e) {
-  var t;if (Array.isArray(e)) {
-    t = !1, assert(null != e && e.length > 0, "Gram-Schmidt process: input must not be null, undefined, or empty");for (var n = e[0].shape[0], r = 1; r < e.length; ++r) assert(e[r].shape[0] === n, "Gram-Schmidt: Non-unique lengths found in the input vectors: (" + e[r].shape[0] + " vs. " + n + ")");
-  } else t = !0, e = split(e, e.shape[0], 0).map(function (e) {
-    return squeeze(e, [0]);
-  });assert(e.length <= e[0].shape[0], "Gram-Schmidt: Number of vectors (" + e.length + ") exceeds number of dimensions (" + e[0].shape[0] + ").");var o = [],
-      a = e,
-      i = function (e) {
-    o.push(ENV.engine.tidy(function () {
-      var t = a[e];if (e > 0) for (var n = 0; n < e; ++n) {
-        var r = sum(o[n].mulStrict(t)).mul(o[n]);t = t.sub(r);
-      }return t.div(norm(t, "euclidean"));
-    }));
-  };for (r = 0; r < e.length; ++r) i(r);return t ? stack(o, 0) : o;
-}function qr_(e, t) {
-  if (void 0 === t && (t = !1), e.rank < 2) throw new Error("qr() requires input tensor to have a rank >= 2, but got rank " + e.rank);if (2 === e.rank) return qr2d(e, t);var n = e.shape.slice(0, e.shape.length - 2).reduce(function (e, t) {
-    return e * t;
-  }),
-      r = [],
-      o = [];return unstack(e.reshape([n, e.shape[e.shape.length - 2], e.shape[e.shape.length - 1]]), 0).forEach(function (e) {
-    var n = qr2d(e, t),
-        a = n[0],
-        i = n[1];r.push(a), o.push(i);
-  }), [stack(r, 0).reshape(e.shape), stack(o, 0).reshape(e.shape)];
-}function qr2d(e, t) {
-  return void 0 === t && (t = !1), ENV.engine.tidy(function () {
-    if (2 !== e.shape.length) throw new Error("qr2d() requires a 2D Tensor, but got a " + e.shape.length + "D Tensor.");for (var n = e.shape[0], r = e.shape[1], o = eye(n), a = e.clone(), i = tensor2d([[1]], [1, 1]), s = i.clone(), u = n >= r ? r : n, l = function (e) {
-      var t,
-          u = a,
-          l = s,
-          c = o;t = ENV.engine.tidy(function () {
-        var t = a.slice([e, e], [n - e, 1]),
-            u = t.norm(),
-            l = a.slice([e, e], [1, 1]),
-            c = l.sign().neg(),
-            p = l.sub(c.mul(u)),
-            d = t.div(p);s = 1 === d.shape[0] ? i.clone() : i.concat(d.slice([1, 0], [d.shape[0] - 1, d.shape[1]]), 0);var h = c.matMul(p).div(u).neg(),
-            f = a.slice([e, 0], [n - e, r]),
-            m = h.mul(s);a = 0 === e ? f.sub(m.matMul(s.transpose().matMul(f))) : a.slice([0, 0], [e, r]).concat(f.sub(m.matMul(s.transpose().matMul(f))), 0);var g = o.slice([0, e], [n, o.shape[1] - e]);return o = 0 === e ? g.sub(g.matMul(s).matMul(m.transpose())) : o.slice([0, 0], [n, e]).concat(g.sub(g.matMul(s).matMul(m.transpose())), 1), [s, a, o];
-      }), s = t[0], a = t[1], o = t[2], dispose([u, l, c]);
-    }, c = 0; c < u; ++c) l(c);return !t && n > r && (o = o.slice([0, 0], [n, r]), a = a.slice([0, 0], [r, r])), [o, a];
-  });
-}var gramSchmidt = op({ gramSchmidt_: gramSchmidt_ }),
-    qr = op({ qr_: qr_ }),
-    linalg_ops = Object.freeze({ gramSchmidt: gramSchmidt, qr: qr });function resizeBilinear_(e, t, n) {
-  void 0 === n && (n = !1);var r = convertToTensor(e, "images", "resizeBilinear");assert(3 === r.rank || 4 === r.rank, "Error in resizeBilinear: x must be rank 3 or 4, but got rank " + r.rank + "."), assert(2 === t.length, "Error in resizeBilinear: new shape must 2D, but got shape " + t + ".");var o = r,
-      a = !1;3 === r.rank && (a = !0, o = r.as4D(1, r.shape[0], r.shape[1], r.shape[2]));var i = t[0],
-      s = t[1],
-      u = ENV.engine.runKernel(function (e, t) {
-    return e.resizeBilinear(o, i, s, n);
-  }, { batchImages: o }, function (e, t) {
-    return { batchImages: function () {
-        return ENV.engine.runKernel(function (t) {
-          return t.resizeBilinearBackprop(e, o, n);
-        }, {});
-      } };
-  });return a ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
-}function resizeNearestNeighbor_(e, t, n) {
-  void 0 === n && (n = !1);var r = convertToTensor(e, "images", "resizeNearestNeighbor");assert(3 === r.rank || 4 === r.rank, "Error in resizeNearestNeighbor: x must be rank 3 or 4, but got rank " + r.rank + "."), assert(2 === t.length, "Error in resizeNearestNeighbor: new shape must 2D, but got shape " + t + "."), assert("float32" === r.dtype || "int32" === r.dtype, "`images` must have `int32` or `float32` as dtype");var o = r,
-      a = !1;3 === r.rank && (a = !0, o = r.as4D(1, r.shape[0], r.shape[1], r.shape[2]));var i = t[0],
-      s = t[1],
-      u = ENV.engine.runKernel(function (e, t) {
-    return e.resizeNearestNeighbor(o, i, s, n);
-  }, { batchImages: o }, function (e, t) {
-    return { batchImages: function () {
-        return ENV.engine.runKernel(function (t) {
-          return t.resizeNearestNeighborBackprop(e, o, n);
-        }, {});
-      } };
-  });return a ? u.as3D(u.shape[1], u.shape[2], u.shape[3]) : u;
-}function nonMaxSuppression_(e, t, n, r, o) {
-  void 0 === r && (r = .5), void 0 === o && (o = Number.NEGATIVE_INFINITY);var a = convertToTensor(e, "boxes", "nonMaxSuppression"),
-      i = convertToTensor(t, "scores", "nonMaxSuppression"),
-      s = nonMaxSuppSanityCheck(a, i, n, r, o);return n = s.maxOutputSize, r = s.iouThreshold, o = s.scoreThreshold, ENV.engine.runKernel(function (e) {
-    return e.nonMaxSuppression(a, i, n, r, o);
-  }, { $boxes: a });
-}function nonMaxSuppressionAsync_(e, t, n, r, o) {
-  return void 0 === r && (r = .5), void 0 === o && (o = Number.NEGATIVE_INFINITY), __awaiter(this, void 0, void 0, function () {
-    var a, i, s, u, l, c;return __generator(this, function (p) {
-      switch (p.label) {case 0:
-          return a = convertToTensor(e, "boxes", "nonMaxSuppressionAsync"), i = convertToTensor(t, "scores", "nonMaxSuppressionAsync"), s = nonMaxSuppSanityCheck(a, i, n, r, o), n = s.maxOutputSize, r = s.iouThreshold, o = s.scoreThreshold, [4, a.data()];case 1:
-          return u = p.sent(), [4, i.data()];case 2:
-          return l = p.sent(), c = nonMaxSuppressionImpl(u, l, n, r, o), a !== e && a.dispose(), i !== t && i.dispose(), [2, c];}
-    });
-  });
-}function nonMaxSuppSanityCheck(e, t, n, r, o) {
-  null == r && (r = .5), null == o && (o = Number.NEGATIVE_INFINITY);var a = e.shape[0];return n = Math.min(n, a), assert(0 <= r && r <= 1, "iouThreshold must be in [0, 1], but was '" + r + "'"), assert(2 === e.rank, "boxes must be a 2D tensor, but was of rank '" + e.rank + "'"), assert(4 === e.shape[1], "boxes must have 4 columns, but 2nd dimension was " + e.shape[1]), assert(1 === t.rank, "scores must be a 1D tensor"), assert(t.shape[0] === a, "scores has incompatible shape with boxes. Expected " + a + ", but was " + t.shape[0]), { maxOutputSize: n, iouThreshold: r, scoreThreshold: o };
-}var resizeBilinear = op({ resizeBilinear_: resizeBilinear_ }),
-    resizeNearestNeighbor = op({ resizeNearestNeighbor_: resizeNearestNeighbor_ }),
-    nonMaxSuppression = op({ nonMaxSuppression_: nonMaxSuppression_ }),
-    nonMaxSuppressionAsync = nonMaxSuppressionAsync_,
-    image_ops = Object.freeze({ resizeBilinear: resizeBilinear, resizeNearestNeighbor: resizeNearestNeighbor, nonMaxSuppression: nonMaxSuppression, nonMaxSuppressionAsync: nonMaxSuppressionAsync }),
-    ops = Object.freeze({ image: image_ops, linalg: linalg_ops, losses: loss_ops, op: op, batchNormalization2d: batchNormalization2d, batchNormalization3d: batchNormalization3d, batchNormalization4d: batchNormalization4d, batchNormalization: batchNormalization, concat: concat, concat1d: concat1d, concat2d: concat2d, concat3d: concat3d, concat4d: concat4d, conv1d: conv1d, conv2d: conv2d, depthwiseConv2d: depthwiseConv2d, separableConv2d: separableConv2d, conv2dTranspose: conv2dTranspose, matMul: matMul, dot: dot, outerProduct: outerProduct, reverse: reverse, reverse1d: reverse1d, reverse2d: reverse2d, reverse3d: reverse3d, reverse4d: reverse4d, maxPool: maxPool, avgPool: avgPool, slice: slice, slice1d: slice1d, slice2d: slice2d, slice3d: slice3d, slice4d: slice4d, abs: abs, acos: acos, acosh: acosh, asin: asin, asinh: asinh, atan: atan, atanh: atanh, ceil: ceil, clipByValue: clipByValue, cos: cos, cosh: cosh, erf: erf, exp: exp, expm1: expm1, floor: floor, log: log$1, log1p: log1p, logSigmoid: logSigmoid, neg: neg, reciprocal: reciprocal, round: round, rsqrt: rsqrt, sigmoid: sigmoid, sign: sign, sin: sin, sinh: sinh, softplus: softplus, sqrt: sqrt, square: square, step: step, tan: tan, tanh: tanh$1, all: all, any: any, argMax: argMax, argMin: argMin, logSumExp: logSumExp, max: max, mean: mean, min: min, moments: moments, sum: sum, equal: equal, equalStrict: equalStrict, greater: greater, greaterEqual: greaterEqual, greaterEqualStrict: greaterEqualStrict, greaterStrict: greaterStrict, less: less, lessEqual: lessEqual, lessEqualStrict: lessEqualStrict, lessStrict: lessStrict, notEqual: notEqual, notEqualStrict: notEqualStrict, add: add, addN: addN, addStrict: addStrict, atan2: atan2, div: div, divStrict: divStrict, floorDiv: floorDiv, maximum: maximum, maximumStrict: maximumStrict, minimum: minimum, minimumStrict: minimumStrict, mod: mod, modStrict: modStrict, mul: mul, mulStrict: mulStrict, pow: pow, powStrict: powStrict, squaredDifference: squaredDifference, squaredDifferenceStrict: squaredDifferenceStrict, sub: sub, subStrict: subStrict, elu: elu, leakyRelu: leakyRelu, prelu: prelu, relu: relu, selu: selu, logicalAnd: logicalAnd, logicalNot: logicalNot, logicalOr: logicalOr, logicalXor: logicalXor, where: where, whereAsync: whereAsync, buffer: buffer, toPixels: toPixels, print: print, cast: cast, clone: clone, cumsum: cumsum, expandDims: expandDims, eye: eye, fromPixels: fromPixels, multinomial: multinomial, oneHot: oneHot, pad: pad, pad1d: pad1d, pad2d: pad2d, pad3d: pad3d, pad4d: pad4d, rand: rand, randomNormal: randomNormal, randomUniform: randomUniform, reshape: reshape, split: split, squeeze: squeeze, stack: stack, tile: tile, truncatedNormal: truncatedNormal, unstack: unstack, batchToSpaceND: batchToSpaceND, spaceToBatchND: spaceToBatchND, fill: fill, linspace: linspace, ones: ones$1, range: range, scalar: scalar, tensor: tensor, tensor1d: tensor1d, tensor2d: tensor2d, tensor3d: tensor3d, tensor4d: tensor4d, tensor5d: tensor5d, tensor6d: tensor6d, zeros: zeros, onesLike: onesLike, zerosLike: zerosLike, transpose: transpose, softmax: softmax, localResponseNormalization: localResponseNormalization, norm: norm, gather: gather, unsortedSegmentSum: unsortedSegmentSum, basicLSTMCell: basicLSTMCell, multiRNNCell: multiRNNCell, movingAverage: movingAverage, stridedSlice: stridedSlice, topk: topk }),
-    MathBackendCPU = function () {
+}, 2, setTensorTracker);var MathBackendCPU = function () {
   function e() {
     this.data = new WeakMap(), this.firstUse = !0, ENV.get("IS_BROWSER") && (this.canvas = document.createElement("canvas"));
   }return e.prototype.register = function (e, t, n) {
-    if (this.firstUse && (this.firstUse = !1, ENV.get("IS_NODE") && warn("\n============================\nHi there 👋. Looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, which binds to TensorFlow C++, by running npm i @tensorflow/tfjs-node, or npm i @tensorflow/tfjs-node-gpu if you have CUDA. Then call require('@tensorflow/tfjs-node'); (-gpu suffix for CUDA) at the start of your program. Visit https://github.com/tensorflow/tfjs-node for more details.\n============================\n")), this.data.has(e)) throw new Error("Data buffer is already registered");this.data.set(e, null);
+    if (this.firstUse && (this.firstUse = !1, ENV.get("IS_NODE") && !ENV.get("IS_TEST") && console.warn("\n============================\nHi there 👋. Looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, which binds to TensorFlow C++, by running npm i @tensorflow/tfjs-node, or npm i @tensorflow/tfjs-node-gpu if you have CUDA. Then call require('@tensorflow/tfjs-node'); (-gpu suffix for CUDA) at the start of your program. Visit https://github.com/tensorflow/tfjs-node for more details.\n============================\n")), this.data.has(e)) throw new Error("Data buffer is already registered");this.data.set(e, null);
   }, e.prototype.write = function (e, t) {
     if (null == t) throw new Error("MathBackendCPU.write(): values can not be null");this.throwIfNoData(e), this.data.set(e, t);
   }, e.prototype.fromPixels = function (e, t) {
@@ -28907,7 +28834,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       if (!(e instanceof HTMLImageElement || e instanceof HTMLVideoElement)) throw new Error("pixels passed to tf.fromPixels() must be either an HTMLVideoElement, HTMLImageElement, HTMLCanvasElement or ImageData, but was " + e.constructor.name);if (null == this.canvas) throw new Error("Can't read pixels from HTMLImageElement outside the browser.");this.canvas.width = e.width, this.canvas.height = e.height, this.canvas.getContext("2d").drawImage(e, 0, 0, e.width, e.height), n = this.canvas.getContext("2d").getImageData(0, 0, e.width, e.height).data;
     }if (4 === t) r = new Int32Array(n);else {
       var o = e.width * e.height;r = new Int32Array(o * t);for (var a = 0; a < o; a++) for (var i = 0; i < t; ++i) r[a * t + i] = n[4 * a + i];
-    }return tensor3d(r, [e.height, e.width, t], "int32");
+    }var s = [e.height, e.width, t];return tensor3d(r, s, "int32");
   }, e.prototype.read = function (e) {
     return __awaiter(this, void 0, void 0, function () {
       return __generator(this, function (t) {
@@ -28941,7 +28868,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         u = i[1];if (u.some(function (e) {
       return 0 === e;
     })) return tensor([], u);for (var l = buffer(u, e.dtype), c = 0; c < l.size; c++) {
-      for (var p = l.indexToLoc(c), d = new Array(p.length), h = 0; h < d.length; h++) d[h] = p[h] * r[h] + s[h];l.set.apply(l, [e.get.apply(e, d)].concat(p));
+      for (var d = l.indexToLoc(c), p = new Array(d.length), h = 0; h < p.length; h++) p[h] = d[h] * r[h] + s[h];l.set.apply(l, [e.get.apply(e, p)].concat(d));
     }return l.toTensor();
   }, e.prototype.reverse = function (e, t) {
     for (var n = buffer(e.shape, e.dtype), r = e.buffer(), o = function (o) {
@@ -28951,7 +28878,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       }), n.set.apply(n, [r.get.apply(r, i)].concat(a));
     }, a = 0; a < n.size; a++) o(a);return n.toTensor();
   }, e.prototype.concat = function (e, t) {
-    var n = computeOutShape$1(e.shape, t.shape, 1),
+    var n = computeOutShape(e.shape, t.shape, 1),
         r = buffer(n, e.dtype);if (1 === e.shape[0] && 1 === t.shape[0]) {
       var o = e.dataSync(),
           a = t.dataSync(),
@@ -28965,10 +28892,6 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return this.broadcastedBinaryOp(e, t, upcastType(e.dtype, t.dtype), function (e, t) {
       return e + t;
     });
-  }, e.prototype.addN = function (e) {
-    for (var t = e.map(function (e) {
-      return e.dataSync();
-    }), n = buffer(e[0].shape, e[0].dtype), r = n.values, o = 0; o < e.length; o++) for (var a = t[o], i = 0; i < r.length; i++) r[i] += a[i];return n.toTensor();
   }, e.prototype.subtract = function (e, t) {
     return this.broadcastedBinaryOp(e, t, upcastType(e.dtype, t.dtype), function (e, t) {
       return e - t;
@@ -28978,8 +28901,8 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       return Math.pow(e, t);
     });
   }, e.prototype.matMul = function (e, t, n, r) {
-    for (var o = n ? e.shape[0] : e.shape[1], a = n ? e.shape[1] : e.shape[0], i = r ? t.shape[0] : t.shape[1], s = e.dataSync(), u = t.dataSync(), l = n ? [1, e.strides[0]] : [e.strides[0], 1], c = l[0], p = l[1], d = r ? [t.strides[0], 1] : [1, t.strides[0]], h = d[0], f = d[1], m = a * c, g = i * h, v = new Float32Array(a * i), y = 0, x = 0; x < m; x += c) for (var T = 0; T < g; T += h) {
-      for (var S = x, b = T, E = 0, w = 0; w < o; ++w) E += s[S] * u[b], S += p, b += f;v[y++] = E;
+    for (var o = n ? e.shape[0] : e.shape[1], a = n ? e.shape[1] : e.shape[0], i = r ? t.shape[0] : t.shape[1], s = e.dataSync(), u = t.dataSync(), l = n ? [1, e.strides[0]] : [e.strides[0], 1], c = l[0], d = l[1], p = r ? [t.strides[0], 1] : [1, t.strides[0]], h = p[0], f = p[1], g = a * c, m = i * h, v = new Float32Array(a * i), y = 0, x = 0; x < g; x += c) for (var T = 0; T < m; T += h) {
+      for (var b = x, S = T, E = 0, w = 0; w < o; ++w) E += s[b] * u[S], b += d, S += f;v[y++] = E;
     }return tensor2d(v, [a, i]);
   }, e.prototype.multiply = function (e, t) {
     return this.broadcastedBinaryOp(e, t, upcastType(e.dtype, t.dtype), function (e, t) {
@@ -28994,9 +28917,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       return Math.floor(e / t);
     });
   }, e.prototype.sum = function (e, t) {
-    assertAxesAreInnerMostDims("sum", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = zeros(r, upcastType(e.dtype, "int32")), i = sizeFromShape(o), s = a.dataSync(), u = e.dataSync(), l = 0; l < s.length; ++l) {
-      for (var c = l * i, p = 0, d = 0; d < i; ++d) p += u[c + d];s[l] = p;
-    }return a;
+    assertAxesAreInnerMostDims("sum", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = upcastType(e.dtype, "int32"), i = zeros(r, a), s = sizeFromShape(o), u = i.dataSync(), l = e.dataSync(), c = 0; c < u.length; ++c) {
+      for (var d = c * s, p = 0, h = 0; h < s; ++h) p += l[d + h];u[c] = p;
+    }return i;
   }, e.prototype.unsortedSegmentSum = function (e, t, n) {
     for (var r = [], o = e.rank - t.rank, a = 0; a < o; ++a) t = t.expandDims(a + 1);for (a = 0; a < n; ++a) {
       var i = scalar(a, "int32"),
@@ -29004,14 +28927,14 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     }return stack(r);
   }, e.prototype.argMin = function (e, t) {
     var n = [t];assertAxesAreInnerMostDims("argMin", n, e.rank);for (var r = computeOutAndReduceShapes(e.shape, n), o = r[0], a = r[1], i = zeros(o, "int32"), s = sizeFromShape(a), u = i.dataSync(), l = e.dataSync(), c = 0; c < u.length; ++c) {
-      for (var p = c * s, d = l[p], h = 0, f = 0; f < s; ++f) {
-        var m = l[p + f];m < d && (d = m, h = f);
+      for (var d = c * s, p = l[d], h = 0, f = 0; f < s; ++f) {
+        var g = l[d + f];g < p && (p = g, h = f);
       }u[c] = h;
     }return i;
   }, e.prototype.argMax = function (e, t) {
     var n = [t];assertAxesAreInnerMostDims("argMax", n, e.rank);for (var r = computeOutAndReduceShapes(e.shape, n), o = r[0], a = r[1], i = zeros(o, "int32"), s = sizeFromShape(a), u = i.dataSync(), l = e.dataSync(), c = 0; c < u.length; ++c) {
-      for (var p = c * s, d = l[p], h = 0, f = 0; f < s; ++f) {
-        var m = l[p + f];m > d && (d = m, h = f);
+      for (var d = c * s, p = l[d], h = 0, f = 0; f < s; ++f) {
+        var g = l[d + f];g > p && (p = g, h = f);
       }u[c] = h;
     }return i;
   }, e.prototype.cumsum = function (e, t, n, r) {
@@ -29019,9 +28942,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       return e + u - t - 1;
     } : function (e, t) {
       return e + t;
-    }, c = 0; c < s.length; c += u) for (var p = 0; p < u; p++) {
-      var d = l(c, p);if (0 === p) i[d] = n ? 0 : s[d];else {
-        var h = l(c, p - 1);i[d] = n ? s[h] + i[h] : s[d] + i[h];
+    }, c = 0; c < s.length; c += u) for (var d = 0; d < u; d++) {
+      var p = l(c, d);if (0 === d) i[p] = n ? 0 : s[p];else {
+        var h = l(c, d - 1);i[p] = n ? s[h] + i[h] : s[p] + i[h];
       }
     }return a;
   }, e.prototype.equal = function (e, t) {
@@ -29058,17 +28981,22 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return this.broadcastedBinaryOp(e, t, "bool", function (e, t) {
       return e || t;
     });
-  }, e.prototype.select = function (e, t, n) {
-    for (var r = e.dataSync(), o = t.dataSync(), a = n.dataSync(), i = zeros(t.shape, upcastType(t.dtype, n.dtype)), s = i.dataSync(), u = 0, l = 0 === e.rank || e.rank > 1 || 1 === t.rank ? 1 : t.shape[1], c = 0; c < r.length; c++) for (var p = 0; p < l; p++) 1 === r[c] ? s[u++] = o[c] : s[u++] = a[c];return i;
-  }, e.prototype.where = function (e) {
-    var t = e.dataSync();return whereImpl(e.shape, t);
-  }, e.prototype.topk = function (e, t, n) {
-    return topkImpl(e.dataSync(), e.shape, e.dtype, t, n);
+  }, e.prototype.where = function (e, t, n, r) {
+    for (var o = e.dataSync(), a = t.dataSync(), i = n.dataSync(), s = zeros(t.shape, r), u = s.dataSync(), l = 0, c = 0 === e.rank || e.rank > 1 || 1 === t.rank ? 1 : t.shape[1], d = 0; d < o.length; d++) for (var p = 0; p < c; p++) 1 === o[d] ? u[l++] = a[d] : u[l++] = i[d];return s;
+  }, e.prototype.topKValues = function (e, t) {
+    return this.topK(e, t).values;
+  }, e.prototype.topKIndices = function (e, t) {
+    return this.topK(e, t).indices;
+  }, e.prototype.topK = function (e, t) {
+    for (var n = e.dataSync(), r = [], o = 0; o < n.length; o++) r.push({ value: n[o], index: o });r.sort(function (e, t) {
+      return t.value - e.value;
+    });var a = getTypedArrayFromDType(e.dtype, t),
+        i = new Int32Array(t);for (o = 0; o < t; o++) a[o] = r[o].value, i[o] = r[o].index;return { values: tensor1d(a, e.dtype), indices: tensor1d(i, "int32") };
   }, e.prototype.min = function (e, t) {
     assertAxesAreInnerMostDims("min", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = zeros(r, e.dtype), i = sizeFromShape(o), s = a.dataSync(), u = e.dataSync(), l = 0; l < s.length; ++l) {
-      for (var c = l * i, p = u[c], d = 0; d < i; ++d) {
-        var h = u[c + d];h < p && (p = h);
-      }s[l] = p;
+      for (var c = l * i, d = u[c], p = 0; p < i; ++p) {
+        var h = u[c + p];h < d && (d = h);
+      }s[l] = d;
     }return a;
   }, e.prototype.minimum = function (e, t) {
     return this.broadcastedBinaryOp(e, t, e.dtype, function (e, t) {
@@ -29080,9 +29008,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     });
   }, e.prototype.max = function (e, t) {
     assertAxesAreInnerMostDims("max", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = zeros(r, e.dtype), i = sizeFromShape(o), s = a.dataSync(), u = e.dataSync(), l = 0; l < s.length; ++l) {
-      for (var c = l * i, p = u[c], d = 0; d < i; ++d) {
-        var h = u[c + d];h > p && (p = h);
-      }s[l] = p;
+      for (var c = l * i, d = u[c], p = 0; p < i; ++p) {
+        var h = u[c + p];h > d && (d = h);
+      }s[l] = d;
     }return a;
   }, e.prototype.maximum = function (e, t) {
     return this.broadcastedBinaryOp(e, t, e.dtype, function (e, t) {
@@ -29090,15 +29018,15 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     });
   }, e.prototype.all = function (e, t) {
     assertAxesAreInnerMostDims("all", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = zeros(r, e.dtype), i = sizeFromShape(o), s = a.dataSync(), u = e.dataSync(), l = 0; l < s.length; ++l) {
-      for (var c = l * i, p = u[c], d = 0; d < i; ++d) {
-        var h = u[c + d];p = p && h;
-      }s[l] = p;
+      for (var c = l * i, d = u[c], p = 0; p < i; ++p) {
+        var h = u[c + p];d = d && h;
+      }s[l] = d;
     }return a;
   }, e.prototype.any = function (e, t) {
     assertAxesAreInnerMostDims("any", t, e.rank);for (var n = computeOutAndReduceShapes(e.shape, t), r = n[0], o = n[1], a = zeros(r, e.dtype), i = sizeFromShape(o), s = a.dataSync(), u = e.dataSync(), l = 0; l < s.length; ++l) {
-      for (var c = l * i, p = u[c], d = 0; d < i; ++d) {
-        var h = u[c + d];p = p || h;
-      }s[l] = p;
+      for (var c = l * i, d = u[c], p = 0; p < i; ++p) {
+        var h = u[c + p];d = d || h;
+      }s[l] = d;
     }return a;
   }, e.prototype.squaredDifference = function (e, t) {
     return this.broadcastedBinaryOp(e, t, e.dtype, function (e, t) {
@@ -29200,53 +29128,53 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.erf = function (e) {
     for (var t = new Float32Array(e.size), n = e.dataSync(), r = ERF_P, o = ERF_A1, a = ERF_A2, i = ERF_A3, s = ERF_A4, u = ERF_A5, l = 0; l < n.length; ++l) {
       var c = n[l],
-          p = 1 / (1 + r * c);t[l] = 1 - ((((u * p + s) * p + i) * p + a) * p + o) * p * Math.exp(-c * c);
+          d = 1 / (1 + r * c);t[l] = 1 - ((((u * d + s) * d + i) * d + a) * d + o) * d * Math.exp(-c * c);
     }return Tensor.make(e.shape, { values: t });
   }, e.prototype.step = function (e, t) {
     void 0 === t && (t = 0);for (var n = new Float32Array(e.size), r = e.dataSync(), o = 0; o < r.length; ++o) {
       var a = r[o];isNaN(a) ? n[o] = NaN : n[o] = a > 0 ? 1 : t;
     }return Tensor.make(e.shape, { values: n });
   }, e.prototype.conv2d = function (e, t, n) {
-    for (var r = n.filterHeight, o = n.filterWidth, a = n.dilationHeight, i = n.dilationWidth, s = n.padInfo.left, u = n.padInfo.top, l = buffer(n.outShape, e.dtype), c = 0; c < n.batchSize; ++c) for (var p = 0; p < n.outChannels; ++p) for (var d = 0; d < n.outHeight; ++d) for (var h = d * n.strideHeight - s, f = 0; f < n.outWidth; ++f) {
-      for (var m = f * n.strideWidth - u, g = 0, v = 0; v < r; v++) {
+    for (var r = n.filterHeight, o = n.filterWidth, a = n.dilationHeight, i = n.dilationWidth, s = n.padInfo.left, u = n.padInfo.top, l = buffer(n.outShape, e.dtype), c = 0; c < n.batchSize; ++c) for (var d = 0; d < n.outChannels; ++d) for (var p = 0; p < n.outHeight; ++p) for (var h = p * n.strideHeight - s, f = 0; f < n.outWidth; ++f) {
+      for (var g = f * n.strideWidth - u, m = 0, v = 0; v < r; v++) {
         var y = h + v * a;if (!(y < 0 || y >= n.inHeight)) for (var x = 0; x < o; x++) {
-          var T = m + x * i;if (!(T < 0 || T >= n.inWidth)) for (var S = 0; S < n.inChannels; ++S) {
-            g += e.get(c, y, T, S) * t.get(v, x, S, p);
+          var T = g + x * i;if (!(T < 0 || T >= n.inWidth)) for (var b = 0; b < n.inChannels; ++b) {
+            m += e.get(c, y, T, b) * t.get(v, x, b, d);
           }
         }
-      }l.set(g, c, d, f, p);
+      }l.set(m, c, p, f, d);
     }return l.toTensor();
   }, e.prototype.conv2dDerInput = function (e, t, n) {
-    for (var r = buffer(n.inShape, "float32"), o = r.values, a = r.strides, i = a[0], s = a[1], u = a[2], l = e.dataSync(), c = e.strides, p = c[0], d = c[1], h = c[2], f = t.dataSync(), m = t.strides, g = m[0], v = m[1], y = m[2], x = n.batchSize, T = n.filterHeight, S = n.filterWidth, b = n.inChannels, E = n.inHeight, w = n.inWidth, _ = n.outChannels, A = n.outHeight, R = n.outWidth, C = n.strideHeight, N = n.strideWidth, k = T - 1 - n.padInfo.top, I = S - 1 - n.padInfo.left, D = 0; D < x; ++D) for (var M = 0; M < b; ++M) for (var O = 0; O < E; ++O) for (var F = O - k, P = Math.max(0, Math.ceil(F / C)), L = Math.min(A, (T + F) / C), B = 0; B < w; ++B) {
-      for (var U = B - I, V = Math.max(0, Math.ceil(U / N)), z = Math.min(R, (S + U) / N), G = 0, H = P; H < L; ++H) for (var W = H * C - F, q = V; q < z; ++q) for (var $ = p * D + d * H + h * q, X = g * (T - 1 - W) + v * (S - 1 - (q * N - U)) + y * M, j = 0; j < _; ++j) {
+    for (var r = buffer(n.inShape, "float32"), o = r.values, a = r.strides, i = a[0], s = a[1], u = a[2], l = e.dataSync(), c = e.strides, d = c[0], p = c[1], h = c[2], f = t.dataSync(), g = t.strides, m = g[0], v = g[1], y = g[2], x = n.batchSize, T = n.filterHeight, b = n.filterWidth, S = n.inChannels, E = n.inHeight, w = n.inWidth, A = n.outChannels, R = n.outHeight, C = n.outWidth, _ = n.strideHeight, O = n.strideWidth, N = T - 1 - n.padInfo.top, I = b - 1 - n.padInfo.left, k = 0; k < x; ++k) for (var M = 0; M < S; ++M) for (var D = 0; D < E; ++D) for (var P = D - N, F = Math.max(0, Math.ceil(P / _)), L = Math.min(R, (T + P) / _), B = 0; B < w; ++B) {
+      for (var U = B - I, z = Math.max(0, Math.ceil(U / O)), V = Math.min(C, (b + U) / O), G = 0, H = F; H < L; ++H) for (var W = H * _ - P, q = z; q < V; ++q) for (var $ = d * k + p * H + h * q, X = m * (T - 1 - W) + v * (b - 1 - (q * O - U)) + y * M, j = 0; j < A; ++j) {
         G += l[$ + j] * f[X + j];
-      }o[i * D + s * O + u * B + M] = G;
+      }o[i * k + s * D + u * B + M] = G;
     }return r.toTensor();
   }, e.prototype.conv2dDerFilter = function (e, t, n) {
-    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = buffer(n.filterShape, "float32"), u = n.padInfo.left, l = n.padInfo.top, c = 0; c < a; ++c) for (var p = Math.max(0, Math.ceil((l - c) / r)), d = Math.min(n.outHeight, (n.inHeight + l - c) / r), h = 0; h < i; ++h) for (var f = Math.max(0, Math.ceil((u - h) / o)), m = Math.min(n.outWidth, (n.inWidth + u - h) / o), g = 0; g < n.inChannels; ++g) for (var v = 0; v < n.outChannels; ++v) {
-      for (var y = 0, x = 0; x < n.batchSize; ++x) for (var T = p; T < d; ++T) for (var S = c + T * r - l, b = f; b < m; ++b) {
-        var E = h + b * o - u;y += e.get(x, S, E, g) * t.get(x, T, b, v);
-      }s.set(y, c, h, g, v);
+    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = buffer(n.filterShape, "float32"), u = n.padInfo.left, l = n.padInfo.top, c = 0; c < a; ++c) for (var d = Math.max(0, Math.ceil((l - c) / r)), p = Math.min(n.outHeight, (n.inHeight + l - c) / r), h = 0; h < i; ++h) for (var f = Math.max(0, Math.ceil((u - h) / o)), g = Math.min(n.outWidth, (n.inWidth + u - h) / o), m = 0; m < n.inChannels; ++m) for (var v = 0; v < n.outChannels; ++v) {
+      for (var y = 0, x = 0; x < n.batchSize; ++x) for (var T = d; T < p; ++T) for (var b = c + T * r - l, S = f; S < g; ++S) {
+        var E = h + S * o - u;y += e.get(x, b, E, m) * t.get(x, T, S, v);
+      }s.set(y, c, h, m, v);
     }return s.toTensor();
   }, e.prototype.depthwiseConv2D = function (e, t, n) {
-    for (var r = n.filterHeight, o = n.filterWidth, a = n.dilationHeight, i = n.dilationWidth, s = n.padInfo.left, u = n.padInfo.top, l = n.outChannels / n.inChannels, c = buffer(n.outShape, e.dtype), p = 0; p < n.batchSize; ++p) for (var d = 0; d < n.inChannels; ++d) for (var h = 0; h < n.outHeight; ++h) for (var f = h * n.strideHeight - s, m = 0; m < n.outWidth; ++m) for (var g = m * n.strideWidth - u, v = 0; v < l; ++v) {
+    for (var r = n.filterHeight, o = n.filterWidth, a = n.dilationHeight, i = n.dilationWidth, s = n.padInfo.left, u = n.padInfo.top, l = n.outChannels / n.inChannels, c = buffer(n.outShape, e.dtype), d = 0; d < n.batchSize; ++d) for (var p = 0; p < n.inChannels; ++p) for (var h = 0; h < n.outHeight; ++h) for (var f = h * n.strideHeight - s, g = 0; g < n.outWidth; ++g) for (var m = g * n.strideWidth - u, v = 0; v < l; ++v) {
       for (var y = 0, x = 0; x < r; ++x) {
-        var T = f + x * a;if (!(T < 0 || T >= n.inHeight)) for (var S = 0; S < o; ++S) {
-          var b = g + S * i;if (!(b < 0 || b >= n.inWidth)) y += e.get(p, T, b, d) * t.get(x, S, d, v);
+        var T = f + x * a;if (!(T < 0 || T >= n.inHeight)) for (var b = 0; b < o; ++b) {
+          var S = m + b * i;if (!(S < 0 || S >= n.inWidth)) y += e.get(d, T, S, p) * t.get(x, b, p, v);
         }
-      }c.set(y, p, h, m, d * l + v);
+      }c.set(y, d, h, g, p * l + v);
     }return c.toTensor();
   }, e.prototype.depthwiseConv2DDerInput = function (e, t, n) {
-    for (var r = buffer(n.inShape, "float32"), o = r.values, a = r.strides, i = a[0], s = a[1], u = a[2], l = e.dataSync(), c = e.strides, p = c[0], d = c[1], h = c[2], f = t.dataSync(), m = t.strides, g = m[0], v = m[1], y = m[2], x = n.batchSize, T = n.filterHeight, S = n.filterWidth, b = n.inChannels, E = n.inHeight, w = n.inWidth, _ = n.outChannels, A = n.outHeight, R = n.outWidth, C = n.strideHeight, N = n.strideWidth, k = T - 1 - n.padInfo.top, I = S - 1 - n.padInfo.left, D = _ / b, M = 0; M < x; ++M) for (var O = 0; O < b; ++O) for (var F = 0; F < E; ++F) for (var P = F - k, L = Math.max(0, Math.ceil(P / C)), B = Math.min(A, (T + P) / C), U = 0; U < w; ++U) {
-      for (var V = U - I, z = Math.max(0, Math.ceil(V / N)), G = Math.min(R, (S + V) / N), H = 0, W = L; W < B; ++W) for (var q = W * C - P, $ = z; $ < G; ++$) for (var X = p * M + d * W + h * $, j = g * (T - 1 - q) + v * (S - 1 - ($ * N - V)) + y * O, K = 0; K < D; ++K) {
-        H += l[X + (O * D + K)] * f[j + K];
-      }o[i * M + s * F + u * U + O] = H;
+    for (var r = buffer(n.inShape, "float32"), o = r.values, a = r.strides, i = a[0], s = a[1], u = a[2], l = e.dataSync(), c = e.strides, d = c[0], p = c[1], h = c[2], f = t.dataSync(), g = t.strides, m = g[0], v = g[1], y = g[2], x = n.batchSize, T = n.filterHeight, b = n.filterWidth, S = n.inChannels, E = n.inHeight, w = n.inWidth, A = n.outChannels, R = n.outHeight, C = n.outWidth, _ = n.strideHeight, O = n.strideWidth, N = T - 1 - n.padInfo.top, I = b - 1 - n.padInfo.left, k = A / S, M = 0; M < x; ++M) for (var D = 0; D < S; ++D) for (var P = 0; P < E; ++P) for (var F = P - N, L = Math.max(0, Math.ceil(F / _)), B = Math.min(R, (T + F) / _), U = 0; U < w; ++U) {
+      for (var z = U - I, V = Math.max(0, Math.ceil(z / O)), G = Math.min(C, (b + z) / O), H = 0, W = L; W < B; ++W) for (var q = W * _ - F, $ = V; $ < G; ++$) for (var X = d * M + p * W + h * $, j = m * (T - 1 - q) + v * (b - 1 - ($ * O - z)) + y * D, K = 0; K < k; ++K) {
+        H += l[X + (D * k + K)] * f[j + K];
+      }o[i * M + s * P + u * U + D] = H;
     }return r.toTensor();
   }, e.prototype.depthwiseConv2DDerFilter = function (e, t, n) {
-    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = buffer(n.filterShape, "float32"), u = n.padInfo.left, l = n.padInfo.top, c = n.outChannels / n.inChannels, p = 0; p < a; ++p) for (var d = Math.max(0, Math.ceil((l - p) / r)), h = Math.min(n.outHeight, (n.inHeight + l - p) / r), f = 0; f < i; ++f) for (var m = Math.max(0, Math.ceil((u - f) / o)), g = Math.min(n.outWidth, (n.inWidth + u - f) / o), v = 0; v < n.outChannels; ++v) {
-      for (var y = Math.trunc(v / c), x = v % c, T = 0, S = 0; S < n.batchSize; ++S) for (var b = d; b < h; ++b) for (var E = p + b * r - l, w = m; w < g; ++w) {
-        var _ = f + w * o - u;T += e.get(S, E, _, y) * t.get(S, b, w, v);
-      }s.set(T, p, f, y, x);
+    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = buffer(n.filterShape, "float32"), u = n.padInfo.left, l = n.padInfo.top, c = n.outChannels / n.inChannels, d = 0; d < a; ++d) for (var p = Math.max(0, Math.ceil((l - d) / r)), h = Math.min(n.outHeight, (n.inHeight + l - d) / r), f = 0; f < i; ++f) for (var g = Math.max(0, Math.ceil((u - f) / o)), m = Math.min(n.outWidth, (n.inWidth + u - f) / o), v = 0; v < n.outChannels; ++v) {
+      for (var y = Math.trunc(v / c), x = v % c, T = 0, b = 0; b < n.batchSize; ++b) for (var S = p; S < h; ++S) for (var E = d + S * r - l, w = g; w < m; ++w) {
+        var A = f + w * o - u;T += e.get(b, E, A, y) * t.get(b, S, w, v);
+      }s.set(T, d, f, y, x);
     }return s.toTensor();
   }, e.prototype.tile = function (e, t) {
     for (var n = new Array(e.rank), r = 0; r < n.length; r++) n[r] = e.shape[r] * t[r];var o = buffer(n, e.dtype),
@@ -29279,57 +29207,40 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       var u = a.indexToLoc(s),
           l = u.slice();l[n] = o[u[n]];var c = i.locToIndex(l);a.values[s] = i.values[c];
     }return a.toTensor();
-  }, e.prototype.batchToSpaceND = function (e, t, n) {
-    var r = t.reduce(function (e, t) {
-      return e * t;
-    }),
-        o = getReshaped(e.shape, t, r),
-        a = getPermuted(o.length, t.length),
-        i = getReshapedPermuted(e.shape, t, r),
-        s = getSliceBeginCoords(n, t.length),
-        u = getSliceSize(i, n, t.length);return e.reshape(o).transpose(a).reshape(i).slice(s, u);
-  }, e.prototype.spaceToBatchND = function (e, t, n) {
-    var r = t.reduce(function (e, t) {
-      return e * t;
-    }),
-        o = [[0, 0]];o.push.apply(o, n);for (var a = 1 + t.length; a < e.shape.length; ++a) o.push([0, 0]);var i = e.pad(o),
-        s = getReshaped(i.shape, t, r, !1),
-        u = getPermuted(s.length, t.length, !1),
-        l = getReshapedPermuted(i.shape, t, r, !1);return i.reshape(s).transpose(u).reshape(l);
   }, e.prototype.pool = function (e, t, n) {
-    for (var r = t.strideHeight, o = t.strideWidth, a = t.filterHeight, i = t.filterWidth, s = buffer(t.outShape, "float32"), u = t.padInfo.top, l = t.padInfo.left, c = 0; c < t.batchSize; ++c) for (var p = 0; p < t.inChannels; ++p) for (var d = 0; d < t.outHeight; ++d) for (var h = d * r - u, f = Math.max(0, h), m = Math.min(t.inHeight, a + h), g = 0; g < t.outWidth; ++g) {
-      for (var v = g * o - l, y = Math.max(0, v), x = Math.min(t.inWidth, i + v), T = "max" === n ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY, S = 0, b = 0, E = f; E < m; ++E) {
+    for (var r = t.strideHeight, o = t.strideWidth, a = t.filterHeight, i = t.filterWidth, s = buffer(t.outShape, "float32"), u = t.padInfo.top, l = t.padInfo.left, c = 0; c < t.batchSize; ++c) for (var d = 0; d < t.inChannels; ++d) for (var p = 0; p < t.outHeight; ++p) for (var h = p * r - u, f = Math.max(0, h), g = Math.min(t.inHeight, a + h), m = 0; m < t.outWidth; ++m) {
+      for (var v = m * o - l, y = Math.max(0, v), x = Math.min(t.inWidth, i + v), T = "max" === n ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY, b = 0, S = 0, E = f; E < g; ++E) {
         for (var w = y; w < x; ++w) {
-          var _ = e.get(c, E, w, p);"max" === n && _ > T ? T = _ : "avg" === n && (S += _, b++);
+          var A = e.get(c, E, w, d);"max" === n && A > T ? T = A : "avg" === n && (b += A, S++);
         }if (isNaN(T)) break;
-      }s.set("avg" === n ? S / b : T, c, d, g, p);
+      }s.set("avg" === n ? b / S : T, c, p, m, d);
     }return s.toTensor();
   }, e.prototype.maxPool = function (e, t) {
     return this.pool(e, t, "max");
   }, e.prototype.maxPoolPositions = function (e, t) {
-    for (var n = buffer(t.outShape, "int32"), r = t.strideHeight, o = t.strideWidth, a = t.filterHeight, i = t.filterWidth, s = t.padInfo.top, u = t.padInfo.left, l = 0; l < t.batchSize; ++l) for (var c = 0; c < t.inChannels; ++c) for (var p = 0; p < t.outHeight; ++p) for (var d = p * r - s, h = Math.max(0, d), f = Math.min(t.inHeight, a + d), m = 0; m < t.outWidth; ++m) {
-      for (var g = m * o - u, v = Math.max(0, g), y = Math.min(t.inWidth, i + g), x = Number.NEGATIVE_INFINITY, T = -1, S = h; S < f; ++S) for (var b = S - d, E = v; E < y; ++E) {
-        var w = E - g,
-            _ = e.get(l, S, E, c);_ > x && (x = _, T = b * i + w);
-      }n.set(T, l, p, m, c);
+    for (var n = buffer(t.outShape, "int32"), r = t.strideHeight, o = t.strideWidth, a = t.filterHeight, i = t.filterWidth, s = t.padInfo.top, u = t.padInfo.left, l = 0; l < t.batchSize; ++l) for (var c = 0; c < t.inChannels; ++c) for (var d = 0; d < t.outHeight; ++d) for (var p = d * r - s, h = Math.max(0, p), f = Math.min(t.inHeight, a + p), g = 0; g < t.outWidth; ++g) {
+      for (var m = g * o - u, v = Math.max(0, m), y = Math.min(t.inWidth, i + m), x = Number.NEGATIVE_INFINITY, T = -1, b = h; b < f; ++b) for (var S = b - p, E = v; E < y; ++E) {
+        var w = E - m,
+            A = e.get(l, b, E, c);A > x && (x = A, T = S * i + w);
+      }n.set(T, l, d, g, c);
     }return n.toTensor();
   }, e.prototype.maxPoolBackprop = function (e, t, n, r) {
-    for (var o = this.maxPoolPositions(t, r), a = r.strideHeight, i = r.strideWidth, s = r.filterHeight, u = r.filterWidth, l = u - 1 - r.padInfo.left, c = s - 1 - r.padInfo.top, p = buffer(t.shape, "float32"), d = 0; d < r.batchSize; ++d) for (var h = 0; h < r.inChannels; ++h) for (var f = 0; f < r.inHeight; ++f) for (var m = 0; m < r.inWidth; ++m) {
-      for (var g = f - c, v = m - l, y = 0, x = 0; x < s; ++x) {
-        var T = (g + x) / a;if (!(T < 0 || T >= r.outHeight || Math.floor(T) !== T)) for (var S = 0; S < u; ++S) {
-          var b = (v + S) / i;if (!(b < 0 || b >= r.outWidth || Math.floor(b) !== b)) {
-            var E = s * u - 1 - o.get(d, T, b, h) === x * u + S ? 1 : 0;if (0 !== E) y += e.get(d, T, b, h) * E;
+    for (var o = this.maxPoolPositions(t, r), a = r.strideHeight, i = r.strideWidth, s = r.filterHeight, u = r.filterWidth, l = u - 1 - r.padInfo.left, c = s - 1 - r.padInfo.top, d = buffer(t.shape, "float32"), p = 0; p < r.batchSize; ++p) for (var h = 0; h < r.inChannels; ++h) for (var f = 0; f < r.inHeight; ++f) for (var g = 0; g < r.inWidth; ++g) {
+      for (var m = f - c, v = g - l, y = 0, x = 0; x < s; ++x) {
+        var T = (m + x) / a;if (!(T < 0 || T >= r.outHeight || Math.floor(T) !== T)) for (var b = 0; b < u; ++b) {
+          var S = (v + b) / i;if (!(S < 0 || S >= r.outWidth || Math.floor(S) !== S)) {
+            var E = s * u - 1 - o.get(p, T, S, h) === x * u + b ? 1 : 0;if (0 !== E) y += e.get(p, T, S, h) * E;
           }
         }
-      }p.set(y, d, f, m, h);
-    }return p.toTensor();
+      }d.set(y, p, f, g, h);
+    }return d.toTensor();
   }, e.prototype.avgPoolBackprop = function (e, t, n) {
-    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = i - 1 - n.padInfo.left, u = a - 1 - n.padInfo.top, l = buffer(t.shape, "float32"), c = 1 / (a * i), p = 0; p < n.batchSize; ++p) for (var d = 0; d < n.inChannels; ++d) for (var h = 0; h < n.inHeight; ++h) for (var f = 0; f < n.inWidth; ++f) {
-      for (var m = h - u, g = f - s, v = 0, y = 0; y < a; ++y) {
-        var x = (m + y) / r;if (!(x < 0 || x >= n.outHeight || Math.floor(x) !== x)) for (var T = 0; T < i; ++T) {
-          var S = (g + T) / o;if (!(S < 0 || S >= n.outWidth || Math.floor(S) !== S)) v += e.get(p, x, S, d);
+    for (var r = n.strideHeight, o = n.strideWidth, a = n.filterHeight, i = n.filterWidth, s = i - 1 - n.padInfo.left, u = a - 1 - n.padInfo.top, l = buffer(t.shape, "float32"), c = 1 / (a * i), d = 0; d < n.batchSize; ++d) for (var p = 0; p < n.inChannels; ++p) for (var h = 0; h < n.inHeight; ++h) for (var f = 0; f < n.inWidth; ++f) {
+      for (var g = h - u, m = f - s, v = 0, y = 0; y < a; ++y) {
+        var x = (g + y) / r;if (!(x < 0 || x >= n.outHeight || Math.floor(x) !== x)) for (var T = 0; T < i; ++T) {
+          var b = (m + T) / o;if (!(b < 0 || b >= n.outWidth || Math.floor(b) !== b)) v += e.get(d, x, b, p);
         }
-      }l.set(v * c, p, h, f, d);
+      }l.set(v * c, d, h, f, p);
     }return l.toTensor();
   }, e.prototype.cast = function (e, t) {
     return castTensor(e, t, this);
@@ -29338,47 +29249,47 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   }, e.prototype.avgPool = function (e, t) {
     return this.pool(e, t, "avg").toFloat();
   }, e.prototype.resizeBilinear = function (e, t, n, r) {
-    for (var o = e.shape, a = o[0], i = o[1], s = o[2], u = o[3], l = buffer([a, t, n, u], e.dtype), c = [r && t > 1 ? i - 1 : i, r && n > 1 ? s - 1 : s], p = [r && t > 1 ? t - 1 : t, r && n > 1 ? n - 1 : n], d = 0; d < a; d++) for (var h = 0; h < t; h++) for (var f = 0; f < n; f++) for (var m = 0; m < u; m++) {
-      var g = c[0] * h / p[0],
-          v = c[1] * f / p[1],
-          y = Math.floor(g),
-          x = Math.min(i - 1, Math.ceil(g)),
+    for (var o = e.shape, a = o[0], i = o[1], s = o[2], u = o[3], l = buffer([a, t, n, u], e.dtype), c = [r && t > 1 ? i - 1 : i, r && n > 1 ? s - 1 : s], d = [r && t > 1 ? t - 1 : t, r && n > 1 ? n - 1 : n], p = 0; p < a; p++) for (var h = 0; h < t; h++) for (var f = 0; f < n; f++) for (var g = 0; g < u; g++) {
+      var m = c[0] * h / d[0],
+          v = c[1] * f / d[1],
+          y = Math.floor(m),
+          x = Math.min(i - 1, Math.ceil(m)),
           T = Math.floor(v),
-          S = Math.min(s - 1, Math.ceil(v)),
-          b = e.get(d, y, T, m),
-          E = e.get(d, x, T, m),
+          b = Math.min(s - 1, Math.ceil(v)),
+          S = e.get(p, y, T, g),
+          E = e.get(p, x, T, g),
           w = v - T,
-          _ = b + (e.get(d, y, S, m) - b) * w,
-          A = _ + (E + (e.get(d, x, S, m) - E) * w - _) * (g - y);l.set(A, d, h, f, m);
+          A = S + (e.get(p, y, b, g) - S) * w,
+          R = A + (E + (e.get(p, x, b, g) - E) * w - A) * (m - y);l.set(R, p, h, f, g);
     }return l.toTensor();
   }, e.prototype.resizeBilinearBackprop = function (e, t, n) {
-    for (var r = t.shape, o = r[0], a = r[1], i = r[2], s = r[3], u = e.shape, l = u[1], c = u[2], p = buffer([o, a, i, s], t.dtype), d = [n && l > 1 ? a - 1 : a, n && c > 1 ? i - 1 : i], h = [n && l > 1 ? l - 1 : l, n && c > 1 ? c - 1 : c], f = d[0] / h[0], m = d[1] / h[1], g = 0; g < o; g++) for (var v = 0; v < l; v++) for (var y = v * f, x = Math.floor(y), T = Math.min(Math.ceil(y), a - 1), S = y - x, b = 1 - S, E = 0; E < c; E++) for (var w = E * m, _ = Math.floor(w), A = Math.min(Math.ceil(w), i - 1), R = w - _, C = 1 - R, N = 0; N < s; N++) {
-      var k = e.get(g, v, E, N),
-          I = p.get(g, x, _, N);I += k * b * C, p.set(I, g, x, _, N);var D = p.get(g, x, A, N);D += k * b * R, p.set(D, g, x, A, N);var M = p.get(g, T, _, N);M += k * S * C, p.set(M, g, T, _, N);var O = p.get(g, T, A, N);O += k * S * R, p.set(O, g, T, A, N);
-    }return p.toTensor();
+    for (var r = t.shape, o = r[0], a = r[1], i = r[2], s = r[3], u = e.shape, l = u[1], c = u[2], d = buffer([o, a, i, s], t.dtype), p = [n && l > 1 ? a - 1 : a, n && c > 1 ? i - 1 : i], h = [n && l > 1 ? l - 1 : l, n && c > 1 ? c - 1 : c], f = p[0] / h[0], g = p[1] / h[1], m = 0; m < o; m++) for (var v = 0; v < l; v++) for (var y = v * f, x = Math.floor(y), T = Math.min(Math.ceil(y), a - 1), b = y - x, S = 1 - b, E = 0; E < c; E++) for (var w = E * g, A = Math.floor(w), R = Math.min(Math.ceil(w), i - 1), C = w - A, _ = 1 - C, O = 0; O < s; O++) {
+      var N = e.get(m, v, E, O),
+          I = d.get(m, x, A, O);I += N * S * _, d.set(I, m, x, A, O);var k = d.get(m, x, R, O);k += N * S * C, d.set(k, m, x, R, O);var M = d.get(m, T, A, O);M += N * b * _, d.set(M, m, T, A, O);var D = d.get(m, T, R, O);D += N * b * C, d.set(D, m, T, R, O);
+    }return d.toTensor();
   }, e.prototype.resizeNearestNeighbor = function (e, t, n, r) {
-    for (var o = e.shape, a = o[0], i = o[1], s = o[2], u = o[3], l = buffer([a, t, n, u], e.dtype), c = [r && t > 1 ? i - 1 : i, r && n > 1 ? s - 1 : s], p = [r && t > 1 ? t - 1 : t, r && n > 1 ? n - 1 : n], d = 0; d < a; d++) for (var h = 0; h < t; h++) for (var f = 0; f < n; f++) for (var m = 0; m < u; m++) {
-      var g = c[0] * h / p[0],
-          v = c[1] * f / p[1],
-          y = Math.min(i - 1, r ? Math.round(g) : Math.floor(g)),
+    for (var o = e.shape, a = o[0], i = o[1], s = o[2], u = o[3], l = buffer([a, t, n, u], e.dtype), c = [r && t > 1 ? i - 1 : i, r && n > 1 ? s - 1 : s], d = [r && t > 1 ? t - 1 : t, r && n > 1 ? n - 1 : n], p = 0; p < a; p++) for (var h = 0; h < t; h++) for (var f = 0; f < n; f++) for (var g = 0; g < u; g++) {
+      var m = c[0] * h / d[0],
+          v = c[1] * f / d[1],
+          y = Math.min(i - 1, r ? Math.round(m) : Math.floor(m)),
           x = Math.min(s - 1, r ? Math.round(v) : Math.floor(v)),
-          T = e.get(d, y, x, m);l.set(T, d, h, f, m);
+          T = e.get(p, y, x, g);l.set(T, p, h, f, g);
     }return l.toTensor();
   }, e.prototype.resizeNearestNeighborBackprop = function (e, t, n) {
-    for (var r = t.shape, o = r[0], a = r[1], i = r[2], s = r[3], u = e.shape, l = u[1], c = u[2], p = buffer([o, a, i, s], t.dtype), d = [n && l > 1 ? a - 1 : a, n && c > 1 ? i - 1 : i], h = [n && l > 1 ? l - 1 : l, n && c > 1 ? c - 1 : c], f = 1 / (d[0] / h[0]), m = 1 / (d[1] / h[1]), g = 2 * Math.ceil(f) + 2, v = 2 * Math.ceil(m) + 2, y = 0; y < o; y++) for (var x = 0; x < a; x++) for (var T = 0; T < i; T++) for (var S = Math.floor(x * f), b = Math.floor(S - g / 2), E = Math.floor(T * m), w = Math.floor(E - v / 2), _ = 0; _ < s; _++) {
-      for (var A = 0, R = 0; R < g; R++) {
-        var C = R + b;if (!(C < 0 || C >= l)) for (var N = 0; N < v; N++) {
-          var k = N + w;if (!(k < 0 || k >= c)) {
-            var I = d[0] * (C / h[0]),
-                D = d[1] * (k / h[1]),
+    for (var r = t.shape, o = r[0], a = r[1], i = r[2], s = r[3], u = e.shape, l = u[1], c = u[2], d = buffer([o, a, i, s], t.dtype), p = [n && l > 1 ? a - 1 : a, n && c > 1 ? i - 1 : i], h = [n && l > 1 ? l - 1 : l, n && c > 1 ? c - 1 : c], f = 1 / (p[0] / h[0]), g = 1 / (p[1] / h[1]), m = 2 * Math.ceil(f) + 2, v = 2 * Math.ceil(g) + 2, y = 0; y < o; y++) for (var x = 0; x < a; x++) for (var T = 0; T < i; T++) for (var b = Math.floor(x * f), S = Math.floor(b - m / 2), E = Math.floor(T * g), w = Math.floor(E - v / 2), A = 0; A < s; A++) {
+      for (var R = 0, C = 0; C < m; C++) {
+        var _ = C + S;if (!(_ < 0 || _ >= l)) for (var O = 0; O < v; O++) {
+          var N = O + w;if (!(N < 0 || N >= c)) {
+            var I = p[0] * (_ / h[0]),
+                k = p[1] * (N / h[1]),
                 M = Math.min(a - 1, n ? Math.round(I) : Math.floor(I)),
-                O = Math.min(i - 1, n ? Math.round(D) : Math.floor(D));x === M && T === O && (A += e.get(y, C, k, _));
+                D = Math.min(i - 1, n ? Math.round(k) : Math.floor(k));x === M && T === D && (R += e.get(y, _, N, A));
           }
         }
-      }p.set(A, y, x, T, _);
-    }return p.toTensor();
+      }d.set(R, y, x, T, A);
+    }return d.toTensor();
   }, e.prototype.batchNormalization = function (e, t, n, r, o, a) {
-    for (var i = e.dataSync(), s = t.dataSync(), u = n.dataSync(), l = o ? o.dataSync() : new Float32Array([1]), c = a ? a.dataSync() : new Float32Array([0]), p = new Float32Array(i.length), d = 0; d < i.length; d++) p[d] = c[d % c.length] + (i[d] - s[d % s.length]) * l[d % l.length] / Math.sqrt(u[d % u.length] + r);return tensor4d(p, e.shape);
+    for (var i = e.dataSync(), s = t.dataSync(), u = n.dataSync(), l = o ? o.dataSync() : new Float32Array([1]), c = a ? a.dataSync() : new Float32Array([0]), d = new Float32Array(i.length), p = 0; p < i.length; p++) d[p] = c[p % c.length] + (i[p] - s[p % s.length]) * l[p % l.length] / Math.sqrt(u[p % u.length] + r);return tensor4d(d, e.shape);
   }, e.prototype.localResponseNormalization4D = function (e, t, n, r, o) {
     var a = buffer(e.shape, "float32"),
         i = t,
@@ -29386,49 +29297,45 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
       for (var a = 0, u = Math.max(0, o - i); u <= Math.min(o + i, s); u++) {
         var l = e.get(t, n, r, u);a += l * l;
       }return a;
-    }for (var l = 0; l < a.shape[0]; l++) for (var c = 0; c <= a.shape[1]; c++) for (var p = 0; p < a.shape[2]; p++) for (var d = 0; d < a.shape[3]; d++) {
-      var h = u(l, c, p, d),
-          f = e.get(l, c, p, d) * Math.pow(n + r * h, -o);a.set(f, l, c, p, d);
+    }for (var l = 0; l < a.shape[0]; l++) for (var c = 0; c <= a.shape[1]; c++) for (var d = 0; d < a.shape[2]; d++) for (var p = 0; p < a.shape[3]; p++) {
+      var h = u(l, c, d, p),
+          f = e.get(l, c, d, p) * Math.pow(n + r * h, -o);a.set(f, l, c, d, p);
     }return a.toTensor();
-  }, e.prototype.LRNGrad = function (e, t, n, r, o, a, i) {
-    for (var s = e.shape[0], u = e.shape[1], l = e.shape[2], c = e.shape[3], p = buffer([s, u, l, c], "float32"), d = 0; d < s; ++d) for (var h = 0; h < u; ++h) for (var f = 0; f < l; ++f) for (var m = 0; m < c; ++m) {
-      for (var g = Math.max(0, m - r), v = Math.min(c, m + r + 1), y = 0, x = g; x < v; ++x) y += t.get(d, h, f, x) * t.get(d, h, f, x);y = a * y + o;for (x = g; x < v; ++x) {
-        var T = -2 * a * i * t.get(d, h, f, x) * n.get(d, h, f, m) / y;m === x && (T += Math.pow(y, -i)), T *= e.get(d, h, f, m), p.set(T + p.get(d, h, f, x), d, h, f, x);
-      }
-    }return p.toTensor();
   }, e.prototype.multinomial = function (e, t, n, r) {
     for (var o = t ? e : softmax(e), a = o.shape[0], i = o.shape[1], s = zeros([a, n], "int32"), u = s.dataSync(), l = o.dataSync(), c = 0; c < a; ++c) {
-      var p = c * i,
-          d = new Float32Array(i - 1);d[0] = l[p];for (var h = 1; h < d.length; ++h) d[h] = d[h - 1] + l[p + h];for (var f = seedrandom_1(r.toString()), m = c * n, g = 0; g < n; ++g) {
-        var v = f();u[m + g] = d.length;for (var y = 0; y < d.length; y++) if (v < d[y]) {
-          u[m + g] = y;break;
+      var d = c * i,
+          p = new Float32Array(i - 1);p[0] = l[d];for (var h = 1; h < p.length; ++h) p[h] = p[h - 1] + l[d + h];for (var f = seedrandom_1(r.toString()), g = c * n, m = 0; m < n; ++m) {
+        var v = f();u[g + m] = p.length;for (var y = 0; y < p.length; y++) if (v < p[y]) {
+          u[g + m] = y;break;
         }
       }
     }return s;
   }, e.prototype.oneHot = function (e, t, n, r) {
     var o = new Float32Array(e.size * t);o.fill(r);for (var a = 0; a < e.size; ++a) e.get(a) >= 0 && e.get(a) < t && (o[a * t + e.get(a)] = n);return tensor2d(o, [e.size, t], "int32");
-  }, e.prototype.nonMaxSuppression = function (e, t, n, r, o) {
-    return nonMaxSuppressionImpl(e.dataSync(), t.dataSync(), n, r, o);
   }, e.prototype.broadcastedBinaryOp = function (e, t, n, r) {
-    for (var o = assertAndGetBroadcastShape(e.shape, t.shape), a = buffer(o, n), i = e.dataSync(), s = t.dataSync(), u = getBroadcastDims(e.shape, o), l = getBroadcastDims(t.shape, o), c = e.buffer(), p = t.buffer(), d = function (n) {
+    for (var o = assertAndGetBroadcastShape(e.shape, t.shape), a = buffer(o, n), i = e.dataSync(), s = t.dataSync(), u = getBroadcastDims(e.shape, o), l = getBroadcastDims(t.shape, o), c = e.buffer(), d = t.buffer(), p = function (n) {
       var o = a.indexToLoc(n),
-          d = o.slice(-e.rank);u.forEach(function (e) {
-        return d[e] = 0;
-      });var h = c.locToIndex(d),
+          p = o.slice(-e.rank);u.forEach(function (e) {
+        return p[e] = 0;
+      });var h = c.locToIndex(p),
           f = o.slice(-t.rank);l.forEach(function (e) {
         return f[e] = 0;
-      });var m = p.locToIndex(f);a.values[n] = r(i[h], s[m]);
-    }, h = 0; h < a.values.length; ++h) d(h);return a.toTensor();
+      });var g = d.locToIndex(f);a.values[n] = r(i[h], s[g]);
+    }, h = 0; h < a.values.length; ++h) p(h);return a.toTensor();
   }, e.prototype.dispose = function () {}, e;
 }();ENV.registerBackend("cpu", function () {
   return new MathBackendCPU();
-}, 1, setTensorTracker);var delayCallback = "undefined" != typeof requestAnimationFrame ? requestAnimationFrame : setImmediate;function nextFrame() {
-  return new Promise(function (e) {
-    return delayCallback(function () {
-      return e();
+}, 1, setTensorTracker);var delayCallback = "undefined" != typeof requestAnimationFrame ? requestAnimationFrame : setImmediate,
+    BrowserUtil = function () {
+  function e() {}return e.nextFrame = function () {
+    return new Promise(function (e) {
+      return delayCallback(function () {
+        return e();
+      });
     });
-  });
-}var DTYPE_VALUE_SIZE_MAP = { float32: 4, int32: 4, uint16: 2, uint8: 1, bool: 1 };function encodeWeights(e) {
+  }, __decorate([doc({ heading: "Performance", subheading: "Timing" })], e, "nextFrame", null), e;
+}(),
+    DTYPE_VALUE_SIZE_MAP = { float32: 4, int32: 4, uint16: 2, uint8: 1, bool: 1 };function encodeWeights(e) {
   return __awaiter(this, void 0, void 0, function () {
     var t, n, r, o;return __generator(this, function (a) {
       switch (a.label) {case 0:
@@ -29444,18 +29351,19 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
         s = i.name,
         u = i.dtype,
         l = i.shape;if (null != i.quantization) throw new Error("decodeWeights does not support quantization yet, but encountered weight '" + s + " with quantization.'");var c = sizeFromShape(l),
-        p = void 0;if ("float32" === u) p = tensor(new Float32Array(e, r, c), l, "float32");else if ("int32" === u) p = tensor(new Int32Array(e, r, c), l, "int32");else {
-      if ("bool" !== u) throw new Error("Unsupported dtype in weight '" + s + "': " + u);p = tensor(new Uint8Array(e, r, c), l, "bool");
-    }n[s] = p, r += c * DTYPE_VALUE_SIZE_MAP[u];
+        d = void 0;if ("float32" === u) d = tensor(new Float32Array(e, r, c), l, "float32");else if ("int32" === u) d = tensor(new Int32Array(e, r, c), l, "int32");else {
+      if ("bool" !== u) throw new Error("Unsupported dtype in weight '" + s + "': " + u);d = tensor(new Uint8Array(e, r, c), l, "bool");
+    }n[s] = d, r += c * DTYPE_VALUE_SIZE_MAP[u];
   }return n;
 }function concatenateTypedArrays(e) {
-  if (null === e) throw new Error("Invalid input value: " + JSON.stringify(e));var t = 0,
-      n = [];e.forEach(function (e) {
-    if (t += e.byteLength, n.push(e.byteLength === e.buffer.byteLength ? e : new e.constructor(e)), !(e instanceof Float32Array || e instanceof Int32Array || e instanceof Uint8Array)) throw new Error("Unsupported TypedArray subtype: " + e.constructor.name);
-  });var r = new Uint8Array(t),
-      o = 0;return n.forEach(function (e) {
-    r.set(new Uint8Array(e.buffer), o), o += e.byteLength;
-  }), r.buffer;
+  if (null === e) throw new Error("Invalid input value: " + JSON.stringify(e));var t = 0;e.forEach(function (e) {
+    if (e instanceof Float32Array || e instanceof Int32Array) t += e.buffer.byteLength;else {
+      if (!(e instanceof Uint8Array)) throw new Error("Unsupported TypedArray subtype: " + e.constructor.name);t += e.buffer.byteLength;
+    }
+  });var n = new Uint8Array(t),
+      r = 0;return e.forEach(function (e) {
+    n.set(new Uint8Array(e.buffer), r), r += e.buffer.byteLength;
+  }), n.buffer;
 }var useNodeBuffer = "undefined" != typeof Buffer && ("undefined" == typeof Blob || "undefined" == typeof atob || "undefined" == typeof btoa);function stringByteLength(e) {
   return useNodeBuffer ? Buffer.byteLength(e) : new Blob([e]).size;
 }function arrayBufferToBase64String(e) {
@@ -29511,53 +29419,56 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   if (-1 === e.indexOf(URL_SCHEME_SUFFIX)) throw new Error("The url string provided does not contain a scheme. Supported schemes are: " + ModelStoreManagerRegistry.getSchemes().join(","));return { scheme: e.split(URL_SCHEME_SUFFIX)[0], path: e.split(URL_SCHEME_SUFFIX)[1] };
 }function cloneModelInternal(e, t, n) {
   return void 0 === n && (n = !1), __awaiter(this, void 0, void 0, function () {
-    var r, o, a, i, s, u, l, c, p;return __generator(this, function (d) {
-      switch (d.label) {case 0:
+    var r, o, a, i, s, u, l, c, d;return __generator(this, function (p) {
+      switch (p.label) {case 0:
           return assert(e !== t, "Old path and new path are the same: '" + e + "'"), assert((r = IORouterRegistry.getLoadHandlers(e)).length > 0, "Copying failed because no load handler is found for source URL " + e + "."), assert(r.length < 2, "Copying failed because more than one (" + r.length + ") load handlers for source URL " + e + "."), o = r[0], assert((a = IORouterRegistry.getSaveHandlers(t)).length > 0, "Copying failed because no save handler is found for destination URL " + t + "."), assert(a.length < 2, "Copying failed because more than one (" + r.length + ") save handlers for destination URL " + t + "."), i = a[0], s = parseURL(e).scheme, u = parseURL(e).path, l = s === parseURL(e).scheme, [4, o.load()];case 1:
-          return c = d.sent(), n && l ? [4, ModelStoreManagerRegistry.getManager(s).removeModel(u)] : [3, 3];case 2:
-          d.sent(), d.label = 3;case 3:
+          return c = p.sent(), n && l ? [4, ModelStoreManagerRegistry.getManager(s).removeModel(u)] : [3, 3];case 2:
+          p.sent(), p.label = 3;case 3:
           return [4, i.save(c)];case 4:
-          return p = d.sent(), !n || l ? [3, 6] : [4, ModelStoreManagerRegistry.getManager(s).removeModel(u)];case 5:
-          d.sent(), d.label = 6;case 6:
-          return [2, p.modelArtifactsInfo];}
+          return d = p.sent(), !n || l ? [3, 6] : [4, ModelStoreManagerRegistry.getManager(s).removeModel(u)];case 5:
+          p.sent(), p.label = 6;case 6:
+          return [2, d.modelArtifactsInfo];}
     });
   });
-}function listModels() {
-  return __awaiter(this, void 0, void 0, function () {
-    var e, t, n, r, o, a, i;return __generator(this, function (s) {
-      switch (s.label) {case 0:
-          e = ModelStoreManagerRegistry.getSchemes(), t = {}, n = 0, r = e, s.label = 1;case 1:
-          return n < r.length ? (o = r[n], [4, ModelStoreManagerRegistry.getManager(o).listModels()]) : [3, 4];case 2:
-          for (i in a = s.sent()) t[o + URL_SCHEME_SUFFIX + i] = a[i];s.label = 3;case 3:
-          return n++, [3, 1];case 4:
-          return [2, t];}
+}var ModelManagement = function () {
+  function e() {}return e.listModels = function () {
+    return __awaiter(this, void 0, void 0, function () {
+      var e, t, n, r, o, a, i;return __generator(this, function (s) {
+        switch (s.label) {case 0:
+            e = ModelStoreManagerRegistry.getSchemes(), t = {}, n = 0, r = e, s.label = 1;case 1:
+            return n < r.length ? (o = r[n], [4, ModelStoreManagerRegistry.getManager(o).listModels()]) : [3, 4];case 2:
+            for (i in a = s.sent()) t[o + URL_SCHEME_SUFFIX + i] = a[i];s.label = 3;case 3:
+            return n++, [3, 1];case 4:
+            return [2, t];}
+      });
     });
-  });
-}function removeModel(e) {
-  return __awaiter(this, void 0, void 0, function () {
-    var t;return __generator(this, function (n) {
-      switch (n.label) {case 0:
-          return t = parseURL(e), [4, ModelStoreManagerRegistry.getManager(t.scheme).removeModel(t.path)];case 1:
-          return [2, n.sent()];}
+  }, e.removeModel = function (e) {
+    return __awaiter(this, void 0, void 0, function () {
+      var t;return __generator(this, function (n) {
+        switch (n.label) {case 0:
+            return t = parseURL(e), [4, ModelStoreManagerRegistry.getManager(t.scheme).removeModel(t.path)];case 1:
+            return [2, n.sent()];}
+      });
     });
-  });
-}function copyModel(e, t) {
-  return __awaiter(this, void 0, void 0, function () {
-    return __generator(this, function (n) {
-      switch (n.label) {case 0:
-          return [4, cloneModelInternal(e, t, !1)];case 1:
-          return [2, n.sent()];}
+  }, e.copyModel = function (e, t) {
+    return __awaiter(this, void 0, void 0, function () {
+      return __generator(this, function (n) {
+        switch (n.label) {case 0:
+            return [4, cloneModelInternal(e, t, !1)];case 1:
+            return [2, n.sent()];}
+      });
     });
-  });
-}function moveModel(e, t) {
-  return __awaiter(this, void 0, void 0, function () {
-    return __generator(this, function (n) {
-      switch (n.label) {case 0:
-          return [4, cloneModelInternal(e, t, !0)];case 1:
-          return [2, n.sent()];}
+  }, e.moveModel = function (e, t) {
+    return __awaiter(this, void 0, void 0, function () {
+      return __generator(this, function (n) {
+        switch (n.label) {case 0:
+            return [4, cloneModelInternal(e, t, !0)];case 1:
+            return [2, n.sent()];}
+      });
     });
-  });
-}var DATABASE_NAME = "tensorflowjs",
+  }, __decorate([doc({ heading: "Models", subheading: "Management", namespace: "io" })], e, "listModels", null), __decorate([doc({ heading: "Models", subheading: "Management", namespace: "io" })], e, "removeModel", null), __decorate([doc({ heading: "Models", subheading: "Management", namespace: "io" })], e, "copyModel", null), __decorate([doc({ heading: "Models", subheading: "Management", namespace: "io" })], e, "moveModel", null), e;
+}(),
+    DATABASE_NAME = "tensorflowjs",
     DATABASE_VERSION = 1,
     MODEL_STORE_NAME = "models_store",
     INFO_STORE_NAME = "model_info_store";function getIndexedDBFactory() {
@@ -29598,19 +29509,19 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
           var u,
               l = getModelArtifactsInfoForJSON(t),
               c = a.transaction(INFO_STORE_NAME, "readwrite"),
-              p = c.objectStore(INFO_STORE_NAME),
-              d = p.put({ modelPath: n.modelPath, modelArtifactsInfo: l });d.onsuccess = function () {
+              d = c.objectStore(INFO_STORE_NAME),
+              p = d.put({ modelPath: n.modelPath, modelArtifactsInfo: l });p.onsuccess = function () {
             var o = (u = a.transaction(MODEL_STORE_NAME, "readwrite")).objectStore(MODEL_STORE_NAME).put({ modelPath: n.modelPath, modelArtifacts: t, modelArtifactsInfo: l });o.onsuccess = function () {
               return e({ modelArtifactsInfo: l });
             }, o.onerror = function (e) {
-              var t = (p = c.objectStore(INFO_STORE_NAME)).delete(n.modelPath);t.onsuccess = function () {
+              var t = (d = c.objectStore(INFO_STORE_NAME)).delete(n.modelPath);t.onsuccess = function () {
                 return a.close(), r(o.error);
               }, t.onerror = function (e) {
                 return a.close(), r(o.error);
               };
             };
-          }, d.onerror = function (e) {
-            return a.close(), r(d.error);
+          }, p.onerror = function (e) {
+            return a.close(), r(p.error);
           }, c.oncomplete = function () {
             null == u ? a.close() : u.oncomplete = function () {
               return a.close();
@@ -29780,16 +29691,16 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
                 } catch (e) {
                   return void o(e);
                 }var c = [],
-                    p = [],
-                    d = [];u.forEach(function (e) {
+                    d = [],
+                    p = [];u.forEach(function (e) {
                   e.paths.forEach(function (e) {
-                    p.push(e), d.push(null);
+                    d.push(e), p.push(null);
                   }), c.push.apply(c, e.weights);
                 }), u.forEach(function (e) {
                   e.paths.forEach(function (e) {
                     var t = new FileReader();t.onload = function (t) {
                       var n = t.target.result,
-                          o = p.indexOf(e);d[o] = n, -1 === d.indexOf(null) && r({ modelTopology: s, weightSpecs: c, weightData: concatenateArrayBuffers(d) });
+                          o = d.indexOf(e);p[o] = n, -1 === p.indexOf(null) && r({ modelTopology: s, weightSpecs: c, weightData: concatenateArrayBuffers(p) });
                     }, t.onerror = function (t) {
                       o("Failed to weights data from file of path '" + e + "'.");
                     }, t.readAsArrayBuffer(l[e]);
@@ -29834,7 +29745,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
   });
 }function loadWeights(e, t, n, r) {
   return void 0 === t && (t = ""), __awaiter(this, void 0, void 0, function () {
-    var o, a, i, s, u, l, c, p, d, h;return __generator(this, function (f) {
+    var o, a, i, s, u, l, c, d, p, h;return __generator(this, function (f) {
       switch (f.label) {case 0:
           if (o = e.map(function () {
             return !1;
@@ -29861,9 +29772,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
               var n = t + (t.endsWith("/") ? "" : "/") + e;c.push(n);
             });
           }), [4, loadWeightsAsArrayBuffer(c, r)];case 1:
-          return p = f.sent(), d = {}, h = 0, l.forEach(function (t) {
-            for (var n = e[t].paths.length, r = 0, o = 0; o < n; o++) r += p[h + o].byteLength;for (var i = new ArrayBuffer(r), s = new Uint8Array(i), u = 0, l = 0; l < n; l++) {
-              var c = new Uint8Array(p[h + l]);s.set(c, u), u += c.byteLength;
+          return d = f.sent(), p = {}, h = 0, l.forEach(function (t) {
+            for (var n = e[t].paths.length, r = 0, o = 0; o < n; o++) r += d[h + o].byteLength;for (var i = new ArrayBuffer(r), s = new Uint8Array(i), u = 0, l = 0; l < n; l++) {
+              var c = new Uint8Array(d[h + l]);s.set(c, u), u += c.byteLength;
             }a[t].forEach(function (e) {
               var t,
                   n = i.slice(e.groupOffset, e.groupOffset + e.sizeBytes),
@@ -29875,16 +29786,16 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
                     return Math.round(e * o.scale + o.min);
                   });
                 }
-              } else if ("float32" === r) t = new Float32Array(n);else if ("int32" === r) t = new Int32Array(n);else {
-                if ("bool" !== r) throw new Error("Weight " + e.manifestEntry.name + " has unknown dtype " + r + ".");t = new Uint8Array(n);
-              }var s = e.manifestEntry.name;if (null != d[s]) throw new Error("Duplicate weight with name " + s + ". Please make sure weights names are unique in the manifest JSON.");d[s] = tensor(t, e.manifestEntry.shape, e.manifestEntry.dtype);
+              } else if ("float32" === r) t = new Float32Array(n);else {
+                if ("int32" !== r) throw new Error("Weight " + e.manifestEntry.name + " has unknown dtype " + r + ".");t = new Int32Array(n);
+              }var s = e.manifestEntry.name;if (null != p[s]) throw new Error("Duplicate weight with name " + s + ". Please make sure weights names are unique in the manifest JSON.");p[s] = tensor(t, e.manifestEntry.shape, e.manifestEntry.dtype);
             }), h += n;
-          }), [2, d];}
+          }), [2, p];}
     });
   });
 }IORouterRegistry.registerSaveRouter(browserDownloadsRouter);var BrowserHTTPRequest = function () {
   function e(e, t) {
-    if (this.DEFAULT_METHOD = "POST", "undefined" == typeof fetch) throw new Error("browserHTTPRequest is not supported outside the web browser without a fetch polyfill.");if (assert(null != e && e.length > 0, "URL path for browserHTTPRequest must not be null, undefined or empty."), this.path = e, null != t && null != t.body) throw new Error("requestInit is expected to have no pre-existing body, but has one.");this.requestInit = t || {};
+    if (this.DEFAULT_METHOD = "POST", !ENV.get("IS_BROWSER")) throw new Error("browserHTTPRequest is not supported outside the web browser.");if (assert(null != e && e.length > 0, "URL path for browserHTTPRequest must not be null, undefined or empty."), this.path = e, null != t && null != t.body) throw new Error("requestInit is expected to have no pre-existing body, but has one.");this.requestInit = t || {};
   }return e.prototype.save = function (e) {
     return __awaiter(this, void 0, void 0, function () {
       var t, n, r, o;return __generator(this, function (a) {
@@ -29895,24 +29806,26 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     });
   }, e.prototype.load = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var e, t, n, r, o, a, i, s, u, l, c, p;return __generator(this, function (d) {
-        switch (d.label) {case 0:
+      var e, t, n, r, o, a, i, s, u, l, c, d;return __generator(this, function (p) {
+        switch (p.label) {case 0:
             return [4, fetch(this.path, this.requestInit)];case 1:
-            return [4, d.sent().json()];case 2:
-            if (e = d.sent(), t = e.modelTopology, n = e.weightsManifest, null == t && null == n) throw new Error("The JSON from HTTP path " + this.path + " contains neither model topology or manifest for weights.");if (null == n) return [3, 4];for (a = e.weightsManifest, r = [], i = 0, s = a; i < s.length; i++) u = s[i], r.push.apply(r, u.weights);return (l = this.path.substring(0, this.path.lastIndexOf("/"))).endsWith("/") || (l += "/"), c = [], a.forEach(function (e) {
+            return [4, p.sent().json()];case 2:
+            if (e = p.sent(), t = e.modelTopology, n = e.weightsManifest, null == t && null == n) throw new Error("The JSON from HTTP path " + this.path + " contains neither model topology or manifest for weights.");if (null == n) return [3, 4];for (a = e.weightsManifest, r = [], i = 0, s = a; i < s.length; i++) u = s[i], r.push.apply(r, u.weights);return (l = this.path.substring(0, this.path.lastIndexOf("/"))).endsWith("/") || (l += "/"), c = [], a.forEach(function (e) {
               e.paths.forEach(function (e) {
                 c.push(l + e);
               });
-            }), p = concatenateArrayBuffers, [4, loadWeightsAsArrayBuffer(c, this.requestInit)];case 3:
-            o = p.apply(void 0, [d.sent()]), d.label = 4;case 4:
+            }), d = concatenateArrayBuffers, [4, loadWeightsAsArrayBuffer(c, this.requestInit)];case 3:
+            o = d.apply(void 0, [p.sent()]), p.label = 4;case 4:
             return [2, { modelTopology: t, weightSpecs: r, weightData: o }];}
       });
     });
   }, e.URL_SCHEMES = ["http://", "https://"], e;
 }(),
     httpRequestRouter = function (e) {
-  if ("undefined" == typeof fetch) return null;for (var t = 0, n = BrowserHTTPRequest.URL_SCHEMES; t < n.length; t++) {
-    var r = n[t];if (e.startsWith(r)) return browserHTTPRequest(e);
+  if (ENV.get("IS_BROWSER")) {
+    for (var t = 0, n = BrowserHTTPRequest.URL_SCHEMES; t < n.length; t++) {
+      var r = n[t];if (e.startsWith(r)) return browserHTTPRequest(e);
+    }return null;
   }return null;
 };function browserHTTPRequest(e, t) {
   return new BrowserHTTPRequest(e, t);
@@ -29945,7 +29858,11 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     registerLoadRouter = IORouterRegistry.registerLoadRouter,
     getSaveHandlers = IORouterRegistry.getSaveHandlers,
     getLoadHandlers = IORouterRegistry.getLoadHandlers,
-    io = Object.freeze({ browserFiles: browserFiles, browserHTTPRequest: browserHTTPRequest, concatenateArrayBuffers: concatenateArrayBuffers, decodeWeights: decodeWeights, encodeWeights: encodeWeights, fromMemory: fromMemory, getLoadHandlers: getLoadHandlers, getModelArtifactsInfoForJSON: getModelArtifactsInfoForJSON, getSaveHandlers: getSaveHandlers, loadWeights: loadWeights, registerLoadRouter: registerLoadRouter, registerSaveRouter: registerSaveRouter, withSaveHandler: withSaveHandler, copyModel: copyModel, listModels: listModels, moveModel: moveModel, removeModel: removeModel }),
+    copyModel = ModelManagement.copyModel,
+    listModels = ModelManagement.listModels,
+    moveModel = ModelManagement.moveModel,
+    removeModel = ModelManagement.removeModel,
+    io = Object.freeze({ browserFiles: browserFiles, browserHTTPRequest: browserHTTPRequest, concatenateArrayBuffers: concatenateArrayBuffers, copyModel: copyModel, decodeWeights: decodeWeights, encodeWeights: encodeWeights, fromMemory: fromMemory, getLoadHandlers: getLoadHandlers, getModelArtifactsInfoForJSON: getModelArtifactsInfoForJSON, getSaveHandlers: getSaveHandlers, listModels: listModels, loadWeights: loadWeights, moveModel: moveModel, registerLoadRouter: registerLoadRouter, registerSaveRouter: registerSaveRouter, removeModel: removeModel, withSaveHandler: withSaveHandler }),
     Serializable = function () {
   function e() {}return e.prototype.getClassName = function () {
     return this.constructor.className;
@@ -29997,7 +29914,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
 }function expectArrayBuffersEqual(e, t) {
   expect(new Float32Array(e)).toEqual(new Float32Array(t));
 }var test_util = Object.freeze({ WEBGL_ENVS: WEBGL_ENVS, NODE_ENVS: NODE_ENVS, CHROME_ENVS: CHROME_ENVS, BROWSER_ENVS: BROWSER_ENVS, CPU_ENVS: CPU_ENVS, ALL_ENVS: ALL_ENVS, expectArraysClose: expectArraysClose, expectPromiseToFail: expectPromiseToFail, expectArraysEqual: expectArraysEqual, expectNumbersClose: expectNumbersClose, expectValuesInRange: expectValuesInRange, expectArrayBuffersEqual: expectArrayBuffersEqual }),
-    version = "0.12.8",
+    version = "0.12.4",
     webgl = Object.freeze({ gpgpu_util: gpgpu_util, webgl_util: webgl_util, MathBackendWebGL: MathBackendWebGL, GPGPUContext: GPGPUContext }),
     Optimizer = function (e) {
   function t() {
@@ -30010,7 +29927,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     }), t ? o : (o.dispose(), null);
   }, t.prototype.computeGradients = function (e, t) {
     return variableGrads(e, t);
-  }, t;
+  }, __decorate([doc({ heading: "Training", subheading: "Optimizers" })], t.prototype, "minimize", null), t = __decorate([doc({ heading: "Training", subheading: "Classes", namespace: "train" })], t);
 }(Serializable),
     DEFAULT_FLOAT32_EPSILON = 1e-8,
     DEFAULT_FLOAT16_EPSILON = 1e-4;function getOptimizerDefaultEpsilonValue() {
@@ -30091,9 +30008,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
             u = t.accumulatedFirstMoment[o],
             l = t.accumulatedSecondMoment[o],
             c = t.beta1Scalar.mul(u).add(t.oneMinusBeta1.mul(s)),
-            p = t.beta2Scalar.mul(l).add(t.oneMinusBeta2.mul(s.square())),
-            d = c.div(n),
-            h = p.div(r);t.accumulatedFirstMoment[o].assign(c), t.accumulatedSecondMoment[o].assign(p);var f = t.c.mul(d.div(t.epsScalar.add(h.sqrt()))).add(a);a.assign(f);
+            d = t.beta2Scalar.mul(l).add(t.oneMinusBeta2.mul(s.square())),
+            p = c.div(n),
+            h = d.div(r);t.accumulatedFirstMoment[o].assign(c), t.accumulatedSecondMoment[o].assign(d);var f = t.c.mul(p.div(t.epsScalar.add(h.sqrt()))).add(a);a.assign(f);
       }t.accBeta1.assign(t.accBeta1.mul(t.beta1Scalar)), t.accBeta2.assign(t.accBeta2.mul(t.beta2Scalar));
     });
   }, t.prototype.dispose = function () {
@@ -30124,9 +30041,9 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
             u = t.accumulatedFirstMoment[o],
             l = t.accumulatedWeightedInfNorm[o],
             c = t.beta1Scalar.mul(u).add(t.oneMinusBeta1.mul(s)),
-            p = t.beta2Scalar.mul(l),
-            d = s.abs(),
-            h = p.maximum(d);t.accumulatedFirstMoment[o].assign(c), t.accumulatedWeightedInfNorm[o].assign(h);var f = r.div(n).mul(c.div(t.epsScalar.add(h))).add(a);a.assign(f);
+            d = t.beta2Scalar.mul(l),
+            p = s.abs(),
+            h = d.maximum(p);t.accumulatedFirstMoment[o].assign(c), t.accumulatedWeightedInfNorm[o].assign(h);var f = r.div(n).mul(c.div(t.epsScalar.add(h))).add(a);a.assign(f);
       }t.iteration.assign(t.iteration.add(t.one)), t.accBeta1.assign(t.accBeta1.mul(t.beta1Scalar));
     });
   }, t.prototype.dispose = function () {
@@ -30211,7 +30128,7 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
           var r = t.decayScalar.mul(i).add(t.oneMinusDecay.mul(u)),
               l = t.momentumScalar.mul(s).add(t.c.mul(u).div(e.sub(r.square().add(t.epsilonScalar)).sqrt()));t.accumulatedMeanSquares[n].assign(e), t.accumulatedMeanGrads[n].assign(r), t.accumulatedMoments[n].assign(l);var c = o.sub(l);o.assign(c);
         } else {
-          var p = t.decayScalar.mul(a).add(t.oneMinusDecay.mul(u.square()));l = t.momentumScalar.mul(s).add(t.c.mul(u).div(p.add(t.epsilonScalar).sqrt()));t.accumulatedMeanSquares[n].assign(p), t.accumulatedMoments[n].assign(l);c = o.sub(l);o.assign(c);
+          var d = t.decayScalar.mul(a).add(t.oneMinusDecay.mul(u.square()));l = t.momentumScalar.mul(s).add(t.c.mul(u).div(d.add(t.epsilonScalar).sqrt()));t.accumulatedMeanSquares[n].assign(d), t.accumulatedMoments[n].assign(l);c = o.sub(l);o.assign(c);
         }
       });
     },
@@ -30244,13 +30161,14 @@ var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array 
     return void 0 === e && (e = .002), void 0 === t && (t = .9), void 0 === n && (n = .999), void 0 === r && (r = null), void 0 === o && (o = 0), new AdamaxOptimizer(e, t, n, r, o);
   }, e.adagrad = function (e, t) {
     return void 0 === t && (t = .1), new AdagradOptimizer(e, t);
-  }, e;
+  }, __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "sgd", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "momentum", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "rmsprop", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "adam", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "adadelta", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "adamax", null), __decorate([doc({ heading: "Training", subheading: "Optimizers", namespace: "train" })], e, "adagrad", null), e;
 }(),
     train = { sgd: OptimizerConstructors.sgd, momentum: OptimizerConstructors.momentum, adadelta: OptimizerConstructors.adadelta, adagrad: OptimizerConstructors.adagrad, rmsprop: OptimizerConstructors.rmsprop, adamax: OptimizerConstructors.adamax, adam: OptimizerConstructors.adam },
     setBackend = Environment.setBackend,
     getBackend = Environment.getBackend,
     disposeVariables = Environment.disposeVariables,
-    memory = Environment.memory;setOpHandler(ops);exports.setBackend = setBackend;
+    memory = Environment.memory,
+    nextFrame = BrowserUtil.nextFrame;setOpHandler(ops);exports.setBackend = setBackend;
 exports.getBackend = getBackend;
 exports.disposeVariables = disposeVariables;
 exports.memory = memory;
@@ -30278,6 +30196,7 @@ exports.Rank = Rank;
 exports.Reduction = Reduction;
 exports.ENV = ENV;
 exports.Environment = Environment;
+exports.doc = doc;
 exports.image = image_ops;
 exports.linalg = linalg_ops;
 exports.losses = loss_ops;
@@ -30326,7 +30245,7 @@ exports.erf = erf;
 exports.exp = exp;
 exports.expm1 = expm1;
 exports.floor = floor;
-exports.log = log$1;
+exports.log = log;
 exports.log1p = log1p;
 exports.logSigmoid = logSigmoid;
 exports.neg = neg;
@@ -30366,7 +30285,6 @@ exports.lessStrict = lessStrict;
 exports.notEqual = notEqual;
 exports.notEqualStrict = notEqualStrict;
 exports.add = add;
-exports.addN = addN;
 exports.addStrict = addStrict;
 exports.atan2 = atan2;
 exports.div = div;
@@ -30386,6 +30304,7 @@ exports.squaredDifference = squaredDifference;
 exports.squaredDifferenceStrict = squaredDifferenceStrict;
 exports.sub = sub;
 exports.subStrict = subStrict;
+exports.sigmoidCrossEntropyWithLogits = sigmoidCrossEntropyWithLogits;
 exports.elu = elu;
 exports.leakyRelu = leakyRelu;
 exports.prelu = prelu;
@@ -30396,10 +30315,8 @@ exports.logicalNot = logicalNot;
 exports.logicalOr = logicalOr;
 exports.logicalXor = logicalXor;
 exports.where = where;
-exports.whereAsync = whereAsync;
 exports.buffer = buffer;
 exports.toPixels = toPixels;
-exports.print = print;
 exports.cast = cast;
 exports.clone = clone;
 exports.cumsum = cumsum;
@@ -30413,6 +30330,7 @@ exports.pad1d = pad1d;
 exports.pad2d = pad2d;
 exports.pad3d = pad3d;
 exports.pad4d = pad4d;
+exports.print = print;
 exports.rand = rand;
 exports.randomNormal = randomNormal;
 exports.randomUniform = randomUniform;
@@ -30423,8 +30341,6 @@ exports.stack = stack;
 exports.tile = tile;
 exports.truncatedNormal = truncatedNormal;
 exports.unstack = unstack;
-exports.batchToSpaceND = batchToSpaceND;
-exports.spaceToBatchND = spaceToBatchND;
 exports.fill = fill;
 exports.linspace = linspace;
 exports.ones = ones$1;
@@ -30450,35 +30366,33 @@ exports.basicLSTMCell = basicLSTMCell;
 exports.multiRNNCell = multiRNNCell;
 exports.movingAverage = movingAverage;
 exports.stridedSlice = stridedSlice;
-exports.topk = topk;
 exports.train = train;
 exports.tidy = tidy;
 exports.keep = keep;
 exports.dispose = dispose;
 exports.time = time;
-exports.customGrad = customGrad;
 exports.grad = grad;
-exports.grads = grads;
 exports.valueAndGrad = valueAndGrad;
+exports.grads = grads;
 exports.valueAndGrads = valueAndGrads;
 exports.variableGrads = variableGrads;
-//# sourceMappingURL=tf-core.esm.js.map
-},{"crypto":650,"process":548,"buffer":651}],641:[function(require,module,exports) {
+exports.customGrad = customGrad;
+},{"crypto":650,"process":550,"buffer":651}],644:[function(require,module,exports) {
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
 var $export = require('./_export');
 
 $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
-},{"./_export":567}],635:[function(require,module,exports) {
+},{"./_export":559}],639:[function(require,module,exports) {
 require('../../modules/es6.number.max-safe-integer');
 module.exports = 0x1fffffffffffff;
 
-},{"../../modules/es6.number.max-safe-integer":641}],69:[function(require,module,exports) {
+},{"../../modules/es6.number.max-safe-integer":644}],66:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/number/max-safe-integer"), __esModule: true };
-},{"core-js/library/fn/number/max-safe-integer":635}],628:[function(require,module,exports) {
+},{"core-js/library/fn/number/max-safe-integer":639}],629:[function(require,module,exports) {
 exports.f = Object.getOwnPropertySymbols;
 
-},{}],627:[function(require,module,exports) {
+},{}],628:[function(require,module,exports) {
 exports.f = {}.propertyIsEnumerable;
 
 },{}],647:[function(require,module,exports) {
@@ -30517,41 +30431,41 @@ module.exports = !$assign || require('./_fails')(function () {
   } return T;
 } : $assign;
 
-},{"./_object-keys":626,"./_object-gops":628,"./_object-pie":627,"./_to-object":617,"./_iobject":612,"./_fails":613}],642:[function(require,module,exports) {
+},{"./_object-keys":626,"./_object-gops":629,"./_object-pie":628,"./_to-object":616,"./_iobject":612,"./_fails":615}],643:[function(require,module,exports) {
 // 19.1.3.1 Object.assign(target, source)
 var $export = require('./_export');
 
 $export($export.S + $export.F, 'Object', { assign: require('./_object-assign') });
 
-},{"./_export":567,"./_object-assign":647}],636:[function(require,module,exports) {
+},{"./_export":559,"./_object-assign":647}],637:[function(require,module,exports) {
 require('../../modules/es6.object.assign');
 module.exports = require('../../modules/_core').Object.assign;
 
-},{"../../modules/es6.object.assign":642,"../../modules/_core":558}],66:[function(require,module,exports) {
+},{"../../modules/es6.object.assign":643,"../../modules/_core":557}],62:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
-},{"core-js/library/fn/object/assign":636}],646:[function(require,module,exports) {
+},{"core-js/library/fn/object/assign":637}],645:[function(require,module,exports) {
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
 var $export = require('./_export');
 
 $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
-},{"./_export":567}],640:[function(require,module,exports) {
+},{"./_export":559}],640:[function(require,module,exports) {
 require('../../modules/es6.number.min-safe-integer');
 module.exports = -0x1fffffffffffff;
 
-},{"../../modules/es6.number.min-safe-integer":646}],71:[function(require,module,exports) {
+},{"../../modules/es6.number.min-safe-integer":645}],69:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/number/min-safe-integer"), __esModule: true };
 },{"core-js/library/fn/number/min-safe-integer":640}],621:[function(require,module,exports) {
 exports.f = require('./_wks');
 
-},{"./_wks":564}],637:[function(require,module,exports) {
+},{"./_wks":568}],638:[function(require,module,exports) {
 require('../../modules/es6.string.iterator');
 require('../../modules/web.dom.iterable');
 module.exports = require('../../modules/_wks-ext').f('iterator');
 
-},{"../../modules/es6.string.iterator":553,"../../modules/web.dom.iterable":554,"../../modules/_wks-ext":621}],67:[function(require,module,exports) {
+},{"../../modules/es6.string.iterator":555,"../../modules/web.dom.iterable":556,"../../modules/_wks-ext":621}],63:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/symbol/iterator"), __esModule: true };
-},{"core-js/library/fn/symbol/iterator":637}],620:[function(require,module,exports) {
+},{"core-js/library/fn/symbol/iterator":638}],620:[function(require,module,exports) {
 var META = require('./_uid')('meta');
 var isObject = require('./_is-object');
 var has = require('./_has');
@@ -30606,7 +30520,7 @@ var meta = module.exports = {
   onFreeze: onFreeze
 };
 
-},{"./_uid":594,"./_is-object":575,"./_has":600,"./_object-dp":591,"./_fails":613}],619:[function(require,module,exports) {
+},{"./_uid":596,"./_is-object":574,"./_has":597,"./_object-dp":593,"./_fails":615}],619:[function(require,module,exports) {
 
 var global = require('./_global');
 var core = require('./_core');
@@ -30618,7 +30532,7 @@ module.exports = function (name) {
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
 };
 
-},{"./_global":562,"./_core":558,"./_library":572,"./_wks-ext":621,"./_object-dp":591}],622:[function(require,module,exports) {
+},{"./_global":560,"./_core":557,"./_library":571,"./_wks-ext":621,"./_object-dp":593}],622:[function(require,module,exports) {
 // all enumerable object keys, includes symbols
 var getKeys = require('./_object-keys');
 var gOPS = require('./_object-gops');
@@ -30635,14 +30549,14 @@ module.exports = function (it) {
   } return result;
 };
 
-},{"./_object-keys":626,"./_object-gops":628,"./_object-pie":627}],623:[function(require,module,exports) {
+},{"./_object-keys":626,"./_object-gops":629,"./_object-pie":628}],623:[function(require,module,exports) {
 // 7.2.2 IsArray(argument)
 var cof = require('./_cof');
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
-},{"./_cof":601}],625:[function(require,module,exports) {
+},{"./_cof":601}],627:[function(require,module,exports) {
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = require('./_object-keys-internal');
 var hiddenKeys = require('./_enum-bug-keys').concat('length', 'prototype');
@@ -30651,7 +30565,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
-},{"./_object-keys-internal":632,"./_enum-bug-keys":630}],629:[function(require,module,exports) {
+},{"./_object-keys-internal":632,"./_enum-bug-keys":631}],624:[function(require,module,exports) {
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = require('./_to-iobject');
 var gOPN = require('./_object-gopn').f;
@@ -30672,7 +30586,7 @@ module.exports.f = function getOwnPropertyNames(it) {
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
-},{"./_to-iobject":590,"./_object-gopn":625}],624:[function(require,module,exports) {
+},{"./_to-iobject":591,"./_object-gopn":627}],625:[function(require,module,exports) {
 var pIE = require('./_object-pie');
 var createDesc = require('./_property-desc');
 var toIObject = require('./_to-iobject');
@@ -30690,7 +30604,7 @@ exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor
   if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
 };
 
-},{"./_object-pie":627,"./_property-desc":592,"./_to-iobject":590,"./_to-primitive":614,"./_has":600,"./_ie8-dom-define":615,"./_descriptors":593}],607:[function(require,module,exports) {
+},{"./_object-pie":628,"./_property-desc":592,"./_to-iobject":591,"./_to-primitive":614,"./_has":597,"./_ie8-dom-define":613,"./_descriptors":594}],606:[function(require,module,exports) {
 
 'use strict';
 // ECMAScript 6 symbols shim
@@ -30927,36 +30841,36 @@ setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
 
-},{"./_global":562,"./_has":600,"./_descriptors":593,"./_export":567,"./_redefine":599,"./_meta":620,"./_fails":613,"./_shared":595,"./_set-to-string-tag":582,"./_uid":594,"./_wks":564,"./_wks-ext":621,"./_wks-define":619,"./_enum-keys":622,"./_is-array":623,"./_an-object":596,"./_is-object":575,"./_to-iobject":590,"./_to-primitive":614,"./_property-desc":592,"./_object-create":618,"./_object-gopn-ext":629,"./_object-gopd":624,"./_object-dp":591,"./_object-keys":626,"./_object-gopn":625,"./_object-pie":627,"./_object-gops":628,"./_library":572,"./_hide":563}],606:[function(require,module,exports) {
+},{"./_global":560,"./_has":597,"./_descriptors":594,"./_export":559,"./_redefine":598,"./_meta":620,"./_fails":615,"./_shared":595,"./_set-to-string-tag":582,"./_uid":596,"./_wks":568,"./_wks-ext":621,"./_wks-define":619,"./_enum-keys":622,"./_is-array":623,"./_an-object":586,"./_is-object":574,"./_to-iobject":591,"./_to-primitive":614,"./_property-desc":592,"./_object-create":618,"./_object-gopn-ext":624,"./_object-gopd":625,"./_object-dp":593,"./_object-keys":626,"./_object-gopn":627,"./_object-pie":628,"./_object-gops":629,"./_library":571,"./_hide":566}],607:[function(require,module,exports) {
 require('./_wks-define')('asyncIterator');
 
 },{"./_wks-define":619}],608:[function(require,module,exports) {
 require('./_wks-define')('observable');
 
-},{"./_wks-define":619}],571:[function(require,module,exports) {
+},{"./_wks-define":619}],585:[function(require,module,exports) {
 require('../../modules/es6.symbol');
 require('../../modules/es6.object.to-string');
 require('../../modules/es7.symbol.async-iterator');
 require('../../modules/es7.symbol.observable');
 module.exports = require('../../modules/_core').Symbol;
 
-},{"../../modules/es6.symbol":607,"../../modules/es6.object.to-string":552,"../../modules/es7.symbol.async-iterator":606,"../../modules/es7.symbol.observable":608,"../../modules/_core":558}],32:[function(require,module,exports) {
+},{"../../modules/es6.symbol":606,"../../modules/es6.object.to-string":554,"../../modules/es7.symbol.async-iterator":607,"../../modules/es7.symbol.observable":608,"../../modules/_core":557}],29:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/symbol"), __esModule: true };
-},{"core-js/library/fn/symbol":571}],643:[function(require,module,exports) {
+},{"core-js/library/fn/symbol":585}],642:[function(require,module,exports) {
 var $export = require('./_export');
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 $export($export.S, 'Object', { create: require('./_object-create') });
 
-},{"./_export":567,"./_object-create":618}],638:[function(require,module,exports) {
+},{"./_export":559,"./_object-create":618}],636:[function(require,module,exports) {
 require('../../modules/es6.object.create');
 var $Object = require('../../modules/_core').Object;
 module.exports = function create(P, D) {
   return $Object.create(P, D);
 };
 
-},{"../../modules/es6.object.create":643,"../../modules/_core":558}],68:[function(require,module,exports) {
+},{"../../modules/es6.object.create":642,"../../modules/_core":557}],65:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/object/create"), __esModule: true };
-},{"core-js/library/fn/object/create":638}],648:[function(require,module,exports) {
+},{"core-js/library/fn/object/create":636}],646:[function(require,module,exports) {
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
 var isObject = require('./_is-object');
@@ -30983,18 +30897,18 @@ module.exports = {
   check: check
 };
 
-},{"./_is-object":575,"./_an-object":596,"./_ctx":573,"./_object-gopd":624}],644:[function(require,module,exports) {
+},{"./_is-object":574,"./_an-object":586,"./_ctx":572,"./_object-gopd":625}],641:[function(require,module,exports) {
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = require('./_export');
 $export($export.S, 'Object', { setPrototypeOf: require('./_set-proto').set });
 
-},{"./_export":567,"./_set-proto":648}],639:[function(require,module,exports) {
+},{"./_export":559,"./_set-proto":646}],635:[function(require,module,exports) {
 require('../../modules/es6.object.set-prototype-of');
 module.exports = require('../../modules/_core').Object.setPrototypeOf;
 
-},{"../../modules/es6.object.set-prototype-of":644,"../../modules/_core":558}],70:[function(require,module,exports) {
+},{"../../modules/es6.object.set-prototype-of":641,"../../modules/_core":557}],64:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/object/set-prototype-of"), __esModule: true };
-},{"core-js/library/fn/object/set-prototype-of":639}],20:[function(require,module,exports) {
+},{"core-js/library/fn/object/set-prototype-of":635}],20:[function(require,module,exports) {
 'use strict';
 
 var has = Object.prototype.hasOwnProperty
@@ -31307,7 +31221,7 @@ if ('undefined' !== typeof module) {
   module.exports = EventEmitter;
 }
 
-},{}],10:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -31438,8 +31352,8 @@ var __values = undefined && undefined.__values || function (o) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var eventemitter3_1 = require("eventemitter3");
-var circular_audio_buffer_1 = require("./circular_audio_buffer");
-var types_1 = require("./types");
+var circular_audio_buffer_1 = require("./utils/circular_audio_buffer");
+var types_1 = require("./utils/types");
 exports.audioCtx = new AudioContext();
 var StreamingFeatureExtractor = function (_super) {
     __extends(StreamingFeatureExtractor, _super);
@@ -31477,9 +31391,7 @@ var StreamingFeatureExtractor = function (_super) {
     StreamingFeatureExtractor.prototype.start = function () {
         var _this = this;
         this.circularBuffer.clear();
-        var constraints = {
-            audio: true
-        };
+        var constraints = { audio: true };
         navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
             _this.stream = stream;
             _this.setup();
@@ -31519,7 +31431,7 @@ var StreamingFeatureExtractor = function (_super) {
     return StreamingFeatureExtractor;
 }(eventemitter3_1.EventEmitter);
 exports.StreamingFeatureExtractor = StreamingFeatureExtractor;
-},{"babel-runtime/core-js/object/assign":66,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"eventemitter3":20,"./circular_audio_buffer":10,"./types":8}],649:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/assign":62,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"eventemitter3":20,"./utils/circular_audio_buffer":11,"./utils/types":8}],649:[function(require,module,exports) {
 // 20.2.2.22 Math.log2(x)
 var $export = require('./_export');
 
@@ -31529,13 +31441,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":567}],645:[function(require,module,exports) {
+},{"./_export":559}],648:[function(require,module,exports) {
 require('../../modules/es6.math.log2');
 module.exports = require('../../modules/_core').Math.log2;
 
-},{"../../modules/es6.math.log2":649,"../../modules/_core":558}],372:[function(require,module,exports) {
+},{"../../modules/es6.math.log2":649,"../../modules/_core":557}],546:[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/math/log2"), __esModule: true };
-},{"core-js/library/fn/math/log2":645}],550:[function(require,module,exports) {
+},{"core-js/library/fn/math/log2":648}],547:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32789,7 +32701,7 @@ function __extends(e, t) {
         c = e[u],
         p = toSnakeCase(u);o[p] = "name" !== u && "className" !== u || "string" != typeof c ? convertTsToPythonic(c, u) : c;
   }return o;
-}var version = "0.7.2";function preprocessWeightsForLoading(e, t, n, r) {
+}var version = "0.7.1";function preprocessWeightsForLoading(e, t, n, r) {
   if (!n.startsWith("2.")) throw new ValueError("Unsupported Keras version in weights being loaded: " + n);return t;
 }function loadTensor(e, t, n) {
   var r = stringToDType(e);return _tfjsCore.Tensor.make(t, { values: 0 === t.length ? n : _tfjsCore.util.flatten(n) }, r);
@@ -35000,7 +34912,7 @@ exports.Sequential = Sequential;
 exports.LayerVariable = LayerVariable;
 exports.version_layers = version;
 //# sourceMappingURL=tf-layers.esm.js.map
-},{"@tensorflow/tfjs-core":24}],30:[function(require,module,exports) {
+},{"@tensorflow/tfjs-core":24}],27:[function(require,module,exports) {
 var global = (1,eval)("this");
 
 "use strict";
@@ -35095,18 +35007,18 @@ function __awaiter(e, t, a, r) {
         i,
         p = 2147483647,
         u = 36,
-        m = 1,
-        l = 26,
+        l = 1,
+        m = 26,
         d = 38,
-        c = 700,
-        f = 72,
+        f = 700,
+        c = 72,
         h = 128,
         y = "-",
         g = /^xn--/,
         N = /[^\x20-\x7E]/,
         P = /[\x2E\u3002\uFF0E\uFF61]/g,
         b = { overflow: "Overflow: input needs wider integers to process", "not-basic": "Illegal input >= 0x80 (not a basic code point)", "invalid-input": "Invalid input" },
-        x = u - m,
+        x = u - l,
         v = Math.floor,
         I = String.fromCharCode;function O(e) {
       throw RangeError(b[e]);
@@ -35115,16 +35027,16 @@ function __awaiter(e, t, a, r) {
     }function V(e, t) {
       var a = e.split("@"),
           r = "";return a.length > 1 && (r = a[0] + "@", e = a[1]), r + w((e = e.replace(P, ".")).split("."), t).join(".");
-    }function T(e) {
-      for (var t, a, r = [], n = 0, o = e.length; n < o;) (t = e.charCodeAt(n++)) >= 55296 && t <= 56319 && n < o ? 56320 == (64512 & (a = e.charCodeAt(n++))) ? r.push(((1023 & t) << 10) + (1023 & a) + 65536) : (r.push(t), n--) : r.push(t);return r;
     }function k(e) {
+      for (var t, a, r = [], n = 0, o = e.length; n < o;) (t = e.charCodeAt(n++)) >= 55296 && t <= 56319 && n < o ? 56320 == (64512 & (a = e.charCodeAt(n++))) ? r.push(((1023 & t) << 10) + (1023 & a) + 65536) : (r.push(t), n--) : r.push(t);return r;
+    }function T(e) {
       return w(e, function (e) {
         var t = "";return e > 65535 && (t += I((e -= 65536) >>> 10 & 1023 | 55296), e = 56320 | 1023 & e), t += I(e);
       }).join("");
     }function $(e, t) {
       return e + 22 + 75 * (e < 26) - ((0 != t) << 5);
     }function _(e, t, a) {
-      var r = 0;for (e = a ? v(e / c) : e >> 1, e += v(e / t); e > x * l >> 1; r += u) e = v(e / x);return v(r + (x + 1) * e / (e + d));
+      var r = 0;for (e = a ? v(e / f) : e >> 1, e += v(e / t); e > x * m >> 1; r += u) e = v(e / x);return v(r + (x + 1) * e / (e + d));
     }function A(e) {
       var t,
           a,
@@ -35134,16 +35046,16 @@ function __awaiter(e, t, a, r) {
           s,
           i,
           d,
-          c,
+          f,
           g,
           N,
           P = [],
           b = e.length,
           x = 0,
           I = h,
-          w = f;for ((a = e.lastIndexOf(y)) < 0 && (a = 0), r = 0; r < a; ++r) e.charCodeAt(r) >= 128 && O("not-basic"), P.push(e.charCodeAt(r));for (n = a > 0 ? a + 1 : 0; n < b;) {
-        for (o = x, s = 1, i = u; n >= b && O("invalid-input"), ((d = (N = e.charCodeAt(n++)) - 48 < 10 ? N - 22 : N - 65 < 26 ? N - 65 : N - 97 < 26 ? N - 97 : u) >= u || d > v((p - x) / s)) && O("overflow"), x += d * s, !(d < (c = i <= w ? m : i >= w + l ? l : i - w)); i += u) s > v(p / (g = u - c)) && O("overflow"), s *= g;w = _(x - o, t = P.length + 1, 0 == o), v(x / t) > p - I && O("overflow"), I += v(x / t), x %= t, P.splice(x++, 0, I);
-      }return k(P);
+          w = c;for ((a = e.lastIndexOf(y)) < 0 && (a = 0), r = 0; r < a; ++r) e.charCodeAt(r) >= 128 && O("not-basic"), P.push(e.charCodeAt(r));for (n = a > 0 ? a + 1 : 0; n < b;) {
+        for (o = x, s = 1, i = u; n >= b && O("invalid-input"), ((d = (N = e.charCodeAt(n++)) - 48 < 10 ? N - 22 : N - 65 < 26 ? N - 65 : N - 97 < 26 ? N - 97 : u) >= u || d > v((p - x) / s)) && O("overflow"), x += d * s, !(d < (f = i <= w ? l : i >= w + m ? m : i - w)); i += u) s > v(p / (g = u - f)) && O("overflow"), s *= g;w = _(x - o, t = P.length + 1, 0 == o), v(x / t) > p - I && O("overflow"), I += v(x / t), x %= t, P.splice(x++, 0, I);
+      }return T(P);
     }function S(e) {
       var t,
           a,
@@ -35153,19 +35065,19 @@ function __awaiter(e, t, a, r) {
           s,
           i,
           d,
-          c,
+          f,
           g,
           N,
           P,
           b,
           x,
           w,
-          V = [];for (P = (e = T(e)).length, t = h, a = 0, o = f, s = 0; s < P; ++s) (N = e[s]) < 128 && V.push(I(N));for (r = n = V.length, n && V.push(y); r < P;) {
+          V = [];for (P = (e = k(e)).length, t = h, a = 0, o = c, s = 0; s < P; ++s) (N = e[s]) < 128 && V.push(I(N));for (r = n = V.length, n && V.push(y); r < P;) {
         for (i = p, s = 0; s < P; ++s) (N = e[s]) >= t && N < i && (i = N);for (i - t > v((p - a) / (b = r + 1)) && O("overflow"), a += (i - t) * b, t = i, s = 0; s < P; ++s) if ((N = e[s]) < t && ++a > p && O("overflow"), N == t) {
-          for (d = a, c = u; !(d < (g = c <= o ? m : c >= o + l ? l : c - o)); c += u) w = d - g, x = u - g, V.push(I($(g + w % x, 0))), d = v(w / x);V.push(I($(d, 0))), o = _(a, b, r == n), a = 0, ++r;
+          for (d = a, f = u; !(d < (g = f <= o ? l : f >= o + m ? m : f - o)); f += u) w = d - g, x = u - g, V.push(I($(g + w % x, 0))), d = v(w / x);V.push(I($(d, 0))), o = _(a, b, r == n), a = 0, ++r;
         }++a, ++t;
       }return V.join("");
-    }if (s = { version: "1.3.2", ucs2: { decode: T, encode: k }, decode: A, encode: S, toASCII: function (e) {
+    }if (s = { version: "1.3.2", ucs2: { decode: k, encode: T }, decode: A, encode: S, toASCII: function (e) {
         return V(e, function (e) {
           return N.test(e) ? "xn--" + S(e) : e;
         });
@@ -35191,11 +35103,11 @@ function __awaiter(e, t, a, r) {
 }var decode = function (e, t, a, r) {
   t = t || "&", a = a || "=";var n = {};if ("string" != typeof e || 0 === e.length) return n;var o = /\+/g;e = e.split(t);var s = 1e3;r && "number" == typeof r.maxKeys && (s = r.maxKeys);var i = e.length;s > 0 && i > s && (i = s);for (var p = 0; p < i; ++p) {
     var u,
-        m,
         l,
+        m,
         d,
-        c = e[p].replace(o, "%20"),
-        f = c.indexOf(a);f >= 0 ? (u = c.substr(0, f), m = c.substr(f + 1)) : (u = c, m = ""), l = decodeURIComponent(u), d = decodeURIComponent(m), hasOwnProperty(n, l) ? Array.isArray(n[l]) ? n[l].push(d) : n[l] = [n[l], d] : n[l] = d;
+        f = e[p].replace(o, "%20"),
+        c = f.indexOf(a);c >= 0 ? (u = f.substr(0, c), l = f.substr(c + 1)) : (u = f, l = ""), m = decodeURIComponent(u), d = decodeURIComponent(l), hasOwnProperty(n, m) ? Array.isArray(n[m]) ? n[m].push(d) : n[m] = [n[m], d] : n[m] = d;
   }return n;
 },
     stringifyPrimitive = function (e) {
@@ -35247,25 +35159,25 @@ function __awaiter(e, t, a, r) {
   }var p = protocolPattern.exec(s);if (p) {
     var u = (p = p[0]).toLowerCase();this.protocol = u, s = s.substr(p.length);
   }if (a || p || s.match(/^\/\/[^@\/]+@[^@\/]+/)) {
-    var m = "//" === s.substr(0, 2);!m || p && hostlessProtocol[p] || (s = s.substr(2), this.slashes = !0);
-  }if (!hostlessProtocol[p] && (m || p && !slashedProtocol[p])) {
-    for (var l, d, c = -1, f = 0; f < hostEndingChars.length; f++) {
-      -1 !== (h = s.indexOf(hostEndingChars[f])) && (-1 === c || h < c) && (c = h);
-    }-1 !== (d = -1 === c ? s.lastIndexOf("@") : s.lastIndexOf("@", c)) && (l = s.slice(0, d), s = s.slice(d + 1), this.auth = decodeURIComponent(l)), c = -1;for (f = 0; f < nonHostChars.length; f++) {
-      var h;-1 !== (h = s.indexOf(nonHostChars[f])) && (-1 === c || h < c) && (c = h);
-    }-1 === c && (c = s.length), this.host = s.slice(0, c), s = s.slice(c), this.parseHost(), this.hostname = this.hostname || "";var y = "[" === this.hostname[0] && "]" === this.hostname[this.hostname.length - 1];if (!y) for (var g = this.hostname.split(/\./), N = (f = 0, g.length); f < N; f++) {
-      var P = g[f];if (P && !P.match(hostnamePartPattern)) {
+    var l = "//" === s.substr(0, 2);!l || p && hostlessProtocol[p] || (s = s.substr(2), this.slashes = !0);
+  }if (!hostlessProtocol[p] && (l || p && !slashedProtocol[p])) {
+    for (var m, d, f = -1, c = 0; c < hostEndingChars.length; c++) {
+      -1 !== (h = s.indexOf(hostEndingChars[c])) && (-1 === f || h < f) && (f = h);
+    }-1 !== (d = -1 === f ? s.lastIndexOf("@") : s.lastIndexOf("@", f)) && (m = s.slice(0, d), s = s.slice(d + 1), this.auth = decodeURIComponent(m)), f = -1;for (c = 0; c < nonHostChars.length; c++) {
+      var h;-1 !== (h = s.indexOf(nonHostChars[c])) && (-1 === f || h < f) && (f = h);
+    }-1 === f && (f = s.length), this.host = s.slice(0, f), s = s.slice(f), this.parseHost(), this.hostname = this.hostname || "";var y = "[" === this.hostname[0] && "]" === this.hostname[this.hostname.length - 1];if (!y) for (var g = this.hostname.split(/\./), N = (c = 0, g.length); c < N; c++) {
+      var P = g[c];if (P && !P.match(hostnamePartPattern)) {
         for (var b = "", x = 0, v = P.length; x < v; x++) P.charCodeAt(x) > 127 ? b += "x" : b += P[x];if (!b.match(hostnamePartPattern)) {
-          var I = g.slice(0, f),
-              O = g.slice(f + 1),
+          var I = g.slice(0, c),
+              O = g.slice(c + 1),
               w = P.match(hostnamePartStart);w && (I.push(w[1]), O.unshift(w[2])), O.length && (s = "/" + O.join(".") + s), this.hostname = I.join(".");break;
         }
       }
     }this.hostname.length > hostnameMaxLen ? this.hostname = "" : this.hostname = this.hostname.toLowerCase(), y || (this.hostname = punycode.toASCII(this.hostname));var V = this.port ? ":" + this.port : "",
-        T = this.hostname || "";this.host = T + V, this.href += this.host, y && (this.hostname = this.hostname.substr(1, this.hostname.length - 2), "/" !== s[0] && (s = "/" + s));
-  }if (!unsafeProtocol[u]) for (f = 0, N = autoEscape.length; f < N; f++) {
-    var k = autoEscape[f];if (-1 !== s.indexOf(k)) {
-      var $ = encodeURIComponent(k);$ === k && ($ = escape(k)), s = s.split(k).join($);
+        k = this.hostname || "";this.host = k + V, this.href += this.host, y && (this.hostname = this.hostname.substr(1, this.hostname.length - 2), "/" !== s[0] && (s = "/" + s));
+  }if (!unsafeProtocol[u]) for (c = 0, N = autoEscape.length; c < N; c++) {
+    var T = autoEscape[c];if (-1 !== s.indexOf(T)) {
+      var $ = encodeURIComponent(T);$ === T && ($ = escape(T)), s = s.split(T).join($);
     }
   }var _ = s.indexOf("#");-1 !== _ && (this.hash = s.substr(_), s = s.slice(0, _));var A = s.indexOf("?");if (-1 !== A ? (this.search = s.substr(A), this.query = s.substr(A + 1), t && (this.query = querystring.parse(this.query)), s = s.slice(0, A)) : t && (this.search = "", this.query = {}), s && (this.pathname = s), slashedProtocol[u] && this.hostname && !this.pathname && (this.pathname = "/"), this.pathname || this.search) {
     V = this.pathname || "";var S = this.search || "";this.path = V + S;
@@ -35291,14 +35203,14 @@ function __awaiter(e, t, a, r) {
     }return slashedProtocol[a.protocol] && a.hostname && !a.pathname && (a.path = a.pathname = "/"), a.href = a.format(), a;
   }if (e.protocol && e.protocol !== a.protocol) {
     if (!slashedProtocol[e.protocol]) {
-      for (var u = Object.keys(e), m = 0; m < u.length; m++) {
-        var l = u[m];a[l] = e[l];
+      for (var u = Object.keys(e), l = 0; l < u.length; l++) {
+        var m = u[l];a[m] = e[m];
       }return a.href = a.format(), a;
     }if (a.protocol = e.protocol, e.host || hostlessProtocol[e.protocol]) a.pathname = e.pathname;else {
       for (var d = (e.pathname || "").split("/"); d.length && !(e.host = d.shift()););e.host || (e.host = ""), e.hostname || (e.hostname = ""), "" !== d[0] && d.unshift(""), d.length < 2 && d.unshift(""), a.pathname = d.join("/");
     }if (a.search = e.search, a.query = e.query, a.host = e.host || "", a.auth = e.auth, a.hostname = e.hostname || e.host, a.port = e.port, a.pathname || a.search) {
-      var c = a.pathname || "",
-          f = a.search || "";a.path = c + f;
+      var f = a.pathname || "",
+          c = a.search || "";a.path = f + c;
     }return a.slashes = a.slashes || e.slashes, a.href = a.format(), a;
   }var h = a.pathname && "/" === a.pathname.charAt(0),
       y = e.host || e.pathname && "/" === e.pathname.charAt(0),
@@ -36185,13 +36097,9 @@ function __awaiter(e, t, a, r) {
     convolution$1 = Object.freeze({ default: convolution }),
     creation = [{ tfOpName: "Fill", dlOpName: "fill", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "shape", type: "number[]" }, { tfInputIndex: 1, dlParamName: "value", type: "number" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "LinSpace", dlOpName: "linspace", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "start", type: "number" }, { tfInputIndex: 1, dlParamName: "stop", type: "number" }, { tfInputIndex: 2, dlParamName: "num", type: "number" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "OneHot", dlOpName: "oneHot", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "indices", type: "tensor" }, { tfInputIndex: 1, dlParamName: "depth", type: "number" }, { tfInputIndex: 2, dlParamName: "onValue", type: "number", defaultValue: 1 }, { tfInputIndex: 3, dlParamName: "offValue", type: "number", defaultValue: 0 }, { tfParamName: "axis", dlParamName: "axis", type: "number", notSupported: !0 }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "Ones", dlOpName: "ones", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "shape", type: "number[]" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "OnesLike", dlOpName: "onesLike", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "dtype", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "RandomUniform", dlOpName: "randomUniform", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "shape", type: "number[]" }, { tfParamName: "minval", dlParamName: "minval", type: "number", defaultValue: 0 }, { tfParamName: "maxval", dlParamName: "maxval", type: "number", defaultValue: 1 }, { tfParamName: "dtype", dlParamName: "dtype", type: "dtype" }, { tfParamName: "seed", dlParamName: "seed", type: "number", defaultValue: 0 }, { tfParamName: "seed2", dlParamName: "seed2", type: "number", defaultValue: 0, notSupported: !0 }, { tfParamName: "T", dlParamName: "T", type: "number", notSupported: !0 }] }, { tfOpName: "Range", dlOpName: "range", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "start", type: "number" }, { tfInputIndex: 1, dlParamName: "stop", type: "number" }, { tfInputIndex: 2, dlParamName: "step", type: "number", defaultValue: 0 }, { tfParamName: "Tidx", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "truncatedNormal", dlOpName: "truncatedNormal", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "shape", type: "number[]" }, { tfParamName: "means", dlParamName: "mean", type: "number", defaultValue: 0 }, { tfParamName: "stddev", dlParamName: "stdDev", type: "number", defaultValue: 1 }, { tfParamName: "seed", dlParamName: "seed", type: "number" }, { tfParamName: "seed2", dlParamName: "seed2", type: "number", defaultValue: 0, notSupported: !0 }, { tfParamName: "dtype", dlParamName: "dtype", type: "dtype" }, { tfParamName: "T", dlParamName: "T", type: "number", notSupported: !0 }] }, { tfOpName: "Zeros", dlOpName: "zeros", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "shape", type: "number[]" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "ZerosLike", dlOpName: "zerosLike", category: "creation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype" }] }],
     creation$1 = Object.freeze({ default: creation }),
-    dynamic = [{ tfOpName: "NonMaxSuppressionV2", dlOpName: "nonMaxSuppression", category: "dynamic", params: [{ tfInputIndex: 0, dlParamName: "boxes", type: "tensor" }, { tfInputIndex: 1, dlParamName: "scores", type: "tensor" }, { tfInputIndex: 2, dlParamName: "maxOutputSize", type: "number" }, { tfInputIndex: 3, dlParamName: "iouThreshold", type: "number" }] }, { tfOpName: "NonMaxSuppressionV3", dlOpName: "nonMaxSuppression", category: "dynamic", params: [{ tfInputIndex: 0, dlParamName: "boxes", type: "tensor" }, { tfInputIndex: 1, dlParamName: "scores", type: "tensor" }, { tfInputIndex: 2, dlParamName: "maxOutputSize", type: "number" }, { tfInputIndex: 3, dlParamName: "iouThreshold", type: "number" }, { tfInputIndex: 4, dlParamName: "scoreThreshold", type: "number" }] }, { tfOpName: "Where", dlOpName: "whereAsync", category: "dynamic", params: [{ tfInputIndex: 0, dlParamName: "condition", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }],
-    dynamic$1 = Object.freeze({ default: dynamic }),
-    evaluation = [{ tfOpName: "TopKV2", dlOpName: "topK", category: "evaluation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "k", type: "number" }, { tfParamName: "sorted", dlParamName: "sorted", type: "bool" }] }],
-    evaluation$1 = Object.freeze({ default: evaluation }),
     graph = [{ tfOpName: "PlaceholderWithDefault", dlOpName: "placeholder", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "default", type: "tensor" }, { tfParamName: "shape", dlParamName: "shape", type: "shape" }, { tfParamName: "dtype", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "Placeholder", dlOpName: "placeholder", category: "graph", params: [{ tfParamName: "shape", dlParamName: "shape", type: "shape" }, { tfParamName: "dtype", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "Const", dlOpName: "const", category: "graph" }, { tfOpName: "Identity", dlOpName: "identity", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "Snapshot", dlOpName: "snapshot", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "Rank", dlOpName: "rank", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "Size", dlOpName: "size", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "Shape", dlOpName: "shape", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "Print", dlOpName: "print", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, tfInputParamLength: 1, dlParamName: "data", type: "tensors" }, { tfParamName: "message", dlParamName: "message", type: "string" }, { tfParamName: "first_n", dlParamName: "firstN", type: "number", notSupprted: !0 }, { tfParamName: "summarize", dlParamName: "summarize", type: "number", defaultValue: 3 }] }, { tfOpName: "NoOp", dlOpName: "noop", category: "graph", params: [] }, { tfOpName: "StopGradient", dlOpName: "stopGradient", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }] }, { tfOpName: "FakeQuantWithMinMaxVars", dlOpName: "fakeQuantWithMinMaxVars", category: "graph", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "min", dlParamName: "min", type: "number" }, { tfParamName: "max", dlParamName: "max", type: "number" }] }],
     graph$1 = Object.freeze({ default: graph }),
-    image$1 = [{ tfOpName: "ResizeBilinear", dlOpName: "resizeBilinear", category: "image", params: [{ tfInputIndex: 0, dlParamName: "images", type: "tensor" }, { tfInputIndex: 1, dlParamName: "size", type: "number[]" }, { tfParamName: "align_corners", dlParamName: "alignCorners", type: "bool" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "ResizeNearestNeighbor", dlOpName: "resizeNearestNeighbor", category: "image", params: [{ tfInputIndex: 0, dlParamName: "images", type: "tensor" }, { tfInputIndex: 1, dlParamName: "size", type: "number[]" }, { tfParamName: "align_corners", dlParamName: "alignCorners", type: "bool" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "NonMaxSuppressionV2", dlOpName: "nonMaxSuppression", category: "image", params: [{ tfInputIndex: 0, dlParamName: "boxes", type: "tensor" }, { tfInputIndex: 1, dlParamName: "scores", type: "tensor" }, { tfInputIndex: 2, dlParamName: "maxOutputSize", type: "number" }, { tfInputIndex: 3, dlParamName: "iouThreshold", type: "number" }] }, { tfOpName: "NonMaxSuppressionV3", dlOpName: "nonMaxSuppression", category: "image", params: [{ tfInputIndex: 0, dlParamName: "boxes", type: "tensor" }, { tfInputIndex: 1, dlParamName: "scores", type: "tensor" }, { tfInputIndex: 2, dlParamName: "maxOutputSize", type: "number" }, { tfInputIndex: 3, dlParamName: "iouThreshold", type: "number" }, { tfInputIndex: 4, dlParamName: "scoreThreshold", type: "number" }] }],
+    image$1 = [{ tfOpName: "ResizeBilinear", dlOpName: "resizeBilinear", category: "image", params: [{ tfInputIndex: 0, dlParamName: "images", type: "tensor" }, { tfInputIndex: 1, dlParamName: "size", type: "number[]" }, { tfParamName: "align_corners", dlParamName: "alignCorners", type: "bool" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "ResizeNearestNeighbor", dlOpName: "resizeNearestNeighbor", category: "image", params: [{ tfInputIndex: 0, dlParamName: "images", type: "tensor" }, { tfInputIndex: 1, dlParamName: "size", type: "number[]" }, { tfParamName: "align_corners", dlParamName: "alignCorners", type: "bool" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }],
     image$2 = Object.freeze({ default: image$1 }),
     logical = [{ tfOpName: "Equal", dlOpName: "equal", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "NotEqual", dlOpName: "notEqual", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "Greater", dlOpName: "greater", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "GreaterEqual", dlOpName: "greaterEqual", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "Less", dlOpName: "less", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "LessEqual", dlOpName: "lessEqual", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "LogicalAnd", dlOpName: "logicalAnd", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "LogicalNot", dlOpName: "logicalNot", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "LogicalOr", dlOpName: "logicalOr", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "a", type: "tensor" }, { tfInputIndex: 1, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }, { tfOpName: "Select", dlOpName: "where", category: "logical", params: [{ tfInputIndex: 0, dlParamName: "condition", type: "tensor" }, { tfInputIndex: 1, dlParamName: "a", type: "tensor" }, { tfInputIndex: 2, dlParamName: "b", type: "tensor" }, { tfParamName: "T", dlParamName: "dtype", type: "dtype", notSupported: !0 }] }],
     logical$1 = Object.freeze({ default: logical }),
@@ -36203,13 +36111,12 @@ function __awaiter(e, t, a, r) {
     reduction$1 = Object.freeze({ default: reduction }),
     slice_join = [{ tfOpName: "ConcatV2", dlOpName: "concat", category: "slice_join", params: [{ tfInputIndex: 0, tfInputParamLength: 1, dlParamName: "tensors", type: "tensors" }, { tfInputIndex: -1, dlParamName: "axis", type: "number" }] }, { tfOpName: "Concat", dlOpName: "concat", category: "slice_join", params: [{ tfInputIndex: 1, tfInputParamLength: 1, dlParamName: "tensors", type: "tensors" }, { tfInputIndex: 0, dlParamName: "axis", type: "number" }] }, { tfOpName: "GatherV2", dlOpName: "gather", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "indices", type: "tensor" }, { tfParamName: "axis", dlParamName: "axis", type: "number", defaultValue: 0 }] }, { tfOpName: "Gather", dlOpName: "gather", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "indices", type: "tensor" }, { tfParamName: "axis", dlParamName: "axis", type: "number", defaultValue: 0 }, { tfParamName: "validate_indices", dlParamName: "validateIndices", type: "bool", notSupported: !0 }] }, { tfOpName: "Reverse", dlOpName: "reverse", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "axis", type: "number" }] }, { tfOpName: "ReverseV2", dlOpName: "reverse", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "axis", type: "number" }] }, { tfOpName: "Slice", dlOpName: "slice", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "begin", type: "number[]" }, { tfInputIndex: 2, dlParamName: "size", type: "number[]" }] }, { tfOpName: "StridedSlice", dlOpName: "stridedSlice", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "begin", type: "number[]" }, { tfInputIndex: 2, dlParamName: "end", type: "number[]" }, { tfInputIndex: 3, dlParamName: "strides", type: "number[]" }, { tfParamName: "begin_mask", dlParamName: "beginMask", type: "number", defaultValue: 0 }, { tfParamName: "end_mask", dlParamName: "endMask", type: "number", defaultValue: 0 }] }, { tfOpName: "Pack", dlOpName: "stack", category: "slice_join", params: [{ tfInputIndex: 0, tfInputParamLength: 0, dlParamName: "tensors", type: "tensors" }, { tfParamName: "axis", dlParamName: "axis", type: "number", defaultValue: 0 }] }, { tfOpName: "Unpack", dlOpName: "unstack", category: "slice_join", params: [{ tfInputIndex: 0, tfInputParamLength: 0, dlParamName: "tensor", type: "tensor" }, { tfParamName: "axis", dlParamName: "axis", type: "number", defaultValue: 0 }, { tfParamName: "num", dlParamName: "num", type: "number", defaultValue: 0, notSupported: !0 }] }, { tfOpName: "Tile", dlOpName: "tile", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "reps", type: "number[]" }] }, { tfOpName: "Split", dlOpName: "split", category: "slice_join", params: [{ tfInputIndex: 0, dlParamName: "axis", type: "number", defaultValue: 0 }, { tfInputIndex: 1, dlParamName: "x", type: "tensor" }, { tfParamName: "num_split", dlParamName: "numOrSizeSplits", type: "number", defaultValue: 1 }] }],
     sliceJoin = Object.freeze({ default: slice_join }),
-    transformation = [{ tfOpName: "Cast", dlOpName: "cast", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "SrcT", dlParamName: "sdtype", type: "dtype", notSupported: !0 }, { tfParamName: "DstT", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "ExpandDims", dlOpName: "expandDims", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, tfParamNameDeprecated: "dim", dlParamName: "axis", type: "number" }] }, { tfOpName: "Pad", dlOpName: "pad", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "padding", type: "number[]" }, { tfParamName: "constant_value", dlParamName: "constantValue", type: "number", defaultValue: 0 }] }, { tfOpName: "PadV2", dlOpName: "pad", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "padding", type: "number[]" }, { tfInputIndex: 2, dlParamName: "constantValue", type: "number", defaultValue: 0 }] }, { tfOpName: "Reshape", dlOpName: "reshape", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "shape", type: "number[]" }] }, { tfOpName: "Squeeze", dlOpName: "squeeze", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "axis", tfParamNameDeprecated: "squeeze_dims", dlParamName: "axis", type: "number[]" }] }, { tfOpName: "SpaceToBatchND", dlOpName: "spaceToBatchND", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "blockShape", type: "number[]" }, { tfInputIndex: 2, dlParamName: "paddings", type: "number[]" }] }, { tfOpName: "BatchToSpaceND", dlOpName: "batchToSpaceND", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "blockShape", type: "number[]" }, { tfInputIndex: 2, dlParamName: "crops", type: "number[]" }] }],
+    transformation = [{ tfOpName: "Cast", dlOpName: "cast", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "SrcT", dlParamName: "sdtype", type: "dtype", notSupported: !0 }, { tfParamName: "DstT", dlParamName: "dtype", type: "dtype" }] }, { tfOpName: "ExpandDims", dlOpName: "expandDims", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, tfParamNameDeprecated: "dim", dlParamName: "axis", type: "number" }] }, { tfOpName: "Pad", dlOpName: "pad", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "padding", type: "number[]" }, { tfParamName: "constant_value", dlParamName: "constantValue", type: "number", defaultValue: 0 }] }, { tfOpName: "PadV2", dlOpName: "pad", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "padding", type: "number[]" }, { tfInputIndex: 2, dlParamName: "constantValue", type: "number", defaultValue: 0 }] }, { tfOpName: "Reshape", dlOpName: "reshape", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfInputIndex: 1, dlParamName: "shape", type: "number[]" }] }, { tfOpName: "Squeeze", dlOpName: "squeeze", category: "transformation", params: [{ tfInputIndex: 0, dlParamName: "x", type: "tensor" }, { tfParamName: "axis", tfParamNameDeprecated: "squeeze_dims", dlParamName: "axis", type: "number[]" }] }],
     transformation$1 = Object.freeze({ default: transformation }),
     CONTROL_FLOW_OPS = ["Switch", "Merge", "Enter", "Exit", "NextIteration"],
-    DYNAMIC_SHAPE_OPS = ["NonMaxSuppressionV2", "NonMaxSuppressionV3", "Where"],
     OperationMapper = function () {
   function e() {
-    var e = [arithmetic$1, basicMath, control$1, convolution$1, creation$1, dynamic$1, evaluation$1, logical$1, image$2, graph$1, matrices$1, normalization$1, reduction$1, sliceJoin, transformation$1],
+    var e = [arithmetic$1, basicMath, control$1, convolution$1, creation$1, logical$1, image$2, graph$1, matrices$1, normalization$1, reduction$1, sliceJoin, transformation$1],
         t = [].concat.apply([], e.map(function (e) {
       return e.default ? e.default : e;
     }));this.opMappers = t.reduce(function (e, t) {
@@ -36221,26 +36128,21 @@ function __awaiter(e, t, a, r) {
     return CONTROL_FLOW_OPS.some(function (t) {
       return t === e.op;
     });
-  }, e.prototype.isDynamicShape = function (e) {
-    return DYNAMIC_SHAPE_OPS.some(function (t) {
-      return t === e.op;
-    });
   }, e.prototype.transformGraph = function (e) {
     var t = this,
         a = !1,
-        r = !1,
-        n = [],
-        o = e.node.reduce(function (e, o) {
-      return e[o.name] = t.mapNode(o), t.isControlFlow(o) && (a = !0), t.isDynamicShape(o) && (r = !0), "Placeholder" === o.op && n.push(e[o.name]), e;
+        r = [],
+        n = e.node.reduce(function (e, n) {
+      return e[n.name] = t.mapNode(n), t.isControlFlow(n) && (a = !0), "Placeholder" === n.op && r.push(e[n.name]), e;
     }, {}),
-        s = [],
-        i = [];return Object.keys(o).forEach(function (e) {
-      var t = o[e];t.inputNames.forEach(function (e) {
-        var a = getNodeNameAndIndex(e)[0];t.inputs.push(o[a]), o[a].children.push(t);
-      }), 0 === t.inputs.length && s.push(t);
-    }), Object.keys(o).forEach(function (e) {
-      var t = o[e];0 === t.children.length && i.push(t);
-    }), { nodes: o, inputs: s, outputs: i, placeholders: n, withControlFlow: a, withDynamicShape: r };
+        o = [],
+        s = [];return Object.keys(n).forEach(function (e) {
+      var t = n[e];t.inputNames.forEach(function (e) {
+        var a = getNodeNameAndIndex(e)[0];t.inputs.push(n[a]), n[a].children.push(t);
+      }), 0 === t.inputs.length && o.push(t);
+    }), Object.keys(n).forEach(function (e) {
+      var t = n[e];0 === t.children.length && s.push(t);
+    }), { nodes: n, inputs: o, outputs: s, placeholders: r, withControlFlow: a };
   }, e.prototype.mapNode = function (e) {
     var t = this,
         a = this.opMappers[e.op];if (void 0 === a) throw new Error("Tensorflow Op is not supported: " + e.op);var r = { name: e.name, op: a.dlOpName, category: a.category, inputNames: (e.input || []).map(function (e) {
@@ -36276,7 +36178,7 @@ function __awaiter(e, t, a, r) {
         return a;}return a;
   }, e.prototype.getTensorShapeParam = function (e, t, a) {
     var r = e[t];return r && r.shape ? r.shape.dim.map(function (e) {
-      return "number" == typeof e.size ? e.size : e.size.toInt();
+      return e.size;
     }) : a;
   }, e.prototype.getNumericArrayParam = function (e, t, a) {
     var r = e[t];return r ? (r.list.f && r.list.f.length ? r.list.f : r.list.i).map(function (e) {
@@ -36380,7 +36282,7 @@ function __awaiter(e, t, a, r) {
   }, e.nextId = 0, e;
 }();function executeOp$2(e, t, a) {
   return __awaiter(this, void 0, void 0, function () {
-    var r, n, o, s, i, p, u, m, l, d, c, f, h, y, g, N, P, b, x, v, I, O, w, V, T, k, $, _, A, S, D, C, E, j, R;return __generator(this, function (L) {
+    var r, n, o, s, i, p, u, l, m, d, f, c, h, y, g, N, P, b, x, v, I, O, w, V, k, T, $, _, A, S, D, C, E, j, R;return __generator(this, function (L) {
       switch (L.label) {case 0:
           switch (e.op) {case "loopCond":
               return [3, 1];case "switch":
@@ -36407,11 +36309,11 @@ function __awaiter(e, t, a, r) {
           return s = getParamValue("frameName", e, t, a), i = getParamValue("tensor", e, t, a), a.enterFrame(s), [2, [i]];case 6:
           return p = getParamValue("tensor", e, t, a), a.exitFrame(), [2, [p]];case 7:
           return u = getParamValue("tensor", e, t, a), a.nextIteration(), [2, [u]];case 8:
-          return m = getParamValue("size", e, t, a), l = getParamValue("dtype", e, t, a), d = getParamValue("elementShape", e, t, a), c = getParamValue("dynamicSize", e, t, a), f = getParamValue("clearAfterRead", e, t, a), h = getParamValue("identicalElementShapes", e, t, a), y = getParamValue("name", e, t, a), g = new TensorArray(y, l, m, d, h, c, f), a.addTensorArray(g), [2, [(0, _tfjsCore.scalar)(g.id), (0, _tfjsCore.scalar)(1)]];case 9:
+          return l = getParamValue("size", e, t, a), m = getParamValue("dtype", e, t, a), d = getParamValue("elementShape", e, t, a), f = getParamValue("dynamicSize", e, t, a), c = getParamValue("clearAfterRead", e, t, a), h = getParamValue("identicalElementShapes", e, t, a), y = getParamValue("name", e, t, a), g = new TensorArray(y, m, l, d, h, f, c), a.addTensorArray(g), [2, [(0, _tfjsCore.scalar)(g.id), (0, _tfjsCore.scalar)(1)]];case 9:
           return N = getParamValue("tensorArrayId", e, t, a), P = getParamValue("index", e, t, a), b = getParamValue("tensor", e, t, a), a.getTensorArray(N).write(P, b), [2, [(0, _tfjsCore.scalar)(1)]];case 10:
           return x = getParamValue("tensorArrayId", e, t, a), v = getParamValue("index", e, t, a), [2, [a.getTensorArray(x).read(v)]];case 11:
           return I = getParamValue("tensorArrayId", e, t, a), O = getParamValue("indices", e, t, a), w = getParamValue("dtype", e, t, a), [2, [a.getTensorArray(I).gather(O, w)]];case 12:
-          return V = getParamValue("tensorArrayId", e, t, a), T = getParamValue("indices", e, t, a), k = getParamValue("tensor", e, t, a), a.getTensorArray(V).scatter(T, k), [2, [(0, _tfjsCore.scalar)(1)]];case 13:
+          return V = getParamValue("tensorArrayId", e, t, a), k = getParamValue("indices", e, t, a), T = getParamValue("tensor", e, t, a), a.getTensorArray(V).scatter(k, T), [2, [(0, _tfjsCore.scalar)(1)]];case 13:
           return $ = getParamValue("tensorArrayId", e, t, a), _ = a.getTensorArray($), A = getParamValue("dtype", e, t, a), [2, [_.concat(A)]];case 14:
           return S = getParamValue("tensorArrayId", e, t, a), D = getParamValue("tensor", e, t, a), C = getParamValue("lengths", e, t, a), a.getTensorArray(S).split(C, D), [2, [(0, _tfjsCore.scalar)(1)]];case 15:
           return E = getParamValue("tensorArrayId", e, t, a), j = a.getTensorArray(E), [2, [(0, _tfjsCore.scalar)(j.size(), "int32")]];case 16:
@@ -36441,45 +36343,21 @@ function __awaiter(e, t, a, r) {
           i = getParamValue("num", e, t, a);return [(0, _tfjsCore.linspace)(o, s, i)];case "oneHot":
       var p = getParamValue("indices", e, t, a),
           u = getParamValue("depth", e, t, a),
-          m = getParamValue("onValue", e, t, a),
-          l = getParamValue("offValue", e, t, a);return [(0, _tfjsCore.oneHot)(p, u, m, l)];case "ones":
+          l = getParamValue("onValue", e, t, a),
+          m = getParamValue("offValue", e, t, a);return [(0, _tfjsCore.oneHot)(p, u, l, m)];case "ones":
       return [(0, _tfjsCore.ones)(getParamValue("shape", e, t, a), getParamValue("dtype", e, t, a))];case "onesLike":
       return [(0, _tfjsCore.onesLike)(getParamValue("x", e, t, a))];case "randomUniform":
       return [(0, _tfjsCore.randomUniform)(getParamValue("shape", e, t, a), getParamValue("minval", e, t, a), getParamValue("maxval", e, t, a), getParamValue("dtype", e, t, a))];case "range":
       o = getParamValue("start", e, t, a);var d = getParamValue("stop", e, t, a),
-          c = getParamValue("step", e, t, a);return [(0, _tfjsCore.range)(o, d, c, getParamValue("dtype", e, t, a))];case "truncatedNormal":
-      r = getParamValue("shape", e, t, a);var f = getParamValue("mean", e, t, a),
+          f = getParamValue("step", e, t, a);return [(0, _tfjsCore.range)(o, d, f, getParamValue("dtype", e, t, a))];case "truncatedNormal":
+      r = getParamValue("shape", e, t, a);var c = getParamValue("mean", e, t, a),
           h = getParamValue("stdDev", e, t, a),
-          y = getParamValue("seed", e, t, a);return [(0, _tfjsCore.truncatedNormal)(r, f, h, getParamValue("dtype", e, t, a), y)];case "zeros":
+          y = getParamValue("seed", e, t, a);return [(0, _tfjsCore.truncatedNormal)(r, c, h, getParamValue("dtype", e, t, a), y)];case "zeros":
       return [(0, _tfjsCore.zeros)(getParamValue("shape", e, t, a), getParamValue("dtype", e, t, a))];case "zerosLike":
       return [(0, _tfjsCore.zerosLike)(getParamValue("x", e, t, a))];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    _this = void 0,
     executeOp$5 = function (e, t, a) {
-  return __awaiter(_this, void 0, void 0, function () {
-    var r, n, o, s, i;return __generator(this, function (p) {
-      switch (p.label) {case 0:
-          switch (e.op) {case "nonMaxSuppression":
-              return [3, 1];case "whereAsync":
-              return [3, 3];}return [3, 5];case 1:
-          return r = getParamValue("boxes", e, t, a), n = getParamValue("scores", e, t, a), o = getParamValue("maxOutputSize", e, t, a), s = getParamValue("iouThreshold", e, t, a), i = getParamValue("scoreThreshold", e, t, a), [4, _tfjsCore.image.nonMaxSuppressionAsync(r, n, o, s, i)];case 2:
-          return [2, [p.sent()]];case 3:
-          return [4, (0, _tfjsCore.whereAsync)(getParamValue("condition", e, t, a))];case 4:
-          return [2, [p.sent()]];case 5:
-          throw TypeError("Node type " + e.op + " is not implemented");}
-    });
-  });
-},
-    executeOp$6 = function (e, t, a) {
-  switch (e.op) {case "topK":
-      var r = getParamValue("x", e, t, a),
-          n = getParamValue("k", e, t, a),
-          o = getParamValue("sorted", e, t, a),
-          s = (0, _tfjsCore.topk)(r, n, o);return [s.values, s.indices];default:
-      throw TypeError("Node type " + e.op + " is not implemented");}
-},
-    executeOp$7 = function (e, t, a) {
   switch (e.op) {case "const":
       return t[e.name];case "placeholder":
       var r = getParamValue("default", e, t, a);return [getTensor(e.name, t, a) || r];case "identity":case "stopGradient":case "fakeQuantWithMinMaxVars":
@@ -36495,7 +36373,7 @@ function __awaiter(e, t, a, r) {
           i = getParamValue("summarize", e, t, a);console.warn("The graph has a tf.print() operation,usually used for debugging, which slows down performance."), console.log(s);for (var p = 0; p < o.length; p++) console.log(Array.prototype.slice.call(o[0].dataSync()).slice(0, i));return [n];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$8 = function (e, t, a) {
+    executeOp$6 = function (e, t, a) {
   switch (e.op) {case "resizeBilinear":
       var r = getParamValue("images", e, t, a),
           n = getParamValue("size", e, t, a),
@@ -36503,7 +36381,7 @@ function __awaiter(e, t, a, r) {
       r = getParamValue("images", e, t, a), n = getParamValue("size", e, t, a), o = getParamValue("alignCorners", e, t, a);return [_tfjsCore.image.resizeNearestNeighbor(r, [n[0], n[1]], o)];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$9 = function (e, t, a) {
+    executeOp$7 = function (e, t, a) {
   switch (e.op) {case "equal":
       return [(0, _tfjsCore.equal)(getParamValue("a", e, t, a), getParamValue("b", e, t, a))];case "notEqual":
       return [(0, _tfjsCore.notEqual)(getParamValue("a", e, t, a), getParamValue("b", e, t, a))];case "greater":
@@ -36517,20 +36395,20 @@ function __awaiter(e, t, a, r) {
       return [(0, _tfjsCore.where)(getParamValue("condition", e, t, a), getParamValue("a", e, t, a), getParamValue("b", e, t, a))];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$10 = function (e, t, a) {
+    executeOp$8 = function (e, t, a) {
   switch (e.op) {case "matMul":
       return [(0, _tfjsCore.matMul)(getParamValue("a", e, t, a), getParamValue("b", e, t, a), getParamValue("transposeA", e, t, a), getParamValue("transposeB", e, t, a))];case "transpose":
       return [(0, _tfjsCore.transpose)(getParamValue("x", e, t, a), getParamValue("perm", e, t, a))];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$11 = function (e, t, a) {
+    executeOp$9 = function (e, t, a) {
   switch (e.op) {case "batchNormalization":
       return [(0, _tfjsCore.batchNormalization)(getParamValue("x", e, t, a), getParamValue("mean", e, t, a), getParamValue("variance", e, t, a), getParamValue("epsilon", e, t, a), getParamValue("scale", e, t, a), getParamValue("offset", e, t, a))];case "localResponseNormalization":
       return [(0, _tfjsCore.localResponseNormalization)(getParamValue("x", e, t, a), getParamValue("radius", e, t, a), getParamValue("bias", e, t, a), getParamValue("alpha", e, t, a), getParamValue("beta", e, t, a))];case "softmax":
       return [(0, _tfjsCore.softmax)(getParamValue("x", e, t, a))];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$12 = function (e, t, a) {
+    executeOp$10 = function (e, t, a) {
   switch (e.op) {case "max":
       var r = getParamValue("axis", e, t, a),
           n = getParamValue("keepDims", e, t, a);return [(0, _tfjsCore.max)(getParamValue("x", e, t, a), r, n)];case "mean":
@@ -36543,7 +36421,7 @@ function __awaiter(e, t, a, r) {
       r = getParamValue("axis", e, t, a);return [(0, _tfjsCore.argMin)(getParamValue("x", e, t, a), r)];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$13 = function (e, t, a) {
+    executeOp$11 = function (e, t, a) {
   switch (e.op) {case "concat":
       var r = getParamValue("axis", e, t, a),
           n = getParamValue("tensors", e, t, a);return [(0, _tfjsCore.concat)(n, r)];case "gather":
@@ -36553,10 +36431,10 @@ function __awaiter(e, t, a, r) {
       var i = getParamValue("begin", e, t, a),
           p = getParamValue("size", e, t, a);return [(0, _tfjsCore.slice)(getParamValue("x", e, t, a), i, p)];case "stridedSlice":
       i = getParamValue("begin", e, t, a);var u = getParamValue("end", e, t, a),
-          m = getParamValue("strides", e, t, a),
-          l = getParamValue("beginMask", e, t, a),
+          l = getParamValue("strides", e, t, a),
+          m = getParamValue("beginMask", e, t, a),
           d = getParamValue("endMask", e, t, a),
-          c = getParamValue("x", e, t, a);if (1 === i.length && c.shape.length > 1) for (var f = 1; f < c.shape.length; f++) i.push(0), u.push(c.shape[f]), m.push(m[0]);return [(0, _tfjsCore.stridedSlice)(c, i, u, m, l, d)];case "stack":
+          f = getParamValue("x", e, t, a);if (1 === i.length && f.shape.length > 1) for (var c = 1; c < f.shape.length; c++) i.push(0), u.push(f.shape[c]), l.push(l[0]);return [(0, _tfjsCore.stridedSlice)(f, i, u, l, m, d)];case "stack":
       return (0, _tfjsCore.tidy)(function () {
         var r = getParamValue("axis", e, t, a),
             n = getParamValue("tensors", e, t, a),
@@ -36574,34 +36452,29 @@ function __awaiter(e, t, a, r) {
       r = getParamValue("axis", e, t, a);var y = getParamValue("numOrSizeSplits", e, t, a);return (0, _tfjsCore.split)(getParamValue("x", e, t, a), y, r);default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 },
-    executeOp$14 = function (e, t, a) {
+    executeOp$12 = function (e, t, a) {
   switch (e.op) {case "cast":
       return [(0, _tfjsCore.cast)(getParamValue("x", e, t, a), getParamValue("dtype", e, t, a))];case "expandDims":
       var r = e.params.axis.value;return [(0, _tfjsCore.expandDims)(getParamValue("x", e, t, a), r)];case "squeeze":
       r = e.params.axis.value;return [(0, _tfjsCore.squeeze)(getParamValue("x", e, t, a), r)];case "reshape":
       return [(0, _tfjsCore.reshape)(getParamValue("x", e, t, a), getParamValue("shape", e, t, a))];case "pad":
-      return [(0, _tfjsCore.pad)(getParamValue("x", e, t, a), split$1(getParamValue("padding", e, t, a), 2), getParamValue("constantValue", e, t, a))];case "spaceToBatchND":
-      var n = getParamValue("blockShape", e, t, a),
-          o = split$1(getParamValue("paddings", e, t, a), 2);return [(0, _tfjsCore.spaceToBatchND)(getParamValue("x", e, t, a), n, o)];case "batchToSpaceND":
-      n = getParamValue("blockShape", e, t, a);var s = split$1(getParamValue("crops", e, t, a), 2);return [(0, _tfjsCore.batchToSpaceND)(getParamValue("x", e, t, a), n, s)];default:
+      return [(0, _tfjsCore.pad)(getParamValue("x", e, t, a), split$1(getParamValue("padding", e, t, a), 2), getParamValue("constantValue", e, t, a))];default:
       throw TypeError("Node type " + e.op + " is not implemented");}
-};function executeOp$15(e, t, a) {
+};function executeOp$13(e, t, a) {
   switch (e.category) {case "arithmetic":
       return executeOp(e, t, a);case "basic_math":
       return executeOp$1(e, t, a);case "control":
       return executeOp$2(e, t, a);case "convolution":
       return executeOp$3(e, t, a);case "creation":
-      return executeOp$4(e, t, a);case "dynamic":
-      return executeOp$5(e, t, a);case "evaluation":
-      return executeOp$6(e, t, a);case "image":
-      return executeOp$8(e, t, a);case "graph":
-      return executeOp$7(e, t, a);case "logical":
-      return executeOp$9(e, t, a);case "matrices":
-      return executeOp$10(e, t, a);case "normalization":
-      return executeOp$11(e, t, a);case "reduction":
-      return executeOp$12(e, t, a);case "slice_join":
-      return executeOp$13(e, t, a);case "transformation":
-      return executeOp$14(e, t, a);default:
+      return executeOp$4(e, t, a);case "image":
+      return executeOp$6(e, t, a);case "graph":
+      return executeOp$5(e, t, a);case "logical":
+      return executeOp$7(e, t, a);case "matrices":
+      return executeOp$8(e, t, a);case "normalization":
+      return executeOp$9(e, t, a);case "reduction":
+      return executeOp$10(e, t, a);case "slice_join":
+      return executeOp$11(e, t, a);case "transformation":
+      return executeOp$12(e, t, a);default:
       throw TypeError("Node type " + e.op + " is not implemented");}
 }var ExecutionContext = function () {
   function e(e, t) {
@@ -36667,10 +36540,8 @@ function __awaiter(e, t, a, r) {
       });
     }, enumerable: !0, configurable: !0 }), Object.defineProperty(e.prototype, "isControlFlowModel", { get: function () {
       return this.graph.withControlFlow;
-    }, enumerable: !0, configurable: !0 }), Object.defineProperty(e.prototype, "isDynamicShapeModel", { get: function () {
-      return this.graph.withDynamicShape;
     }, enumerable: !0, configurable: !0 }), e.prototype.compile = function () {
-    if (!this.graph.withControlFlow && !this.graph.withDynamicShape) for (var e = this.graph.inputs.slice(), t = {}; e.length > 0;) {
+    if (!this.graph.withControlFlow) for (var e = this.graph.inputs.slice(), t = {}; e.length > 0;) {
       var a = e.pop();t[a.name] = !0, this.compiledOrder.push(a), a.children.forEach(function (a) {
         !t[a.name] && a.inputNames.every(function (e) {
           var a = getNodeNameAndIndex(e)[0];return t[a];
@@ -36681,7 +36552,7 @@ function __awaiter(e, t, a, r) {
     var a = this;this.checkInput(e);var r = {};return (0, _tfjsCore.tidy)(function () {
       var n = new ExecutionContext(a._weightMap, r),
           o = a.compiledOrder.reduce(function (e, t) {
-        return e[t.name] = executeOp$15(t, e, n), e;
+        return e[t.name] = executeOp$13(t, e, n), e;
       }, __assign({}, a.weightMap, e));return a.findOutputs(o, n, t);
     });
   }, e.prototype.executeAsync = function (e, t) {
@@ -36693,10 +36564,10 @@ function __awaiter(e, t, a, r) {
           s,
           i,
           p,
-          u = this;return __generator(this, function (m) {
-        switch (m.label) {case 0:
+          u = this;return __generator(this, function (l) {
+        switch (l.label) {case 0:
             return this.checkInput(e), a = {}, r = new ExecutionContext(this._weightMap, a), [4, this.executeWithControlFlow(e, r)];case 1:
-            return n = m.sent(), o = this.findOutputs(n, r, t), s = Object.keys(o).map(function (e) {
+            return n = l.sent(), o = this.findOutputs(n, r, t), s = Object.keys(o).map(function (e) {
               return o[e].id;
             }), i = Object.keys(e).map(function (t) {
               return e[t].map(function (e) {
@@ -36711,13 +36582,13 @@ function __awaiter(e, t, a, r) {
     });
   }, e.prototype.executeWithControlFlow = function (e, t) {
     return __awaiter(this, void 0, void 0, function () {
-      var a, r, n, o, s, i, p, u;return __generator(this, function (m) {
-        switch (m.label) {case 0:
+      var a, r, n, o, s, i, p, u;return __generator(this, function (l) {
+        switch (l.label) {case 0:
             a = this.graph.inputs.map(function (e) {
               return { node: e, contexts: t.currentContext };
-            }), r = __assign({}, this.weightMap, e), n = {}, m.label = 1;case 1:
-            return a.length > 0 ? (o = a.pop(), t.currentContext = o.contexts, s = "", "enter" === o.node.op && getParamValue("isConstant", o.node, r, t) && (s = getNodeNameAndIndex(o.node.name, t)[0]), i = executeOp$15(o.node, r, t), s || (s = getNodeNameAndIndex(o.node.name, t)[0]), p = r, u = s, [4, i]) : [3, 3];case 2:
-            return p[u] = m.sent(), o.node.children.forEach(function (e) {
+            }), r = __assign({}, this.weightMap, e), n = {}, l.label = 1;case 1:
+            return a.length > 0 ? (o = a.pop(), t.currentContext = o.contexts, s = "", "enter" === o.node.op && getParamValue("isConstant", o.node, r, t) && (s = getNodeNameAndIndex(o.node.name, t)[0]), i = executeOp$13(o.node, r, t), s || (s = getNodeNameAndIndex(o.node.name, t)[0]), p = r, u = s, [4, i]) : [3, 3];case 2:
+            return p[u] = l.sent(), o.node.children.forEach(function (e) {
               var o = getNodeNameAndIndex(e.name, t)[0];n[o] || ("merge" === e.op ? e.inputNames.some(function (e) {
                 return !!getTensor(e, r, t);
               }) && (n[o] = !0, a.push({ contexts: t.currentContext, node: e })) : e.inputNames.every(function (e) {
@@ -36815,7 +36686,7 @@ function __awaiter(e, t, a, r) {
       return e[a] = t[r], e;
     }, {});
   }, e.prototype.execute = function (e, t) {
-    if (t = t || this.outputNodes, (e instanceof _tfjsCore.Tensor || Array.isArray(e)) && (e = this.constructTensorMap(e)), this.executor.isControlFlowModel || this.executor.isDynamicShapeModel) throw new Error("The model contains control flow or dynamic shape ops, please use executeAsync method");var a = this.executor.execute(this.convertTensorMapToTensorsMap(e), t),
+    if (t = t || this.outputNodes, (e instanceof _tfjsCore.Tensor || Array.isArray(e)) && (e = this.constructTensorMap(e)), this.executor.isControlFlowModel) throw new Error("The model contains control flow ops, please use executeAsync method");var a = this.executor.execute(this.convertTensorMapToTensorsMap(e), t),
         r = Object.keys(a);return Array.isArray(t) && t.length > 1 ? t.map(function (e) {
       return a[e];
     }) : a[r[0]];
@@ -36823,7 +36694,7 @@ function __awaiter(e, t, a, r) {
     return __awaiter(this, void 0, void 0, function () {
       var a, r;return __generator(this, function (n) {
         switch (n.label) {case 0:
-            if (!this.executor.isControlFlowModel || !this.executor.isDynamicShapeModel) throw new Error("The model does not contain control flow or dynamic shape ops, please use execute method for better performance.");return t = t || this.outputNodes, (e instanceof _tfjsCore.Tensor || Array.isArray(e)) && (e = this.constructTensorMap(e)), [4, this.executor.executeAsync(this.convertTensorMapToTensorsMap(e), t)];case 1:
+            if (!this.executor.isControlFlowModel) throw new Error("The model does not contain control flow ops, please use execute method for better performance.");return t = t || this.outputNodes, (e instanceof _tfjsCore.Tensor || Array.isArray(e)) && (e = this.constructTensorMap(e)), [4, this.executor.executeAsync(this.convertTensorMapToTensorsMap(e), t)];case 1:
             return a = n.sent(), r = Object.keys(a), [2, Array.isArray(t) && t.length > 1 ? t.map(function (e) {
               return a[e];
             }) : a[r[0]]];}
@@ -36844,10 +36715,10 @@ function __awaiter(e, t, a, r) {
           return n.sent(), [2, r];}
     });
   });
-}var version = "0.5.5";exports.FrozenModel = FrozenModel;
+}var version = "0.5.2";exports.FrozenModel = FrozenModel;
 exports.loadFrozenModel = loadFrozenModel;
 exports.version_converter = version;
-},{"@tensorflow/tfjs-core":24}],33:[function(require,module,exports) {
+},{"@tensorflow/tfjs-core":24}],30:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36891,10 +36762,10 @@ Object.keys(_tfjsConverter).forEach(function (key) {
   });
 });
 // @tensorflow/tfjs Copyright 2018 Google
-var version = "0.12.4",
+var version = "0.12.3",
     version$1 = { "tfjs-core": _tfjsCore.version_core, "tfjs-layers": _tfjsLayers.version_layers, "tfjs-converter": _tfjsConverter.version_converter, tfjs: version };exports.version = version$1;
 //# sourceMappingURL=tf.esm.js.map
-},{"@tensorflow/tfjs-core":24,"@tensorflow/tfjs-layers":550,"@tensorflow/tfjs-converter":30}],13:[function(require,module,exports) {
+},{"@tensorflow/tfjs-core":24,"@tensorflow/tfjs-layers":547,"@tensorflow/tfjs-converter":27}],13:[function(require,module,exports) {
 "use strict";
 
 var _log = require("babel-runtime/core-js/math/log2");
@@ -37055,7 +36926,7 @@ function melSpectrogramToInput(spec) {
     return tf.tensor4d(Array.prototype.slice.call(data), shape);
 }
 exports.melSpectrogramToInput = melSpectrogramToInput;
-},{"babel-runtime/core-js/math/log2":372,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"@tensorflow/tfjs":33}],17:[function(require,module,exports) {
+},{"babel-runtime/core-js/math/log2":546,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"@tensorflow/tfjs":30}],17:[function(require,module,exports) {
 "use strict";
 
 var _create = require("babel-runtime/core-js/object/create");
@@ -37086,8 +36957,8 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var streaming_feature_extractor_1 = require("./streaming_feature_extractor");
-var util_1 = require("./util");
-var util_2 = require("./util");
+var util_1 = require("./utils/util");
+var util_2 = require("./utils/util");
 exports.audioCtx = new AudioContext();
 var LayerStreamingFeatureExtractor = function (_super) {
     __extends(LayerStreamingFeatureExtractor, _super);
@@ -37133,7 +37004,7 @@ var LayerStreamingFeatureExtractor = function (_super) {
     return LayerStreamingFeatureExtractor;
 }(streaming_feature_extractor_1.StreamingFeatureExtractor);
 exports.LayerStreamingFeatureExtractor = LayerStreamingFeatureExtractor;
-},{"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"./streaming_feature_extractor":7,"./util":13}],29:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"./streaming_feature_extractor":7,"./utils/util":13}],370:[function(require,module,exports) {
 /*===========================================================================*\
  * Discrete Cosine Transform
  *
@@ -37178,9 +37049,9 @@ function dct(signal, scale) {
 };
 
 module.exports = dct;
-},{}],26:[function(require,module,exports) {
+},{}],67:[function(require,module,exports) {
 module.exports = require('./src/dct.js');
-},{"./src/dct.js":29}],547:[function(require,module,exports) {
+},{"./src/dct.js":370}],549:[function(require,module,exports) {
 var process = require("process");
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -37407,7 +37278,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-},{"process":548}],34:[function(require,module,exports) {
+},{"process":550}],382:[function(require,module,exports) {
 var process = require("process");
 var global = (1,eval)("this");
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -38928,7 +38799,7 @@ var KissFFTModule = function (KissFFTModule) {
 if ((typeof module === "undefined" ? "undefined" : _typeof(module)) === "object" && module.exports) {
   module['exports'] = KissFFTModule;
 };
-},{"fs":552,"path":547,"process":548}],27:[function(require,module,exports) {
+},{"fs":554,"path":549,"process":550}],68:[function(require,module,exports) {
 "use strict";
 
 var KissFFTModule = require('./KissFFT');
@@ -39015,7 +38886,7 @@ module.exports = {
     FFT: FFT,
     FFTR: FFTR
 };
-},{"./KissFFT":34}],19:[function(require,module,exports) {
+},{"./KissFFT":382}],19:[function(require,module,exports) {
 "use strict";
 
 var _promise = require("babel-runtime/core-js/promise");
@@ -39188,7 +39059,7 @@ var AudioUtils = function () {
     return AudioUtils;
 }();
 exports.AudioUtils = AudioUtils;
-},{"babel-runtime/core-js/promise":28,"dct":26,"kissfft-js":27,"./util":13}],18:[function(require,module,exports) {
+},{"babel-runtime/core-js/promise":26,"dct":67,"kissfft-js":68,"./util":13}],18:[function(require,module,exports) {
 "use strict";
 
 var _create = require("babel-runtime/core-js/object/create");
@@ -39218,9 +39089,9 @@ var __extends = undefined && undefined.__extends || function () {
     };
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
-var audio_utils_1 = require("./audio_utils");
 var streaming_feature_extractor_1 = require("./streaming_feature_extractor");
-var util_1 = require("./util");
+var audio_utils_1 = require("./utils/audio_utils");
+var util_1 = require("./utils/util");
 exports.audioCtx = new AudioContext();
 var NativeStreamingFeatureExtractor = function (_super) {
     __extends(NativeStreamingFeatureExtractor, _super);
@@ -39276,7 +39147,7 @@ var NativeStreamingFeatureExtractor = function (_super) {
     return NativeStreamingFeatureExtractor;
 }(streaming_feature_extractor_1.StreamingFeatureExtractor);
 exports.NativeStreamingFeatureExtractor = NativeStreamingFeatureExtractor;
-},{"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"./audio_utils":19,"./streaming_feature_extractor":7,"./util":13}],9:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"./streaming_feature_extractor":7,"./utils/audio_utils":19,"./utils/util":13}],9:[function(require,module,exports) {
 "use strict";
 
 var _iterator = require("babel-runtime/core-js/symbol/iterator");
@@ -39409,9 +39280,9 @@ var __values = undefined && undefined.__values || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var audio_utils_1 = require("./audio_utils");
 var streaming_feature_extractor_1 = require("./streaming_feature_extractor");
-var util_1 = require("./util");
+var audio_utils_1 = require("./utils/audio_utils");
+var util_1 = require("./utils/util");
 exports.audioCtx = new AudioContext();
 var SoftStreamingFeatureExtractor = function (_super) {
     __extends(SoftStreamingFeatureExtractor, _super);
@@ -39492,7 +39363,7 @@ var SoftStreamingFeatureExtractor = function (_super) {
     return SoftStreamingFeatureExtractor;
 }(streaming_feature_extractor_1.StreamingFeatureExtractor);
 exports.SoftStreamingFeatureExtractor = SoftStreamingFeatureExtractor;
-},{"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"./audio_utils":19,"./streaming_feature_extractor":7,"./util":13}],3:[function(require,module,exports) {
+},{"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"./streaming_feature_extractor":7,"./utils/audio_utils":19,"./utils/util":13}],3:[function(require,module,exports) {
 "use strict";
 
 var _maxSafeInteger = require("babel-runtime/core-js/number/max-safe-integer");
@@ -39573,8 +39444,8 @@ var eventemitter3_1 = require("eventemitter3");
 var layer_streaming_feature_extractor_1 = require("./layer_streaming_feature_extractor");
 var native_streaming_feature_extractor_1 = require("./native_streaming_feature_extractor");
 var soft_streaming_feature_extractor_1 = require("./soft_streaming_feature_extractor");
-var types_1 = require("./types");
-var util_1 = require("./util");
+var types_1 = require("./utils/types");
+var util_1 = require("./utils/util");
 exports.GOOGLE_CLOUD_STORAGE_DIR = 'https://storage.googleapis.com/tfjs-models/savedmodel/';
 exports.MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
 exports.TF_MODEL_FILE_URL = 'voice2/model.json';
@@ -39730,59 +39601,7 @@ var CommandRecognizer = function (_super) {
     return CommandRecognizer;
 }(eventemitter3_1.EventEmitter);
 exports.CommandRecognizer = CommandRecognizer;
-},{"babel-runtime/core-js/number/max-safe-integer":69,"babel-runtime/core-js/object/assign":66,"babel-runtime/core-js/number/min-safe-integer":71,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"eventemitter3":20,"./layer_streaming_feature_extractor":17,"./native_streaming_feature_extractor":18,"./soft_streaming_feature_extractor":9,"./types":8,"./util":13}],11:[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var tf = require("@tensorflow/tfjs");
-var Dataset = function () {
-    function Dataset(numClasses) {
-        this.numClasses = numClasses;
-    }
-    Dataset.prototype.addExamples = function (examples, labels) {
-        if (this.xs == null) {
-            this.xs = [tf.keep(examples)];
-            this.ys = tf.keep(labels);
-        } else {
-            var oldX = this.xs;
-            this.xs[0] = tf.keep(this.xs[0].concat(examples, 0));
-            var oldY = this.ys;
-            this.ys = tf.keep(oldY.concat(labels, 0));
-            oldX.forEach(function (tensor) {
-                return tensor.dispose();
-            });
-            oldY.dispose();
-        }
-    };
-    Dataset.prototype.addExample = function (example, label) {
-        var _this = this;
-        example = Array.isArray(example) ? example : [example];
-        var y = tf.tidy(function () {
-            return tf.oneHot(tf.tensor1d([label]).toInt(), _this.numClasses);
-        });
-        if (this.xs == null) {
-            this.xs = example.map(function (tensor) {
-                return tf.keep(tensor);
-            });
-            this.ys = tf.keep(y);
-        } else {
-            var oldX = this.xs;
-            this.xs = example.map(function (tensor, index) {
-                return tf.keep(_this.xs[index].concat(tensor, 0));
-            });
-            var oldY = this.ys;
-            this.ys = tf.keep(oldY.concat(y, 0));
-            oldX.forEach(function (tensor) {
-                return tensor.dispose();
-            });
-            oldY.dispose();
-            y.dispose();
-        }
-    };
-    return Dataset;
-}();
-exports.Dataset = Dataset;
-},{"@tensorflow/tfjs":33}],12:[function(require,module,exports) {
+},{"babel-runtime/core-js/number/max-safe-integer":66,"babel-runtime/core-js/object/assign":62,"babel-runtime/core-js/number/min-safe-integer":69,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"eventemitter3":20,"./layer_streaming_feature_extractor":17,"./native_streaming_feature_extractor":18,"./soft_streaming_feature_extractor":9,"./utils/types":8,"./utils/util":13}],10:[function(require,module,exports) {
 "use strict";
 
 var _iterator = require("babel-runtime/core-js/symbol/iterator");
@@ -40002,7 +39821,44 @@ var TransferModel = function () {
     return TransferModel;
 }();
 exports.TransferModel = TransferModel;
-},{"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"@tensorflow/tfjs":33}],4:[function(require,module,exports) {
+},{"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"@tensorflow/tfjs":30}],12:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tf = require("@tensorflow/tfjs");
+var Dataset = function () {
+    function Dataset(numClasses) {
+        this.numClasses = numClasses;
+    }
+    Dataset.prototype.addExample = function (example, label) {
+        var _this = this;
+        example = Array.isArray(example) ? example : [example];
+        var y = tf.tidy(function () {
+            return tf.oneHot(tf.tensor1d([label]).toInt(), _this.numClasses);
+        });
+        if (this.xs == null) {
+            this.xs = example.map(function (tensor) {
+                return tf.keep(tensor);
+            });
+            this.ys = tf.keep(y);
+        } else {
+            var oldX = this.xs;
+            this.xs = example.map(function (tensor, index) {
+                return tf.keep(_this.xs[index].concat(tensor, 0));
+            });
+            var oldY = this.ys;
+            this.ys = tf.keep(oldY.concat(y, 0));
+            oldX.forEach(function (tensor) {
+                return tensor.dispose();
+            });
+            oldY.dispose();
+            y.dispose();
+        }
+    };
+    return Dataset;
+}();
+exports.Dataset = Dataset;
+},{"@tensorflow/tfjs":30}],5:[function(require,module,exports) {
 "use strict";
 
 var _maxSafeInteger = require("babel-runtime/core-js/number/max-safe-integer");
@@ -40132,11 +39988,11 @@ var tfjs_converter_1 = require("@tensorflow/tfjs-converter");
 var tfjs_core_1 = require("@tensorflow/tfjs-core");
 var eventemitter3_1 = require("eventemitter3");
 var command_recognizer_1 = require("./command_recognizer");
-var dataset_1 = require("./dataset");
 var soft_streaming_feature_extractor_1 = require("./soft_streaming_feature_extractor");
 var transfer_model_1 = require("./transfer_model");
-var types_1 = require("./types");
-var util_1 = require("./util");
+var dataset_1 = require("./utils/dataset");
+var types_1 = require("./utils/types");
+var util_1 = require("./utils/util");
 var CommandTrainer = function (_super) {
     __extends(CommandTrainer, _super);
     function CommandTrainer(canvas) {
@@ -40237,7 +40093,7 @@ var CommandTrainer = function (_super) {
     return CommandTrainer;
 }(eventemitter3_1.EventEmitter);
 exports.CommandTrainer = CommandTrainer;
-},{"babel-runtime/core-js/number/max-safe-integer":69,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"@tensorflow/tfjs-converter":30,"@tensorflow/tfjs-core":24,"eventemitter3":20,"./command_recognizer":3,"./dataset":11,"./soft_streaming_feature_extractor":9,"./transfer_model":12,"./types":8,"./util":13}],15:[function(require,module,exports) {
+},{"babel-runtime/core-js/number/max-safe-integer":66,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"@tensorflow/tfjs-converter":27,"@tensorflow/tfjs-core":24,"eventemitter3":20,"./command_recognizer":3,"./soft_streaming_feature_extractor":9,"./transfer_model":10,"./utils/dataset":12,"./utils/types":8,"./utils/util":13}],15:[function(require,module,exports) {
 "use strict";
 
 var _assign = require("babel-runtime/core-js/object/assign");
@@ -40364,7 +40220,7 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var eventemitter3_1 = require("eventemitter3");
-var util_1 = require("./util");
+var util_1 = require("./utils/util");
 var OfflineFeatureExtractor = function (_super) {
     __extends(OfflineFeatureExtractor, _super);
     function OfflineFeatureExtractor() {
@@ -40465,7 +40321,7 @@ var OfflineFeatureExtractor = function (_super) {
     return OfflineFeatureExtractor;
 }(eventemitter3_1.EventEmitter);
 exports.OfflineFeatureExtractor = OfflineFeatureExtractor;
-},{"babel-runtime/core-js/object/assign":66,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"eventemitter3":20,"./util":13}],14:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/assign":62,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"eventemitter3":20,"./utils/util":13}],14:[function(require,module,exports) {
 "use strict";
 
 var _create = require("babel-runtime/core-js/object/create");
@@ -40495,8 +40351,8 @@ var __extends = undefined && undefined.__extends || function () {
     };
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
-var audio_utils_1 = require("./audio_utils");
 var offline_feature_extractor_1 = require("./offline_feature_extractor");
+var audio_utils_1 = require("./utils/audio_utils");
 var NativeOfflineFeatureExtractor = function (_super) {
     __extends(NativeOfflineFeatureExtractor, _super);
     function NativeOfflineFeatureExtractor() {
@@ -40528,7 +40384,7 @@ var NativeOfflineFeatureExtractor = function (_super) {
     return NativeOfflineFeatureExtractor;
 }(offline_feature_extractor_1.OfflineFeatureExtractor);
 exports.NativeOfflineFeatureExtractor = NativeOfflineFeatureExtractor;
-},{"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"./audio_utils":19,"./offline_feature_extractor":15}],16:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"./offline_feature_extractor":15,"./utils/audio_utils":19}],16:[function(require,module,exports) {
 "use strict";
 
 var _assign = require("babel-runtime/core-js/object/assign");
@@ -40666,9 +40522,9 @@ var __values = undefined && undefined.__values || function (o) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var eventemitter3_1 = require("eventemitter3");
-var audio_utils_1 = require("./audio_utils");
-var circular_audio_buffer_1 = require("./circular_audio_buffer");
-var util_1 = require("./util");
+var audio_utils_1 = require("./utils/audio_utils");
+var circular_audio_buffer_1 = require("./utils/circular_audio_buffer");
+var util_1 = require("./utils/util");
 var SoftOfflineFeatureExtractor = function (_super) {
     __extends(SoftOfflineFeatureExtractor, _super);
     function SoftOfflineFeatureExtractor() {
@@ -40800,7 +40656,7 @@ var SoftOfflineFeatureExtractor = function (_super) {
     return SoftOfflineFeatureExtractor;
 }(eventemitter3_1.EventEmitter);
 exports.SoftOfflineFeatureExtractor = SoftOfflineFeatureExtractor;
-},{"babel-runtime/core-js/object/assign":66,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"babel-runtime/core-js/object/create":68,"babel-runtime/core-js/object/set-prototype-of":70,"eventemitter3":20,"./audio_utils":19,"./circular_audio_buffer":10,"./util":13}],5:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/assign":62,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"babel-runtime/core-js/object/create":65,"babel-runtime/core-js/object/set-prototype-of":64,"eventemitter3":20,"./utils/audio_utils":19,"./utils/circular_audio_buffer":11,"./utils/util":13}],4:[function(require,module,exports) {
 "use strict";
 
 var _assign = require("babel-runtime/core-js/object/assign");
@@ -40907,8 +40763,8 @@ var command_recognizer_1 = require("./command_recognizer");
 var native_offline_feature_extractor_1 = require("./native_offline_feature_extractor");
 var offline_feature_extractor_1 = require("./offline_feature_extractor");
 var soft_offline_feature_extractor_1 = require("./soft_offline_feature_extractor");
-var types_1 = require("./types");
-var util_1 = require("./util");
+var types_1 = require("./utils/types");
+var util_1 = require("./utils/util");
 exports.EVENT_NAME = 'update';
 exports.MIN_SCORE = 0.6;
 var ModelEvaluation = function () {
@@ -41082,7 +40938,7 @@ var ModelEvaluation = function () {
     return ModelEvaluation;
 }();
 exports.ModelEvaluation = ModelEvaluation;
-},{"babel-runtime/core-js/object/assign":66,"babel-runtime/core-js/symbol/iterator":67,"babel-runtime/core-js/symbol":32,"babel-runtime/core-js/promise":28,"@tensorflow/tfjs":33,"./command_recognizer":3,"./native_offline_feature_extractor":14,"./offline_feature_extractor":15,"./soft_offline_feature_extractor":16,"./types":8,"./util":13}],22:[function(require,module,exports) {
+},{"babel-runtime/core-js/object/assign":62,"babel-runtime/core-js/symbol/iterator":63,"babel-runtime/core-js/symbol":29,"babel-runtime/core-js/promise":26,"@tensorflow/tfjs":30,"./command_recognizer":3,"./native_offline_feature_extractor":14,"./offline_feature_extractor":15,"./soft_offline_feature_extractor":16,"./utils/types":8,"./utils/util":13}],22:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41104,7 +40960,7 @@ var repository = exports.repository = { "type": "git", "url": "https://github.co
 var scripts = exports.scripts = { "pretest": "rimraf dist && mkdir dist && json2module package.json > dist/package.js && node rollup.node", "test": "tape 'test/**/*-test.js'", "prepublishOnly": "npm run test && rollup -c --banner \"$(preamble)\" && uglifyjs -b beautify=false,preamble=\"'$(preamble)'\" dist/d3.js -c negate_iife=false -m -o dist/d3.min.js", "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3/dist/d3.js d3.v5.js && cp ../d3/dist/d3.min.js d3.v5.min.js && git add d3.v5.js d3.v5.min.js && git commit -m \"d3 ${npm_package_version}\" && git push && cd - && cd ../d3-bower && git pull && cp ../d3/LICENSE ../d3/README.md ../d3/dist/d3.js ../d3/dist/d3.min.js . && git add -- LICENSE README.md d3.js d3.min.js && git commit -m \"${npm_package_version}\" && git tag -am \"${npm_package_version}\" v${npm_package_version} && git push && git push --tags && cd - && zip -j dist/d3.zip -- LICENSE README.md API.md CHANGES.md dist/d3.js dist/d3.min.js" };
 var devDependencies = exports.devDependencies = { "json2module": "0.0", "package-preamble": "0.1", "rimraf": "2", "rollup": "0.57", "rollup-plugin-ascii": "0.0", "rollup-plugin-node-resolve": "3", "tape": "4", "uglify-js": "3.2" };
 var dependencies = exports.dependencies = { "d3-array": "1", "d3-axis": "1", "d3-brush": "1", "d3-chord": "1", "d3-collection": "1", "d3-color": "1", "d3-contour": "1", "d3-dispatch": "1", "d3-drag": "1", "d3-dsv": "1", "d3-ease": "1", "d3-fetch": "1", "d3-force": "1", "d3-format": "1", "d3-geo": "1", "d3-hierarchy": "1", "d3-interpolate": "1", "d3-path": "1", "d3-polygon": "1", "d3-quadtree": "1", "d3-random": "1", "d3-scale": "2", "d3-scale-chromatic": "1", "d3-selection": "1", "d3-shape": "1", "d3-time": "1", "d3-time-format": "2", "d3-timer": "1", "d3-transition": "1", "d3-voronoi": "1", "d3-zoom": "1" };
-},{}],156:[function(require,module,exports) {
+},{}],154:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41114,7 +40970,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 };
-},{}],157:[function(require,module,exports) {
+},{}],155:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41156,7 +41012,7 @@ function ascendingComparator(f) {
     return (0, _ascending2.default)(f(d), x);
   };
 }
-},{"./ascending":156}],155:[function(require,module,exports) {
+},{"./ascending":154}],153:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41178,7 +41034,7 @@ var ascendingBisect = (0, _bisector2.default)(_ascending2.default);
 var bisectRight = exports.bisectRight = ascendingBisect.right;
 var bisectLeft = exports.bisectLeft = ascendingBisect.left;
 exports.default = bisectRight;
-},{"./ascending":156,"./bisector":157}],170:[function(require,module,exports) {
+},{"./ascending":154,"./bisector":155}],166:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41199,7 +41055,7 @@ exports.pair = pair;
 function pair(a, b) {
   return [a, b];
 }
-},{}],158:[function(require,module,exports) {
+},{}],156:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41227,7 +41083,7 @@ exports.default = function (values0, values1, reduce) {
 };
 
 var _pairs = require("./pairs");
-},{"./pairs":170}],159:[function(require,module,exports) {
+},{"./pairs":166}],157:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41237,7 +41093,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (a, b) {
   return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
 };
-},{}],379:[function(require,module,exports) {
+},{}],377:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41247,7 +41103,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (x) {
   return x === null ? NaN : +x;
 };
-},{}],177:[function(require,module,exports) {
+},{}],176:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41289,7 +41145,7 @@ var _number = require("./number");
 var _number2 = _interopRequireDefault(_number);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./number":379}],160:[function(require,module,exports) {
+},{"./number":377}],158:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41306,7 +41162,7 @@ var _variance = require("./variance");
 var _variance2 = _interopRequireDefault(_variance);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./variance":177}],161:[function(require,module,exports) {
+},{"./variance":176}],159:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41352,7 +41208,7 @@ exports.default = function (values, valueof) {
 
   return [min, max];
 };
-},{}],390:[function(require,module,exports) {
+},{}],389:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41362,7 +41218,7 @@ var array = Array.prototype;
 
 var slice = exports.slice = array.slice;
 var map = exports.map = array.map;
-},{}],437:[function(require,module,exports) {
+},{}],436:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41374,7 +41230,7 @@ exports.default = function (x) {
     return x;
   };
 };
-},{}],438:[function(require,module,exports) {
+},{}],437:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41384,7 +41240,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (x) {
   return x;
 };
-},{}],171:[function(require,module,exports) {
+},{}],169:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41404,7 +41260,7 @@ exports.default = function (start, stop, step) {
 
   return range;
 };
-},{}],175:[function(require,module,exports) {
+},{}],173:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41460,7 +41316,7 @@ function tickStep(start, stop, count) {
     if (error >= e10) step1 *= 10;else if (error >= e5) step1 *= 5;else if (error >= e2) step1 *= 2;
     return stop < start ? -step1 : step1;
 }
-},{}],236:[function(require,module,exports) {
+},{}],235:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41470,7 +41326,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (values) {
   return Math.ceil(Math.log(values.length) / Math.LN2) + 1;
 };
-},{}],162:[function(require,module,exports) {
+},{}],160:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41573,7 +41429,7 @@ var _sturges = require("./threshold/sturges");
 var _sturges2 = _interopRequireDefault(_sturges);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./array":390,"./bisect":155,"./constant":437,"./extent":161,"./identity":438,"./range":171,"./ticks":175,"./threshold/sturges":236}],169:[function(require,module,exports) {
+},{"./array":389,"./bisect":153,"./constant":436,"./extent":159,"./identity":437,"./range":169,"./ticks":173,"./threshold/sturges":235}],168:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41598,7 +41454,7 @@ var _number = require("./number");
 var _number2 = _interopRequireDefault(_number);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./number":379}],235:[function(require,module,exports) {
+},{"./number":377}],233:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41625,7 +41481,7 @@ var _quantile = require("../quantile");
 var _quantile2 = _interopRequireDefault(_quantile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../array":390,"../ascending":156,"../number":379,"../quantile":169}],237:[function(require,module,exports) {
+},{"../array":389,"../ascending":154,"../number":377,"../quantile":168}],234:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41641,7 +41497,7 @@ var _deviation = require("../deviation");
 var _deviation2 = _interopRequireDefault(_deviation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../deviation":160}],163:[function(require,module,exports) {
+},{"../deviation":158}],161:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41684,7 +41540,7 @@ exports.default = function (values, valueof) {
 
   return max;
 };
-},{}],164:[function(require,module,exports) {
+},{}],162:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41716,7 +41572,7 @@ var _number = require("./number");
 var _number2 = _interopRequireDefault(_number);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./number":379}],165:[function(require,module,exports) {
+},{"./number":377}],163:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41759,7 +41615,7 @@ var _quantile = require("./quantile");
 var _quantile2 = _interopRequireDefault(_quantile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./ascending":156,"./number":379,"./quantile":169}],166:[function(require,module,exports) {
+},{"./ascending":154,"./number":377,"./quantile":168}],164:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41787,7 +41643,7 @@ exports.default = function (arrays) {
 
   return merged;
 };
-},{}],167:[function(require,module,exports) {
+},{}],165:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41830,7 +41686,7 @@ exports.default = function (values, valueof) {
 
   return min;
 };
-},{}],168:[function(require,module,exports) {
+},{}],167:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41843,7 +41699,7 @@ exports.default = function (array, indexes) {
   while (i--) permutes[i] = array[indexes[i]];
   return permutes;
 };
-},{}],172:[function(require,module,exports) {
+},{}],170:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41874,7 +41730,7 @@ var _ascending = require("./ascending");
 var _ascending2 = _interopRequireDefault(_ascending);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./ascending":156}],173:[function(require,module,exports) {
+},{"./ascending":154}],171:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41895,7 +41751,7 @@ exports.default = function (array, i0, i1) {
 
   return array;
 };
-},{}],174:[function(require,module,exports) {
+},{}],172:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41920,7 +41776,7 @@ exports.default = function (values, valueof) {
 
   return sum;
 };
-},{}],176:[function(require,module,exports) {
+},{}],174:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41946,7 +41802,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function length(d) {
   return d.length;
 }
-},{"./min":167}],178:[function(require,module,exports) {
+},{"./min":165}],175:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41962,7 +41818,7 @@ var _transpose = require("./transpose");
 var _transpose2 = _interopRequireDefault(_transpose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./transpose":176}],36:[function(require,module,exports) {
+},{"./transpose":174}],32:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42237,14 +42093,14 @@ Object.defineProperty(exports, "zip", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/bisect":155,"./src/ascending":156,"./src/bisector":157,"./src/cross":158,"./src/descending":159,"./src/deviation":160,"./src/extent":161,"./src/histogram":162,"./src/threshold/freedmanDiaconis":235,"./src/threshold/scott":237,"./src/threshold/sturges":236,"./src/max":163,"./src/mean":164,"./src/median":165,"./src/merge":166,"./src/min":167,"./src/pairs":170,"./src/permute":168,"./src/quantile":169,"./src/range":171,"./src/scan":172,"./src/shuffle":173,"./src/sum":174,"./src/ticks":175,"./src/transpose":176,"./src/variance":177,"./src/zip":178}],519:[function(require,module,exports) {
+},{"./src/bisect":153,"./src/ascending":154,"./src/bisector":155,"./src/cross":156,"./src/descending":157,"./src/deviation":158,"./src/extent":159,"./src/histogram":160,"./src/threshold/freedmanDiaconis":233,"./src/threshold/scott":234,"./src/threshold/sturges":235,"./src/max":161,"./src/mean":162,"./src/median":163,"./src/merge":164,"./src/min":165,"./src/pairs":166,"./src/permute":167,"./src/quantile":168,"./src/range":169,"./src/scan":170,"./src/shuffle":171,"./src/sum":172,"./src/ticks":173,"./src/transpose":174,"./src/variance":176,"./src/zip":175}],517:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var slice = exports.slice = Array.prototype.slice;
-},{}],79:[function(require,module,exports) {
+},{}],85:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42418,7 +42274,7 @@ function axisBottom(scale) {
 function axisLeft(scale) {
   return axis(left, scale);
 }
-},{"./array":519,"./identity":438}],37:[function(require,module,exports) {
+},{"./array":517,"./identity":437}],36:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42451,7 +42307,7 @@ Object.defineProperty(exports, "axisLeft", {
     return _axis.axisLeft;
   }
 });
-},{"./src/axis":79}],96:[function(require,module,exports) {
+},{"./src/axis":85}],96:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42542,7 +42398,7 @@ function set(type, name, callback) {
 }
 
 exports.default = dispatch;
-},{}],44:[function(require,module,exports) {
+},{}],41:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42574,7 +42430,7 @@ exports.default = {
   xml: "http://www.w3.org/XML/1998/namespace",
   xmlns: "http://www.w3.org/2000/xmlns/"
 };
-},{}],223:[function(require,module,exports) {
+},{}],220:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42593,7 +42449,7 @@ var _namespaces = require("./namespaces");
 var _namespaces2 = _interopRequireDefault(_namespaces);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./namespaces":222}],218:[function(require,module,exports) {
+},{"./namespaces":222}],216:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42626,7 +42482,7 @@ function creatorFixed(fullname) {
     return this.ownerDocument.createElementNS(fullname.space, fullname.local);
   };
 }
-},{"./namespace":223,"./namespaces":222}],227:[function(require,module,exports) {
+},{"./namespace":220,"./namespaces":222}],225:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42640,7 +42496,7 @@ exports.default = function (selector) {
 };
 
 function none() {}
-},{}],450:[function(require,module,exports) {
+},{}],448:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42669,7 +42525,7 @@ var _selector = require("../selector");
 var _selector2 = _interopRequireDefault(_selector);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./index":251,"../selector":227}],228:[function(require,module,exports) {
+},{"./index":249,"../selector":225}],226:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42685,7 +42541,7 @@ exports.default = function (selector) {
 function empty() {
   return [];
 }
-},{}],448:[function(require,module,exports) {
+},{}],447:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42714,7 +42570,7 @@ var _selectorAll = require("../selectorAll");
 var _selectorAll2 = _interopRequireDefault(_selectorAll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./index":251,"../selectorAll":228}],220:[function(require,module,exports) {
+},{"./index":249,"../selectorAll":226}],218:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42739,7 +42595,7 @@ if (typeof document !== "undefined") {
 }
 
 exports.default = matcher;
-},{}],449:[function(require,module,exports) {
+},{}],450:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42767,7 +42623,7 @@ var _matcher = require("../matcher");
 var _matcher2 = _interopRequireDefault(_matcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./index":251,"../matcher":220}],531:[function(require,module,exports) {
+},{"./index":249,"../matcher":218}],530:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42777,7 +42633,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (update) {
   return new Array(update.length);
 };
-},{}],475:[function(require,module,exports) {
+},{}],451:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42821,7 +42677,7 @@ EnterNode.prototype = {
     return this._parent.querySelectorAll(selector);
   }
 };
-},{"./sparse":531,"./index":251}],451:[function(require,module,exports) {
+},{"./sparse":530,"./index":249}],449:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42954,7 +42810,7 @@ function bindKey(parent, group, enter, update, exit, data, key) {
     }
   }
 }
-},{"./index":251,"./enter":475,"../constant":437}],453:[function(require,module,exports) {
+},{"./index":249,"./enter":451,"../constant":436}],452:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42972,7 +42828,7 @@ var _sparse2 = _interopRequireDefault(_sparse);
 var _index = require("./index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./sparse":531,"./index":251}],452:[function(require,module,exports) {
+},{"./sparse":530,"./index":249}],454:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42997,7 +42853,7 @@ exports.default = function (selection) {
 };
 
 var _index = require("./index");
-},{"./index":251}],455:[function(require,module,exports) {
+},{"./index":249}],453:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43017,7 +42873,7 @@ exports.default = function () {
 
   return this;
 };
-},{}],454:[function(require,module,exports) {
+},{}],455:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43048,7 +42904,7 @@ var _index = require("./index");
 function ascending(a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
-},{"./index":251}],457:[function(require,module,exports) {
+},{"./index":249}],457:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43076,7 +42932,7 @@ exports.default = function () {
   });
   return nodes;
 };
-},{}],460:[function(require,module,exports) {
+},{}],458:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43094,7 +42950,7 @@ exports.default = function () {
 
   return null;
 };
-},{}],458:[function(require,module,exports) {
+},{}],459:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43108,7 +42964,7 @@ exports.default = function () {
   });
   return size;
 };
-},{}],459:[function(require,module,exports) {
+},{}],462:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43118,7 +42974,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
   return !this.node();
 };
-},{}],462:[function(require,module,exports) {
+},{}],460:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43196,7 +43052,7 @@ function attrFunctionNS(fullname, value) {
     if (v == null) this.removeAttributeNS(fullname.space, fullname.local);else this.setAttributeNS(fullname.space, fullname.local, v);
   };
 }
-},{"../namespace":223}],231:[function(require,module,exports) {
+},{"../namespace":220}],229:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43208,7 +43064,7 @@ exports.default = function (node) {
     node.document && node // node is a Window
     || node.defaultView; // node is a Document
 };
-},{}],252:[function(require,module,exports) {
+},{}],250:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43249,7 +43105,7 @@ function styleFunction(name, value, priority) {
 function styleValue(node, name) {
   return node.style.getPropertyValue(name) || (0, _window2.default)(node).getComputedStyle(node, null).getPropertyValue(name);
 }
-},{"../window":231}],464:[function(require,module,exports) {
+},{"../window":229}],463:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43278,7 +43134,7 @@ function propertyFunction(name, value) {
     if (v == null) delete this[name];else this[name] = v;
   };
 }
-},{}],463:[function(require,module,exports) {
+},{}],466:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43363,7 +43219,7 @@ function classedFunction(names, value) {
     (value.apply(this, arguments) ? classedAdd : classedRemove)(this, names);
   };
 }
-},{}],465:[function(require,module,exports) {
+},{}],464:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43390,7 +43246,7 @@ function textFunction(value) {
     this.textContent = v == null ? "" : v;
   };
 }
-},{}],466:[function(require,module,exports) {
+},{}],465:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43431,7 +43287,7 @@ exports.default = function () {
 function raise() {
   if (this.nextSibling) this.parentNode.appendChild(this);
 }
-},{}],469:[function(require,module,exports) {
+},{}],468:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43445,7 +43301,7 @@ exports.default = function () {
 function lower() {
   if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
 }
-},{}],468:[function(require,module,exports) {
+},{}],469:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43464,7 +43320,7 @@ var _creator = require("../creator");
 var _creator2 = _interopRequireDefault(_creator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../creator":218}],470:[function(require,module,exports) {
+},{"../creator":216}],470:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43492,7 +43348,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function constantNull() {
   return null;
 }
-},{"../creator":218,"../selector":227}],471:[function(require,module,exports) {
+},{"../creator":216,"../selector":225}],471:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43535,7 +43391,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (value) {
     return arguments.length ? this.property("__data__", value) : this.node().__data__;
 };
-},{}],253:[function(require,module,exports) {
+},{}],251:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43696,7 +43552,7 @@ function dispatchFunction(type, params) {
     return dispatchEvent(this, type, params.apply(this, arguments));
   };
 }
-},{"../window":231}],251:[function(require,module,exports) {
+},{"../window":229}],249:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43873,7 +43729,7 @@ Selection.prototype = selection.prototype = {
 };
 
 exports.default = selection;
-},{"./select":450,"./selectAll":448,"./filter":449,"./data":451,"./enter":475,"./exit":453,"./merge":452,"./order":455,"./sort":454,"./call":457,"./nodes":456,"./node":460,"./size":458,"./empty":459,"./each":462,"./attr":461,"./style":252,"./property":464,"./classed":463,"./text":465,"./html":466,"./raise":467,"./lower":469,"./append":468,"./insert":470,"./remove":471,"./clone":472,"./datum":473,"./on":253,"./dispatch":474}],226:[function(require,module,exports) {
+},{"./select":448,"./selectAll":447,"./filter":450,"./data":449,"./enter":451,"./exit":452,"./merge":454,"./order":453,"./sort":455,"./call":457,"./nodes":456,"./node":458,"./size":459,"./empty":462,"./each":460,"./attr":461,"./style":250,"./property":463,"./classed":466,"./text":464,"./html":465,"./raise":467,"./lower":468,"./append":469,"./insert":470,"./remove":471,"./clone":472,"./datum":473,"./on":251,"./dispatch":474}],223:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43885,7 +43741,7 @@ exports.default = function (selector) {
 };
 
 var _index = require("./selection/index");
-},{"./selection/index":251}],217:[function(require,module,exports) {
+},{"./selection/index":249}],215:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43905,7 +43761,7 @@ var _select = require("./select");
 var _select2 = _interopRequireDefault(_select);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./creator":218,"./select":226}],219:[function(require,module,exports) {
+},{"./creator":216,"./select":223}],217:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43939,7 +43795,7 @@ Local.prototype = local.prototype = {
     return this._;
   }
 };
-},{}],378:[function(require,module,exports) {
+},{}],376:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43954,7 +43810,7 @@ exports.default = function () {
 };
 
 var _on = require("./selection/on");
-},{"./selection/on":253}],224:[function(require,module,exports) {
+},{"./selection/on":251}],221:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43974,7 +43830,7 @@ exports.default = function (node, event) {
   var rect = node.getBoundingClientRect();
   return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
 };
-},{}],221:[function(require,module,exports) {
+},{}],219:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43996,7 +43852,7 @@ var _point = require("./point");
 var _point2 = _interopRequireDefault(_point);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./sourceEvent":378,"./point":224}],225:[function(require,module,exports) {
+},{"./sourceEvent":376,"./point":221}],224:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44008,7 +43864,7 @@ exports.default = function (selector) {
 };
 
 var _index = require("./selection/index");
-},{"./selection/index":251}],229:[function(require,module,exports) {
+},{"./selection/index":249}],227:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44036,7 +43892,7 @@ var _point = require("./point");
 var _point2 = _interopRequireDefault(_point);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./sourceEvent":378,"./point":224}],230:[function(require,module,exports) {
+},{"./sourceEvent":376,"./point":221}],228:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44062,7 +43918,7 @@ var _point = require("./point");
 var _point2 = _interopRequireDefault(_point);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./sourceEvent":378,"./point":224}],57:[function(require,module,exports) {
+},{"./sourceEvent":376,"./point":221}],52:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44238,7 +44094,7 @@ Object.defineProperty(exports, "customEvent", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/create":217,"./src/creator":218,"./src/local":219,"./src/matcher":220,"./src/mouse":221,"./src/namespace":223,"./src/namespaces":222,"./src/point":224,"./src/select":226,"./src/selectAll":225,"./src/selection/index":251,"./src/selector":227,"./src/selectorAll":228,"./src/selection/style":252,"./src/touch":229,"./src/touches":230,"./src/window":231,"./src/selection/on":253}],380:[function(require,module,exports) {
+},{"./src/create":215,"./src/creator":216,"./src/local":217,"./src/matcher":218,"./src/mouse":219,"./src/namespace":220,"./src/namespaces":222,"./src/point":221,"./src/select":223,"./src/selectAll":224,"./src/selection/index":249,"./src/selector":225,"./src/selectorAll":226,"./src/selection/style":250,"./src/touch":227,"./src/touches":228,"./src/window":229,"./src/selection/on":251}],378:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44256,7 +44112,7 @@ var _d3Selection = require("d3-selection");
 function nopropagation() {
   _d3Selection.event.stopImmediatePropagation();
 }
-},{"d3-selection":57}],95:[function(require,module,exports) {
+},{"d3-selection":52}],91:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44300,7 +44156,7 @@ function yesdrag(view, noclick) {
     delete root.__noselect;
   }
 }
-},{"d3-selection":57,"./noevent":380}],516:[function(require,module,exports) {
+},{"d3-selection":52,"./noevent":378}],515:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44324,7 +44180,7 @@ DragEvent.prototype.on = function () {
   var value = this._.on.apply(this._, arguments);
   return value === this._ ? this : value;
 };
-},{}],94:[function(require,module,exports) {
+},{}],90:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44522,7 +44378,7 @@ function defaultSubject(d) {
 function defaultTouchable() {
   return "ontouchstart" in this;
 }
-},{"d3-dispatch":44,"d3-selection":57,"./nodrag":95,"./noevent":380,"./constant":437,"./event":516}],43:[function(require,module,exports) {
+},{"d3-dispatch":41,"d3-selection":52,"./nodrag":91,"./noevent":378,"./constant":436,"./event":515}],38:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44554,7 +44410,7 @@ Object.defineProperty(exports, "dragEnable", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/drag":94,"./src/nodrag":95}],444:[function(require,module,exports) {
+},{"./src/drag":90,"./src/nodrag":91}],443:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44572,7 +44428,7 @@ function extend(parent, definition) {
   for (var key in definition) prototype[key] = definition[key];
   return prototype;
 }
-},{}],89:[function(require,module,exports) {
+},{}],88:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44909,7 +44765,7 @@ function Hsl(h, s, l, opacity) {
 function hsl2rgb(h, m1, m2) {
   return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
 }
-},{"./define":444}],445:[function(require,module,exports) {
+},{"./define":443}],444:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44917,7 +44773,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var deg2rad = exports.deg2rad = Math.PI / 180;
 var rad2deg = exports.rad2deg = 180 / Math.PI;
-},{}],90:[function(require,module,exports) {
+},{}],89:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45054,7 +44910,7 @@ function Hcl(h, c, l, opacity) {
     return labConvert(this).rgb();
   }
 }));
-},{"./define":444,"./color":89,"./math":445}],91:[function(require,module,exports) {
+},{"./define":443,"./color":88,"./math":444}],86:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45126,7 +44982,7 @@ function Cubehelix(h, s, l, opacity) {
     return new _color.Rgb(255 * (l + a * (A * cosh + B * sinh)), 255 * (l + a * (C * cosh + D * sinh)), 255 * (l + a * (E * cosh)), this.opacity);
   }
 }));
-},{"./define":444,"./color":89,"./math":445}],41:[function(require,module,exports) {
+},{"./define":443,"./color":88,"./math":444}],37:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45191,7 +45047,7 @@ Object.defineProperty(exports, "cubehelix", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/color":89,"./src/lab":90,"./src/cubehelix":91}],202:[function(require,module,exports) {
+},{"./src/color":88,"./src/lab":89,"./src/cubehelix":86}],200:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45216,7 +45072,7 @@ function basis(t1, v0, v1, v2, v3) {
       t3 = t2 * t1;
   return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
 }
-},{}],203:[function(require,module,exports) {
+},{}],201:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45236,7 +45092,7 @@ exports.default = function (values) {
 };
 
 var _basis = require("./basis");
-},{"./basis":202}],382:[function(require,module,exports) {
+},{"./basis":200}],380:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45279,7 +45135,7 @@ function nogamma(a, b) {
   var d = b - a;
   return d ? linear(a, d) : (0, _constant2.default)(isNaN(a) ? b : a);
 }
-},{"./constant":437}],210:[function(require,module,exports) {
+},{"./constant":436}],208:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45354,7 +45210,7 @@ function rgbSpline(spline) {
 
 var rgbBasis = exports.rgbBasis = rgbSpline(_basis2.default);
 var rgbBasisClosed = exports.rgbBasisClosed = rgbSpline(_basisClosed2.default);
-},{"d3-color":41,"./basis":202,"./basisClosed":203,"./color":382}],201:[function(require,module,exports) {
+},{"d3-color":37,"./basis":200,"./basisClosed":201,"./color":380}],199:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45382,7 +45238,7 @@ var _value = require("./value");
 var _value2 = _interopRequireDefault(_value);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./value":200}],204:[function(require,module,exports) {
+},{"./value":198}],202:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45395,7 +45251,7 @@ exports.default = function (a, b) {
     return d.setTime(a + b * t), d;
   };
 };
-},{}],205:[function(require,module,exports) {
+},{}],203:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45407,7 +45263,7 @@ exports.default = function (a, b) {
     return a + b * t;
   };
 };
-},{}],206:[function(require,module,exports) {
+},{}],204:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45441,7 +45297,7 @@ var _value = require("./value");
 var _value2 = _interopRequireDefault(_value);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./value":200}],208:[function(require,module,exports) {
+},{"./value":198}],206:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45521,7 +45377,7 @@ function one(b) {
     return b(t) + "";
   };
 }
-},{"./number":205}],200:[function(require,module,exports) {
+},{"./number":203}],198:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45565,7 +45421,7 @@ var _constant = require("./constant");
 var _constant2 = _interopRequireDefault(_constant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"d3-color":41,"./rgb":210,"./array":201,"./date":204,"./number":205,"./object":206,"./string":208,"./constant":437}],207:[function(require,module,exports) {
+},{"d3-color":37,"./rgb":208,"./array":199,"./date":202,"./number":203,"./object":204,"./string":206,"./constant":436}],205:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45577,7 +45433,7 @@ exports.default = function (a, b) {
     return Math.round(a + b * t);
   };
 };
-},{}],534:[function(require,module,exports) {
+},{}],533:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45610,7 +45466,7 @@ var identity = exports.identity = {
   scaleX: 1,
   scaleY: 1
 };
-},{}],510:[function(require,module,exports) {
+},{}],509:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45645,7 +45501,7 @@ function parseSvg(value) {
   value = value.matrix;
   return (0, _decompose2.default)(value.a, value.b, value.c, value.d, value.e, value.f);
 }
-},{"./decompose":534}],250:[function(require,module,exports) {
+},{"./decompose":533}],248:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45724,7 +45580,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 
 var interpolateTransformCss = exports.interpolateTransformCss = interpolateTransform(_parse.parseCss, "px, ", "px)", "deg)");
 var interpolateTransformSvg = exports.interpolateTransformSvg = interpolateTransform(_parse.parseSvg, ", ", ")", ")");
-},{"../number":205,"./parse":510}],209:[function(require,module,exports) {
+},{"../number":203,"./parse":509}],207:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45792,7 +45648,7 @@ function tanh(x) {
 
 // p0 = [ux0, uy0, w0]
 // p1 = [ux1, uy1, w1]
-},{}],211:[function(require,module,exports) {
+},{}],209:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45826,7 +45682,7 @@ function hsl(hue) {
 
 exports.default = hsl(_color.hue);
 var hslLong = exports.hslLong = hsl(_color2.default);
-},{"d3-color":41,"./color":382}],212:[function(require,module,exports) {
+},{"d3-color":37,"./color":380}],210:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45855,7 +45711,7 @@ function lab(start, end) {
     return start + "";
   };
 }
-},{"d3-color":41,"./color":382}],213:[function(require,module,exports) {
+},{"d3-color":37,"./color":380}],211:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45889,7 +45745,7 @@ function hcl(hue) {
 
 exports.default = hcl(_color.hue);
 var hclLong = exports.hclLong = hcl(_color2.default);
-},{"d3-color":41,"./color":382}],214:[function(require,module,exports) {
+},{"d3-color":37,"./color":380}],212:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45931,7 +45787,7 @@ function cubehelix(hue) {
 
 exports.default = cubehelix(_color.hue);
 var cubehelixLong = exports.cubehelixLong = cubehelix(_color2.default);
-},{"d3-color":41,"./color":382}],215:[function(require,module,exports) {
+},{"d3-color":37,"./color":380}],213:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45949,7 +45805,7 @@ function piecewise(interpolate, values) {
     return I[i](t - i);
   };
 }
-},{}],216:[function(require,module,exports) {
+},{}],214:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45961,7 +45817,7 @@ exports.default = function (interpolator, n) {
   for (var i = 0; i < n; ++i) samples[i] = interpolator(i / (n - 1));
   return samples;
 };
-},{}],52:[function(require,module,exports) {
+},{}],47:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46167,7 +46023,7 @@ Object.defineProperty(exports, "quantize", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/value":200,"./src/array":201,"./src/basis":202,"./src/basisClosed":203,"./src/date":204,"./src/number":205,"./src/object":206,"./src/round":207,"./src/string":208,"./src/transform/index":250,"./src/zoom":209,"./src/rgb":210,"./src/hsl":211,"./src/lab":212,"./src/hcl":213,"./src/cubehelix":214,"./src/piecewise":215,"./src/quantize":216}],147:[function(require,module,exports) {
+},{"./src/value":198,"./src/array":199,"./src/basis":200,"./src/basisClosed":201,"./src/date":202,"./src/number":203,"./src/object":204,"./src/round":205,"./src/string":206,"./src/transform/index":248,"./src/zoom":207,"./src/rgb":208,"./src/hsl":209,"./src/lab":210,"./src/hcl":211,"./src/cubehelix":212,"./src/piecewise":213,"./src/quantize":214}],145:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46295,7 +46151,7 @@ function sleep(time) {
     frame = 1, setFrame(wake);
   }
 }
-},{}],148:[function(require,module,exports) {
+},{}],146:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46313,7 +46169,7 @@ exports.default = function (callback, delay, time) {
 };
 
 var _timer = require("./timer");
-},{"./timer":147}],149:[function(require,module,exports) {
+},{"./timer":145}],147:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46334,7 +46190,7 @@ exports.default = function (callback, delay, time) {
 };
 
 var _timer = require("./timer");
-},{"./timer":147}],62:[function(require,module,exports) {
+},{"./timer":145}],57:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46381,7 +46237,7 @@ Object.defineProperty(exports, "interval", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/timer":147,"./src/timeout":148,"./src/interval":149}],383:[function(require,module,exports) {
+},{"./src/timer":145,"./src/timeout":146,"./src/interval":147}],381:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46548,7 +46404,7 @@ function create(node, id, self) {
     delete node.__transition;
   }
 }
-},{"d3-dispatch":44,"d3-timer":62}],151:[function(require,module,exports) {
+},{"d3-dispatch":41,"d3-timer":57}],150:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46581,7 +46437,7 @@ exports.default = function (node, name) {
 };
 
 var _schedule = require("./transition/schedule");
-},{"./transition/schedule":383}],388:[function(require,module,exports) {
+},{"./transition/schedule":381}],387:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46599,7 +46455,7 @@ var _interrupt = require("../interrupt");
 var _interrupt2 = _interopRequireDefault(_interrupt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../interrupt":151}],433:[function(require,module,exports) {
+},{"../interrupt":150}],435:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46689,7 +46545,7 @@ function tweenValue(transition, name, value) {
     return (0, _schedule.get)(node, id).value[name];
   };
 }
-},{"./schedule":383}],532:[function(require,module,exports) {
+},{"./schedule":381}],531:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46704,7 +46560,7 @@ exports.default = function (a, b) {
 var _d3Color = require("d3-color");
 
 var _d3Interpolate = require("d3-interpolate");
-},{"d3-color":41,"d3-interpolate":52}],417:[function(require,module,exports) {
+},{"d3-color":37,"d3-interpolate":47}],419:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46778,7 +46634,7 @@ function attrFunctionNS(fullname, interpolate, value) {
     return value0 === value1 ? null : value0 === value00 && value1 === value10 ? interpolate0 : interpolate0 = interpolate(value00 = value0, value10 = value1);
   };
 }
-},{"d3-interpolate":52,"d3-selection":57,"./tween":433,"./interpolate":532}],418:[function(require,module,exports) {
+},{"d3-interpolate":47,"d3-selection":52,"./tween":435,"./interpolate":531}],420:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46819,7 +46675,7 @@ function attrTween(name, value) {
   tween._value = value;
   return tween;
 }
-},{"d3-selection":57}],422:[function(require,module,exports) {
+},{"d3-selection":52}],421:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46845,7 +46701,7 @@ function delayConstant(id, value) {
     (0, _schedule.init)(this, id).delay = value;
   };
 }
-},{"./schedule":383}],424:[function(require,module,exports) {
+},{"./schedule":381}],422:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46871,7 +46727,7 @@ function durationConstant(id, value) {
     (0, _schedule.set)(this, id).duration = value;
   };
 }
-},{"./schedule":383}],419:[function(require,module,exports) {
+},{"./schedule":381}],423:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46892,7 +46748,7 @@ function easeConstant(id, value) {
     (0, _schedule.set)(this, id).ease = value;
   };
 }
-},{"./schedule":383}],421:[function(require,module,exports) {
+},{"./schedule":381}],424:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46916,7 +46772,7 @@ exports.default = function (match) {
 var _d3Selection = require("d3-selection");
 
 var _index = require("./index");
-},{"d3-selection":57,"./index":233}],420:[function(require,module,exports) {
+},{"d3-selection":52,"./index":230}],425:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46942,7 +46798,7 @@ exports.default = function (transition) {
 };
 
 var _index = require("./index");
-},{"./index":233}],423:[function(require,module,exports) {
+},{"./index":230}],426:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46981,7 +46837,7 @@ function onFunction(id, name, listener) {
     schedule.on = on1;
   };
 }
-},{"./schedule":383}],425:[function(require,module,exports) {
+},{"./schedule":381}],427:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46999,7 +46855,7 @@ function removeFunction(id) {
     if (parent) parent.removeChild(this);
   };
 }
-},{}],426:[function(require,module,exports) {
+},{}],428:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47034,7 +46890,7 @@ var _schedule = require("./schedule");
 var _schedule2 = _interopRequireDefault(_schedule);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"d3-selection":57,"./index":233,"./schedule":383}],428:[function(require,module,exports) {
+},{"d3-selection":52,"./index":230,"./schedule":381}],429:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47073,7 +46929,7 @@ var _schedule = require("./schedule");
 var _schedule2 = _interopRequireDefault(_schedule);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"d3-selection":57,"./index":233,"./schedule":383}],427:[function(require,module,exports) {
+},{"d3-selection":52,"./index":230,"./schedule":381}],430:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47087,7 +46943,7 @@ exports.default = function () {
 var _d3Selection = require("d3-selection");
 
 var Selection = _d3Selection.selection.prototype.constructor;
-},{"d3-selection":57}],429:[function(require,module,exports) {
+},{"d3-selection":52}],431:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47143,7 +46999,7 @@ function styleFunction(name, interpolate, value) {
         return value0 === value1 ? null : value0 === value00 && value1 === value10 ? interpolate0 : interpolate0 = interpolate(value00 = value0, value10 = value1);
     };
 }
-},{"d3-interpolate":52,"d3-selection":57,"./tween":433,"./interpolate":532}],430:[function(require,module,exports) {
+},{"d3-interpolate":47,"d3-selection":52,"./tween":435,"./interpolate":531}],433:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47194,7 +47050,7 @@ function textFunction(value) {
     this.textContent = value1 == null ? "" : value1;
   };
 }
-},{"./tween":433}],431:[function(require,module,exports) {
+},{"./tween":435}],434:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47230,7 +47086,7 @@ var _schedule = require("./schedule");
 var _schedule2 = _interopRequireDefault(_schedule);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./index":233,"./schedule":383}],233:[function(require,module,exports) {
+},{"./index":230,"./schedule":381}],230:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47357,7 +47213,7 @@ Transition.prototype = transition.prototype = {
   duration: _duration2.default,
   ease: _ease2.default
 };
-},{"d3-selection":57,"./attr":417,"./attrTween":418,"./delay":422,"./duration":424,"./ease":419,"./filter":421,"./merge":420,"./on":423,"./remove":425,"./select":426,"./selectAll":428,"./selection":427,"./style":429,"./styleTween":430,"./text":432,"./transition":431,"./tween":433}],179:[function(require,module,exports) {
+},{"d3-selection":52,"./attr":419,"./attrTween":420,"./delay":421,"./duration":422,"./ease":423,"./filter":424,"./merge":425,"./on":426,"./remove":427,"./select":428,"./selectAll":429,"./selection":430,"./style":431,"./styleTween":433,"./text":432,"./transition":434,"./tween":435}],177:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47367,7 +47223,7 @@ exports.linear = linear;
 function linear(t) {
   return +t;
 }
-},{}],180:[function(require,module,exports) {
+},{}],178:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47387,7 +47243,7 @@ function quadOut(t) {
 function quadInOut(t) {
   return ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2;
 }
-},{}],181:[function(require,module,exports) {
+},{}],179:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47407,7 +47263,7 @@ function cubicOut(t) {
 function cubicInOut(t) {
   return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
-},{}],182:[function(require,module,exports) {
+},{}],180:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47450,7 +47306,7 @@ var polyInOut = exports.polyInOut = function custom(e) {
 
   return polyInOut;
 }(exponent);
-},{}],183:[function(require,module,exports) {
+},{}],181:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47473,7 +47329,7 @@ function sinOut(t) {
 function sinInOut(t) {
   return (1 - Math.cos(pi * t)) / 2;
 }
-},{}],184:[function(require,module,exports) {
+},{}],182:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47493,7 +47349,7 @@ function expOut(t) {
 function expInOut(t) {
   return ((t *= 2) <= 1 ? Math.pow(2, 10 * t - 10) : 2 - Math.pow(2, 10 - 10 * t)) / 2;
 }
-},{}],185:[function(require,module,exports) {
+},{}],183:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47513,7 +47369,7 @@ function circleOut(t) {
 function circleInOut(t) {
   return ((t *= 2) <= 1 ? 1 - Math.sqrt(1 - t * t) : Math.sqrt(1 - (t -= 2) * t) + 1) / 2;
 }
-},{}],186:[function(require,module,exports) {
+},{}],184:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47544,7 +47400,7 @@ function bounceOut(t) {
 function bounceInOut(t) {
   return ((t *= 2) <= 1 ? 1 - bounceOut(1 - t) : bounceOut(t - 1) + 1) / 2;
 }
-},{}],187:[function(require,module,exports) {
+},{}],185:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47587,7 +47443,7 @@ var backInOut = exports.backInOut = function custom(s) {
 
   return backInOut;
 }(overshoot);
-},{}],188:[function(require,module,exports) {
+},{}],186:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47647,7 +47503,7 @@ var elasticInOut = exports.elasticInOut = function custom(a, p) {
 
   return elasticInOut;
 }(amplitude, period);
-},{}],46:[function(require,module,exports) {
+},{}],42:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47905,7 +47761,7 @@ Object.defineProperty(exports, "easeElasticInOut", {
     return _elastic.elasticInOut;
   }
 });
-},{"./src/linear":179,"./src/quad":180,"./src/cubic":181,"./src/poly":182,"./src/sin":183,"./src/exp":184,"./src/circle":185,"./src/bounce":186,"./src/back":187,"./src/elastic":188}],389:[function(require,module,exports) {
+},{"./src/linear":177,"./src/quad":178,"./src/cubic":179,"./src/poly":180,"./src/sin":181,"./src/exp":182,"./src/circle":183,"./src/bounce":184,"./src/back":185,"./src/elastic":186}],388:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47960,7 +47816,7 @@ function inherit(node, id) {
   }
   return timing;
 }
-},{"../transition/index":233,"../transition/schedule":383,"d3-ease":46,"d3-timer":62}],232:[function(require,module,exports) {
+},{"../transition/index":230,"../transition/schedule":381,"d3-ease":42,"d3-timer":57}],231:[function(require,module,exports) {
 "use strict";
 
 var _d3Selection = require("d3-selection");
@@ -47977,7 +47833,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _d3Selection.selection.prototype.interrupt = _interrupt2.default;
 _d3Selection.selection.prototype.transition = _transition2.default;
-},{"d3-selection":57,"./interrupt":388,"./transition":389}],150:[function(require,module,exports) {
+},{"d3-selection":52,"./interrupt":387,"./transition":388}],149:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48006,7 +47862,7 @@ var _index = require("./transition/index");
 var _schedule = require("./transition/schedule");
 
 var root = [null];
-},{"./transition/index":233,"./transition/schedule":383}],63:[function(require,module,exports) {
+},{"./transition/index":230,"./transition/schedule":381}],60:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48044,7 +47900,7 @@ Object.defineProperty(exports, "interrupt", {
 require("./src/selection/index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/selection/index":232,"./src/transition/index":233,"./src/active":150,"./src/interrupt":151}],545:[function(require,module,exports) {
+},{"./src/selection/index":231,"./src/transition/index":230,"./src/active":149,"./src/interrupt":150}],544:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48056,7 +47912,7 @@ exports.default = function (target, type, selection) {
   this.type = type;
   this.selection = selection;
 };
-},{}],80:[function(require,module,exports) {
+},{}],79:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48611,7 +48467,7 @@ function brush(dim) {
 
   return brush;
 }
-},{"d3-dispatch":44,"d3-drag":43,"d3-interpolate":52,"d3-selection":57,"d3-transition":63,"./constant":437,"./event":545,"./noevent":380}],38:[function(require,module,exports) {
+},{"d3-dispatch":41,"d3-drag":38,"d3-interpolate":47,"d3-selection":52,"d3-transition":60,"./constant":436,"./event":544,"./noevent":378}],34:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48646,7 +48502,7 @@ Object.defineProperty(exports, "brushSelection", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/brush":80}],440:[function(require,module,exports) {
+},{"./src/brush":79}],440:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48658,7 +48514,7 @@ var pi = exports.pi = Math.PI;
 var halfPi = exports.halfPi = pi / 2;
 var tau = exports.tau = pi * 2;
 var max = exports.max = Math.max;
-},{}],81:[function(require,module,exports) {
+},{}],77:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48782,7 +48638,7 @@ function compareValue(compare) {
     return compare(a.source.value + a.target.value, b.source.value + b.target.value);
   };
 }
-},{"d3-array":36,"./math":440}],118:[function(require,module,exports) {
+},{"d3-array":32,"./math":440}],116:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48918,7 +48774,7 @@ Path.prototype = path.prototype = {
 };
 
 exports.default = path;
-},{}],51:[function(require,module,exports) {
+},{}],48:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48935,7 +48791,7 @@ Object.defineProperty(exports, "path", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/path":118}],82:[function(require,module,exports) {
+},{"./src/path":116}],78:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49037,7 +48893,7 @@ function defaultStartAngle(d) {
 function defaultEndAngle(d) {
   return d.endAngle;
 }
-},{"./array":519,"./constant":437,"./math":440,"d3-path":51}],39:[function(require,module,exports) {
+},{"./array":517,"./constant":436,"./math":440,"d3-path":48}],33:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49063,7 +48919,7 @@ Object.defineProperty(exports, "ribbon", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/chord":81,"./src/ribbon":82}],85:[function(require,module,exports) {
+},{"./src/chord":77,"./src/ribbon":78}],82:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49145,7 +49001,7 @@ function map(object, f) {
 }
 
 exports.default = map;
-},{}],83:[function(require,module,exports) {
+},{}],80:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49247,7 +49103,7 @@ function createMap() {
 function setMap(map, key, value) {
   map.set(key, value);
 }
-},{"./map":85}],84:[function(require,module,exports) {
+},{"./map":82}],81:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49299,7 +49155,7 @@ function set(object, f) {
 }
 
 exports.default = set;
-},{"./map":85}],86:[function(require,module,exports) {
+},{"./map":82}],83:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49311,7 +49167,7 @@ exports.default = function (map) {
   for (var key in map) keys.push(key);
   return keys;
 };
-},{}],87:[function(require,module,exports) {
+},{}],84:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49323,7 +49179,7 @@ exports.default = function (map) {
   for (var key in map) values.push(map[key]);
   return values;
 };
-},{}],88:[function(require,module,exports) {
+},{}],87:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49335,7 +49191,7 @@ exports.default = function (map) {
   for (var key in map) entries.push({ key: key, value: map[key] });
   return entries;
 };
-},{}],40:[function(require,module,exports) {
+},{}],35:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49397,7 +49253,7 @@ Object.defineProperty(exports, "entries", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/nest":83,"./src/set":84,"./src/map":85,"./src/keys":86,"./src/values":87,"./src/entries":88}],512:[function(require,module,exports) {
+},{"./src/nest":80,"./src/set":81,"./src/map":82,"./src/keys":83,"./src/values":84,"./src/entries":87}],510:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49406,7 +49262,7 @@ Object.defineProperty(exports, "__esModule", {
 var array = Array.prototype;
 
 var slice = exports.slice = array.slice;
-},{}],525:[function(require,module,exports) {
+},{}],524:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49416,7 +49272,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (a, b) {
   return a - b;
 };
-},{}],526:[function(require,module,exports) {
+},{}],525:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49430,7 +49286,7 @@ exports.default = function (ring) {
   while (++i < n) area += ring[i - 1][1] * ring[i][0] - ring[i - 1][0] * ring[i][1];
   return area;
 };
-},{}],527:[function(require,module,exports) {
+},{}],526:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49473,7 +49329,7 @@ function collinear(a, b, c) {
 function within(p, q, r) {
   return p <= q && q <= r || r <= q && q <= p;
 }
-},{}],528:[function(require,module,exports) {
+},{}],527:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49700,7 +49556,7 @@ var _noop2 = _interopRequireDefault(_noop);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cases = [[], [[[1.0, 1.5], [0.5, 1.0]]], [[[1.5, 1.0], [1.0, 1.5]]], [[[1.5, 1.0], [0.5, 1.0]]], [[[1.0, 0.5], [1.5, 1.0]]], [[[1.0, 1.5], [0.5, 1.0]], [[1.0, 0.5], [1.5, 1.0]]], [[[1.0, 0.5], [1.0, 1.5]]], [[[1.0, 0.5], [0.5, 1.0]]], [[[0.5, 1.0], [1.0, 0.5]]], [[[1.0, 1.5], [1.0, 0.5]]], [[[0.5, 1.0], [1.0, 0.5]], [[1.5, 1.0], [1.0, 1.5]]], [[[1.5, 1.0], [1.0, 0.5]]], [[[0.5, 1.0], [1.5, 1.0]]], [[[1.0, 1.5], [1.5, 1.0]]], [[[0.5, 1.0], [1.0, 1.5]]], []];
-},{"d3-array":36,"./array":512,"./ascending":525,"./area":526,"./constant":437,"./contains":527,"./noop":528}],511:[function(require,module,exports) {
+},{"d3-array":32,"./array":510,"./ascending":524,"./area":525,"./constant":436,"./contains":526,"./noop":527}],511:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49893,7 +49749,7 @@ function defaultX(d) {
 function defaultY(d) {
   return d[1];
 }
-},{"d3-array":36,"./array":512,"./blur":511,"./constant":437,"./contours":92}],42:[function(require,module,exports) {
+},{"d3-array":32,"./array":510,"./blur":511,"./constant":436,"./contours":92}],39:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50060,7 +49916,7 @@ function inferColumns(rows) {
 
   return columns;
 }
-},{}],98:[function(require,module,exports) {
+},{}],94:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50080,7 +49936,7 @@ var csvParse = exports.csvParse = csv.parse;
 var csvParseRows = exports.csvParseRows = csv.parseRows;
 var csvFormat = exports.csvFormat = csv.format;
 var csvFormatRows = exports.csvFormatRows = csv.formatRows;
-},{"./dsv":97}],99:[function(require,module,exports) {
+},{"./dsv":97}],95:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50100,7 +49956,7 @@ var tsvParse = exports.tsvParse = tsv.parse;
 var tsvParseRows = exports.tsvParseRows = tsv.parseRows;
 var tsvFormat = exports.tsvFormat = tsv.format;
 var tsvFormatRows = exports.tsvFormatRows = tsv.formatRows;
-},{"./dsv":97}],45:[function(require,module,exports) {
+},{"./dsv":97}],40:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50171,7 +50027,7 @@ Object.defineProperty(exports, "tsvFormatRows", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/dsv":97,"./src/csv":98,"./src/tsv":99}],72:[function(require,module,exports) {
+},{"./src/dsv":97,"./src/csv":94,"./src/tsv":95}],70:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50186,7 +50042,7 @@ function responseBlob(response) {
   if (!response.ok) throw new Error(response.status + " " + response.statusText);
   return response.blob();
 }
-},{}],73:[function(require,module,exports) {
+},{}],71:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50201,7 +50057,7 @@ function responseArrayBuffer(response) {
   if (!response.ok) throw new Error(response.status + " " + response.statusText);
   return response.arrayBuffer();
 }
-},{}],77:[function(require,module,exports) {
+},{}],75:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50216,7 +50072,7 @@ function responseText(response) {
   if (!response.ok) throw new Error(response.status + " " + response.statusText);
   return response.text();
 }
-},{}],74:[function(require,module,exports) {
+},{}],72:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50252,7 +50108,7 @@ function dsv(delimiter, input, init, row) {
 
 var csv = exports.csv = dsvParse(_d3Dsv.csvParse);
 var tsv = exports.tsv = dsvParse(_d3Dsv.tsvParse);
-},{"d3-dsv":45,"./text":77}],75:[function(require,module,exports) {
+},{"d3-dsv":40,"./text":75}],73:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50270,7 +50126,7 @@ exports.default = function (input, init) {
     image.src = input;
   });
 };
-},{}],76:[function(require,module,exports) {
+},{}],74:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50285,7 +50141,7 @@ function responseJson(response) {
   if (!response.ok) throw new Error(response.status + " " + response.statusText);
   return response.json();
 }
-},{}],78:[function(require,module,exports) {
+},{}],76:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50311,7 +50167,7 @@ exports.default = parser("application/xml");
 var html = exports.html = parser("text/html");
 
 var svg = exports.svg = parser("image/svg+xml");
-},{"./text":77}],35:[function(require,module,exports) {
+},{"./text":75}],31:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50406,7 +50262,7 @@ Object.defineProperty(exports, "svg", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/blob":72,"./src/buffer":73,"./src/dsv":74,"./src/image":75,"./src/json":76,"./src/text":77,"./src/xml":78}],100:[function(require,module,exports) {
+},{"./src/blob":70,"./src/buffer":71,"./src/dsv":72,"./src/image":73,"./src/json":74,"./src/text":75,"./src/xml":76}],98:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50449,7 +50305,7 @@ exports.default = function (x, y) {
 
   return force;
 };
-},{}],476:[function(require,module,exports) {
+},{}],475:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50459,7 +50315,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
   return (Math.random() - 0.5) * 1e-6;
 };
-},{}],404:[function(require,module,exports) {
+},{}],403:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50556,7 +50412,7 @@ function addAll(data) {
 
   return this;
 }
-},{}],405:[function(require,module,exports) {
+},{}],404:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50635,7 +50491,7 @@ exports.default = function () {
   });
   return data;
 };
-},{}],409:[function(require,module,exports) {
+},{}],405:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50645,7 +50501,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (_) {
     return arguments.length ? this.cover(+_[0][0], +_[0][1]).cover(+_[1][0], +_[1][1]) : isNaN(this._x0) ? undefined : [[this._x0, this._y0], [this._x1, this._y1]];
 };
-},{}],530:[function(require,module,exports) {
+},{}],529:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50730,7 +50586,7 @@ var _quad = require("./quad");
 var _quad2 = _interopRequireDefault(_quad);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./quad":530}],408:[function(require,module,exports) {
+},{"./quad":529}],408:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50797,7 +50653,7 @@ function removeAll(data) {
   for (var i = 0, n = data.length; i < n; ++i) this.remove(data[i]);
   return this;
 }
-},{}],410:[function(require,module,exports) {
+},{}],409:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50807,7 +50663,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
   return this._root;
 };
-},{}],411:[function(require,module,exports) {
+},{}],410:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50821,7 +50677,7 @@ exports.default = function () {
   });
   return size;
 };
-},{}],412:[function(require,module,exports) {
+},{}],411:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50856,7 +50712,7 @@ var _quad = require("./quad");
 var _quad2 = _interopRequireDefault(_quad);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./quad":530}],413:[function(require,module,exports) {
+},{"./quad":529}],414:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50896,7 +50752,7 @@ var _quad = require("./quad");
 var _quad2 = _interopRequireDefault(_quad);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./quad":530}],414:[function(require,module,exports) {
+},{"./quad":529}],412:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50911,7 +50767,7 @@ exports.default = function (_) {
 function defaultX(d) {
   return d[0];
 }
-},{}],415:[function(require,module,exports) {
+},{}],413:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50926,7 +50782,7 @@ exports.default = function (_) {
 function defaultY(d) {
   return d[1];
 }
-},{}],124:[function(require,module,exports) {
+},{}],140:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51044,7 +50900,7 @@ treeProto.visit = _visit2.default;
 treeProto.visitAfter = _visitAfter2.default;
 treeProto.x = _x2.default;
 treeProto.y = _y2.default;
-},{"./add":404,"./cover":405,"./data":406,"./extent":409,"./find":407,"./remove":408,"./root":410,"./size":411,"./visit":412,"./visitAfter":413,"./x":414,"./y":415}],54:[function(require,module,exports) {
+},{"./add":403,"./cover":404,"./data":406,"./extent":405,"./find":407,"./remove":408,"./root":409,"./size":410,"./visit":411,"./visitAfter":414,"./x":412,"./y":413}],53:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51061,7 +50917,7 @@ Object.defineProperty(exports, "quadtree", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/quadtree":124}],101:[function(require,module,exports) {
+},{"./src/quadtree":140}],99:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51179,7 +51035,7 @@ function x(d) {
 function y(d) {
   return d.y + d.vy;
 }
-},{"./constant":437,"./jiggle":476,"d3-quadtree":54}],102:[function(require,module,exports) {
+},{"./constant":436,"./jiggle":475,"d3-quadtree":53}],100:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51310,7 +51166,7 @@ function find(nodeById, nodeId) {
   if (!node) throw new Error("missing: " + nodeId);
   return node;
 }
-},{"./constant":437,"./jiggle":476,"d3-collection":40}],105:[function(require,module,exports) {
+},{"./constant":436,"./jiggle":475,"d3-collection":35}],103:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51464,7 +51320,7 @@ function y(d) {
 
 var initialRadius = 10,
     initialAngle = Math.PI * (3 - Math.sqrt(5));
-},{"d3-dispatch":44,"d3-collection":40,"d3-timer":62}],103:[function(require,module,exports) {
+},{"d3-dispatch":41,"d3-collection":35,"d3-timer":57}],101:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51603,7 +51459,7 @@ var _d3Quadtree = require("d3-quadtree");
 var _simulation = require("./simulation");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":437,"./jiggle":476,"d3-quadtree":54,"./simulation":105}],104:[function(require,module,exports) {
+},{"./constant":436,"./jiggle":475,"d3-quadtree":53,"./simulation":103}],102:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51672,7 +51528,7 @@ var _constant = require("./constant");
 var _constant2 = _interopRequireDefault(_constant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":437}],106:[function(require,module,exports) {
+},{"./constant":436}],104:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51725,7 +51581,7 @@ var _constant = require("./constant");
 var _constant2 = _interopRequireDefault(_constant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":437}],107:[function(require,module,exports) {
+},{"./constant":436}],105:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51778,7 +51634,7 @@ var _constant = require("./constant");
 var _constant2 = _interopRequireDefault(_constant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":437}],47:[function(require,module,exports) {
+},{"./constant":436}],43:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51858,7 +51714,7 @@ Object.defineProperty(exports, "forceY", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/center":100,"./src/collide":101,"./src/link":102,"./src/manyBody":103,"./src/radial":104,"./src/simulation":105,"./src/x":106,"./src/y":107}],521:[function(require,module,exports) {
+},{"./src/center":98,"./src/collide":99,"./src/link":100,"./src/manyBody":101,"./src/radial":102,"./src/simulation":103,"./src/x":104,"./src/y":105}],520:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51874,7 +51730,7 @@ exports.default = function (x, p) {
   // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
   return [coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient, +x.slice(i + 1)];
 };
-},{}],373:[function(require,module,exports) {
+},{}],371:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51890,7 +51746,7 @@ var _formatDecimal = require("./formatDecimal");
 var _formatDecimal2 = _interopRequireDefault(_formatDecimal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./formatDecimal":521}],503:[function(require,module,exports) {
+},{"./formatDecimal":520}],502:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51915,7 +51771,7 @@ exports.default = function (grouping, thousands) {
     return t.reverse().join(thousands);
   };
 };
-},{}],504:[function(require,module,exports) {
+},{}],503:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51929,7 +51785,7 @@ exports.default = function (numerals) {
     });
   };
 };
-},{}],110:[function(require,module,exports) {
+},{}],107:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51963,7 +51819,7 @@ function FormatSpecifier(specifier) {
 FormatSpecifier.prototype.toString = function () {
   return this.fill + this.align + this.sign + this.symbol + (this.zero ? "0" : "") + (this.width == null ? "" : Math.max(1, this.width | 0)) + (this.comma ? "," : "") + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0)) + (this.trim ? "~" : "") + this.type;
 };
-},{}],505:[function(require,module,exports) {
+},{}],504:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51985,7 +51841,7 @@ exports.default = function (s) {
   }
   return i0 > 0 ? s.slice(0, i0) + s.slice(i1 + 1) : s;
 };
-},{}],507:[function(require,module,exports) {
+},{}],506:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52010,7 +51866,7 @@ var _formatDecimal2 = _interopRequireDefault(_formatDecimal);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var prefixExponent = exports.prefixExponent = undefined;
-},{"./formatDecimal":521}],533:[function(require,module,exports) {
+},{"./formatDecimal":520}],532:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52030,7 +51886,7 @@ var _formatDecimal = require("./formatDecimal");
 var _formatDecimal2 = _interopRequireDefault(_formatDecimal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./formatDecimal":521}],506:[function(require,module,exports) {
+},{"./formatDecimal":520}],505:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52084,7 +51940,7 @@ exports.default = {
     return Math.round(x).toString(16);
   }
 };
-},{"./formatPrefixAuto":507,"./formatRounded":533}],109:[function(require,module,exports) {
+},{"./formatPrefixAuto":506,"./formatRounded":532}],108:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52260,7 +52116,7 @@ var _identity2 = _interopRequireDefault(_identity);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var prefixes = ["y", "z", "a", "f", "p", "n", "µ", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"];
-},{"./exponent":373,"./formatGroup":503,"./formatNumerals":504,"./formatSpecifier":110,"./formatTrim":505,"./formatTypes":506,"./formatPrefixAuto":507,"./identity":438}],108:[function(require,module,exports) {
+},{"./exponent":371,"./formatGroup":502,"./formatNumerals":503,"./formatSpecifier":107,"./formatTrim":504,"./formatTypes":505,"./formatPrefixAuto":506,"./identity":437}],106:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52292,7 +52148,7 @@ function defaultLocale(definition) {
   exports.formatPrefix = formatPrefix = locale.formatPrefix;
   return locale;
 }
-},{"./locale":109}],111:[function(require,module,exports) {
+},{"./locale":108}],109:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52308,7 +52164,7 @@ var _exponent = require("./exponent");
 var _exponent2 = _interopRequireDefault(_exponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./exponent":373}],112:[function(require,module,exports) {
+},{"./exponent":371}],110:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52324,7 +52180,7 @@ var _exponent = require("./exponent");
 var _exponent2 = _interopRequireDefault(_exponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./exponent":373}],113:[function(require,module,exports) {
+},{"./exponent":371}],111:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52341,7 +52197,7 @@ var _exponent = require("./exponent");
 var _exponent2 = _interopRequireDefault(_exponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./exponent":373}],48:[function(require,module,exports) {
+},{"./exponent":371}],44:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52415,7 +52271,7 @@ Object.defineProperty(exports, "precisionRound", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/defaultLocale":108,"./src/locale":109,"./src/formatSpecifier":110,"./src/precisionFixed":111,"./src/precisionPrefix":112,"./src/precisionRound":113}],395:[function(require,module,exports) {
+},{"./src/defaultLocale":106,"./src/locale":108,"./src/formatSpecifier":107,"./src/precisionFixed":109,"./src/precisionPrefix":110,"./src/precisionRound":111}],393:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52505,7 +52361,7 @@ function asin(x) {
 function haversin(x) {
   return (x = sin(x / 2)) * x;
 }
-},{}],396:[function(require,module,exports) {
+},{}],395:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52513,7 +52369,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = noop;
 function noop() {}
-},{}],248:[function(require,module,exports) {
+},{}],246:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52695,7 +52551,7 @@ function areaPoint(lambda, phi) {
   // Advance the previous points.
   lambda0 = lambda, cosPhi0 = cosPhi, sinPhi0 = sinPhi;
 }
-},{"./adder":395,"./math":394,"./noop":396,"./stream":248}],489:[function(require,module,exports) {
+},{"./adder":393,"./math":394,"./noop":395,"./stream":246}],488:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52744,7 +52600,7 @@ function cartesianNormalizeInPlace(d) {
   var l = (0, _math.sqrt)(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
   d[0] /= l, d[1] /= l, d[2] /= l;
 }
-},{"./math":394}],239:[function(require,module,exports) {
+},{"./math":394}],236:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52941,7 +52797,7 @@ function rangeCompare(a, b) {
 function rangeContains(range, x) {
   return range[0] <= range[1] ? range[0] <= x && x <= range[1] : x < range[0] || range[1] < x;
 }
-},{"./adder":395,"./area":238,"./cartesian":489,"./math":394,"./stream":248}],240:[function(require,module,exports) {
+},{"./adder":393,"./area":238,"./cartesian":488,"./math":394,"./stream":246}],237:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53090,7 +52946,7 @@ function centroidRingPoint(lambda, phi) {
   Z1 += w * (z0 + (z0 = z));
   centroidPointCartesian(x0, y0, z0);
 }
-},{"./math":394,"./noop":396,"./stream":248}],492:[function(require,module,exports) {
+},{"./math":394,"./noop":395,"./stream":246}],491:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53109,7 +52965,7 @@ exports.default = function (a, b) {
 
   return compose;
 };
-},{}],247:[function(require,module,exports) {
+},{}],245:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53189,7 +53045,7 @@ function rotationPhiGamma(deltaPhi, deltaGamma) {
 
   return rotation;
 }
-},{"./compose":492,"./math":394}],241:[function(require,module,exports) {
+},{"./compose":491,"./math":394}],239:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53276,7 +53132,7 @@ function circleRadius(cosRadius, point) {
   var radius = (0, _math.acos)(-point[1]);
   return ((-point[2] < 0 ? -radius : radius) + _math.tau - _math.epsilon) % _math.tau;
 }
-},{"./cartesian":489,"./constant":437,"./math":394,"./rotation":247}],524:[function(require,module,exports) {
+},{"./cartesian":488,"./constant":436,"./math":394,"./rotation":245}],521:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53311,7 +53167,7 @@ var _noop = require("../noop");
 var _noop2 = _interopRequireDefault(_noop);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../noop":396}],520:[function(require,module,exports) {
+},{"../noop":395}],519:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53323,7 +53179,7 @@ exports.default = function (a, b) {
 };
 
 var _math = require("./math");
-},{"./math":394}],523:[function(require,module,exports) {
+},{"./math":394}],522:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53440,7 +53296,7 @@ function link(array) {
   a.n = b = array[0];
   b.p = a;
 }
-},{"../pointEqual":520}],493:[function(require,module,exports) {
+},{"../pointEqual":519}],492:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53524,7 +53380,7 @@ var _math = require("./math");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var sum = (0, _adder2.default)();
-},{"./adder":395,"./cartesian":489,"./math":394}],514:[function(require,module,exports) {
+},{"./adder":393,"./cartesian":488,"./math":394}],513:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53675,7 +53531,7 @@ function validSegment(segment) {
 function compareIntersection(a, b) {
   return ((a = a.x)[0] < 0 ? a[1] - _math.halfPi - _math.epsilon : _math.halfPi - a[1]) - ((b = b.x)[0] < 0 ? b[1] - _math.halfPi - _math.epsilon : _math.halfPi - b[1]);
 }
-},{"./buffer":524,"./rejoin":523,"../math":394,"../polygonContains":493,"d3-array":36}],278:[function(require,module,exports) {
+},{"./buffer":521,"./rejoin":522,"../math":394,"../polygonContains":492,"d3-array":32}],276:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53775,7 +53631,7 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
     stream.point(to[0], to[1]);
   }
 }
-},{"./index":514,"../math":394}],279:[function(require,module,exports) {
+},{"./index":513,"../math":394}],277:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53970,7 +53826,7 @@ var _index = require("./index");
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../cartesian":489,"../circle":241,"../math":394,"../pointEqual":520,"./index":514}],522:[function(require,module,exports) {
+},{"../cartesian":488,"../circle":239,"../math":394,"../pointEqual":519,"./index":513}],523:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54036,7 +53892,7 @@ exports.default = function (a, b, x0, y0, x1, y1) {
   if (t1 < 1) b[0] = ax + t1 * dx, b[1] = ay + t1 * dy;
   return true;
 };
-},{}],281:[function(require,module,exports) {
+},{}],279:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54224,7 +54080,7 @@ function clipRectangle(x0, y0, x1, y1) {
     return clipStream;
   };
 }
-},{"../math":394,"./buffer":524,"./line":522,"./rejoin":523,"d3-array":36}],280:[function(require,module,exports) {
+},{"../math":394,"./buffer":521,"./line":523,"./rejoin":522,"d3-array":32}],278:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54255,7 +54111,7 @@ var _rectangle = require("./rectangle");
 var _rectangle2 = _interopRequireDefault(_rectangle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./rectangle":281}],246:[function(require,module,exports) {
+},{"./rectangle":279}],244:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54326,7 +54182,7 @@ function lengthPoint(lambda, phi) {
   lengthSum.add((0, _math.atan2)((0, _math.sqrt)(x * x + y * y), z));
   lambda0 = lambda, sinPhi0 = sinPhi, cosPhi0 = cosPhi;
 }
-},{"./adder":395,"./math":394,"./noop":396,"./stream":248}],245:[function(require,module,exports) {
+},{"./adder":393,"./math":394,"./noop":395,"./stream":246}],241:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54347,7 +54203,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var coordinates = [null, null],
     object = { type: "LineString", coordinates: coordinates };
-},{"./length":246}],242:[function(require,module,exports) {
+},{"./length":244}],240:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54452,7 +54308,7 @@ function ringRadians(ring) {
 function pointRadians(point) {
   return [point[0] * _math.radians, point[1] * _math.radians];
 }
-},{"./polygonContains":493,"./distance":245,"./math":394}],243:[function(require,module,exports) {
+},{"./polygonContains":492,"./distance":241,"./math":394}],242:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54583,7 +54439,7 @@ function graticule() {
 function graticule10() {
   return graticule()();
 }
-},{"d3-array":36,"./math":394}],244:[function(require,module,exports) {
+},{"d3-array":32,"./math":394}],243:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54623,7 +54479,7 @@ exports.default = function (a, b) {
 };
 
 var _math = require("./math");
-},{"./math":394}],494:[function(require,module,exports) {
+},{"./math":394}],493:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54688,7 +54544,7 @@ function areaRingEnd() {
 }
 
 exports.default = areaStream;
-},{"../adder":395,"../math":394,"../noop":396}],495:[function(require,module,exports) {
+},{"../adder":393,"../math":394,"../noop":395}],495:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54727,7 +54583,7 @@ function boundsPoint(x, y) {
 }
 
 exports.default = boundsStream;
-},{"../noop":396}],496:[function(require,module,exports) {
+},{"../noop":395}],494:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54892,7 +54748,7 @@ PathContext.prototype = {
   },
   result: _noop2.default
 };
-},{"../math":394,"../noop":396}],499:[function(require,module,exports) {
+},{"../math":394,"../noop":395}],498:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54952,7 +54808,7 @@ function lengthPoint(x, y) {
 }
 
 exports.default = lengthStream;
-},{"../adder":395,"../math":394,"../noop":396}],498:[function(require,module,exports) {
+},{"../adder":393,"../math":394,"../noop":395}],496:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55018,7 +54874,7 @@ PathString.prototype = {
 function circle(radius) {
   return "m0," + radius + "a" + radius + "," + radius + " 0 1,1 0," + -2 * radius + "a" + radius + "," + radius + " 0 1,1 0," + 2 * radius + "z";
 }
-},{}],282:[function(require,module,exports) {
+},{}],280:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55111,7 +54967,7 @@ var _string = require("./string");
 var _string2 = _interopRequireDefault(_string);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../identity":438,"../stream":248,"./area":494,"./bounds":495,"./centroid":496,"./context":497,"./measure":499,"./string":498}],249:[function(require,module,exports) {
+},{"../identity":437,"../stream":246,"./area":493,"./bounds":495,"./centroid":494,"./context":497,"./measure":498,"./string":496}],247:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55157,7 +55013,7 @@ TransformStream.prototype = {
     this.stream.polygonEnd();
   }
 };
-},{}],509:[function(require,module,exports) {
+},{}],508:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55222,7 +55078,7 @@ function fitHeight(projection, height, object) {
     projection.scale(150 * k).translate([x, y]);
   }, object);
 }
-},{"../stream":248,"../path/bounds":495}],529:[function(require,module,exports) {
+},{"../stream":246,"../path/bounds":495}],528:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55340,7 +55196,7 @@ function resample(project, delta2) {
     return resampleStream;
   };
 }
-},{"../cartesian":489,"../math":394,"../transform":249}],293:[function(require,module,exports) {
+},{"../cartesian":488,"../math":394,"../transform":247}],291:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55556,7 +55412,7 @@ function projectionMutator(projectAt) {
     return recenter();
   };
 }
-},{"../clip/antimeridian":278,"../clip/circle":279,"../clip/rectangle":281,"../compose":492,"../identity":438,"../math":394,"../rotation":247,"../transform":249,"./fit":509,"./resample":529}],447:[function(require,module,exports) {
+},{"../clip/antimeridian":276,"../clip/circle":277,"../clip/rectangle":279,"../compose":491,"../identity":437,"../math":394,"../rotation":245,"../transform":247,"./fit":508,"./resample":528}],445:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55580,7 +55436,7 @@ function conicProjection(projectAt) {
 
   return p;
 }
-},{"../math":394,"./index":293}],446:[function(require,module,exports) {
+},{"../math":394,"./index":291}],446:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55603,7 +55459,7 @@ function cylindricalEqualAreaRaw(phi0) {
 
   return forward;
 }
-},{"../math":394}],288:[function(require,module,exports) {
+},{"../math":394}],286:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55643,7 +55499,7 @@ function conicEqualAreaRaw(y0, y1) {
 
   return project;
 }
-},{"../math":394,"./conic":447,"./cylindricalEqualArea":446}],284:[function(require,module,exports) {
+},{"../math":394,"./conic":445,"./cylindricalEqualArea":446}],281:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55659,7 +55515,7 @@ var _conicEqualArea = require("./conicEqualArea");
 var _conicEqualArea2 = _interopRequireDefault(_conicEqualArea);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./conicEqualArea":288}],283:[function(require,module,exports) {
+},{"./conicEqualArea":286}],283:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55796,7 +55652,7 @@ function multiplex(streams) {
 // scale to 1285 and adjust the translate accordingly. The set of standard
 // parallels for each region comes from USGS, which is published here:
 // http://egsc.usgs.gov/isb/pubs/MapProjections/projections.html#albers
-},{"../math":394,"./albers":284,"./conicEqualArea":288,"./fit":509}],403:[function(require,module,exports) {
+},{"../math":394,"./albers":281,"./conicEqualArea":286,"./fit":508}],402:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55825,7 +55681,7 @@ function azimuthalInvert(angle) {
     return [(0, _math.atan2)(x * sc, z * cc), (0, _math.asin)(z && y * sc / z)];
   };
 }
-},{"../math":394}],286:[function(require,module,exports) {
+},{"../math":394}],282:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55854,7 +55710,7 @@ var azimuthalEqualAreaRaw = exports.azimuthalEqualAreaRaw = (0, _azimuthal.azimu
 azimuthalEqualAreaRaw.invert = (0, _azimuthal.azimuthalInvert)(function (z) {
   return 2 * (0, _math.asin)(z / 2);
 });
-},{"../math":394,"./azimuthal":403,"./index":293}],285:[function(require,module,exports) {
+},{"../math":394,"./azimuthal":402,"./index":291}],284:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55883,7 +55739,7 @@ var azimuthalEquidistantRaw = exports.azimuthalEquidistantRaw = (0, _azimuthal.a
 azimuthalEquidistantRaw.invert = (0, _azimuthal.azimuthalInvert)(function (z) {
   return z;
 });
-},{"../math":394,"./azimuthal":403,"./index":293}],294:[function(require,module,exports) {
+},{"../math":394,"./azimuthal":402,"./index":291}],292:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55952,7 +55808,7 @@ function mercatorProjection(project) {
 
   return reclip();
 }
-},{"../math":394,"../rotation":247,"./index":293}],287:[function(require,module,exports) {
+},{"../math":394,"../rotation":245,"./index":291}],285:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55999,7 +55855,7 @@ function conicConformalRaw(y0, y1) {
 
   return project;
 }
-},{"../math":394,"./conic":447,"./mercator":294}],290:[function(require,module,exports) {
+},{"../math":394,"./conic":445,"./mercator":292}],288:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56022,7 +55878,7 @@ function equirectangularRaw(lambda, phi) {
 }
 
 equirectangularRaw.invert = equirectangularRaw;
-},{"./index":293}],289:[function(require,module,exports) {
+},{"./index":291}],287:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56060,7 +55916,7 @@ function conicEquidistantRaw(y0, y1) {
 
   return project;
 }
-},{"../math":394,"./conic":447,"./equirectangular":290}],291:[function(require,module,exports) {
+},{"../math":394,"./conic":445,"./equirectangular":288}],289:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56089,7 +55945,7 @@ function gnomonicRaw(x, y) {
 }
 
 gnomonicRaw.invert = (0, _azimuthal.azimuthalInvert)(_math.atan);
-},{"../math":394,"./azimuthal":403,"./index":293}],292:[function(require,module,exports) {
+},{"../math":394,"./azimuthal":402,"./index":291}],290:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56177,7 +56033,7 @@ function scaleTranslate(kx, ky, tx, ty) {
     }
   });
 }
-},{"../clip/rectangle":281,"../identity":438,"../transform":249,"./fit":509}],295:[function(require,module,exports) {
+},{"../clip/rectangle":279,"../identity":437,"../transform":247,"./fit":508}],294:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56214,7 +56070,7 @@ naturalEarth1Raw.invert = function (x, y) {
   } while ((0, _math.abs)(delta) > _math.epsilon && --i > 0);
   return [x / (0.8707 + (phi2 = phi * phi) * (-0.131979 + phi2 * (-0.013791 + phi2 * phi2 * phi2 * (0.003971 - 0.001529 * phi2)))), phi];
 };
-},{"./index":293,"../math":394}],296:[function(require,module,exports) {
+},{"./index":291,"../math":394}],293:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56241,7 +56097,7 @@ function orthographicRaw(x, y) {
 }
 
 orthographicRaw.invert = (0, _azimuthal.azimuthalInvert)(_math.asin);
-},{"../math":394,"./azimuthal":403,"./index":293}],297:[function(require,module,exports) {
+},{"../math":394,"./azimuthal":402,"./index":291}],295:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56272,7 +56128,7 @@ function stereographicRaw(x, y) {
 stereographicRaw.invert = (0, _azimuthal.azimuthalInvert)(function (z) {
   return 2 * (0, _math.atan)(z);
 });
-},{"../math":394,"./azimuthal":403,"./index":293}],298:[function(require,module,exports) {
+},{"../math":394,"./azimuthal":402,"./index":291}],296:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56307,7 +56163,7 @@ function transverseMercatorRaw(lambda, phi) {
 transverseMercatorRaw.invert = function (x, y) {
   return [-y, 2 * (0, _math.atan)((0, _math.exp)(x)) - _math.halfPi];
 };
-},{"../math":394,"./mercator":294}],50:[function(require,module,exports) {
+},{"../math":394,"./mercator":292}],46:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56696,7 +56552,7 @@ Object.defineProperty(exports, "geoTransform", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/area":238,"./src/bounds":239,"./src/centroid":240,"./src/circle":241,"./src/clip/antimeridian":278,"./src/clip/circle":279,"./src/clip/extent":280,"./src/clip/rectangle":281,"./src/contains":242,"./src/distance":245,"./src/graticule":243,"./src/interpolate":244,"./src/length":246,"./src/path/index":282,"./src/projection/albers":284,"./src/projection/albersUsa":283,"./src/projection/azimuthalEqualArea":286,"./src/projection/azimuthalEquidistant":285,"./src/projection/conicConformal":287,"./src/projection/conicEqualArea":288,"./src/projection/conicEquidistant":289,"./src/projection/equirectangular":290,"./src/projection/gnomonic":291,"./src/projection/identity":292,"./src/projection/index":293,"./src/projection/mercator":294,"./src/projection/naturalEarth1":295,"./src/projection/orthographic":296,"./src/projection/stereographic":297,"./src/projection/transverseMercator":298,"./src/rotation":247,"./src/stream":248,"./src/transform":249}],114:[function(require,module,exports) {
+},{"./src/area":238,"./src/bounds":236,"./src/centroid":237,"./src/circle":239,"./src/clip/antimeridian":276,"./src/clip/circle":277,"./src/clip/extent":278,"./src/clip/rectangle":279,"./src/contains":240,"./src/distance":241,"./src/graticule":242,"./src/interpolate":243,"./src/length":244,"./src/path/index":280,"./src/projection/albers":281,"./src/projection/albersUsa":283,"./src/projection/azimuthalEqualArea":282,"./src/projection/azimuthalEquidistant":284,"./src/projection/conicConformal":285,"./src/projection/conicEqualArea":286,"./src/projection/conicEquidistant":287,"./src/projection/equirectangular":288,"./src/projection/gnomonic":289,"./src/projection/identity":290,"./src/projection/index":291,"./src/projection/mercator":292,"./src/projection/naturalEarth1":294,"./src/projection/orthographic":293,"./src/projection/stereographic":295,"./src/projection/transverseMercator":296,"./src/rotation":245,"./src/stream":246,"./src/transform":247}],112:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56787,7 +56643,7 @@ function leafRight(node) {
   while (children = node.children) node = children[children.length - 1];
   return node;
 }
-},{}],478:[function(require,module,exports) {
+},{}],476:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56805,7 +56661,7 @@ function count(node) {
   if (!i) sum = 1;else while (--i >= 0) sum += children[i].value;
   node.value = sum;
 }
-},{}],479:[function(require,module,exports) {
+},{}],477:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56830,7 +56686,7 @@ exports.default = function (callback) {
   } while (next.length);
   return this;
 };
-},{}],481:[function(require,module,exports) {
+},{}],478:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56850,7 +56706,7 @@ exports.default = function (callback) {
   }
   return this;
 };
-},{}],480:[function(require,module,exports) {
+},{}],479:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56875,7 +56731,7 @@ exports.default = function (callback) {
   }
   return this;
 };
-},{}],482:[function(require,module,exports) {
+},{}],480:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56891,7 +56747,7 @@ exports.default = function (value) {
     node.value = sum;
   });
 };
-},{}],483:[function(require,module,exports) {
+},{}],481:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56905,7 +56761,7 @@ exports.default = function (compare) {
     }
   });
 };
-},{}],484:[function(require,module,exports) {
+},{}],482:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56942,7 +56798,7 @@ function leastCommonAncestor(a, b) {
   }
   return c;
 }
-},{}],485:[function(require,module,exports) {
+},{}],483:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56957,7 +56813,7 @@ exports.default = function () {
   }
   return nodes;
 };
-},{}],486:[function(require,module,exports) {
+},{}],484:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56971,7 +56827,7 @@ exports.default = function () {
   });
   return nodes;
 };
-},{}],487:[function(require,module,exports) {
+},{}],486:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56987,7 +56843,7 @@ exports.default = function () {
   });
   return leaves;
 };
-},{}],488:[function(require,module,exports) {
+},{}],485:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57005,7 +56861,7 @@ exports.default = function () {
   });
   return links;
 };
-},{}],189:[function(require,module,exports) {
+},{}],187:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57126,7 +56982,7 @@ Node.prototype = hierarchy.prototype = {
   links: _links2.default,
   copy: node_copy
 };
-},{"./count":478,"./each":479,"./eachBefore":481,"./eachAfter":480,"./sum":482,"./sort":483,"./path":484,"./ancestors":485,"./descendants":486,"./leaves":487,"./links":488}],517:[function(require,module,exports) {
+},{"./count":476,"./each":477,"./eachBefore":478,"./eachAfter":479,"./sum":480,"./sort":481,"./path":482,"./ancestors":483,"./descendants":484,"./leaves":486,"./links":485}],516:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57149,7 +57005,7 @@ function shuffle(array) {
 
   return array;
 }
-},{}],192:[function(require,module,exports) {
+},{}],190:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57292,7 +57148,7 @@ function encloseBasis3(a, b, c) {
     r: r
   };
 }
-},{"../array":517}],191:[function(require,module,exports) {
+},{"../array":516}],189:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57428,7 +57284,7 @@ function packEnclose(circles) {
 
   return c.r;
 }
-},{"./enclose":192}],402:[function(require,module,exports) {
+},{"./enclose":190}],401:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57444,7 +57300,7 @@ function required(f) {
   if (typeof f !== "function") throw new Error();
   return f;
 }
-},{}],477:[function(require,module,exports) {
+},{}],487:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57461,7 +57317,7 @@ exports.default = function (x) {
 function constantZero() {
   return 0;
 }
-},{}],190:[function(require,module,exports) {
+},{}],188:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57548,7 +57404,7 @@ function translateChild(k) {
     }
   };
 }
-},{"./siblings":191,"../accessors":402,"../constant":477}],393:[function(require,module,exports) {
+},{"./siblings":189,"../accessors":401,"../constant":487}],392:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57561,7 +57417,7 @@ exports.default = function (node) {
   node.x1 = Math.round(node.x1);
   node.y1 = Math.round(node.y1);
 };
-},{}],195:[function(require,module,exports) {
+},{}],193:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57580,7 +57436,7 @@ exports.default = function (parent, x0, y0, x1, y1) {
     node.x0 = x0, node.x1 = x0 += node.value * k;
   }
 };
-},{}],115:[function(require,module,exports) {
+},{}],113:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57645,7 +57501,7 @@ var _dice = require("./treemap/dice");
 var _dice2 = _interopRequireDefault(_dice);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./treemap/round":393,"./treemap/dice":195}],116:[function(require,module,exports) {
+},{"./treemap/round":392,"./treemap/dice":193}],114:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57728,7 +57584,7 @@ function defaultId(d) {
 function defaultParentId(d) {
   return d.parentId;
 }
-},{"./accessors":402,"./hierarchy/index":189}],117:[function(require,module,exports) {
+},{"./accessors":401,"./hierarchy/index":187}],115:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57973,7 +57829,7 @@ function treeRoot(root) {
 }
 
 // Node-link tree diagram using the Reingold-Tilford "tidy" algorithm
-},{"./hierarchy/index":189}],196:[function(require,module,exports) {
+},{"./hierarchy/index":187}],194:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57992,7 +57848,7 @@ exports.default = function (parent, x0, y0, x1, y1) {
     node.y0 = y0, node.y1 = y0 += node.value * k;
   }
 };
-},{}],198:[function(require,module,exports) {
+},{}],196:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58076,7 +57932,7 @@ exports.default = function custom(ratio) {
 
   return squarify;
 }(phi);
-},{"./dice":195,"./slice":196}],193:[function(require,module,exports) {
+},{"./dice":193,"./slice":194}],191:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58187,7 +58043,7 @@ var _constant = require("../constant");
 var _constant2 = _interopRequireDefault(_constant);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./round":393,"./squarify":198,"../accessors":402,"../constant":477}],194:[function(require,module,exports) {
+},{"./round":392,"./squarify":196,"../accessors":401,"../constant":487}],192:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58241,7 +58097,7 @@ exports.default = function (parent, x0, y0, x1, y1) {
     }
   }
 };
-},{}],197:[function(require,module,exports) {
+},{}],195:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58261,7 +58117,7 @@ var _slice = require("./slice");
 var _slice2 = _interopRequireDefault(_slice);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./dice":195,"./slice":196}],199:[function(require,module,exports) {
+},{"./dice":193,"./slice":194}],197:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58311,7 +58167,7 @@ exports.default = function custom(ratio) {
 
   return resquarify;
 }(_squarify.phi);
-},{"./dice":195,"./slice":196,"./squarify":198}],49:[function(require,module,exports) {
+},{"./dice":193,"./slice":194,"./squarify":196}],45:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58454,7 +58310,7 @@ Object.defineProperty(exports, "treemapResquarify", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/cluster":114,"./src/hierarchy/index":189,"./src/pack/index":190,"./src/pack/siblings":191,"./src/pack/enclose":192,"./src/partition":115,"./src/stratify":116,"./src/tree":117,"./src/treemap/index":193,"./src/treemap/binary":194,"./src/treemap/dice":195,"./src/treemap/slice":196,"./src/treemap/sliceDice":197,"./src/treemap/squarify":198,"./src/treemap/resquarify":199}],119:[function(require,module,exports) {
+},{"./src/cluster":112,"./src/hierarchy/index":187,"./src/pack/index":188,"./src/pack/siblings":189,"./src/pack/enclose":190,"./src/partition":113,"./src/stratify":114,"./src/tree":115,"./src/treemap/index":191,"./src/treemap/binary":192,"./src/treemap/dice":193,"./src/treemap/slice":194,"./src/treemap/sliceDice":195,"./src/treemap/squarify":196,"./src/treemap/resquarify":197}],117:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58476,7 +58332,7 @@ exports.default = function (polygon) {
 
   return area / 2;
 };
-},{}],120:[function(require,module,exports) {
+},{}],118:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58503,7 +58359,7 @@ exports.default = function (polygon) {
 
   return k *= 3, [x / k, y / k];
 };
-},{}],397:[function(require,module,exports) {
+},{}],396:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58513,7 +58369,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (a, b, c) {
   return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
 };
-},{}],121:[function(require,module,exports) {
+},{}],119:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58573,7 +58429,7 @@ function computeUpperHullIndexes(points) {
 
     return indexes.slice(0, size); // remove popped points
 }
-},{"./cross":397}],122:[function(require,module,exports) {
+},{"./cross":396}],120:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58599,7 +58455,7 @@ exports.default = function (polygon, point) {
 
   return inside;
 };
-},{}],123:[function(require,module,exports) {
+},{}],121:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58629,7 +58485,7 @@ exports.default = function (polygon) {
 
   return perimeter;
 };
-},{}],53:[function(require,module,exports) {
+},{}],49:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58682,7 +58538,7 @@ Object.defineProperty(exports, "polygonLength", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/area":119,"./src/centroid":120,"./src/hull":121,"./src/contains":122,"./src/length":123}],374:[function(require,module,exports) {
+},{"./src/area":117,"./src/centroid":118,"./src/hull":119,"./src/contains":120,"./src/length":121}],372:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58692,7 +58548,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
   return Math.random();
 };
-},{}],125:[function(require,module,exports) {
+},{}],122:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58719,7 +58575,7 @@ exports.default = function sourceRandomUniform(source) {
 
   return randomUniform;
 }(_defaultSource2.default);
-},{"./defaultSource":374}],126:[function(require,module,exports) {
+},{"./defaultSource":372}],123:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58758,7 +58614,7 @@ exports.default = function sourceRandomNormal(source) {
 
   return randomNormal;
 }(_defaultSource2.default);
-},{"./defaultSource":374}],127:[function(require,module,exports) {
+},{"./defaultSource":372}],125:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58787,7 +58643,7 @@ exports.default = function sourceRandomLogNormal(source) {
 
   return randomLogNormal;
 }(_defaultSource2.default);
-},{"./defaultSource":374,"./normal":126}],129:[function(require,module,exports) {
+},{"./defaultSource":372,"./normal":123}],126:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58812,7 +58668,7 @@ exports.default = function sourceRandomIrwinHall(source) {
 
   return randomIrwinHall;
 }(_defaultSource2.default);
-},{"./defaultSource":374}],128:[function(require,module,exports) {
+},{"./defaultSource":372}],124:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58841,7 +58697,7 @@ exports.default = function sourceRandomBates(source) {
 
   return randomBates;
 }(_defaultSource2.default);
-},{"./defaultSource":374,"./irwinHall":129}],130:[function(require,module,exports) {
+},{"./defaultSource":372,"./irwinHall":126}],127:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58865,7 +58721,7 @@ exports.default = function sourceRandomExponential(source) {
 
   return randomExponential;
 }(_defaultSource2.default);
-},{"./defaultSource":374}],55:[function(require,module,exports) {
+},{"./defaultSource":372}],50:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58927,7 +58783,7 @@ Object.defineProperty(exports, "randomExponential", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/uniform":125,"./src/normal":126,"./src/logNormal":127,"./src/bates":128,"./src/irwinHall":129,"./src/exponential":130}],376:[function(require,module,exports) {
+},{"./src/uniform":122,"./src/normal":123,"./src/logNormal":125,"./src/bates":124,"./src/irwinHall":126,"./src/exponential":127}],374:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58937,7 +58793,7 @@ var array = Array.prototype;
 
 var map = exports.map = array.map;
 var slice = exports.slice = array.slice;
-},{}],135:[function(require,module,exports) {
+},{}],132:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58994,7 +58850,7 @@ function ordinal(range) {
 
   return scale;
 }
-},{"d3-collection":40,"./array":376}],131:[function(require,module,exports) {
+},{"d3-collection":35,"./array":374}],128:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59105,7 +58961,7 @@ function pointish(scale) {
 function point() {
   return pointish(band().paddingInner(1));
 }
-},{"d3-array":36,"./ordinal":135}],377:[function(require,module,exports) {
+},{"d3-array":32,"./ordinal":132}],375:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59115,7 +58971,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (x) {
   return +x;
 };
-},{}],386:[function(require,module,exports) {
+},{}],385:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59252,7 +59108,7 @@ function continuous(deinterpolate, reinterpolate) {
 
   return rescale();
 }
-},{"d3-array":36,"d3-interpolate":52,"./array":376,"./constant":437,"./number":377}],398:[function(require,module,exports) {
+},{"d3-array":32,"d3-interpolate":47,"./array":374,"./constant":436,"./number":375}],397:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59294,7 +59150,7 @@ exports.default = function (domain, count, specifier) {
 var _d3Array = require("d3-array");
 
 var _d3Format = require("d3-format");
-},{"d3-array":36,"d3-format":48}],133:[function(require,module,exports) {
+},{"d3-array":32,"d3-format":44}],130:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59381,7 +59237,7 @@ function linear() {
 
   return linearish(scale);
 }
-},{"d3-array":36,"d3-interpolate":52,"./continuous":386,"./tickFormat":398}],132:[function(require,module,exports) {
+},{"d3-array":32,"d3-interpolate":47,"./continuous":385,"./tickFormat":397}],129:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59418,7 +59274,7 @@ function identity() {
 
   return (0, _linear.linearish)(scale);
 }
-},{"./array":376,"./linear":133,"./number":377}],502:[function(require,module,exports) {
+},{"./array":374,"./linear":130,"./number":375}],501:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59443,7 +59299,7 @@ exports.default = function (domain, interval) {
   domain[i1] = interval.ceil(x1);
   return domain;
 };
-},{}],134:[function(require,module,exports) {
+},{}],131:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59596,7 +59452,7 @@ function log() {
 
   return scale;
 }
-},{"d3-array":36,"d3-format":48,"./constant":437,"./nice":502,"./continuous":386}],136:[function(require,module,exports) {
+},{"d3-array":32,"d3-format":44,"./constant":436,"./nice":501,"./continuous":385}],133:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59653,7 +59509,7 @@ function pow() {
 function sqrt() {
   return pow().exponent(0.5);
 }
-},{"./constant":437,"./linear":133,"./continuous":386}],137:[function(require,module,exports) {
+},{"./constant":436,"./linear":130,"./continuous":385}],134:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59709,7 +59565,7 @@ function quantile() {
 
   return scale;
 }
-},{"d3-array":36,"./array":376}],138:[function(require,module,exports) {
+},{"d3-array":32,"./array":374}],135:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59760,7 +59616,7 @@ function quantize() {
 
   return (0, _linear.linearish)(scale);
 }
-},{"d3-array":36,"./array":376,"./linear":133}],139:[function(require,module,exports) {
+},{"d3-array":32,"./array":374,"./linear":130}],136:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59800,7 +59656,7 @@ function threshold() {
 
   return scale;
 }
-},{"d3-array":36,"./array":376}],254:[function(require,module,exports) {
+},{"d3-array":32,"./array":374}],261:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59875,7 +59731,7 @@ function newInterval(floori, offseti, count, field) {
 
   return interval;
 }
-},{}],255:[function(require,module,exports) {
+},{}],262:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59913,7 +59769,7 @@ millisecond.every = function (k) {
 
 exports.default = millisecond;
 var milliseconds = exports.milliseconds = millisecond.range;
-},{"./interval":254}],387:[function(require,module,exports) {
+},{"./interval":261}],386:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59924,7 +59780,7 @@ var durationMinute = exports.durationMinute = 6e4;
 var durationHour = exports.durationHour = 36e5;
 var durationDay = exports.durationDay = 864e5;
 var durationWeek = exports.durationWeek = 6048e5;
-},{}],256:[function(require,module,exports) {
+},{}],263:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59952,7 +59808,7 @@ var second = (0, _interval2.default)(function (date) {
 
 exports.default = second;
 var seconds = exports.seconds = second.range;
-},{"./interval":254,"./duration":387}],257:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],264:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -59980,7 +59836,7 @@ var minute = (0, _interval2.default)(function (date) {
 
 exports.default = minute;
 var minutes = exports.minutes = minute.range;
-},{"./interval":254,"./duration":387}],258:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],265:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60010,7 +59866,7 @@ var hour = (0, _interval2.default)(function (date) {
 
 exports.default = hour;
 var hours = exports.hours = hour.range;
-},{"./interval":254,"./duration":387}],259:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],266:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60038,7 +59894,7 @@ var day = (0, _interval2.default)(function (date) {
 
 exports.default = day;
 var days = exports.days = day.range;
-},{"./interval":254,"./duration":387}],260:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],267:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60080,7 +59936,7 @@ var wednesdays = exports.wednesdays = wednesday.range;
 var thursdays = exports.thursdays = thursday.range;
 var fridays = exports.fridays = friday.range;
 var saturdays = exports.saturdays = saturday.range;
-},{"./interval":254,"./duration":387}],261:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],268:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60107,7 +59963,7 @@ var month = (0, _interval2.default)(function (date) {
 
 exports.default = month;
 var months = exports.months = month.range;
-},{"./interval":254}],262:[function(require,module,exports) {
+},{"./interval":261}],269:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60145,7 +60001,7 @@ year.every = function (k) {
 
 exports.default = year;
 var years = exports.years = year.range;
-},{"./interval":254}],263:[function(require,module,exports) {
+},{"./interval":261}],270:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60173,7 +60029,7 @@ var utcMinute = (0, _interval2.default)(function (date) {
 
 exports.default = utcMinute;
 var utcMinutes = exports.utcMinutes = utcMinute.range;
-},{"./interval":254,"./duration":387}],264:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],271:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60201,7 +60057,7 @@ var utcHour = (0, _interval2.default)(function (date) {
 
 exports.default = utcHour;
 var utcHours = exports.utcHours = utcHour.range;
-},{"./interval":254,"./duration":387}],265:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],272:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60229,7 +60085,7 @@ var utcDay = (0, _interval2.default)(function (date) {
 
 exports.default = utcDay;
 var utcDays = exports.utcDays = utcDay.range;
-},{"./interval":254,"./duration":387}],266:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],273:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60271,7 +60127,7 @@ var utcWednesdays = exports.utcWednesdays = utcWednesday.range;
 var utcThursdays = exports.utcThursdays = utcThursday.range;
 var utcFridays = exports.utcFridays = utcFriday.range;
 var utcSaturdays = exports.utcSaturdays = utcSaturday.range;
-},{"./interval":254,"./duration":387}],267:[function(require,module,exports) {
+},{"./interval":261,"./duration":386}],274:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60298,7 +60154,7 @@ var utcMonth = (0, _interval2.default)(function (date) {
 
 exports.default = utcMonth;
 var utcMonths = exports.utcMonths = utcMonth.range;
-},{"./interval":254}],268:[function(require,module,exports) {
+},{"./interval":261}],275:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60336,7 +60192,7 @@ utcYear.every = function (k) {
 
 exports.default = utcYear;
 var utcYears = exports.utcYears = utcYear.range;
-},{"./interval":254}],59:[function(require,module,exports) {
+},{"./interval":261}],58:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -60755,7 +60611,7 @@ Object.defineProperty(exports, "utcYears", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/interval":254,"./src/millisecond":255,"./src/second":256,"./src/minute":257,"./src/hour":258,"./src/day":259,"./src/week":260,"./src/month":261,"./src/year":262,"./src/utcMinute":263,"./src/utcHour":264,"./src/utcDay":265,"./src/utcWeek":266,"./src/utcMonth":267,"./src/utcYear":268}],144:[function(require,module,exports) {
+},{"./src/interval":261,"./src/millisecond":262,"./src/second":263,"./src/minute":264,"./src/hour":265,"./src/day":266,"./src/week":267,"./src/month":268,"./src/year":269,"./src/utcMinute":270,"./src/utcHour":271,"./src/utcDay":272,"./src/utcWeek":273,"./src/utcMonth":274,"./src/utcYear":275}],142:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61401,7 +61257,7 @@ function formatUnixTimestamp(d) {
 function formatUnixTimestampSeconds(d) {
   return Math.floor(+d / 1000);
 }
-},{"d3-time":59}],143:[function(require,module,exports) {
+},{"d3-time":58}],141:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61441,7 +61297,7 @@ function defaultLocale(definition) {
   exports.utcParse = utcParse = locale.utcParse;
   return locale;
 }
-},{"./locale":144}],145:[function(require,module,exports) {
+},{"./locale":142}],143:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61460,7 +61316,7 @@ function formatIsoNative(date) {
 var formatIso = Date.prototype.toISOString ? formatIsoNative : (0, _defaultLocale.utcFormat)(isoSpecifier);
 
 exports.default = formatIso;
-},{"./defaultLocale":143}],146:[function(require,module,exports) {
+},{"./defaultLocale":141}],144:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61479,7 +61335,7 @@ function parseIsoNative(string) {
 var parseIso = +new Date("2000-01-01T00:00:00.000Z") ? parseIsoNative : (0, _defaultLocale.utcParse)(_isoFormat.isoSpecifier);
 
 exports.default = parseIso;
-},{"./isoFormat":145,"./defaultLocale":143}],61:[function(require,module,exports) {
+},{"./isoFormat":143,"./defaultLocale":141}],56:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61547,7 +61403,7 @@ Object.defineProperty(exports, "isoParse", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/defaultLocale":143,"./src/locale":144,"./src/isoFormat":145,"./src/isoParse":146}],140:[function(require,module,exports) {
+},{"./src/defaultLocale":141,"./src/locale":142,"./src/isoFormat":143,"./src/isoParse":144}],137:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61677,7 +61533,7 @@ function calendar(year, month, week, day, hour, minute, second, millisecond, for
 
   return scale;
 }
-},{"d3-array":36,"d3-interpolate":52,"d3-time":59,"d3-time-format":61,"./array":376,"./continuous":386,"./nice":502}],141:[function(require,module,exports) {
+},{"d3-array":32,"d3-interpolate":47,"d3-time":58,"d3-time-format":56,"./array":374,"./continuous":385,"./nice":501}],138:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61693,7 +61549,7 @@ var _time = require("./time");
 var _d3TimeFormat = require("d3-time-format");
 
 var _d3Time = require("d3-time");
-},{"./time":140,"d3-time-format":61,"d3-time":59}],142:[function(require,module,exports) {
+},{"./time":137,"d3-time-format":56,"d3-time":58}],139:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61731,7 +61587,7 @@ function sequential(interpolator) {
 
   return (0, _linear.linearish)(scale);
 }
-},{"./linear":133}],56:[function(require,module,exports) {
+},{"./linear":130}],51:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61865,7 +61721,7 @@ Object.defineProperty(exports, "scaleSequential", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/band":131,"./src/identity":132,"./src/linear":133,"./src/log":134,"./src/ordinal":135,"./src/pow":136,"./src/quantile":137,"./src/quantize":138,"./src/threshold":139,"./src/time":140,"./src/utcTime":141,"./src/sequential":142}],399:[function(require,module,exports) {
+},{"./src/band":128,"./src/identity":129,"./src/linear":130,"./src/log":131,"./src/ordinal":132,"./src/pow":133,"./src/quantile":134,"./src/quantize":135,"./src/threshold":136,"./src/time":137,"./src/utcTime":138,"./src/sequential":139}],398:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61879,7 +61735,7 @@ exports.default = function (specifier) {
   while (i < n) colors[i] = "#" + specifier.slice(i * 6, ++i * 6);
   return colors;
 };
-},{}],332:[function(require,module,exports) {
+},{}],330:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61893,7 +61749,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
-},{"../colors":399}],333:[function(require,module,exports) {
+},{"../colors":398}],332:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61907,7 +61763,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("7fc97fbeaed4fdc086ffff99386cb0f0027fbf5b17666666");
-},{"../colors":399}],334:[function(require,module,exports) {
+},{"../colors":398}],331:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61921,7 +61777,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("1b9e77d95f027570b3e7298a66a61ee6ab02a6761d666666");
-},{"../colors":399}],335:[function(require,module,exports) {
+},{"../colors":398}],334:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61935,7 +61791,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("a6cee31f78b4b2df8a33a02cfb9a99e31a1cfdbf6fff7f00cab2d66a3d9affff99b15928");
-},{"../colors":399}],336:[function(require,module,exports) {
+},{"../colors":398}],335:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61949,7 +61805,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("fbb4aeb3cde3ccebc5decbe4fed9a6ffffcce5d8bdfddaecf2f2f2");
-},{"../colors":399}],337:[function(require,module,exports) {
+},{"../colors":398}],333:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61963,7 +61819,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("b3e2cdfdcdaccbd5e8f4cae4e6f5c9fff2aef1e2cccccccc");
-},{"../colors":399}],338:[function(require,module,exports) {
+},{"../colors":398}],336:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61977,7 +61833,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("e41a1c377eb84daf4a984ea3ff7f00ffff33a65628f781bf999999");
-},{"../colors":399}],339:[function(require,module,exports) {
+},{"../colors":398}],337:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61991,7 +61847,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("66c2a5fc8d628da0cbe78ac3a6d854ffd92fe5c494b3b3b3");
-},{"../colors":399}],340:[function(require,module,exports) {
+},{"../colors":398}],338:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62005,7 +61861,7 @@ var _colors2 = _interopRequireDefault(_colors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _colors2.default)("8dd3c7ffffb3bebadafb807280b1d3fdb462b3de69fccde5d9d9d9bc80bdccebc5ffed6f");
-},{"../colors":399}],400:[function(require,module,exports) {
+},{"../colors":398}],399:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62017,7 +61873,7 @@ exports.default = function (scheme) {
 };
 
 var _d3Interpolate = require("d3-interpolate");
-},{"d3-interpolate":52}],341:[function(require,module,exports) {
+},{"d3-interpolate":47}],339:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62038,7 +61894,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("d8b365f5f5f55ab4ac", "a6611adfc27d80cdc1018571", "a6611adfc27df5f5f580cdc1018571", "8c510ad8b365f6e8c3c7eae55ab4ac01665e", "8c510ad8b365f6e8c3f5f5f5c7eae55ab4ac01665e", "8c510abf812ddfc27df6e8c3c7eae580cdc135978f01665e", "8c510abf812ddfc27df6e8c3f5f5f5c7eae580cdc135978f01665e", "5430058c510abf812ddfc27df6e8c3c7eae580cdc135978f01665e003c30", "5430058c510abf812ddfc27df6e8c3f5f5f5c7eae580cdc135978f01665e003c30").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],342:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],340:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62059,7 +61915,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("af8dc3f7f7f77fbf7b", "7b3294c2a5cfa6dba0008837", "7b3294c2a5cff7f7f7a6dba0008837", "762a83af8dc3e7d4e8d9f0d37fbf7b1b7837", "762a83af8dc3e7d4e8f7f7f7d9f0d37fbf7b1b7837", "762a839970abc2a5cfe7d4e8d9f0d3a6dba05aae611b7837", "762a839970abc2a5cfe7d4e8f7f7f7d9f0d3a6dba05aae611b7837", "40004b762a839970abc2a5cfe7d4e8d9f0d3a6dba05aae611b783700441b", "40004b762a839970abc2a5cfe7d4e8f7f7f7d9f0d3a6dba05aae611b783700441b").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],343:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],341:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62080,7 +61936,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e9a3c9f7f7f7a1d76a", "d01c8bf1b6dab8e1864dac26", "d01c8bf1b6daf7f7f7b8e1864dac26", "c51b7de9a3c9fde0efe6f5d0a1d76a4d9221", "c51b7de9a3c9fde0eff7f7f7e6f5d0a1d76a4d9221", "c51b7dde77aef1b6dafde0efe6f5d0b8e1867fbc414d9221", "c51b7dde77aef1b6dafde0eff7f7f7e6f5d0b8e1867fbc414d9221", "8e0152c51b7dde77aef1b6dafde0efe6f5d0b8e1867fbc414d9221276419", "8e0152c51b7dde77aef1b6dafde0eff7f7f7e6f5d0b8e1867fbc414d9221276419").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],344:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],342:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62101,7 +61957,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("998ec3f7f7f7f1a340", "5e3c99b2abd2fdb863e66101", "5e3c99b2abd2f7f7f7fdb863e66101", "542788998ec3d8daebfee0b6f1a340b35806", "542788998ec3d8daebf7f7f7fee0b6f1a340b35806", "5427888073acb2abd2d8daebfee0b6fdb863e08214b35806", "5427888073acb2abd2d8daebf7f7f7fee0b6fdb863e08214b35806", "2d004b5427888073acb2abd2d8daebfee0b6fdb863e08214b358067f3b08", "2d004b5427888073acb2abd2d8daebf7f7f7fee0b6fdb863e08214b358067f3b08").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],346:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],343:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62122,7 +61978,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("ef8a62f7f7f767a9cf", "ca0020f4a58292c5de0571b0", "ca0020f4a582f7f7f792c5de0571b0", "b2182bef8a62fddbc7d1e5f067a9cf2166ac", "b2182bef8a62fddbc7f7f7f7d1e5f067a9cf2166ac", "b2182bd6604df4a582fddbc7d1e5f092c5de4393c32166ac", "b2182bd6604df4a582fddbc7f7f7f7d1e5f092c5de4393c32166ac", "67001fb2182bd6604df4a582fddbc7d1e5f092c5de4393c32166ac053061", "67001fb2182bd6604df4a582fddbc7f7f7f7d1e5f092c5de4393c32166ac053061").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],345:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],344:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62143,7 +61999,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("ef8a62ffffff999999", "ca0020f4a582bababa404040", "ca0020f4a582ffffffbababa404040", "b2182bef8a62fddbc7e0e0e09999994d4d4d", "b2182bef8a62fddbc7ffffffe0e0e09999994d4d4d", "b2182bd6604df4a582fddbc7e0e0e0bababa8787874d4d4d", "b2182bd6604df4a582fddbc7ffffffe0e0e0bababa8787874d4d4d", "67001fb2182bd6604df4a582fddbc7e0e0e0bababa8787874d4d4d1a1a1a", "67001fb2182bd6604df4a582fddbc7ffffffe0e0e0bababa8787874d4d4d1a1a1a").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],347:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],345:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62164,7 +62020,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fc8d59ffffbf91bfdb", "d7191cfdae61abd9e92c7bb6", "d7191cfdae61ffffbfabd9e92c7bb6", "d73027fc8d59fee090e0f3f891bfdb4575b4", "d73027fc8d59fee090ffffbfe0f3f891bfdb4575b4", "d73027f46d43fdae61fee090e0f3f8abd9e974add14575b4", "d73027f46d43fdae61fee090ffffbfe0f3f8abd9e974add14575b4", "a50026d73027f46d43fdae61fee090e0f3f8abd9e974add14575b4313695", "a50026d73027f46d43fdae61fee090ffffbfe0f3f8abd9e974add14575b4313695").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],348:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],346:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62185,7 +62041,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fc8d59ffffbf91cf60", "d7191cfdae61a6d96a1a9641", "d7191cfdae61ffffbfa6d96a1a9641", "d73027fc8d59fee08bd9ef8b91cf601a9850", "d73027fc8d59fee08bffffbfd9ef8b91cf601a9850", "d73027f46d43fdae61fee08bd9ef8ba6d96a66bd631a9850", "d73027f46d43fdae61fee08bffffbfd9ef8ba6d96a66bd631a9850", "a50026d73027f46d43fdae61fee08bd9ef8ba6d96a66bd631a9850006837", "a50026d73027f46d43fdae61fee08bffffbfd9ef8ba6d96a66bd631a9850006837").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],349:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],347:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62206,7 +62062,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fc8d59ffffbf99d594", "d7191cfdae61abdda42b83ba", "d7191cfdae61ffffbfabdda42b83ba", "d53e4ffc8d59fee08be6f59899d5943288bd", "d53e4ffc8d59fee08bffffbfe6f59899d5943288bd", "d53e4ff46d43fdae61fee08be6f598abdda466c2a53288bd", "d53e4ff46d43fdae61fee08bffffbfe6f598abdda466c2a53288bd", "9e0142d53e4ff46d43fdae61fee08be6f598abdda466c2a53288bd5e4fa2", "9e0142d53e4ff46d43fdae61fee08bffffbfe6f598abdda466c2a53288bd5e4fa2").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],350:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],348:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62227,7 +62083,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e5f5f999d8c92ca25f", "edf8fbb2e2e266c2a4238b45", "edf8fbb2e2e266c2a42ca25f006d2c", "edf8fbccece699d8c966c2a42ca25f006d2c", "edf8fbccece699d8c966c2a441ae76238b45005824", "f7fcfde5f5f9ccece699d8c966c2a441ae76238b45005824", "f7fcfde5f5f9ccece699d8c966c2a441ae76238b45006d2c00441b").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],351:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],349:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62248,7 +62104,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e0ecf49ebcda8856a7", "edf8fbb3cde38c96c688419d", "edf8fbb3cde38c96c68856a7810f7c", "edf8fbbfd3e69ebcda8c96c68856a7810f7c", "edf8fbbfd3e69ebcda8c96c68c6bb188419d6e016b", "f7fcfde0ecf4bfd3e69ebcda8c96c68c6bb188419d6e016b", "f7fcfde0ecf4bfd3e69ebcda8c96c68c6bb188419d810f7c4d004b").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],352:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],350:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62269,7 +62125,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e0f3dba8ddb543a2ca", "f0f9e8bae4bc7bccc42b8cbe", "f0f9e8bae4bc7bccc443a2ca0868ac", "f0f9e8ccebc5a8ddb57bccc443a2ca0868ac", "f0f9e8ccebc5a8ddb57bccc44eb3d32b8cbe08589e", "f7fcf0e0f3dbccebc5a8ddb57bccc44eb3d32b8cbe08589e", "f7fcf0e0f3dbccebc5a8ddb57bccc44eb3d32b8cbe0868ac084081").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],353:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],351:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62290,7 +62146,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fee8c8fdbb84e34a33", "fef0d9fdcc8afc8d59d7301f", "fef0d9fdcc8afc8d59e34a33b30000", "fef0d9fdd49efdbb84fc8d59e34a33b30000", "fef0d9fdd49efdbb84fc8d59ef6548d7301f990000", "fff7ecfee8c8fdd49efdbb84fc8d59ef6548d7301f990000", "fff7ecfee8c8fdd49efdbb84fc8d59ef6548d7301fb300007f0000").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],354:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],352:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62311,7 +62167,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("ece2f0a6bddb1c9099", "f6eff7bdc9e167a9cf02818a", "f6eff7bdc9e167a9cf1c9099016c59", "f6eff7d0d1e6a6bddb67a9cf1c9099016c59", "f6eff7d0d1e6a6bddb67a9cf3690c002818a016450", "fff7fbece2f0d0d1e6a6bddb67a9cf3690c002818a016450", "fff7fbece2f0d0d1e6a6bddb67a9cf3690c002818a016c59014636").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],355:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],353:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62332,7 +62188,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("ece7f2a6bddb2b8cbe", "f1eef6bdc9e174a9cf0570b0", "f1eef6bdc9e174a9cf2b8cbe045a8d", "f1eef6d0d1e6a6bddb74a9cf2b8cbe045a8d", "f1eef6d0d1e6a6bddb74a9cf3690c00570b0034e7b", "fff7fbece7f2d0d1e6a6bddb74a9cf3690c00570b0034e7b", "fff7fbece7f2d0d1e6a6bddb74a9cf3690c00570b0045a8d023858").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],356:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],354:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62353,7 +62209,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e7e1efc994c7dd1c77", "f1eef6d7b5d8df65b0ce1256", "f1eef6d7b5d8df65b0dd1c77980043", "f1eef6d4b9dac994c7df65b0dd1c77980043", "f1eef6d4b9dac994c7df65b0e7298ace125691003f", "f7f4f9e7e1efd4b9dac994c7df65b0e7298ace125691003f", "f7f4f9e7e1efd4b9dac994c7df65b0e7298ace125698004367001f").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],357:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],355:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62374,7 +62230,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fde0ddfa9fb5c51b8a", "feebe2fbb4b9f768a1ae017e", "feebe2fbb4b9f768a1c51b8a7a0177", "feebe2fcc5c0fa9fb5f768a1c51b8a7a0177", "feebe2fcc5c0fa9fb5f768a1dd3497ae017e7a0177", "fff7f3fde0ddfcc5c0fa9fb5f768a1dd3497ae017e7a0177", "fff7f3fde0ddfcc5c0fa9fb5f768a1dd3497ae017e7a017749006a").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],358:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],356:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62395,7 +62251,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("edf8b17fcdbb2c7fb8", "ffffcca1dab441b6c4225ea8", "ffffcca1dab441b6c42c7fb8253494", "ffffccc7e9b47fcdbb41b6c42c7fb8253494", "ffffccc7e9b47fcdbb41b6c41d91c0225ea80c2c84", "ffffd9edf8b1c7e9b47fcdbb41b6c41d91c0225ea80c2c84", "ffffd9edf8b1c7e9b47fcdbb41b6c41d91c0225ea8253494081d58").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],359:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],357:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62416,7 +62272,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("f7fcb9addd8e31a354", "ffffccc2e69978c679238443", "ffffccc2e69978c67931a354006837", "ffffccd9f0a3addd8e78c67931a354006837", "ffffccd9f0a3addd8e78c67941ab5d238443005a32", "ffffe5f7fcb9d9f0a3addd8e78c67941ab5d238443005a32", "ffffe5f7fcb9d9f0a3addd8e78c67941ab5d238443006837004529").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],360:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],358:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62437,7 +62293,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fff7bcfec44fd95f0e", "ffffd4fed98efe9929cc4c02", "ffffd4fed98efe9929d95f0e993404", "ffffd4fee391fec44ffe9929d95f0e993404", "ffffd4fee391fec44ffe9929ec7014cc4c028c2d04", "ffffe5fff7bcfee391fec44ffe9929ec7014cc4c028c2d04", "ffffe5fff7bcfee391fec44ffe9929ec7014cc4c02993404662506").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],361:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],359:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62458,7 +62314,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("ffeda0feb24cf03b20", "ffffb2fecc5cfd8d3ce31a1c", "ffffb2fecc5cfd8d3cf03b20bd0026", "ffffb2fed976feb24cfd8d3cf03b20bd0026", "ffffb2fed976feb24cfd8d3cfc4e2ae31a1cb10026", "ffffccffeda0fed976feb24cfd8d3cfc4e2ae31a1cb10026", "ffffccffeda0fed976feb24cfd8d3cfc4e2ae31a1cbd0026800026").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],362:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],360:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62479,7 +62335,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("deebf79ecae13182bd", "eff3ffbdd7e76baed62171b5", "eff3ffbdd7e76baed63182bd08519c", "eff3ffc6dbef9ecae16baed63182bd08519c", "eff3ffc6dbef9ecae16baed64292c62171b5084594", "f7fbffdeebf7c6dbef9ecae16baed64292c62171b5084594", "f7fbffdeebf7c6dbef9ecae16baed64292c62171b508519c08306b").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],363:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],361:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62500,7 +62356,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("e5f5e0a1d99b31a354", "edf8e9bae4b374c476238b45", "edf8e9bae4b374c47631a354006d2c", "edf8e9c7e9c0a1d99b74c47631a354006d2c", "edf8e9c7e9c0a1d99b74c47641ab5d238b45005a32", "f7fcf5e5f5e0c7e9c0a1d99b74c47641ab5d238b45005a32", "f7fcf5e5f5e0c7e9c0a1d99b74c47641ab5d238b45006d2c00441b").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],364:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],362:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62521,7 +62377,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("f0f0f0bdbdbd636363", "f7f7f7cccccc969696525252", "f7f7f7cccccc969696636363252525", "f7f7f7d9d9d9bdbdbd969696636363252525", "f7f7f7d9d9d9bdbdbd969696737373525252252525", "fffffff0f0f0d9d9d9bdbdbd969696737373525252252525", "fffffff0f0f0d9d9d9bdbdbd969696737373525252252525000000").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],365:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],363:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62542,7 +62398,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("efedf5bcbddc756bb1", "f2f0f7cbc9e29e9ac86a51a3", "f2f0f7cbc9e29e9ac8756bb154278f", "f2f0f7dadaebbcbddc9e9ac8756bb154278f", "f2f0f7dadaebbcbddc9e9ac8807dba6a51a34a1486", "fcfbfdefedf5dadaebbcbddc9e9ac8807dba6a51a34a1486", "fcfbfdefedf5dadaebbcbddc9e9ac8807dba6a51a354278f3f007d").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],366:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],365:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62563,7 +62419,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fee0d2fc9272de2d26", "fee5d9fcae91fb6a4acb181d", "fee5d9fcae91fb6a4ade2d26a50f15", "fee5d9fcbba1fc9272fb6a4ade2d26a50f15", "fee5d9fcbba1fc9272fb6a4aef3b2ccb181d99000d", "fff5f0fee0d2fcbba1fc9272fb6a4aef3b2ccb181d99000d", "fff5f0fee0d2fcbba1fc9272fb6a4aef3b2ccb181da50f1567000d").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],367:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],364:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62584,7 +62440,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var scheme = exports.scheme = new Array(3).concat("fee6cefdae6be6550d", "feeddefdbe85fd8d3cd94701", "feeddefdbe85fd8d3ce6550da63603", "feeddefdd0a2fdae6bfd8d3ce6550da63603", "feeddefdd0a2fdae6bfd8d3cf16913d948018c2d04", "fff5ebfee6cefdd0a2fdae6bfd8d3cf16913d948018c2d04", "fff5ebfee6cefdd0a2fdae6bfd8d3cf16913d94801a636037f2704").map(_colors2.default);
 
 exports.default = (0, _ramp2.default)(scheme);
-},{"../colors":399,"../ramp":400}],368:[function(require,module,exports) {
+},{"../colors":398,"../ramp":399}],366:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62596,7 +62452,7 @@ var _d3Color = require("d3-color");
 var _d3Interpolate = require("d3-interpolate");
 
 exports.default = (0, _d3Interpolate.interpolateCubehelixLong)((0, _d3Color.cubehelix)(300, 0.5, 0.0), (0, _d3Color.cubehelix)(-240, 0.5, 1.0));
-},{"d3-color":41,"d3-interpolate":52}],369:[function(require,module,exports) {
+},{"d3-color":37,"d3-interpolate":47}],367:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62622,7 +62478,7 @@ var warm = exports.warm = (0, _d3Interpolate.interpolateCubehelixLong)((0, _d3Co
 var cool = exports.cool = (0, _d3Interpolate.interpolateCubehelixLong)((0, _d3Color.cubehelix)(260, 0.75, 0.35), (0, _d3Color.cubehelix)(80, 1.50, 0.8));
 
 var c = (0, _d3Color.cubehelix)();
-},{"d3-color":41,"d3-interpolate":52}],370:[function(require,module,exports) {
+},{"d3-color":37,"d3-interpolate":47}],368:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62643,7 +62499,7 @@ var _d3Color = require("d3-color");
 var c = (0, _d3Color.rgb)(),
     pi_1_3 = Math.PI / 3,
     pi_2_3 = Math.PI * 2 / 3;
-},{"d3-color":41}],371:[function(require,module,exports) {
+},{"d3-color":37}],369:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62670,7 +62526,7 @@ var magma = exports.magma = ramp((0, _colors2.default)("000004010005010106010108
 var inferno = exports.inferno = ramp((0, _colors2.default)("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4"));
 
 var plasma = exports.plasma = ramp((0, _colors2.default)("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));
-},{"../colors":399}],58:[function(require,module,exports) {
+},{"../colors":398}],54:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63230,7 +63086,7 @@ Object.defineProperty(exports, "interpolatePlasma", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/categorical/category10":332,"./src/categorical/Accent":333,"./src/categorical/Dark2":334,"./src/categorical/Paired":335,"./src/categorical/Pastel1":336,"./src/categorical/Pastel2":337,"./src/categorical/Set1":338,"./src/categorical/Set2":339,"./src/categorical/Set3":340,"./src/diverging/BrBG":341,"./src/diverging/PRGn":342,"./src/diverging/PiYG":343,"./src/diverging/PuOr":344,"./src/diverging/RdBu":346,"./src/diverging/RdGy":345,"./src/diverging/RdYlBu":347,"./src/diverging/RdYlGn":348,"./src/diverging/Spectral":349,"./src/sequential-multi/BuGn":350,"./src/sequential-multi/BuPu":351,"./src/sequential-multi/GnBu":352,"./src/sequential-multi/OrRd":353,"./src/sequential-multi/PuBuGn":354,"./src/sequential-multi/PuBu":355,"./src/sequential-multi/PuRd":356,"./src/sequential-multi/RdPu":357,"./src/sequential-multi/YlGnBu":358,"./src/sequential-multi/YlGn":359,"./src/sequential-multi/YlOrBr":360,"./src/sequential-multi/YlOrRd":361,"./src/sequential-single/Blues":362,"./src/sequential-single/Greens":363,"./src/sequential-single/Greys":364,"./src/sequential-single/Purples":365,"./src/sequential-single/Reds":366,"./src/sequential-single/Oranges":367,"./src/sequential-multi/cubehelix":368,"./src/sequential-multi/rainbow":369,"./src/sequential-multi/sinebow":370,"./src/sequential-multi/viridis":371}],401:[function(require,module,exports) {
+},{"./src/categorical/category10":330,"./src/categorical/Accent":332,"./src/categorical/Dark2":331,"./src/categorical/Paired":334,"./src/categorical/Pastel1":335,"./src/categorical/Pastel2":333,"./src/categorical/Set1":336,"./src/categorical/Set2":337,"./src/categorical/Set3":338,"./src/diverging/BrBG":339,"./src/diverging/PRGn":340,"./src/diverging/PiYG":341,"./src/diverging/PuOr":342,"./src/diverging/RdBu":343,"./src/diverging/RdGy":344,"./src/diverging/RdYlBu":345,"./src/diverging/RdYlGn":346,"./src/diverging/Spectral":347,"./src/sequential-multi/BuGn":348,"./src/sequential-multi/BuPu":349,"./src/sequential-multi/GnBu":350,"./src/sequential-multi/OrRd":351,"./src/sequential-multi/PuBuGn":352,"./src/sequential-multi/PuBu":353,"./src/sequential-multi/PuRd":354,"./src/sequential-multi/RdPu":355,"./src/sequential-multi/YlGnBu":356,"./src/sequential-multi/YlGn":357,"./src/sequential-multi/YlOrBr":358,"./src/sequential-multi/YlOrRd":359,"./src/sequential-single/Blues":360,"./src/sequential-single/Greens":361,"./src/sequential-single/Greys":362,"./src/sequential-single/Purples":363,"./src/sequential-single/Reds":365,"./src/sequential-single/Oranges":364,"./src/sequential-multi/cubehelix":366,"./src/sequential-multi/rainbow":367,"./src/sequential-multi/sinebow":368,"./src/sequential-multi/viridis":369}],400:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63242,7 +63098,7 @@ exports.default = function (x) {
     return x;
   };
 };
-},{}],392:[function(require,module,exports) {
+},{}],391:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63270,7 +63126,7 @@ function acos(x) {
 function asin(x) {
   return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
 }
-},{}],269:[function(require,module,exports) {
+},{}],252:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63542,7 +63398,7 @@ function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
     y11: cy0 * (r1 / r - 1)
   };
 }
-},{"d3-path":51,"./constant":401,"./math":392}],318:[function(require,module,exports) {
+},{"d3-path":48,"./constant":400,"./math":391}],315:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63583,7 +63439,7 @@ Linear.prototype = {
     }
   }
 };
-},{}],442:[function(require,module,exports) {
+},{}],441:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63598,7 +63454,7 @@ function x(p) {
 function y(p) {
   return p[1];
 }
-},{}],271:[function(require,module,exports) {
+},{}],254:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63668,7 +63524,7 @@ var _linear2 = _interopRequireDefault(_linear);
 var _point = require("./point");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"d3-path":51,"./constant":401,"./curve/linear":318,"./point":442}],270:[function(require,module,exports) {
+},{"d3-path":48,"./constant":400,"./curve/linear":315,"./point":441}],253:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63795,7 +63651,7 @@ var _line2 = _interopRequireDefault(_line);
 var _point = require("./point");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"d3-path":51,"./constant":401,"./curve/linear":318,"./line":271,"./point":442}],501:[function(require,module,exports) {
+},{"d3-path":48,"./constant":400,"./curve/linear":315,"./line":254,"./point":441}],499:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63805,7 +63661,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (d) {
   return d;
 };
-},{}],272:[function(require,module,exports) {
+},{}],255:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63905,7 +63761,7 @@ var _identity2 = _interopRequireDefault(_identity);
 var _math = require("./math");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":401,"./descending":159,"./identity":501,"./math":392}],391:[function(require,module,exports) {
+},{"./constant":400,"./descending":157,"./identity":499,"./math":391}],390:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63954,7 +63810,7 @@ function curveRadial(curve) {
 
   return radial;
 }
-},{"./linear":318}],274:[function(require,module,exports) {
+},{"./linear":315}],257:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63988,7 +63844,7 @@ function lineRadial(l) {
 
   return l;
 }
-},{"./curve/radial":391,"./line":271}],273:[function(require,module,exports) {
+},{"./curve/radial":390,"./line":254}],256:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64040,7 +63896,7 @@ var _area2 = _interopRequireDefault(_area);
 var _lineRadial = require("./lineRadial");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./curve/radial":391,"./area":270,"./lineRadial":274}],275:[function(require,module,exports) {
+},{"./curve/radial":390,"./area":253,"./lineRadial":257}],258:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64050,7 +63906,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (x, y) {
   return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
 };
-},{}],299:[function(require,module,exports) {
+},{}],297:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64157,7 +64013,7 @@ function linkRadial() {
   l.radius = l.y, delete l.y;
   return l;
 }
-},{"d3-path":51,"../array":519,"../constant":401,"../point":442,"../pointRadial":275}],300:[function(require,module,exports) {
+},{"d3-path":48,"../array":517,"../constant":400,"../point":441,"../pointRadial":258}],299:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64173,7 +64029,7 @@ exports.default = {
     context.arc(0, 0, r, 0, _math.tau);
   }
 };
-},{"../math":392}],301:[function(require,module,exports) {
+},{"../math":391}],298:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64197,7 +64053,7 @@ exports.default = {
     context.closePath();
   }
 };
-},{}],302:[function(require,module,exports) {
+},{}],300:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64217,7 +64073,7 @@ exports.default = {
     context.closePath();
   }
 };
-},{}],304:[function(require,module,exports) {
+},{}],302:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64248,7 +64104,7 @@ exports.default = {
         context.closePath();
     }
 };
-},{"../math":392}],303:[function(require,module,exports) {
+},{"../math":391}],301:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64261,7 +64117,7 @@ exports.default = {
     context.rect(x, x, w, w);
   }
 };
-},{}],305:[function(require,module,exports) {
+},{}],303:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64278,7 +64134,7 @@ exports.default = {
     context.closePath();
   }
 };
-},{}],306:[function(require,module,exports) {
+},{}],305:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64310,7 +64166,7 @@ exports.default = {
         context.closePath();
     }
 };
-},{}],276:[function(require,module,exports) {
+},{}],259:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64382,7 +64238,7 @@ var _constant2 = _interopRequireDefault(_constant);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var symbols = exports.symbols = [_circle2.default, _cross2.default, _diamond2.default, _square2.default, _star2.default, _triangle2.default, _wye2.default];
-},{"d3-path":51,"./symbol/circle":300,"./symbol/cross":301,"./symbol/diamond":302,"./symbol/star":304,"./symbol/square":303,"./symbol/triangle":305,"./symbol/wye":306,"./constant":401}],309:[function(require,module,exports) {
+},{"d3-path":48,"./symbol/circle":299,"./symbol/cross":298,"./symbol/diamond":300,"./symbol/star":302,"./symbol/square":301,"./symbol/triangle":303,"./symbol/wye":305,"./constant":400}],307:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64440,7 +64296,7 @@ Basis.prototype = {
     this._y0 = this._y1, this._y1 = y;
   }
 };
-},{}],307:[function(require,module,exports) {
+},{}],304:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64510,7 +64366,7 @@ BasisClosed.prototype = {
     this._y0 = this._y1, this._y1 = y;
   }
 };
-},{"../noop":528,"./basis":309}],308:[function(require,module,exports) {
+},{"../noop":527,"./basis":307}],306:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64561,7 +64417,7 @@ BasisOpen.prototype = {
     this._y0 = this._y1, this._y1 = y;
   }
 };
-},{"./basis":309}],310:[function(require,module,exports) {
+},{"./basis":307}],308:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64621,7 +64477,7 @@ exports.default = function custom(beta) {
 
   return bundle;
 }(0.85);
-},{"./basis":309}],313:[function(require,module,exports) {
+},{"./basis":307}],311:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64688,7 +64544,7 @@ exports.default = function custom(tension) {
 
   return cardinal;
 }(0);
-},{}],311:[function(require,module,exports) {
+},{}],309:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64768,7 +64624,7 @@ exports.default = function custom(tension) {
 
   return cardinal;
 }(0);
-},{"../noop":528,"./cardinal":313}],312:[function(require,module,exports) {
+},{"../noop":527,"./cardinal":311}],310:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64829,7 +64685,7 @@ exports.default = function custom(tension) {
 
   return cardinal;
 }(0);
-},{"./cardinal":313}],316:[function(require,module,exports) {
+},{"./cardinal":311}],314:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64929,7 +64785,7 @@ exports.default = function custom(alpha) {
 
   return catmullRom;
 }(0.5);
-},{"../math":392,"./cardinal":313}],314:[function(require,module,exports) {
+},{"../math":391,"./cardinal":311}],312:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65020,7 +64876,7 @@ exports.default = function custom(alpha) {
 
   return catmullRom;
 }(0.5);
-},{"./cardinalClosed":311,"../noop":528,"./catmullRom":316}],315:[function(require,module,exports) {
+},{"./cardinalClosed":309,"../noop":527,"./catmullRom":314}],313:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65092,7 +64948,7 @@ exports.default = function custom(alpha) {
 
   return catmullRom;
 }(0.5);
-},{"./cardinalOpen":312,"./catmullRom":316}],317:[function(require,module,exports) {
+},{"./cardinalOpen":310,"./catmullRom":314}],316:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65127,7 +64983,7 @@ LinearClosed.prototype = {
     if (this._point) this._context.lineTo(x, y);else this._point = 1, this._context.moveTo(x, y);
   }
 };
-},{"../noop":528}],319:[function(require,module,exports) {
+},{"../noop":527}],317:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65251,7 +65107,7 @@ function monotoneX(context) {
 function monotoneY(context) {
   return new MonotoneY(context);
 }
-},{}],320:[function(require,module,exports) {
+},{}],318:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65323,7 +65179,7 @@ function controlPoints(x) {
   for (i = 0; i < n - 1; ++i) b[i] = 2 * x[i + 1] - a[i + 1];
   return [a, b];
 }
-},{}],321:[function(require,module,exports) {
+},{}],319:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65388,7 +65244,7 @@ function stepBefore(context) {
 function stepAfter(context) {
   return new Step(context, 1);
 }
-},{}],324:[function(require,module,exports) {
+},{}],322:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65404,7 +65260,7 @@ exports.default = function (series, order) {
     }
   }
 };
-},{}],330:[function(require,module,exports) {
+},{}],327:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65417,7 +65273,7 @@ exports.default = function (series) {
   while (--n >= 0) o[n] = n;
   return o;
 };
-},{}],277:[function(require,module,exports) {
+},{}],260:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65492,7 +65348,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function stackValue(d, key) {
   return d[key];
 }
-},{"./array":519,"./constant":401,"./offset/none":324,"./order/none":330}],322:[function(require,module,exports) {
+},{"./array":517,"./constant":400,"./offset/none":322,"./order/none":327}],320:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65513,7 +65369,7 @@ var _none = require("./none");
 var _none2 = _interopRequireDefault(_none);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./none":324}],323:[function(require,module,exports) {
+},{"./none":322}],321:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65534,7 +65390,7 @@ exports.default = function (series, order) {
     }
   }
 };
-},{}],325:[function(require,module,exports) {
+},{}],329:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65555,7 +65411,7 @@ var _none = require("./none");
 var _none2 = _interopRequireDefault(_none);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./none":324}],326:[function(require,module,exports) {
+},{"./none":322}],323:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65590,7 +65446,7 @@ var _none = require("./none");
 var _none2 = _interopRequireDefault(_none);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./none":324}],327:[function(require,module,exports) {
+},{"./none":322}],324:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65620,7 +65476,7 @@ function sum(series) {
   while (++i < n) if (v = +series[i][1]) s += v;
   return s;
 }
-},{"./none":330}],328:[function(require,module,exports) {
+},{"./none":327}],325:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65636,7 +65492,7 @@ var _ascending = require("./ascending");
 var _ascending2 = _interopRequireDefault(_ascending);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./ascending":327}],329:[function(require,module,exports) {
+},{"./ascending":324}],326:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65677,7 +65533,7 @@ var _none2 = _interopRequireDefault(_none);
 var _ascending = require("./ascending");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./none":330,"./ascending":327}],331:[function(require,module,exports) {
+},{"./none":327,"./ascending":324}],328:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65693,7 +65549,7 @@ var _none = require("./none");
 var _none2 = _interopRequireDefault(_none);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./none":330}],60:[function(require,module,exports) {
+},{"./none":327}],55:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66127,7 +65983,7 @@ Object.defineProperty(exports, "stackOrderReverse", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/arc":269,"./src/area":270,"./src/line":271,"./src/pie":272,"./src/areaRadial":273,"./src/lineRadial":274,"./src/pointRadial":275,"./src/link/index":299,"./src/symbol":276,"./src/symbol/circle":300,"./src/symbol/cross":301,"./src/symbol/diamond":302,"./src/symbol/square":303,"./src/symbol/star":304,"./src/symbol/triangle":305,"./src/symbol/wye":306,"./src/curve/basisClosed":307,"./src/curve/basisOpen":308,"./src/curve/basis":309,"./src/curve/bundle":310,"./src/curve/cardinalClosed":311,"./src/curve/cardinalOpen":312,"./src/curve/cardinal":313,"./src/curve/catmullRomClosed":314,"./src/curve/catmullRomOpen":315,"./src/curve/catmullRom":316,"./src/curve/linearClosed":317,"./src/curve/linear":318,"./src/curve/monotone":319,"./src/curve/natural":320,"./src/curve/step":321,"./src/stack":277,"./src/offset/expand":322,"./src/offset/diverging":323,"./src/offset/none":324,"./src/offset/silhouette":325,"./src/offset/wiggle":326,"./src/order/ascending":327,"./src/order/descending":328,"./src/order/insideOut":329,"./src/order/none":330,"./src/order/reverse":331}],435:[function(require,module,exports) {
+},{"./src/arc":252,"./src/area":253,"./src/line":254,"./src/pie":255,"./src/areaRadial":256,"./src/lineRadial":257,"./src/pointRadial":258,"./src/link/index":297,"./src/symbol":259,"./src/symbol/circle":299,"./src/symbol/cross":298,"./src/symbol/diamond":300,"./src/symbol/square":301,"./src/symbol/star":302,"./src/symbol/triangle":303,"./src/symbol/wye":305,"./src/curve/basisClosed":304,"./src/curve/basisOpen":306,"./src/curve/basis":307,"./src/curve/bundle":308,"./src/curve/cardinalClosed":309,"./src/curve/cardinalOpen":310,"./src/curve/cardinal":311,"./src/curve/catmullRomClosed":312,"./src/curve/catmullRomOpen":313,"./src/curve/catmullRom":314,"./src/curve/linearClosed":316,"./src/curve/linear":315,"./src/curve/monotone":317,"./src/curve/natural":318,"./src/curve/step":319,"./src/stack":260,"./src/offset/expand":320,"./src/offset/diverging":321,"./src/offset/none":322,"./src/offset/silhouette":329,"./src/offset/wiggle":323,"./src/order/ascending":324,"./src/order/descending":325,"./src/order/insideOut":326,"./src/order/none":327,"./src/order/reverse":328}],416:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66142,7 +65998,7 @@ function x(d) {
 function y(d) {
   return d[1];
 }
-},{}],539:[function(require,module,exports) {
+},{}],538:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66381,7 +66237,7 @@ function RedBlackFirst(node) {
 }
 
 exports.default = RedBlackTree;
-},{}],538:[function(require,module,exports) {
+},{}],537:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66551,7 +66407,7 @@ function clipEdges(x0, y0, x1, y1) {
     }
   }
 }
-},{"./Diagram":436}],536:[function(require,module,exports) {
+},{"./Diagram":418}],535:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66687,7 +66543,7 @@ function clipCells(x0, y0, x1, y1) {
     }
   }
 }
-},{"./Edge":538,"./Diagram":436}],537:[function(require,module,exports) {
+},{"./Edge":537,"./Diagram":418}],536:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66774,7 +66630,7 @@ function detachCircle(arc) {
     arc.circle = null;
   }
 }
-},{"./RedBlackTree":539,"./Diagram":436}],535:[function(require,module,exports) {
+},{"./RedBlackTree":538,"./Diagram":418}],534:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66975,7 +66831,7 @@ function rightBreakPoint(arc, directrix) {
   var site = arc.site;
   return site[1] === directrix ? site[0] : Infinity;
 }
-},{"./RedBlackTree":539,"./Cell":536,"./Circle":537,"./Edge":538,"./Diagram":436}],436:[function(require,module,exports) {
+},{"./RedBlackTree":538,"./Cell":535,"./Circle":536,"./Edge":537,"./Diagram":418}],418:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67141,7 +66997,7 @@ Diagram.prototype = {
     return radius == null || d2 <= radius * radius ? cell.site : null;
   }
 };
-},{"./Beach":535,"./Cell":536,"./Circle":537,"./Edge":538,"./RedBlackTree":539}],152:[function(require,module,exports) {
+},{"./Beach":534,"./Cell":535,"./Circle":536,"./Edge":537,"./RedBlackTree":538}],148:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67204,7 +67060,7 @@ var _Diagram = require("./Diagram");
 var _Diagram2 = _interopRequireDefault(_Diagram);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./constant":437,"./point":435,"./Diagram":436}],64:[function(require,module,exports) {
+},{"./constant":436,"./point":416,"./Diagram":418}],59:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67221,7 +67077,7 @@ Object.defineProperty(exports, "voronoi", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/voronoi":152}],542:[function(require,module,exports) {
+},{"./src/voronoi":148}],541:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67233,7 +67089,7 @@ function ZoomEvent(target, type, transform) {
   this.type = type;
   this.transform = transform;
 }
-},{}],154:[function(require,module,exports) {
+},{}],152:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67291,7 +67147,7 @@ transform.prototype = Transform.prototype;
 function transform(node) {
   return node.__zoom || identity;
 }
-},{}],153:[function(require,module,exports) {
+},{}],151:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67733,7 +67589,7 @@ function defaultConstrain(transform, extent, translateExtent) {
       dy1 = transform.invertY(extent[1][1]) - translateExtent[1][1];
   return transform.translate(dx1 > dx0 ? (dx0 + dx1) / 2 : Math.min(0, dx0) || Math.max(0, dx1), dy1 > dy0 ? (dy0 + dy1) / 2 : Math.min(0, dy0) || Math.max(0, dy1));
 }
-},{"d3-dispatch":44,"d3-drag":43,"d3-interpolate":52,"d3-selection":57,"d3-transition":63,"./constant":437,"./event":542,"./transform":154,"./noevent":380}],65:[function(require,module,exports) {
+},{"d3-dispatch":41,"d3-drag":38,"d3-interpolate":47,"d3-selection":52,"d3-transition":60,"./constant":436,"./event":541,"./transform":152,"./noevent":378}],61:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67765,7 +67621,7 @@ Object.defineProperty(exports, "zoomIdentity", {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./src/zoom":153,"./src/transform":154}],21:[function(require,module,exports) {
+},{"./src/zoom":151,"./src/transform":152}],21:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -68152,7 +68008,7 @@ Object.keys(_d3Zoom).forEach(function (key) {
     }
   });
 });
-},{"./dist/package":22,"d3-array":36,"d3-axis":37,"d3-brush":38,"d3-chord":39,"d3-collection":40,"d3-color":41,"d3-contour":42,"d3-dispatch":44,"d3-drag":43,"d3-dsv":45,"d3-ease":46,"d3-fetch":35,"d3-force":47,"d3-format":48,"d3-geo":50,"d3-hierarchy":49,"d3-interpolate":52,"d3-path":51,"d3-polygon":53,"d3-quadtree":54,"d3-random":55,"d3-scale":56,"d3-scale-chromatic":58,"d3-selection":57,"d3-shape":60,"d3-time":59,"d3-time-format":61,"d3-timer":62,"d3-transition":63,"d3-voronoi":64,"d3-zoom":65}],6:[function(require,module,exports) {
+},{"./dist/package":22,"d3-array":32,"d3-axis":36,"d3-brush":34,"d3-chord":33,"d3-collection":35,"d3-color":37,"d3-contour":39,"d3-dispatch":41,"d3-drag":38,"d3-dsv":40,"d3-ease":42,"d3-fetch":31,"d3-force":43,"d3-format":44,"d3-geo":46,"d3-hierarchy":45,"d3-interpolate":47,"d3-path":48,"d3-polygon":49,"d3-quadtree":53,"d3-random":50,"d3-scale":51,"d3-scale-chromatic":54,"d3-selection":52,"d3-shape":55,"d3-time":58,"d3-time-format":56,"d3-timer":57,"d3-transition":60,"d3-voronoi":59,"d3-zoom":61}],6:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -68178,7 +68034,7 @@ var Spectrogram = function () {
                     var source = soft_streaming_feature_extractor_1.audioCtx.createMediaStreamSource(stream);
                     source.connect(_this.analyser);
                     _this.animationFrameId = requestAnimationFrame(_this.renderChart.bind(_this));
-                    d3.select(self.frameElement).style('height', _this.svgHeight + 'px');
+                    d3.select(self.frameElement).style('height', _this.svgHeight + " px");
                 });
             } else {
                 console.log('getUserMedia not supported on your browser!');
@@ -68393,7 +68249,7 @@ var _spectrogram = require('./spectrogram');
 
 var _streaming_feature_extractor = require('./streaming_feature_extractor');
 
-var _types = require('./types');
+var _types = require('./utils/types');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -68510,5 +68366,5 @@ $('#predict').on('click', onPredict);
 $('#record').on('click', onRecord);
 $('#eval-model').on('change', onModelChange);
 window.addEventListener('load', onLoadModel);
-},{"babel-runtime/regenerator":23,"babel-runtime/helpers/asyncToGenerator":25,"@tensorflow/tfjs-core":24,"./command_recognizer":3,"./command_trainer":4,"./model_evaluation":5,"./spectrogram":6,"./streaming_feature_extractor":7,"./types":8}]},{},[2])
+},{"babel-runtime/regenerator":23,"babel-runtime/helpers/asyncToGenerator":25,"@tensorflow/tfjs-core":24,"./command_recognizer":3,"./command_trainer":5,"./model_evaluation":4,"./spectrogram":6,"./streaming_feature_extractor":7,"./utils/types":8}]},{},[2])
 //# sourceMappingURL=/dist/de40f917d8264fe70a694cd53dbc0c4c.map
