@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Load the binding
-import '@tensorflow/tfjs-node-gpu';
+import '@tensorflow/tfjs-node';
 
 import chalk from 'chalk';
 import * as ora from 'ora';
@@ -93,18 +93,16 @@ vorpal.command('train [epoch]')
       return model
           .train(parseInt(args.epoch as string) || 20, {
             onBatchEnd: async (batch, logs) => {
-              spinner.text = chalk.green(
-                  'loss: ' + logs.loss.toFixed(5));
+              spinner.text = chalk.green('loss: ' + logs.loss.toFixed(5));
               spinner.render();
             },
             onEpochEnd: async (epoch, logs) => {
               spinner.succeed(chalk.green(
-                "epoch: " + epoch +
-                ', loss: ' + logs.loss.toFixed(5) +
-                ', accuracy: ' + logs.acc.toFixed(5) +
-                ', validation accuracy: ' + logs.val_acc.toFixed(5)));
+                  'epoch: ' + epoch + ', loss: ' + logs.loss.toFixed(5) +
+                  ', accuracy: ' + logs.acc.toFixed(5) +
+                  ', validation accuracy: ' + logs.val_acc.toFixed(5)));
               spinner.start();
-              }
+            }
           })
           .then(() => spinner.stop());
     });

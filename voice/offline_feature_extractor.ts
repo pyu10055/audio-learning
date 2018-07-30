@@ -62,14 +62,16 @@ export class OfflineFeatureExtractor extends EventEmitter implements
 
     let frames = this.bufferLength;
     const promise =
-        this.source.suspend(frames / this.targetSr).then(async () => {
+        this.source.suspend(frames / this.source.sampleRate).then(async () => {
           do {
             frames += this.hopLength;
             const data = new Float32Array(this.fftSize);
             this.analyser.getFloatFrequencyData(data);
             this.features.push(this.transform(data));
+            const promise =
+                this.source.suspend(frames / this.source.sampleRate);
             this.source.resume();
-            await this.source.suspend(frames / this.source.sampleRate);
+            await promise;
           } while (frames <= buffer.length);
           return this.features;
         });
