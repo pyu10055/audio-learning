@@ -6,11 +6,15 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@tensorflow/tfjs": "0.11.4",
+    "@tensorflow/tfjs": "0.12.3",
     "eventemitter3": "^2.0.3",
-    "d3": "5.4.0"
+    "d3": "5.4.0",
+    "dct": "^0.0.3",
+    "kissfft-js": "0.1.8"
   },
   "scripts": {
+    "build": "tsc",
+    "lint": "tslint -p . -t verbose",
     "watch": "NODE_ENV=development parcel --no-hmr --open voice/index.html "
   },
   "devDependencies": {
@@ -22,11 +26,8 @@
     "typescript": "^2.8.3",
     "@types/node": "10.1.0",
     "@types/d3": "5.0.0",
-    "dct": "^0.0.3",
-    "eventemitter3": "^2.0.3",
-    "fft": "^0.2.1",
-    "kissfft-js": "0.1.8",
-    "node-wav": "0.0.2"
+    "tslint": "~5.8.0",
+    "tslint-no-circular-imports": "~0.5.0"
   },
   "babel": {
     "presets": [

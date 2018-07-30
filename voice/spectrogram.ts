@@ -1,15 +1,15 @@
 import * as d3 from 'd3';
-import {audioCtx} from './streaming_feature_extractor';
+import {audioCtx} from './soft_streaming_feature_extractor';
 export class Spectrogram {
   running = false;
   analyser: AnalyserNode;
   svgHeight = 100;
   svgWidth = 800;
-  svg: any;
+  svg: d3.Selection<d3.BaseType, {}, HTMLElement, Uint8Array>;
   frequencyData: Uint8Array;
   animationFrameId: number;
   lastRenderTime: number;
-  constructor(private audioCtx: AudioContext, domId: string) {
+  constructor(domId: string) {
     this.svg = d3.select(domId)
                    .append('svg')
                    .attr('preserveAspectRatio', 'xMinYMin meet')
@@ -32,7 +32,7 @@ export class Spectrogram {
           this.animationFrameId =
               requestAnimationFrame(this.renderChart.bind(this));
           // just for blocks viewer size
-          d3.select(self.frameElement).style('height', this.svgHeight + 'px');
+          d3.select(self.frameElement).style('height', `${this.svgHeight} px`);
         });
       } else {
         console.log('getUserMedia not supported on your browser!');
@@ -69,20 +69,22 @@ export class Spectrogram {
         ]);
 
     // update d3 chart with new data
-    const rects = this.svg.selectAll('rect').data(this.frequencyData);
+    const rects = this.svg.selectAll('rect').data(
+        Array.prototype.slice.call(this.frequencyData));
 
     rects.enter().append('rect');
 
     rects.attr('width', () => this.svgWidth / this.frequencyData.length)
-        .attr('height', (d) => heightScale(d))
-        .attr('x', (d, i) => i * this.svgWidth / this.frequencyData.length)
-        .attr('y', (d) => this.svgHeight - heightScale(d))
+        .attr('height', (d: number) => heightScale(d))
+        .attr(
+            'x',
+            (d: number, i: number) =>
+                i * this.svgWidth / this.frequencyData.length)
+        .attr('y', (d: number) => this.svgHeight - heightScale(d))
         .attr('fill', 'None')
         .attr('stroke-width', 4)
         .attr('stroke-opacity', 0.4)
-        .attr('stroke', (d) => {
-          return d3.hsl(hueScale(d), 1, 0.5);
-        });
+        .attr('stroke', d => d3.hsl(hueScale(d as number), 1, 0.5).toString());
 
     rects.exit().remove();
     this.lastRenderTime = Date.now();

@@ -14,27 +14,27 @@
  * the License.
  */
 
-import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {InferenceModel, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+// tslint:disable-next-line:max-line-length
+import {InferenceModel, Tensor1D} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import StreamingFFT from './streaming_fft';
-import {argmax, labelArrayToString} from './util';
+// tslint:disable-next-line:max-line-length
+import {LayerStreamingFeatureExtractor} from './layer_streaming_feature_extractor';
+// tslint:disable-next-line:max-line-length
+import {NativeStreamingFeatureExtractor} from './native_streaming_feature_extractor';
+// tslint:disable-next-line:max-line-length
+import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
+// import {StreamingFFT} from './streaming_fft';
+// tslint:disable-next-line:max-line-length
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, MIN_SAMPLE, MODELS, ModelType, SUPPRESSION_TIME} from './utils/types';
+import {melSpectrogramToInput, normalize, plotSpectrogram} from './utils/util';
 
 export const GOOGLE_CLOUD_STORAGE_DIR =
     'https://storage.googleapis.com/tfjs-models/savedmodel/';
 export const MODEL_FILE_URL = 'voice/tensorflowjs_model.pb';
+export const TF_MODEL_FILE_URL = 'voice2/model.json';
 export const WEIGHT_MANIFEST_FILE_URL = 'voice/weights_manifest.json';
-
-export const BUFFER_LENGTH = 1024;
-export const HOP_LENGTH = 444;
-export const MEL_COUNT = 40;
-export const EXAMPLE_SR = 44100;
-export const DURATION = 1.0;
-export const IS_MFCC_ENABLED = true;
-export const MIN_SAMPLE = 3;
-export const DETECTION_THRESHOLD = 0.5;
-export const SUPPRESSION_TIME = 500;
 
 export interface Prediction {
   time: number;
@@ -56,51 +56,34 @@ export function getFeatureShape() {
   return [times, MEL_COUNT, 1];
 }
 
-export function melSpectrogramToInput(spec: Float32Array[]): Tensor {
-  // Flatten this spectrogram into a 2D array.
-  const times = spec.length;
-  const freqs = spec[0].length;
-  const data = new Float32Array(times * freqs);
-  let i = 0;
-  for (let i = 0; i < times; i++) {
-    const mel = spec[i];
-    const offset = i * freqs;
-    data.set(mel, offset);
-  }
-  // Normalize the whole input to be in [0, 1].
-  const shape: [number, number, number] = [times, freqs, 1];
-  // this.normalizeInPlace(data, 0, 1);
-  return tensor3d(Array.prototype.slice.call(data), shape);
-}
-
-export default class CommandRecognizer extends EventEmitter {
+export class CommandRecognizer extends EventEmitter {
   model: InferenceModel;
-  streamFeature: StreamingFFT;
+  streamFeature: StreamingFeatureExtractor;
+  softFFT: SoftStreamingFeatureExtractor;
+  nativeFFT: NativeStreamingFeatureExtractor;
+  layerFFT: LayerStreamingFeatureExtractor;
   predictionHistory: Prediction[];
 
   predictionCount: number;
   scoreT: number;
   commands: string[];
   nonCommands: string[];
-  modelUrl: string;
 
   allLabels: string[];
   lastCommand: string;
   lastCommandTime: number = Number.MIN_SAFE_INTEGER;
   lastAverageLabelArray: Float32Array;
   threshold: number;
+  modelType: ModelType;
 
-  constructor(params: RecognizerParams) {
+  constructor(private canvas: HTMLCanvasElement, params: RecognizerParams) {
     super();
-    const {scoreT, commands, noOther, model} = params;
+    Object.assign(this, params);
 
-    this.scoreT = scoreT;
-    this.commands = commands;
     this.nonCommands = ['_silence_', '_unknown_'];
-    this.model = model;
     this.threshold = params.threshold;
 
-    this.allLabels = commands;
+    this.allLabels = this.commands;
 
     // Calculate how many predictions we want to track based on prediction
     // window time, sample rate and hop size.
@@ -110,23 +93,61 @@ export default class CommandRecognizer extends EventEmitter {
         `CommandRecognizer will use a history window` +
         ` of ${this.predictionCount}.`);
 
-    const inputShape = getFeatureShape();
-    const labelShape = [this.allLabels.length];
-
-    this.streamFeature = new StreamingFFT({
+    this.nativeFFT = new NativeStreamingFeatureExtractor();
+    this.nativeFFT.config({
       inputBufferLength: 2048,
-      bufferLength: BUFFER_LENGTH,
-      hopLength: HOP_LENGTH,
-      melCount: MEL_COUNT,
-      targetSr: EXAMPLE_SR,
-      duration: DURATION,
+      bufferLength: 1024,
+      hopLength: 444,
+      melCount: 40,
+      targetSr: 44100,
+      duration: 1.0,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
+    this.nativeFFT.on('update', this.onUpdate.bind(this));
 
-    this.streamFeature.on('update', this.onUpdate.bind(this));
+    this.softFFT = new SoftStreamingFeatureExtractor();
+    this.softFFT.config({
+      melCount: 40,
+      bufferLength: 480,
+      hopLength: 160,
+      targetSr: 16000,
+      isMfccEnabled: IS_MFCC_ENABLED,
+      duration: 1.0
+    });
+    this.softFFT.on('update', this.onUpdate.bind(this));
+
+    this.layerFFT = new LayerStreamingFeatureExtractor();
+    this.layerFFT.config({
+      melCount: 40,
+      bufferLength: 1024,
+      hopLength: 1024,
+      targetSr: 44100,
+      isMfccEnabled: false,
+      duration: 1.0
+    });
+    this.layerFFT.on('update', this.onUpdate.bind(this));
+
+    this.streamFeature = this.softFFT;
 
     this.predictionHistory = [];
     this.lastCommand = null;
+  }
+
+  setModelType(modelType: ModelType, commands: string[]) {
+    this.modelType = modelType;
+    this.commands = commands;
+    this.allLabels = commands;
+    this.model = MODELS[modelType];
+    switch (modelType) {
+      case ModelType.FROZEN_MODEL:
+        this.streamFeature = this.softFFT;
+        break;
+      case ModelType.FROZEN_MODEL_NATIVE:
+        this.streamFeature = this.nativeFFT;
+        break;
+      default:
+        this.streamFeature = this.layerFFT;
+    }
   }
 
   start() {
@@ -150,10 +171,13 @@ export default class CommandRecognizer extends EventEmitter {
   }
 
   private onUpdate() {
-    const spec = this.streamFeature.getSpectrogram();
-    const input = melSpectrogramToInput(spec);
-    console.time('prediction');
-    const preds = this.model.predict([input], {});
+    const spec = this.streamFeature.getFeatures();
+    plotSpectrogram(this.canvas, this.streamFeature.getImages());
+    let input = melSpectrogramToInput(spec);
+    if (this.modelType === ModelType.TF_MODEL) {
+      input = normalize(input);
+    }
+    const preds = this.model.predict(input, {});
     let scores = [];
     if (Array.isArray(preds)) {
       const output = preds[0].dataSync();
@@ -163,8 +187,7 @@ export default class CommandRecognizer extends EventEmitter {
       ];
     } else {
       scores = Array.prototype.slice.call((preds as Tensor1D).dataSync());
-    };
-    console.timeEnd('prediction');
+    }
     const currentTime = new Date().getTime();
     this.predictionHistory.push({
       time: currentTime,
@@ -198,7 +221,7 @@ export default class CommandRecognizer extends EventEmitter {
     console.log(this.predictionHistory.length);
     const sortedScore =
         averageScores.map((a, i) => [i, a]).sort((a, b) => b[1] - a[1]);
-    console.log(sortedScore);
+    console.log(sortedScore[0], sortedScore[1]);
 
     // See if the latest top score is enough to trigger a detection.
     const currentTopIndex = sortedScore[0][0];
@@ -206,7 +229,7 @@ export default class CommandRecognizer extends EventEmitter {
     const currentTopScore = sortedScore[0][1];
     // If we've recently had another label trigger, assume one that occurs too
     // soon afterwards is a bad result.
-    let timeSinceLast = (this.lastCommand == '_silence_') ||
+    const timeSinceLast = (this.lastCommand === '_silence_') ||
             (this.lastCommandTime === Number.MIN_SAFE_INTEGER) ?
         Number.MAX_SAFE_INTEGER :
         currentTime - this.lastCommandTime;
@@ -218,7 +241,7 @@ export default class CommandRecognizer extends EventEmitter {
   }
 
   private emitCommand(command: string, score: number, time: number) {
-    if (!this.nonCommands.includes(command)) {
+    if (this.nonCommands.indexOf(command) === -1) {
       this.emit('command', command, score);
       console.log(`Detected command ${command} with score: ${score}.`);
     } else {

@@ -16,10 +16,13 @@
  */
 
 import * as tfc from '@tensorflow/tfjs-core';
-import CommandRecognizer from './command_recognizer';
-import CommandTrainer from './command_trainer';
+
+import {CommandRecognizer} from './command_recognizer';
+import {CommandTrainer} from './command_trainer';
+import {ModelEvaluation} from './model_evaluation';
 import {Spectrogram} from './spectrogram';
 import {audioCtx} from './streaming_feature_extractor';
+import {ModelType} from './utils/types';
 
 const allLabels = [
   '_silence_', '_unknown_', 'yes', 'no', 'up', 'down', 'left', 'right', 'on',
@@ -27,14 +30,19 @@ const allLabels = [
 ];
 
 const transferLabels = ['_silence_', '上-up', '下-down', '左-left', '右-right'];
-
+const evalLabels = [
+  'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+  'zero', 'left', 'right', 'go', 'stop'
+];
 let recognizer;
-
-const trainer = new CommandTrainer();
-trainer.on('recorded', onRecorded);
-trainer.on('loss', onLoss);
 let transferRecognizer;
 let spectrogram;
+
+const mainCanvas = document.getElementById('main-canvas');
+const evaluation = new ModelEvaluation(mainCanvas);
+const trainer = new CommandTrainer(mainCanvas);
+trainer.on('recorded', onRecorded);
+trainer.on('loss', onLoss);
 
 function setInstructionVisibility(visible, recognizer) {
   // Show which commands are supported.
@@ -48,6 +56,9 @@ function setInstructionVisibility(visible, recognizer) {
 }
 
 function onStream() {
+  const modelType = Number($('#eval-model').val());
+  recognizer.setModelType(
+      modelType, modelType === ModelType.TF_MODEL ? evalLabels : allLabels);
   if (recognizer.isRunning()) {
     $('#stream').text('Start');
     recognizer.stop();
@@ -79,6 +90,13 @@ function onPredict() {
     transferRecognizer.start();
     setInstructionVisibility(true, transferRecognizer);
     spectrogram.start();
+  }
+}
+function onModelChange() {
+  if (Number($('#eval-model').val()) === ModelType.TF_MODEL) {
+    $('#eval-labels').text(evalLabels.join(', '));
+  } else {
+    $('#eval-labels').text(allLabels.join(', '));
   }
 }
 
@@ -124,31 +142,50 @@ function setButtonStates() {
   }
 }
 
+async function onEvaluate() {
+  const labels = Number($('#eval-model').val()) === ModelType.TF_MODEL ?
+      evalLabels :
+      allLabels;
+  const label = labels.indexOf($('#eval-label').val());
+  if (label === -1) {
+    alert('Please provide valid label.');
+    return;
+  }
+  const evals = await evaluation.eval(
+      Number($('#eval-model').val()), $('#eval-files')[0].files,
+      Array($('#eval-files')[0].files.length).fill(label));
+  $('#accuracy')
+      .text(evals.map(label => `${labels[label[0]]}:${label[1].toFixed(3)}`)
+                .join(','));
+}
+
 async function onLoadModel(e) {
   console.time('load model');
   await trainer.load();
+  await evaluation.load();
   console.timeEnd('load model');
-  recognizer = new CommandRecognizer({
+  recognizer = new CommandRecognizer(mainCanvas, {
     scoreT: 5,
     commands: allLabels,
     noOther: true,
     model: trainer.model,
-    threshold: 0.4
+    threshold: 0.2
   });
   recognizer.on('command', onCommand);
   recognizer.on('silence', onSilence);
 
-  transferRecognizer = new CommandRecognizer({
+  transferRecognizer = new CommandRecognizer(mainCanvas, {
     scoreT: 5,
     commands: transferLabels,
     noOther: true,
     model: trainer.transferModel,
-    threshold: 0.3
+    threshold: 0.2
   });
   transferRecognizer.on('command', onCommand);
   transferRecognizer.on('silence', onSilence);
   setButtonStates();
-  spectrogram = new Spectrogram(audioCtx, '#spectrogram');
+  $('#eval-labels').text(evalLabels.join(', '));
+  spectrogram = new Spectrogram('#spectrogram');
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
     $('#stream').text('Start');
     recognizer.stop();
@@ -162,12 +199,10 @@ async function onLoadModel(e) {
   })
 }
 
-
-async function load() {}
-
+$('#eval-start').on('click', onEvaluate);
 $('#stream').on('click', onStream);
 $('#complete').on('click', onComplete);
 $('#predict').on('click', onPredict);
 $('#record').on('click', onRecord);
-
+$('#eval-model').on('change', onModelChange);
 window.addEventListener('load', onLoadModel);

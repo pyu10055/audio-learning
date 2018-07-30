@@ -64,11 +64,21 @@ limitations under the License.
       top: 0;
       left: 0;
     }
+
+    #main-canvas {
+      margin: 10px 0;
+    }
   </style>
 </head>
 
 <body>
   <div class="container jumbotron">
+      <label>Model</label>
+      <select id="eval-model">
+        <option value="0" selected="">Frozen Model</option>
+        <option value="1">Frozen Model Native FFT</option>
+        <option value="2">Layer Model</option>
+      </select>
     <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -78,7 +88,7 @@ limitations under the License.
           <a class="nav-link" id="prediction-tab" data-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Prediction</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" id="pacman-tab" data-toggle="tab" href="#pacman" role="tab" aria-controls="pacman" aria-selected="false">Pacman</a>
+          <a class="nav-link" id="eval-tab" data-toggle="tab" href="#eval" role="tab" aria-controls="eval" aria-selected="false">Evaluation</a>
         </li>
       </ul>
     </div>
@@ -118,14 +128,28 @@ limitations under the License.
           Start
         </button>
       </div>
-      <div class="tab-pane" id="pacman" role="tabpanel" aria-labelledby="pacman-tab">...</div>
+      <div class="tab-pane" id="eval" role="tabpanel" aria-labelledby="eval">
+          <div class="card justify-content-md-center" style="width:32rem;">              
+              <label id="eval-labels"></label>
+              <input type="text" id="eval-label">
+              <span id="accuracy"></span>
+              <div class="card-body">
+                <div>
+                  <input type="file" id="eval-files" multiple="true">                  
+                  <button type="button" class="btn btn-primary" id="eval-start">Start</button>
+                </div>
+              </div>
+            </div>
+            
+      </div>
     </div>
+    <canvas id="main-canvas" height="400" width="510"></canvas>
   </div>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  <script src="add02b8ba36d4464f28f1f037cc902f4.js"></script>
+  <script src="/dist/de40f917d8264fe70a694cd53dbc0c4c.js"></script>
 </body>
 
 </html>

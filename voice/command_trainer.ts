@@ -15,37 +15,42 @@
  */
 
 import {FrozenModel, loadFrozenModel} from '@tensorflow/tfjs-converter';
-import {nextFrame, Tensor, Tensor1D, tensor3d} from '@tensorflow/tfjs-core';
+import {nextFrame} from '@tensorflow/tfjs-core';
 import {EventEmitter} from 'eventemitter3';
 
-import {BUFFER_LENGTH, DETECTION_THRESHOLD, DURATION, EXAMPLE_SR, getFeatureShape, GOOGLE_CLOUD_STORAGE_DIR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, melSpectrogramToInput, MIN_SAMPLE, MODEL_FILE_URL, Prediction, RecognizerParams, SUPPRESSION_TIME, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
-import {Dataset} from './dataset';
-import StreamingFFT from './streaming_fft';
+// tslint:disable-next-line:max-line-length
+import {GOOGLE_CLOUD_STORAGE_DIR, MODEL_FILE_URL, WEIGHT_MANIFEST_FILE_URL} from './command_recognizer';
+// tslint:disable-next-line:max-line-length
+import {SoftStreamingFeatureExtractor} from './soft_streaming_feature_extractor';
+import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {TransferModel} from './transfer_model';
-import {argmax, labelArrayToString} from './util';
+import {Dataset} from './utils/dataset';
+// tslint:disable-next-line:max-line-length
+import {IS_MFCC_ENABLED} from './utils/types';
+import {melSpectrogramToInput, plotSpectrogram} from './utils/util';
 
-export default class CommandTrainer extends EventEmitter {
+export class CommandTrainer extends EventEmitter {
   model: FrozenModel;
   transferModel: TransferModel;
-  streamFeature: StreamingFFT;
+  streamFeature: StreamingFeatureExtractor;
   dataset: Dataset;
   label: number;
   trained = false;
   withData = false;
-  constructor() {
+  constructor(private canvas: HTMLCanvasElement) {
     super();
 
-    const inputShape = getFeatureShape();
-
-    this.streamFeature = new StreamingFFT({
+    this.streamFeature = new SoftStreamingFeatureExtractor();
+    this.streamFeature.config({
       inputBufferLength: 2048,
-      bufferLength: BUFFER_LENGTH,
-      hopLength: HOP_LENGTH,
-      melCount: MEL_COUNT,
-      targetSr: EXAMPLE_SR,
-      duration: DURATION,
+      bufferLength: 480,
+      hopLength: 160,
+      melCount: 40,
+      targetSr: 16000,
+      duration: 1,
       isMfccEnabled: IS_MFCC_ENABLED,
     });
+
     this.streamFeature.on('update', this.addSamples.bind(this));
     this.dataset = new Dataset(4);
   }
@@ -55,7 +60,12 @@ export default class CommandTrainer extends EventEmitter {
         GOOGLE_CLOUD_STORAGE_DIR + MODEL_FILE_URL,
         GOOGLE_CLOUD_STORAGE_DIR + WEIGHT_MANIFEST_FILE_URL);
     this.transferModel = new TransferModel(
-        [{model: this.model, bottleneck: 'add_2', bottleneckShape: [12], output: 'labels_softmax'}],
+        [{
+          model: this.model,
+          bottleneck: 'add_2',
+          bottleneckShape: [12],
+          output: 'labels_softmax'
+        }],
         this.dataset, {
           onBatchEnd: async (batch, logs) => {
             this.emit('loss', logs.loss.toFixed(5));
@@ -66,7 +76,7 @@ export default class CommandTrainer extends EventEmitter {
 
   record(label: number) {
     this.label = label;
-    this.streamFeature.start();
+    setTimeout(this.streamFeature.start.bind(this.streamFeature), 250);
     setTimeout(this.stopRecord.bind(this), 1500);
     this.withData = true;
   }
@@ -75,7 +85,7 @@ export default class CommandTrainer extends EventEmitter {
     let loss = Number.MAX_SAFE_INTEGER;
     let count = 0;
     while (loss > 0.002 && count < 10) {
-      loss = (await this.transferModel.train()).history.loss.pop() as number;
+      loss = (await this.transferModel.train()).loss.pop() as number;
       count += 1;
     }
     this.trained = true;
@@ -87,7 +97,8 @@ export default class CommandTrainer extends EventEmitter {
   }
 
   private addSamples() {
-    const spec = this.streamFeature.getSpectrogram();
+    const spec = this.streamFeature.getFeatures();
+    plotSpectrogram(this.canvas, this.streamFeature.getImages());
     const input = melSpectrogramToInput(spec);
     this.dataset.addExample(input, this.label);
   }
