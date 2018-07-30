@@ -1,7 +1,7 @@
 import {EventEmitter} from 'eventemitter3';
 
-import {FeatureExtractor, Params} from './types';
-import {nextPowerOfTwo} from './util';
+import {FeatureExtractor, Params} from './utils/types';
+import {nextPowerOfTwo} from './utils/util';
 
 export class OfflineFeatureExtractor extends EventEmitter implements
     FeatureExtractor {

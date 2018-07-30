@@ -76,13 +76,13 @@ vorpal
                 spinner.render();
               })
           .then(() => spinner.stop(), (err) => {
-            spinner.fail('failed to load: ' + err);
+            spinner.fail(`failed to load: ${err}`);
           });
     });
 vorpal.command('dataset size', 'Show the size of the dataset')
     .alias('d')
     .action((args, cb) => {
-      console.log(chalk.green('dataset size = ' + model.size()));
+      console.log(chalk.green(`dataset size = ${model.size()}`));
       cb();
     });
 vorpal.command('train [epoch]')
@@ -91,16 +91,16 @@ vorpal.command('train [epoch]')
     .action((args) => {
       spinner = ora('training models ...').start();
       return model
-          .train(parseInt(args.epoch as string) || 20, {
+          .train(parseInt(args.epoch as string, 10) || 20, {
             onBatchEnd: async (batch, logs) => {
-              spinner.text = chalk.green('loss: ' + logs.loss.toFixed(5));
+              spinner.text = chalk.green(`loss: ${logs.loss.toFixed(5)}`);
               spinner.render();
             },
             onEpochEnd: async (epoch, logs) => {
               spinner.succeed(chalk.green(
-                  'epoch: ' + epoch + ', loss: ' + logs.loss.toFixed(5) +
-                  ', accuracy: ' + logs.acc.toFixed(5) +
-                  ', validation accuracy: ' + logs.val_acc.toFixed(5)));
+                  `epoch: ${epoch}, loss: ${logs.loss.toFixed(5)}` +
+                  `, accuracy: ${logs.acc.toFixed(5)}` +
+                  `, validation accuracy: ${logs.val_acc.toFixed(5)}`));
               spinner.start();
             }
           })
@@ -110,10 +110,10 @@ vorpal.command('save <filename>')
     .alias('s')
     .description('save the audio model')
     .action((args) => {
-      spinner.start('saving to ' + args.filename + '...');
+      spinner.start(`saving to ${args.filename} ...`);
       return model.save(args.filename as string).then(() => {
-        spinner.succeed(args.filename + ' saved.');
-      }, () => spinner.fail('failed to save ' + args.filename));
+        spinner.succeed(`${args.filename} saved.`);
+      }, () => spinner.fail(`failed to save ${args.filename}`));
     });
 
 vorpal.show();

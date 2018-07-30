@@ -1,9 +1,9 @@
 import {EventEmitter} from 'eventemitter3';
 
-import {AudioUtils} from './audio_utils';
-import {CircularAudioBuffer} from './circular_audio_buffer';
-import {FeatureExtractor, Params} from './types';
-import {nextPowerOfTwo} from './util';
+import {AudioUtils} from './utils/audio_utils';
+import {CircularAudioBuffer} from './utils/circular_audio_buffer';
+import {FeatureExtractor, Params} from './utils/types';
+import {nextPowerOfTwo} from './utils/util';
 
 export class SoftOfflineFeatureExtractor extends EventEmitter implements
     FeatureExtractor {

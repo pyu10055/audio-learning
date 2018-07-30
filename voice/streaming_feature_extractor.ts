@@ -16,10 +16,10 @@
 
 import {EventEmitter} from 'eventemitter3';
 
-import {CircularAudioBuffer} from './circular_audio_buffer';
-import {FeatureExtractor} from './types';
+import {CircularAudioBuffer} from './utils/circular_audio_buffer';
 // tslint:disable-next-line:max-line-length
-import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, Params} from './types';
+import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, Params} from './utils/types';
+import {FeatureExtractor} from './utils/types';
 
 export const audioCtx = new AudioContext();
 /**
@@ -116,9 +116,7 @@ export abstract class StreamingFeatureExtractor extends EventEmitter implements
     // Clear all buffers.
     this.circularBuffer.clear();
 
-    const constraints = {
-      audio: true
-    };
+    const constraints = {audio: true};
     navigator.mediaDevices.getUserMedia(constraints as MediaStreamConstraints)
         .then(stream => {
           this.stream = stream;
