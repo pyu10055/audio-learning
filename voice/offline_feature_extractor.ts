@@ -45,10 +45,17 @@ export class OfflineFeatureExtractor extends EventEmitter implements
 
   async start(samples: Float32Array): Promise<Float32Array[]> {
     this.preprocess();
-    const audioCtx = new AudioContext();
+    const audioCtx = new (
+        // tslint:disable-next-line:no-any
+        (window as any).AudioContext || (window as any).webkitAudioContext)();
+    ;
     const buffer = await audioCtx.decodeAudioData(samples.buffer);
 
-    this.source = new OfflineAudioContext(
+    this.source = new (
+        // tslint:disable-next-line:no-any
+        (window as any).OfflineAudioContext ||
+        // tslint:disable-next-line:no-any
+        (window as any).webkitOfflineAudioContext)(
         1, this.targetSr * this.duration * 4, this.targetSr);
     this.buffer = this.source.createBufferSource();
     this.buffer.buffer =

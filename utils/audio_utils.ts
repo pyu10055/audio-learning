@@ -19,7 +19,6 @@ import {nextPowerOfTwo} from './util';
 
 const SR = 16000;
 const hannWindowMap: {[key: number]: number[]} = {};
-let context: AudioContext;
 
 export class AudioUtils {
   startIndex = 0;
@@ -176,19 +175,21 @@ export class AudioUtils {
   }
 
   playbackArrayBuffer(buffer: Float32Array, sampleRate?: number) {
-    if (!context) {
-      context = new AudioContext();
+    if (!this.context) {
+      this.context = new (
+          // tslint:disable-next-line:no-any
+          (window as any).AudioContext || (window as any).webkitAudioContext)();
     }
     if (!sampleRate) {
       sampleRate = this.context.sampleRate;
     }
-    const audioBuffer = context.createBuffer(1, buffer.length, sampleRate);
+    const audioBuffer = this.context.createBuffer(1, buffer.length, sampleRate);
     const audioBufferData = audioBuffer.getChannelData(0);
     audioBufferData.set(buffer);
 
-    const source = context.createBufferSource();
+    const source = this.context.createBufferSource();
     source.buffer = audioBuffer;
-    source.connect(context.destination);
+    source.connect(this.context.destination);
     source.start();
   }
 
@@ -196,12 +197,17 @@ export class AudioUtils {
       Promise<AudioBuffer> {
     const sourceSr = audioBuffer.sampleRate;
     const lengthRes = audioBuffer.length * targetSr / sourceSr;
-    const offlineCtx = new OfflineAudioContext(1, lengthRes, targetSr);
+    const offlineCtx = new (
+        // tslint:disable-next-line:no-any
+        (window as any).OfflineAudioContext ||
+        // tslint:disable-next-line:no-any
+        (window as any).webkitOfflineAudioContext)(1, lengthRes, targetSr);
 
     return new Promise((resolve, reject) => {
       const bufferSource = offlineCtx.createBufferSource();
       bufferSource.buffer = audioBuffer;
-      offlineCtx.oncomplete = (event) => {
+      // tslint:disable-next-line:no-any
+      offlineCtx.oncomplete = (event: any) => {
         resolve(event.renderedBuffer);
       };
       bufferSource.connect(offlineCtx.destination);

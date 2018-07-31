@@ -21,7 +21,9 @@ import {CircularAudioBuffer} from './utils/circular_audio_buffer';
 import {BUFFER_LENGTH, DURATION, EXAMPLE_SR, HOP_LENGTH, IS_MFCC_ENABLED, MEL_COUNT, Params} from './utils/types';
 import {FeatureExtractor} from './utils/types';
 
-export const audioCtx = new AudioContext();
+export const audioCtx = new (
+        // tslint:disable-next-line:no-any
+        (window as any).AudioContext || (window as any).webkitAudioContext)();
 /**
  * Extracts various kinds of features from an input buffer. Designed for
  * extracting features from a live-running audio input stream.

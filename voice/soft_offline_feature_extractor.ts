@@ -73,11 +73,17 @@ export class SoftOfflineFeatureExtractor extends EventEmitter implements
     this.circularBuffer.clear();
     this.playbackBuffer.clear();
 
-    const audioCtx = new AudioContext();
+    const audioCtx = new (
+        // tslint:disable-next-line:no-any
+        (window as any).AudioContext || (window as any).webkitAudioContext)();
     const buffer = await audioCtx.decodeAudioData(samples.buffer);
     const sourceSr = 44100;
     const lengthRes = (buffer.length) * this.targetSr / sourceSr;
-    this.source = new OfflineAudioContext(1, lengthRes, this.targetSr);
+    this.source = new (
+        // tslint:disable-next-line:no-any
+        (window as any).OfflineAudioContext ||
+        // tslint:disable-next-line:no-any
+        (window as any).webkitOfflineAudioContext)(1, lengthRes, this.targetSr);
 
     this.buffer = this.source.createBufferSource();
     this.buffer.buffer =

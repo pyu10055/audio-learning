@@ -4,7 +4,8 @@ package-lock.json
 npm-debug.log
 yarn-error.log
 .DS_Store
-dist/
+/dist/
+/training/dist/
 .idea/
 *.tgz
 .cache

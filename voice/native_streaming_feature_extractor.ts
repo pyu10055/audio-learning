@@ -18,7 +18,9 @@ import {StreamingFeatureExtractor} from './streaming_feature_extractor';
 import {AudioUtils} from './utils/audio_utils';
 import {Interval, nextPowerOfTwo} from './utils/util';
 
-export const audioCtx = new AudioContext();
+export const audioCtx = new (
+        // tslint:disable-next-line:no-any
+        (window as any).AudioContext || (window as any).webkitAudioContext)();
 /**
  * Extracts various kinds of features from an input buffer. Designed for
  * extracting features from a live-running audio input stream.

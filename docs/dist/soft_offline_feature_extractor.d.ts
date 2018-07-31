@@ -1,0 +1,30 @@
+import { EventEmitter } from 'eventemitter3';
+import { AudioUtils } from './utils/audio_utils';
+import { CircularAudioBuffer } from './utils/circular_audio_buffer';
+import { FeatureExtractor, Params } from './utils/types';
+export declare class SoftOfflineFeatureExtractor extends EventEmitter implements FeatureExtractor {
+    private source;
+    private buffer;
+    private features;
+    private images;
+    targetSr: number;
+    bufferLength: number;
+    melCount: number;
+    hopLength: number;
+    duration: number;
+    isMfccEnabled: boolean;
+    fftSize: number;
+    bufferCount: number;
+    melFilterbank: Float32Array;
+    circularBuffer: CircularAudioBuffer;
+    playbackBuffer: CircularAudioBuffer;
+    audioUtils: AudioUtils;
+    config(params: Params): void;
+    private createBufferWithValues;
+    start(samples: Float32Array): Promise<Float32Array[]>;
+    stop(): void;
+    transform(data: Float32Array): Float32Array;
+    getFeatures(): Float32Array[];
+    getImages(): Float32Array[];
+    private getFullBuffers;
+}
