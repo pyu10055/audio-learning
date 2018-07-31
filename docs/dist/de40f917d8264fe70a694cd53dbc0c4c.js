@@ -21173,13 +21173,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -21188,7 +21188,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -21197,11 +21197,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -21216,9 +21216,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 
@@ -23983,7 +23983,7 @@ module.exports = function privateDecrypt(private_key, enc, reverse) {
   } else {
     padding = 4;
   }
-  
+
   var key = parseKeys(private_key);
   var k = key.modulus.byteLength();
   if (enc.length > k || new bn(enc).cmp(key.modulus) >= 0) {
@@ -68367,4 +68367,4 @@ $('#record').on('click', onRecord);
 $('#eval-model').on('change', onModelChange);
 window.addEventListener('load', onLoadModel);
 },{"babel-runtime/regenerator":22,"babel-runtime/helpers/asyncToGenerator":25,"@tensorflow/tfjs-core":24,"./command_recognizer":3,"./command_trainer":4,"./model_evaluation":5,"./spectrogram":6,"./streaming_feature_extractor":7,"./utils/types":8}]},{},[2])
-//# sourceMappingURL=/dist/de40f917d8264fe70a694cd53dbc0c4c.map
+//# sourceMappingURL=./dist/de40f917d8264fe70a694cd53dbc0c4c.map
