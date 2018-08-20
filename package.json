@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@tensorflow/tfjs": "0.12.3",
+    "@tensorflow/tfjs": "0.12.5",
     "eventemitter3": "^2.0.3",
     "d3": "5.4.0",
     "dct": "^0.0.3",
